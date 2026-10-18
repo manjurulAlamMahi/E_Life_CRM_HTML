@@ -1,0 +1,1531 @@
+/* ==========================================================================
+   E Life Healthcare CRM — brand additions
+   --------------------------------------------------------------------------
+   Deliberately small. The palette itself lives in bootstrap.min.css /
+   app.min.css, which were recoloured at the source:
+       primary  #a47bc8 -> #024766
+       success  #4ec5ad -> #53AA25
+   Everything below is markup the template does not already ship
+   (brand lockup, kanban board, receipt paper). No !important, no overrides
+   of template components — additions only.
+   ========================================================================== */
+
+/* --- Topbar search — now that Quick Add and the branch badge are gone,
+   this sits alone on the left side of the topbar and has the room to be
+   the size a primary search box should be, rather than the cramped,
+   unconstrained-width box it was squeezed into before. */
+.crm-topbar-search {
+    width: 420px;
+    max-width: 100%;
+}
+.crm-topbar-search .form-control {
+    height: 42px;
+    font-size: 14px;
+}
+
+/* --- Brand lockup in the topbar -----------------------------------------
+   Never set `display` on .logo / .logo-dark / .logo-light. The template
+   toggles those between light/dark theme and collapsed/expanded sidebar;
+   a `display` rule here outranks it and renders both logos at once.
+   Align with vertical-align instead, which is inert to that toggle.       */
+.brand-mark {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    background: var(--bs-primary);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: .5px;
+    flex-shrink: 0;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .18);
+}
+
+.brand-mark::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--bs-success);
+    transform: translate(14px, -12px);
+}
+
+.logo-lg .brand-mark { margin-right: 10px; }
+
+.brand-word {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--bs-primary);
+    white-space: nowrap;
+    line-height: 1;
+    vertical-align: middle;
+}
+
+.brand-word b { font-weight: 700; }
+
+[data-bs-theme="dark"] .brand-word { color: #fff; }
+
+/* --- Uploaded brand logo (topbar) -----------------------------------------
+   Two source images, both derived from assets/logo.png:
+     - brand-logo-full: the full wordmark, shown when the sidebar is expanded.
+     - brand-logo-icon: assets/logo-icon.png, a pre-cropped tight crop of just
+       the mark (no text), shown when the sidebar collapses to its icon rail.
+   A dedicated cropped file is used instead of a CSS background-crop trick so
+   the collapsed icon is pixel-exact and never stretches, tiles or clips
+   mid-glyph regardless of the collapsed rail width. Sizing is capped with
+   max-width/height (not fixed width+height) so nothing in the 4.75rem
+   collapsed rail or the expanded logo box can ever overflow — the "sidebar
+   collapse breaks the logo" case this replaces. */
+.brand-logo-full {
+    display: inline-block;
+    height: 34px;
+    width: auto;
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+.brand-logo-icon {
+    display: inline-block;
+    height: 34px;
+    width: auto;
+    max-width: 40px;
+    object-fit: contain;
+    vertical-align: middle;
+}
+
+/* --- Notification count on the bell -------------------------------------- */
+.btn-icon { position: relative; }
+
+.topbar-badge {
+    top: 6px;
+    right: 4px;
+    font-size: 9px;
+    padding: .2em .45em;
+    line-height: 1;
+}
+
+/* --- Status tabs (Leads, Deals, Patient Profile) ------------------------- *
+ * Bootstrap's active-tab style leaves the bottom border white so it blends
+ * into the panel directly beneath it — that only reads as seamless when the
+ * tab strip touches the panel with zero gap. Card padding puts a gap there
+ * instead, so the white edge looked like an unfinished box. Closing the
+ * border on all four sides gives a clean "boxed" active tab that doesn't
+ * depend on that gap being zero. */
+.nav-tabs .nav-link.active {
+    border-bottom-color: var(--bs-border-color, #eae9eb);
+}
+
+/* --- Sidebar menu-item badge (Follow-ups) -------------------------------- *
+ * The sidebar <a> isn't a flex container, so Bootstrap's ms-auto utility had
+ * no effect — the count badge just sat pressed up against the label instead
+ * of pinned to the item's right edge. Absolute-position it instead; making
+ * every sidebar link a positioning context is harmless since none has any
+ * other absolutely-positioned child. */
+#side-menu a { position: relative; }
+#side-menu .badge.ms-auto {
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    transform: translateY(-50%);
+    margin-left: 0 !important;
+}
+
+/* --- Stat tiles (dashboard) ---------------------------------------------- *
+ * Scoped to .stat-tile only, .stat-icon rendered outside one (the login
+ * page's mini stat cards) got none of this and the glyph sat unstyled at
+ * the box's default inline position instead of centered — hence "icons
+ * aren't centered". The icon badge is a self-contained component; centering
+ * shouldn't depend on which card wraps it. */
+.stat-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.stat-tile .stat-value {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 2px;
+}
+
+.stat-tile .stat-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+}
+
+/* --- Kanban pipeline (plan.md §7) ---------------------------------------- */
+.kanban-board {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    align-items: flex-start;
+}
+
+.kanban-col {
+    flex: 0 0 268px;
+    background: var(--bs-tertiary-bg);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.kanban-col-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 6px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+}
+
+/* Stage colour rail — a sibling of .kanban-col-head, not a child. */
+.kanban-col > .col-rail {
+    display: block;
+    height: 3px;
+    border-radius: 3px;
+    margin: 2px 2px 8px;
+}
+
+.kanban-items { min-height: 60px; }
+
+.kanban-card {
+    background: var(--bs-body-bg);
+    border: 1px solid var(--bs-border-color);
+    border-radius: 8px;
+    padding: 11px 12px;
+    margin-bottom: 9px;
+    cursor: grab;
+    transition: box-shadow .15s ease, transform .15s ease;
+}
+
+.kanban-card:hover {
+    box-shadow: 0 4px 14px rgba(2, 71, 102, .12);
+    transform: translateY(-1px);
+}
+
+.kanban-card:active { cursor: grabbing; }
+
+.kanban-card .kc-id {
+    font-size: 11px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.kanban-card .kc-name { font-weight: 600; font-size: 13.5px; }
+.kanban-card .kc-value { font-weight: 700; }
+
+/* --- Money receipt (plan.md §9 — office / client copy) -------------------- */
+.receipt-paper {
+    background: #fff;
+    color: #17222b;
+    border: 1px solid #dfe5ea;
+    border-radius: 8px;
+    padding: 0 0 24px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Letterhead band across the top of the paper */
+.receipt-paper .r-letterhead {
+    background: linear-gradient(135deg, var(--bs-primary) 0%, #036a92 100%);
+    color: #fff;
+    padding: 20px 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 14px;
+}
+.receipt-paper .r-letterhead .r-mark {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, .16);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: .5px;
+    flex-shrink: 0;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35);
+}
+/* Real logo on a white tile — the icon's teal half would vanish on the dark letterhead. */
+.receipt-paper .r-letterhead .r-mark-logo { width: 48px; height: 48px; background: #fff; padding: 5px; box-shadow: none; }
+.receipt-paper .r-letterhead .r-mark-logo img { max-width: 100%; max-height: 100%; }
+.receipt-paper .r-letterhead .r-tagline { font-size: 10.5px; color: rgba(255, 255, 255, .82); margin-top: 1px; }
+.receipt-paper .r-letterhead .r-contact { font-size: 10.5px; color: rgba(255, 255, 255, .82); line-height: 1.5; margin-top: 6px; }
+.receipt-paper .r-letterhead .r-reg { font-size: 10px; color: rgba(255, 255, 255, .68); margin-top: 6px; }
+
+.receipt-paper .r-body { padding: 20px 26px 0; }
+
+.receipt-paper .r-head {
+    border-bottom: 1px dashed #cfd8e0;
+    padding-bottom: 14px;
+    margin-bottom: 16px;
+}
+
+.receipt-paper .r-org { color: #fff; font-weight: 700; font-size: 18px; line-height: 1.2; }
+.receipt-paper .r-no { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-weight: 700; }
+.receipt-paper .r-copy {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 1px solid currentColor;
+    border-radius: 3px;
+    padding: 2px 7px;
+}
+.receipt-paper table { width: 100%; font-size: 13px; }
+.receipt-paper .r-total-row td { border-top: 2px solid var(--bs-primary); font-weight: 700; }
+.receipt-paper .r-due { color: var(--bs-danger); font-weight: 700; }
+
+/* Payment status ribbon, top-right corner of the paper body */
+.r-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    border-radius: 20px;
+    padding: 4px 11px;
+}
+.r-status-pill.is-partial { background: #fdf1d6; color: #7a683c; }
+.r-status-pill.is-paid    { background: #e4f3da; color: #326616; }
+
+/* "Bill to" identity cards */
+.r-party-label { font-size: 10px; text-transform: uppercase; letter-spacing: .6px; color: #8a92a4; margin-bottom: 4px; }
+.r-party-name { font-weight: 700; font-size: 13.5px; color: #17222b; }
+.r-party-meta { font-size: 11.5px; color: #5b6b7a; line-height: 1.6; }
+
+/* Line-items / history tables with a light header row */
+.r-mini-table { width: 100%; font-size: 12px; border-collapse: collapse; }
+.r-mini-table th {
+    text-align: left;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    color: #8a92a4;
+    font-weight: 600;
+    padding: 5px 0;
+    border-bottom: 1px solid #e5eaef;
+}
+.r-mini-table td { padding: 6px 0; border-bottom: 1px solid #f0f3f6; color: #17222b; }
+.r-mini-table tr:last-child td { border-bottom: none; }
+
+.r-words {
+    font-size: 11.5px;
+    font-style: italic;
+    color: #5b6b7a;
+    background: #f7f9fb;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-top: 10px;
+}
+
+.r-terms {
+    font-size: 10px;
+    color: #8a92a4;
+    line-height: 1.7;
+    margin-top: 18px;
+    padding-top: 12px;
+    border-top: 1px dashed #cfd8e0;
+}
+.r-terms li { margin-bottom: 2px; }
+
+.r-sign-box { font-size: 11px; color: #5b6b7a; text-align: center; }
+.r-sign-box .r-sign-line { border-top: 1px solid #9aa8b5; padding-top: 5px; margin-top: 34px; }
+.r-sign-box .r-sign-name { color: #17222b; font-weight: 600; }
+.r-sign-box .r-sign-role { font-size: 10px; }
+
+.r-qr {
+    width: 62px;
+    height: 62px;
+    border: 1px solid #cfd8e0;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: #8a92a4;
+    background: repeating-linear-gradient(45deg, #f7f9fb, #f7f9fb 4px, #eef1f4 4px, #eef1f4 8px);
+    margin: 0 auto;
+}
+
+/* Faint diagonal watermark for the payment state */
+.r-watermark {
+    position: absolute;
+    top: 46%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-18deg);
+    font-size: 54px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    color: rgba(2, 71, 102, .06);
+    pointer-events: none;
+    z-index: 0;
+    white-space: nowrap;
+}
+.receipt-paper .r-body > * { position: relative; z-index: 1; }
+
+/* Locked / finalised marker, per plan.md R3 */
+.receipt-locked {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--bs-success);
+}
+
+@media print {
+    body { background: #fff; }
+    #page-topbar, .sidebar-left, .footer, .page-title-box,
+    .no-print, .progress-wrap { display: none !important; }
+    .main-content { margin: 0 !important; padding: 0 !important; }
+    .page-content { padding: 0 !important; }
+    .receipt-paper { border: 0; border-radius: 0; page-break-inside: avoid; }
+    .receipt-paper .r-letterhead { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .print-two-up { display: grid !important; grid-template-columns: 1fr 1fr; gap: 14px; }
+}
+
+/* --- Timeline (conversations, plan.md §3) -------------------------------- */
+.crm-timeline { position: relative; padding-left: 30px; }
+
+.crm-timeline::before {
+    content: "";
+    position: absolute;
+    left: 9px;
+    top: 4px;
+    bottom: 4px;
+    width: 2px;
+    background: var(--bs-border-color);
+}
+
+.crm-timeline-item { position: relative; padding-bottom: 36px; }
+.crm-timeline-item:last-child { padding-bottom: 4px; }
+
+.crm-timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -26px;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--bs-body-bg);
+    border: 2px solid var(--bs-primary);
+}
+
+.crm-timeline-item.is-success::before { border-color: var(--bs-success); }
+.crm-timeline-item.is-danger::before  { border-color: var(--bs-danger); }
+.crm-timeline-item.is-warning::before { border-color: var(--bs-warning); }
+
+/* --- Conversations: lead list — a plain, low-key "selected" state rather
+   than a solid brand-colour fill. A left accent bar carries the "this one
+   is open" signal; the rest of the row stays readable dark-on-light, same
+   as every other row, so the badges inside it keep their own colours
+   instead of fighting a saturated background. */
+.crm-conv-list .list-group-item.active {
+    z-index: 0;
+    background-color: var(--bs-tertiary-bg, #f3f4f6);
+    border-color: var(--bs-border-color);
+    /* The template's own app.min.css forces white text on any .active
+       list-group item via `color: var(--bs-white) !important`, so a plain
+       override has no effect here — it takes an !important of its own to
+       win back a readable colour on this now-light background. */
+    color: var(--bs-body-color) !important;
+    box-shadow: inset 3px 0 0 var(--bs-primary);
+}
+
+/* ==========================================================================
+   Contrast corrections (WCAG AA)
+   --------------------------------------------------------------------------
+   The stock template renders status text below AA on its own backgrounds —
+   e.g. white on amber `.alert-warning` measured 1.49:1, and `.text-danger`
+   on a white card measured 2.97:1. On this system those colours carry payment
+   state and outstanding balances, so they have to be legible.
+
+   These are colour-only corrections. No layout, spacing, size or weight is
+   changed, and the hue of each state is preserved — the text is simply
+   darkened until it passes. `!important` is required only because Bootstrap
+   colour utilities are themselves `!important`.
+   ========================================================================== */
+
+/* Status text on white / light card surfaces */
+.text-success { color: #326616 !important; }   /* was #53AA25 — 2.94:1 */
+.text-danger  { color: #d32f2f !important; }   /* was #fd6161 — 2.97:1 */
+.text-warning { color: #7a683c !important; }   /* was #f4d078 — 1.35:1 */
+.text-info    { color: #465182 !important; }   /* was #7588de */
+
+/* Status pills: subtle background + emphasis foreground */
+.badge.bg-success-subtle   { color: #326616 !important; }  /* was 2.41:1 */
+.badge.bg-danger-subtle    { color: #983a3a !important; }  /* was 2.39:1 */
+.badge.bg-warning-subtle   { color: #7a683c !important; }  /* was 1.38:1 */
+.badge.bg-info-subtle      { color: #465182 !important; }
+.badge.bg-secondary-subtle { color: #315169 !important; }
+
+/* Solid alerts — the template paints these with white text */
+.alert-warning { color: #4a3d1c; }                          /* was 1.49:1 */
+.alert-success { background-color: #3e7f1b; border-color: #3e7f1b; }  /* was 2.94:1 */
+
+/* Sidebar section labels and footer.
+   The template's rule is `.sidebar-left #sidebar-menu .menu-title` and also
+   applies opacity:.5, so the rendered contrast is worse than the declared
+   colour suggests. Match its specificity and drop the opacity. */
+.sidebar-left #sidebar-menu .menu-title {
+    color: #64707c;
+    opacity: 1;
+}
+.footer { color: #5a5e6e; }                                 /* was 4.36:1 */
+
+/* Dark theme keeps the template's own lighter emphasis colours */
+:root[data-bs-theme="dark"] .text-success,
+:root[data-bs-theme="dark"] .badge.bg-success-subtle { color: #8fd45f !important; }
+:root[data-bs-theme="dark"] .text-danger,
+:root[data-bs-theme="dark"] .badge.bg-danger-subtle  { color: #ff9b9b !important; }
+:root[data-bs-theme="dark"] .text-warning,
+:root[data-bs-theme="dark"] .badge.bg-warning-subtle { color: #f8dfa4 !important; }
+:root[data-bs-theme="dark"] .text-info,
+:root[data-bs-theme="dark"] .badge.bg-info-subtle    { color: #a9b4ea !important; }
+:root[data-bs-theme="dark"] .menu-title { color: #9aa4b2; }
+:root[data-bs-theme="dark"] .footer     { color: #a7adba; }
+
+/* --- Small helpers -------------------------------------------------------- */
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.cur  { font-variant-numeric: tabular-nums; }
+
+/* A `readonly` field (e.g. Age, derived from Date of Birth) is locked the
+   same way a `disabled` one is, but the template doesn't grey it — left
+   alone it stays plain white and reads as an ordinary editable box. Match
+   disabled's tint so both read as "not yours to type into" consistently.
+   Both also get an explicit, slightly darker border: the tint alone reads
+   as "borderless" against a light backdrop (a dimmed modal, a bg-light
+   panel), so the field's own edge has to hold up on its own regardless of
+   whatever it's sitting on. Hardcoded, not `var(--bs-secondary-bg)` — this
+   theme's recoloured build resolves that variable to white, so a fallback
+   on it never actually kicks in and the field stayed white regardless. */
+.form-control[readonly],
+.form-control:disabled,
+.form-select:disabled {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+    opacity: 1;
+}
+:root[data-bs-theme="dark"] .form-control[readonly],
+:root[data-bs-theme="dark"] .form-control:disabled,
+:root[data-bs-theme="dark"] .form-select:disabled {
+    background-color: var(--bs-tertiary-bg, #2a2f37);
+    border-color: #495057;
+}
+
+.ageing-bar {
+    display: flex;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--bs-tertiary-bg);
+}
+.ageing-bar span { display: block; height: 100%; }
+
+/* --- Confirmed leads still carrying a balance ----------------------------- */
+/* Step 5 asks for outstanding money on confirmed leads to be findable without
+   reading every figure, so the row is tinted as well as showing a red due. */
+.crm-row-due > td { background-color: rgba(255, 193, 7, 0.08); }
+:root[data-bs-theme="dark"] .crm-row-due > td { background-color: rgba(255, 193, 7, 0.12); }
+
+/* --- Lead Registration Form sheet ------------------------------------------ */
+/* Deliberately plain: black text on white, no brand colour, no gradient —
+   a printed intake form, not a marketing receipt. Organised into the same
+   Guardian / Patient / Address / Lead / Package sections as the Add Lead
+   form itself, as label/value rows rather than tables, so it reads cleanly
+   both on screen and on paper. */
+.lead-form-sheet {
+    background: #fff;
+    color: #17222b;
+    border: 1px solid #17222b;
+    padding: 22px 26px;
+}
+.lead-form-sheet .lf-logo { text-align: center; margin-bottom: 6px; }
+.lead-form-sheet .lf-logo img { height: 44px; width: auto; max-width: 220px; object-fit: contain; }
+.lead-form-sheet .lf-title { font-size: 17px; font-weight: 700; text-align: center; letter-spacing: .3px; }
+.lead-form-sheet .lf-contact { font-size: 11px; color: #5b6b7a; text-align: center; margin-top: 2px; }
+.r-mark-logo img { object-fit: contain; }
+.lead-form-sheet .lf-sub { font-size: 11px; text-align: center; color: #444; margin-top: 2px; }
+.lead-form-sheet .lf-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    border-top: 1px solid #17222b;
+    border-bottom: 1px solid #17222b;
+    padding: 6px 2px;
+    margin: 14px 0 4px;
+}
+.lead-form-sheet .lf-section {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    border-bottom: 1px solid #17222b;
+    padding-bottom: 3px;
+    margin: 16px 0 8px;
+}
+.lead-form-sheet .lf-row { display: flex; font-size: 12.5px; padding: 3px 0; gap: 10px; }
+.lead-form-sheet .lf-label { width: 44%; color: #444; flex-shrink: 0; }
+.lead-form-sheet .lf-value { flex: 1; font-weight: 600; word-break: break-word; }
+
+/* --- Lead Registration Form print ------------------------------------------ */
+/* Printing straight out of an open Bootstrap modal: everything else on the
+   page (chrome, backdrop, other modals) is hidden and the modal's own
+   dialog/content wrappers are reset so the printed sheet isn't clipped to
+   the on-screen modal's scroll height. Scoped to #leadPrintModal.show so no
+   other modal or page is affected. */
+@media print {
+    /* Every other direct child of the page container — stat tiles, filters,
+       the leads table, every other modal — is hidden; only the print modal's
+       own element is left for the general chrome rule above and the rules
+       below to size for paper. */
+    body:has(#leadPrintModal.show) .page-content > .container-fluid > *:not(#leadPrintModal) { display: none !important; }
+    #leadPrintModal.show { position: static !important; display: block !important; }
+    #leadPrintModal.show .modal-dialog { max-width: 100%; margin: 0; }
+    #leadPrintModal.show .modal-content { border: 0; }
+    #leadPrintModal.show .modal-body { padding: 0; }
+    #leadPrintModal.show .no-print { display: none !important; }
+}
+
+/* Printable modals (invoices on Patient Profile and the Payment module):
+   same approach as the lead print form above — only the open modal
+   prints, full width, no chrome. Add .crm-print-modal to the modal. */
+@media print {
+    body:has(.crm-print-modal.show) .page-content > .container-fluid > *:not(.crm-print-modal.show) { display: none !important; }
+    body:has(.crm-print-modal.show) .modal-backdrop { display: none !important; }
+    .crm-print-modal.show { position: static !important; display: block !important; }
+    .crm-print-modal.show .modal-dialog { max-width: 100%; margin: 0; }
+    .crm-print-modal.show .modal-content { border: 0; box-shadow: none; }
+    .crm-print-modal.show .modal-body { padding: 0; overflow: visible; }
+    .crm-print-modal.show .no-print { display: none !important; }
+    .crm-print-modal .text-danger,
+    .crm-print-modal .text-success,
+    .crm-print-modal .text-primary {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
+
+/* --- Customer invoice (CRMInvoice.render in crm-demo.js) -------------------
+   One layout wherever an invoice is shown or printed. Fixed light colours
+   on purpose: it is a paper document, so it reads the same in dark mode. */
+.crm-invoice {
+    --inv-ink: #1f2d3a;
+    --inv-muted: #5b6b7a;
+    --inv-line: #e3e8ee;
+    --inv-brand: #036189;
+    --inv-soft: #f4f8fb;
+    background: #fff;
+    color: var(--inv-ink);
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 32px;
+    border-radius: 6px;
+}
+.crm-invoice table { width: 100%; border-collapse: collapse; }
+.crm-invoice .cur { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.crm-invoice .inv-head {
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; flex-wrap: wrap;
+    padding-bottom: 20px; border-bottom: 2px solid var(--inv-brand); margin-bottom: 24px;
+}
+.crm-invoice .inv-brand { display: flex; flex-direction: column; gap: 8px; max-width: 340px; }
+.crm-invoice .inv-logo { height: 56px; width: auto; align-self: flex-start; }
+.crm-invoice .inv-company { font-size: 12px; color: var(--inv-muted); }
+.crm-invoice .inv-company-name { font-size: 14px; font-weight: 700; color: var(--inv-ink); margin-bottom: 2px; }
+.crm-invoice .inv-title { text-align: right; margin-left: auto; }
+.crm-invoice .inv-word {
+    font-size: 26px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--inv-brand); line-height: 1;
+    margin-bottom: 10px;
+}
+.crm-invoice .inv-meta { width: auto; margin-left: auto; font-size: 12px; }
+.crm-invoice .inv-meta td { padding: 1px 0; }
+.crm-invoice .inv-meta td:first-child { color: var(--inv-muted); padding-right: 14px; text-align: left; }
+.crm-invoice .inv-meta td:last-child { font-weight: 600; text-align: right; }
+.crm-invoice .inv-status {
+    display: inline-block; margin-top: 10px; padding: 3px 12px; border-radius: 999px;
+    font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; border: 1px solid;
+}
+.crm-invoice .inv-status.is-paid { color: #2f7a12; background: #eef8e8; border-color: #b9e0a5; }
+/* Bill To and Patient share one panel, split by a rule, so neither side
+   reads as a half-empty box. */
+.crm-invoice .inv-parties {
+    display: grid; grid-template-columns: 1fr 1fr; margin-bottom: 24px;
+    background: var(--inv-soft); border-radius: 8px;
+}
+.crm-invoice .inv-parties > div { padding: 14px 18px; }
+.crm-invoice .inv-parties > div + div { border-left: 1px solid var(--inv-line); }
+.crm-invoice .inv-label {
+    font-size: 10.5px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; color: var(--inv-muted); margin-bottom: 4px;
+}
+.crm-invoice .inv-name { font-size: 15px; font-weight: 600; color: var(--inv-ink); margin-bottom: 6px; }
+.crm-invoice .inv-field { display: flex; gap: 10px; font-size: 12.5px; padding: 1px 0; }
+.crm-invoice .inv-field > span:first-child { color: var(--inv-muted); min-width: 64px; }
+.crm-invoice .inv-items th {
+    color: var(--inv-brand); font-size: 11px; font-weight: 700; letter-spacing: .5px;
+    text-transform: uppercase; padding: 8px 10px; border-bottom: 2px solid var(--inv-brand);
+}
+.crm-invoice .inv-items td { padding: 12px 10px; border-bottom: 1px solid var(--inv-line); vertical-align: top; }
+.crm-invoice .inv-sub { font-size: 12px; color: var(--inv-muted); font-weight: 400; }
+.crm-invoice .inv-bottom { display: flex; justify-content: space-between; gap: 24px; margin-top: 18px; flex-wrap: wrap; }
+.crm-invoice .inv-words { flex: 1 1 240px; font-style: italic; }
+.crm-invoice .inv-summary { width: 300px; max-width: 100%; }
+.crm-invoice .inv-summary td { padding: 6px 10px; border-bottom: 1px solid var(--inv-line); }
+.crm-invoice .inv-summary td:first-child { color: var(--inv-muted); }
+.crm-invoice .inv-summary .inv-this td { color: #2f7a12; font-weight: 600; }
+.crm-invoice .inv-summary .inv-balance td {
+    background: var(--inv-brand); color: #fff; font-weight: 700; font-size: 14px; border-bottom: 0;
+}
+.crm-invoice .inv-foot {
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap;
+    margin-top: 36px; padding-top: 14px; border-top: 1px solid var(--inv-line); font-size: 11.5px; color: var(--inv-muted);
+}
+.crm-invoice .inv-thanks { font-weight: 600; color: var(--inv-ink); margin-bottom: 2px; }
+.crm-invoice .inv-terms { flex: 1 1 280px; }
+.crm-invoice .inv-sign { text-align: center; min-width: 180px; }
+.crm-invoice .inv-sign-line { border-top: 1px solid var(--inv-ink); margin: 36px 0 4px; }
+@media (max-width: 575.98px) {
+    .crm-invoice { padding: 16px; }
+    .crm-invoice .inv-parties { grid-template-columns: 1fr; }
+    .crm-invoice .inv-parties > div + div { border-left: 0; border-top: 1px solid var(--inv-line); }
+    .crm-invoice .inv-title { text-align: left; margin-left: 0; }
+    .crm-invoice .inv-meta { margin-left: 0; }
+}
+@media print {
+    .crm-invoice { padding: 0; }
+    .crm-invoice,
+    .crm-invoice * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
+
+/* --- Invoice print -------------------------------------------------------- */
+/* Scoped to .invoice-sheet so no other page's printing is affected. The
+   template chrome is hidden and the sheet runs full width on paper. */
+@media print {
+    body:has(.invoice-sheet) .sidebar-left,
+    body:has(.invoice-sheet) .topbar,
+    body:has(.invoice-sheet) .footer,
+    body:has(.invoice-sheet) .page-title-box,
+    body:has(.invoice-sheet) .right-bar,
+    body:has(.invoice-sheet) .rightbar-overlay { display: none !important; }
+
+    body:has(.invoice-sheet) .main-content,
+    body:has(.invoice-sheet) .page-content {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .invoice-sheet {
+        border: 0 !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+    }
+    .invoice-sheet .card-body { padding: 0 !important; }
+
+    /* Colour-coded figures must survive the printer's default of dropping
+       backgrounds, or the balance stops standing out on paper. */
+    .invoice-sheet .text-danger,
+    .invoice-sheet .text-success,
+    .invoice-sheet .text-primary,
+    .invoice-sheet .badge {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    @page { margin: 14mm; }
+}
+
+/* --- Auth pages: gradient brand panel, floating shapes, entrance motion -- *
+ * Login/Forgot Password/Screen Lock share this right-hand panel. It was
+ * flat bg-body grey — read as "so simple and white" — so this gives it a
+ * brand-coloured gradient, a few soft blurred shapes that drift slowly, and
+ * glass-style stat cards that sit on top of it instead of plain white ones. */
+.auth-panel {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #013449 0%, #024766 45%, #036189 100%);
+}
+
+.auth-panel .auth-shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(1px);
+    pointer-events: none;
+    animation: auth-float 11s ease-in-out infinite;
+}
+
+.auth-panel .auth-shape.s1 { width: 280px; height: 280px; top: -80px;  left: -70px;  background: rgba(83,170,37,.30);  animation-duration: 13s; }
+.auth-panel .auth-shape.s2 { width: 190px; height: 190px; bottom: 8%;  right: -50px; background: rgba(255,255,255,.10); animation-duration: 9s;  animation-delay: -3s; }
+.auth-panel .auth-shape.s3 { width: 130px; height: 130px; top: 18%;    right: 10%;   background: rgba(244,208,120,.22); animation-duration: 8s;  animation-delay: -1.5s; }
+.auth-panel .auth-shape.s4 { width: 100px; height: 100px; bottom: -25px; left: 20%;  background: rgba(83,170,37,.22);  animation-duration: 12s; animation-delay: -6s; }
+.auth-panel .auth-shape.s5 { width: 60px;  height: 60px;  top: 42%;    left: 8%;     background: rgba(255,255,255,.14); animation-duration: 7s;  animation-delay: -2.5s; }
+
+@keyframes auth-float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(16px, -22px) scale(1.06); }
+}
+
+.auth-panel .auth-content { position: relative; z-index: 2; }
+
+.auth-panel .stat-glass {
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.16);
+}
+.auth-panel .stat-glass .stat-icon { background: rgba(255,255,255,.16) !important; color: #fff !important; }
+.auth-panel .stat-glass .fw-bold { color: #fff; }
+.auth-panel .stat-glass .text-muted { color: rgba(255,255,255,.72) !important; }
+
+/* Entrance motion for the sign-in form itself, not just the shapes. */
+@keyframes auth-form-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.auth-form-in { animation: auth-form-in .5s ease-out both; }
+
+/* --- Leads: bulk-select toolbar and row highlight -----------------------
+   A solid brand-coloured bar rather than a Bootstrap alert, so the actions
+   inside it (Change Status, Delete) read as obviously clickable buttons
+   from the first glance instead of needing a hover to notice them. */
+.crm-bulk-bar {
+    background: linear-gradient(135deg, #024766, #036085);
+    color: #fff;
+    border-radius: .5rem;
+    padding: .65rem 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 10px rgba(2, 71, 102, .25);
+}
+.crm-bulk-bar .btn-light {
+    color: #024766;
+}
+.crm-bulk-bar .btn-light:hover,
+.crm-bulk-bar .btn-light:focus {
+    color: #024766;
+    background: #fff;
+}
+.crm-bulk-bar #bulk-clear-btn {
+    opacity: .85;
+}
+.crm-bulk-bar #bulk-clear-btn:hover,
+.crm-bulk-bar #bulk-clear-btn:focus {
+    opacity: 1;
+    color: #fff;
+}
+
+.crm-table tbody tr.crm-row-selected {
+    background-color: rgba(2, 71, 102, .07);
+}
+.crm-table tbody tr.crm-row-selected:hover {
+    background-color: rgba(2, 71, 102, .11);
+}
+
+/* --- Quick View: patient journey roadmap ---------------------------------
+   Six-step stepper (see crm-leads.js renderJourney): a filled/checked icon
+   for a completed step, a ringed icon for the current one, a plain outline
+   for what's ahead. Row on desktop, stacked with a vertical connector on
+   phones — six labels never fit one horizontal line at 400px wide. */
+.crm-journey {
+    display: flex;
+    align-items: flex-start;
+    margin: 4px 0 22px;
+}
+.crm-journey-step {
+    position: relative;
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: center;
+    padding: 0 4px;
+}
+.crm-journey-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 19px;
+    left: calc(50% + 23px);
+    right: calc(-50% + 23px);
+    height: 2px;
+    background: #e2e5e8;
+    z-index: 0;
+}
+.crm-journey-step.is-done:not(:last-child)::after {
+    background: #53AA25;
+}
+.crm-journey-icon {
+    position: relative;
+    z-index: 1;
+    width: 38px;
+    height: 38px;
+    margin: 0 auto 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    background: #fff;
+    border: 2px solid #dfe3e6;
+    color: #9aa2a9;
+    transition: background-color .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease;
+}
+.crm-journey-step.is-done .crm-journey-icon {
+    background: #53AA25;
+    border-color: #53AA25;
+    color: #fff;
+}
+.crm-journey-step.is-current .crm-journey-icon {
+    background: #fff;
+    border-color: #024766;
+    color: #024766;
+    box-shadow: 0 0 0 4px rgba(2, 71, 102, .14);
+}
+.crm-journey-step.is-cancelled .crm-journey-icon {
+    background: #dc3545;
+    border-color: #dc3545;
+    color: #fff;
+}
+.crm-journey-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #9aa2a9;
+    line-height: 1.25;
+}
+.crm-journey-step.is-done .crm-journey-label,
+.crm-journey-step.is-current .crm-journey-label {
+    color: #212529;
+}
+.crm-journey-step.is-cancelled .crm-journey-label {
+    color: #dc3545;
+}
+/* Round patient avatar: a photo when one is set, otherwise an icon or
+   initials on the brand tint. */
+.crm-avatar {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(2, 71, 102, .08);
+    color: #024766;
+    font-size: 20px;
+    font-weight: 600;
+}
+.crm-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.crm-avatar-lg {
+    width: 64px;
+    height: 64px;
+    font-size: 28px;
+}
+.crm-avatar-xl {
+    width: 88px;
+    height: 88px;
+    font-size: 32px;
+}
+/* Package history: the milestones one package reached, as a short list. */
+.crm-mini-timeline li {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 0 0 8px 18px;
+}
+.crm-mini-timeline li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 2px solid #d5dade;
+    background: #fff;
+}
+.crm-mini-timeline li.is-done::before { background: #53AA25; border-color: #53AA25; }
+.crm-mini-timeline li.is-current::before { border-color: #024766; }
+.crm-mini-timeline li.is-cancelled::before { background: #dc3545; border-color: #dc3545; }
+.pp-pkg-row { cursor: pointer; }
+/* Patient profile overview: small section cards, label above value,
+   two fields per row — scannable at a glance instead of long tables. */
+.crm-info-card {
+    height: 100%;
+    border: 1px solid var(--bs-border-color, #e9ecef);
+    border-radius: 10px;
+    padding: 14px 16px;
+}
+.crm-info-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: #024766;
+    margin-bottom: 12px;
+}
+.crm-info-title .mdi { font-size: 16px; }
+.crm-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 16px;
+}
+.crm-info-item.span-2 { grid-column: 1 / -1; }
+.crm-info-label {
+    font-size: 11px;
+    color: #8a939b;
+    margin-bottom: 2px;
+}
+.crm-info-value {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--bs-body-color, #212529);
+    overflow-wrap: anywhere;
+}
+/* Profile header: the current package's figures as one strip. The 1px
+   grid gap over a border-coloured background draws the dividers, so they
+   stay right however the tiles wrap on smaller screens. */
+.pp-stats {
+    display: grid;
+    grid-template-columns: 1.3fr repeat(4, 1fr);
+    gap: 1px;
+    background: var(--bs-border-color, #e9ecef);
+    border: 1px solid var(--bs-border-color, #e9ecef);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.pp-stat {
+    background: var(--bs-card-bg, #fff);
+    padding: 12px 16px;
+    min-width: 0;
+}
+.pp-stat-due.is-owing { background: #fdf1f2; }
+.pp-stat-due.is-clear { background: #f2f9ee; }
+@media (max-width: 991.98px) {
+    .pp-stats { grid-template-columns: repeat(2, 1fr); }
+    .pp-stats .pp-stat:first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 575.98px) {
+    .pp-stats { grid-template-columns: 1fr; }
+}
+.crm-journey-caption {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    color: #9aa2a9;
+    line-height: 1.2;
+}
+
+@media (max-width: 575.98px) {
+    .crm-journey {
+        flex-direction: column;
+    }
+    .crm-journey-step {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        padding: 6px 0;
+    }
+    .crm-journey-step::after {
+        display: none;
+    }
+    .crm-journey-icon {
+        margin: 0 12px 0 0;
+        flex-shrink: 0;
+    }
+    .crm-journey-step:not(:last-child) .crm-journey-icon::after {
+        content: "";
+        position: absolute;
+        left: 19px;
+        top: 38px;
+        width: 2px;
+        height: 22px;
+        background: #e2e5e8;
+    }
+    .crm-journey-step.is-done:not(:last-child) .crm-journey-icon::after {
+        background: #53AA25;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .auth-panel .auth-shape,
+    .auth-form-in { animation: none; }
+}
+
+/* Demo notices can be hidden for good (crm-demo.js sets the class on
+   <html> from a stored preference) — this wins over the page scripts that
+   un-hide a notice by removing .d-none. */
+html.crm-hide-demo-notes .crm-demo-note { display: none !important; }
+
+/* Sources → View: the two lead columns scroll on their own so the modal
+   keeps the chart and both headers in view. */
+.sv-list { max-height: 420px; overflow-y: auto; }
+.sv-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--bs-border-color, #e9ecef);
+    text-decoration: none;
+}
+.sv-item:last-child { border-bottom: 0; }
+.sv-item:hover { background: rgba(2, 71, 102, .04); }
+.sv-item .min-w-0 { min-width: 0; }
+
+/* Log Conversation: "what happens next" as five large choices, so the
+   next action is picked at a glance rather than from a dropdown. */
+.cv-actions {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+}
+.cv-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 6px;
+    border: 1px solid var(--bs-border-color, #dee2e6);
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #495057;
+    background: var(--bs-body-bg, #fff);
+}
+.cv-action .mdi { font-size: 20px; line-height: 1; }
+.cv-action:hover { border-color: #024766; color: #024766; }
+.btn-check:checked + .cv-action {
+    border-color: #024766;
+    background: rgba(2, 71, 102, .08);
+    color: #024766;
+    box-shadow: 0 0 0 2px rgba(2, 71, 102, .15);
+}
+.btn-check:checked + .cv-action-primary { background: #024766; color: #fff; }
+@media (max-width: 575.98px) {
+    .cv-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* --- Last Conversation column (Follow-ups, All Leads) ---------------------
+   The latest note is readable right in the table: two lines, full text on
+   hover, with when / how / who underneath. */
+.crm-last-conv { min-width: 180px; }
+/* Table cells ignore max-width, so the cap sits on the content. */
+.crm-last-conv > div { max-width: 230px; }
+.crm-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: normal;
+}
+
+/* Rows hidden by a .crm-filter bar (crm-demo.js). Its own class, so tab
+   and search scripts that toggle d-none never un-hide a filtered row. */
+.crm-filtered-out { display: none !important; }
+
+/* --- Settings page (settings.html, crm-settings.js) ----------------------- */
+.set-nav-card { position: sticky; top: 90px; }
+.set-nav .set-nav-title {
+    font-size: 10.5px; font-weight: 700; letter-spacing: .7px; text-transform: uppercase;
+    color: var(--bs-secondary-color); padding: 14px 12px 6px;
+}
+.set-nav .set-nav-title:first-child { padding-top: 6px; }
+.set-nav .nav-link { display: flex; align-items: center; gap: 10px; padding: 8px 12px; font-size: 13.5px; }
+.set-nav .nav-link > .mdi:first-child { font-size: 17px; width: 18px; text-align: center; }
+.set-logo-box {
+    height: 132px; border: 1px dashed var(--bs-border-color); border-radius: 8px; background: var(--bs-tertiary-bg);
+    display: flex; align-items: center; justify-content: center; padding: 16px;
+}
+.set-logo-box img { max-height: 100%; max-width: 100%; object-fit: contain; }
+.set-id-table td, .set-id-table th { white-space: nowrap; }
+/* app.min.css pads every tbody cell with `!important`; one more class wins. */
+.table.set-id-table tbody tr td { padding: 10px 8px !important; }
+.table.set-id-table thead tr th { padding-left: 8px !important; padding-right: 8px !important; }
+.set-backup-status {
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    padding: 14px 16px; border-radius: 8px; background: var(--bs-success-bg-subtle);
+}
+.set-backup-icon {
+    width: 42px; height: 42px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+    background: var(--bs-body-bg); color: var(--bs-success); font-size: 22px;
+}
+.set-list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 0 24px; align-items: start; }
+.set-list-items li {
+    display: flex; align-items: center; gap: 8px; padding: 7px 16px; border-bottom: 1px solid var(--bs-border-color-translucent);
+    font-size: 13.5px; min-height: 44px;
+}
+.set-list-items li:last-child { border-bottom: 0; }
+.set-list-name { flex: 1 1 auto; min-width: 0; }
+.set-list-actions { display: inline-flex; gap: 4px; opacity: .35; transition: opacity .15s; }
+.set-list-items li:hover .set-list-actions,
+.set-list-items li:focus-within .set-list-actions { opacity: 1; }
+@media (hover: none) { .set-list-actions { opacity: 1; } }
+.set-list-actions .btn-icon { width: 28px; height: 28px; padding: 0; }
+@media (max-width: 575.98px) { .set-list-grid { grid-template-columns: 1fr; } }
+
+/* --- Dashboard (build/pages/index.html) ----------------------------------- */
+.dash-hero {
+    display: flex; align-items: stretch; justify-content: space-between; gap: 20px; margin-bottom: 1.25rem;
+    padding: 22px 24px; border-radius: 14px; color: #fff; position: relative; overflow: hidden;
+    background: linear-gradient(120deg, #024766 0%, #036189 60%, #2b8a5e 130%);
+    box-shadow: 0 8px 24px rgba(2, 71, 102, .18);
+}
+.dash-hero::after {
+    content: ""; position: absolute; right: 140px; top: -60px; width: 220px; height: 220px; border-radius: 50%;
+    background: rgba(255, 255, 255, .06); pointer-events: none;
+}
+.dash-hero-main { position: relative; z-index: 1; min-width: 0; }
+.dash-hero-hello { font-size: 24px; font-weight: 700; line-height: 1.2; }
+.dash-hero-sub { opacity: .8; margin-top: 4px; font-size: 14px; }
+.dash-wave { display: inline-block; }
+.dash-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.dash-chip {
+    display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; font-size: 13px;
+    background: rgba(255, 255, 255, .14); color: #fff; text-decoration: none; border: 1px solid rgba(255, 255, 255, .18);
+    transition: background .15s;
+}
+.dash-chip:hover { background: rgba(255, 255, 255, .24); color: #fff; }
+.dash-chip b { font-size: 14px; }
+.dash-chip-alert { background: rgba(253, 97, 97, .28); border-color: rgba(253, 97, 97, .45); }
+.dash-hero-date {
+    position: relative; z-index: 1; flex: 0 0 auto; min-width: 120px; text-align: center; align-self: center;
+    padding: 12px 18px; border-radius: 12px; background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .18);
+}
+.dash-hero-day { font-size: 12px; text-transform: uppercase; letter-spacing: .8px; opacity: .85; }
+.dash-hero-num { font-size: 34px; font-weight: 700; line-height: 1.1; }
+.dash-hero-month { font-size: 12px; opacity: .85; }
+@media (max-width: 575.98px) {
+    .dash-hero { flex-direction: column; padding: 18px; }
+    .dash-hero-hello { font-size: 20px; }
+    .dash-hero-date { display: none; }
+}
+.dash-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 1.5rem; }
+@media (min-width: 1400px) { .dash-actions { grid-template-columns: repeat(6, 1fr); } }
+.dash-action {
+    display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: 10px; text-decoration: none;
+    background: #fff; border: 1px solid var(--bs-border-color-translucent); color: var(--bs-body-color);
+    box-shadow: 0 1px 2px rgba(16, 24, 40, .04); transition: transform .15s, box-shadow .15s, border-color .15s;
+}
+[data-bs-theme="dark"] .dash-action { background: var(--bs-secondary-bg); }
+.dash-action:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(2, 71, 102, .10); border-color: var(--bs-primary-border-subtle); color: var(--bs-body-color); }
+.dash-action-icon { width: 42px; height: 42px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; font-size: 22px; flex: 0 0 auto; }
+.dash-action-title { display: block; font-weight: 600; font-size: 14px; line-height: 1.2; }
+.dash-action-sub { display: block; font-size: 12px; color: var(--bs-secondary-color); margin-top: 2px; }
+/* Add Lead: still white, singled out by a brand border and a filled icon. */
+.dash-action-primary { border: 1.5px solid #024766; }
+.dash-action-primary .dash-action-icon { background: #024766; color: #fff; }
+.dash-action-primary .dash-action-title { color: #024766; }
+[data-bs-theme="dark"] .dash-action-primary .dash-action-title { color: var(--bs-body-color); }
+.dash-tile { text-decoration: none; color: inherit; transition: transform .15s, box-shadow .15s; }
+.dash-tile:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(2, 71, 102, .10); }
+.dash-tile .card-body { padding: 14px 16px; }
+.dash-tile-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; }
+.dash-tile-go { color: var(--bs-secondary-color); opacity: 0; transition: opacity .15s; }
+.dash-tile:hover .dash-tile-go { opacity: 1; }
+.dash-tile .stat-value { font-size: 22px; line-height: 1.1; }
+.dash-list > li { display: flex; align-items: center; gap: 12px; padding: 11px 16px; border-bottom: 1px solid var(--bs-border-color-translucent); }
+.dash-list > li:last-child { border-bottom: 0; }
+.dash-list > li.is-done { opacity: .6; }
+.dash-who { flex: 1 1 auto; min-width: 0; }
+.dash-when { flex: 0 0 58px; text-align: center; display: flex; flex-direction: column; font-size: 13px; line-height: 1.2; }
+.dash-when > span:last-child { font-size: 11px; color: var(--bs-secondary-color); }
+.dash-when.text-danger > span:last-child { color: inherit; opacity: .8; }
+.dash-call { display: inline-flex; gap: 4px; flex: 0 0 auto; }
+.dash-method { width: 36px; height: 36px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; flex: 0 0 auto; }
+.dash-days { width: 46px; height: 46px; border-radius: 10px; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; font-size: 10px; line-height: 1; flex: 0 0 auto; }
+.dash-days > span { font-size: 17px; font-weight: 700; margin-bottom: 2px; }
+.dash-days { text-align: center; font-size: 9px; padding: 0 2px; }
+.dash-list > li.dash-cd { align-items: flex-start; padding-top: 14px; padding-bottom: 14px; }
+.dash-cd .dash-days { width: 52px; height: 52px; }
+.dash-stages { display: flex; flex-direction: column; }
+.dash-stages a { display: flex; justify-content: space-between; align-items: center; padding: 9px 4px; border-bottom: 1px dashed var(--bs-border-color); color: var(--bs-body-color); text-decoration: none; font-size: 13.5px; }
+.dash-stages a:last-child { border-bottom: 0; }
+.dash-stages a:hover { color: var(--bs-primary); }
+.dash-stages a > span:first-child { display: inline-flex; align-items: center; gap: 10px; }
+.dash-stages .mdi { font-size: 17px; }
+@media (max-width: 575.98px) {
+    .dash-actions { grid-template-columns: 1fr 1fr; }
+    .dash-action { padding: 10px; }
+    .dash-action-sub { display: none; }
+    .dash-call .btn-icon { display: none; }
+}
+
+/* --- Report Module (build/pages/reports.html) ------------------------------
+   Four tall cards. Each sets --rc to an "r, g, b" triple. At rest the icon
+   sits mid-card; on hover it grows and rises until it straddles the top
+   edge, and the card reveals what the report covers. The hub's top padding
+   leaves room for the half of the icon that leaves the card. */
+.report-hub { padding-top: 110px; }
+.report-card {
+    position: relative;
+    display: block;
+    min-height: 430px;
+    border-radius: 20px;
+    border: 1px solid rgba(var(--rc), .18);
+    background:
+        radial-gradient(120% 70% at 50% 0%, rgba(var(--rc), .10), transparent 70%),
+        var(--bs-card-bg, var(--bs-body-bg));
+    color: inherit;
+    text-decoration: none;
+    text-align: center;
+    overflow: visible;
+    transition: transform .45s cubic-bezier(.2, .8, .2, 1), box-shadow .45s, border-color .45s;
+}
+.report-card::after {
+    content: "";
+    position: absolute;
+    left: 24px; right: 24px; bottom: 0;
+    height: 4px;
+    border-radius: 4px 4px 0 0;
+    background: rgb(var(--rc));
+    transform: scaleX(.25);
+    opacity: .5;
+    transition: transform .45s cubic-bezier(.2, .8, .2, 1), opacity .45s;
+}
+.report-icon {
+    position: absolute;
+    left: 50%;
+    top: 36%;
+    z-index: 2;
+    width: 132px;
+    height: 132px;
+    border-radius: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 66px;
+    color: rgb(var(--rc));
+    background: rgba(var(--rc), .12);
+    transform: translate(-50%, -50%);
+    transition: top .55s cubic-bezier(.34, 1.45, .64, 1), transform .55s cubic-bezier(.34, 1.45, .64, 1),
+                background .35s, color .35s, box-shadow .45s, border-radius .45s;
+}
+.report-body {
+    position: absolute;
+    left: 0; right: 0;
+    top: calc(36% + 92px);
+    padding: 0 26px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: top .55s cubic-bezier(.2, .8, .2, 1);
+}
+.report-kicker {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgb(var(--rc));
+    margin-bottom: 8px;
+}
+.report-title { font-size: 21px; font-weight: 700; line-height: 1.25; color: var(--bs-heading-color, var(--bs-body-color)); }
+.report-sub { font-size: 13.5px; color: var(--bs-secondary-color); margin-top: 6px; }
+.report-points {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-top: 22px;
+    text-align: left;
+    font-size: 13.5px;
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity .3s, transform .45s cubic-bezier(.2, .8, .2, 1);
+}
+.report-points > span { display: flex; align-items: flex-start; gap: 8px; }
+.report-points .mdi { color: rgb(var(--rc)); font-size: 16px; line-height: 1.2; }
+.report-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 26px;
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+    background: rgb(var(--rc));
+    box-shadow: 0 8px 20px rgba(var(--rc), .35);
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity .3s, transform .45s cubic-bezier(.2, .8, .2, 1);
+}
+.report-cta .mdi { transition: transform .25s; }
+
+/* Hover / keyboard focus — and always on touch screens, which have no hover. */
+.report-card:hover,
+.report-card:focus-visible { transform: translateY(-6px); border-color: rgba(var(--rc), .45); box-shadow: 0 22px 48px rgba(var(--rc), .22); }
+.report-card:hover::after,
+.report-card:focus-visible::after { transform: scaleX(1); opacity: 1; }
+.report-card:hover .report-icon,
+.report-card:focus-visible .report-icon {
+    top: 0;
+    transform: translate(-50%, -50%) scale(1.15) rotate(-4deg);
+    border-radius: 50%;
+    color: #fff;
+    background: rgb(var(--rc));
+    box-shadow: 0 18px 36px rgba(var(--rc), .45), 0 0 0 10px var(--bs-body-bg);
+}
+.report-card:hover .report-body,
+.report-card:focus-visible .report-body { top: 104px; }
+.report-card:hover .report-points,
+.report-card:focus-visible .report-points,
+.report-card:hover .report-cta,
+.report-card:focus-visible .report-cta { opacity: 1; transform: none; }
+.report-card:hover .report-points,
+.report-card:focus-visible .report-points { transition-delay: .1s; }
+.report-card:hover .report-cta,
+.report-card:focus-visible .report-cta { transition-delay: .18s; }
+.report-card .report-cta:hover .mdi { transform: translateX(4px); }
+
+@media (hover: none), (max-width: 767.98px) {
+    .report-hub .row { row-gap: 88px !important; }
+    .report-card { min-height: 430px; }
+    .report-card .report-icon { top: 0; transform: translate(-50%, -50%); border-radius: 50%; color: #fff; background: rgb(var(--rc)); box-shadow: 0 0 0 10px var(--bs-body-bg); }
+    .report-card .report-body { top: 96px; }
+    .report-card .report-points,
+    .report-card .report-cta { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .report-card, .report-card *, .report-card::after { transition: none !important; }
+}
+
+/* --- Report Builder (build/pages/report-builder.html, crm-reports.js) ------
+   #rb carries --rc, the current report's "r, g, b", so the page takes the
+   colour of the card it was opened from. */
+.rb-types { display: flex; flex-wrap: wrap; gap: 6px; }
+.rb-type {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 14px; border-radius: 999px;
+    font-size: 13px; font-weight: 500;
+    color: var(--bs-secondary-color);
+    background: var(--bs-card-bg, var(--bs-body-bg));
+    border: 1px solid var(--bs-border-color);
+    text-decoration: none;
+    transition: color .2s, border-color .2s, background .2s;
+}
+.rb-type .mdi { font-size: 16px; color: rgb(var(--rc)); }
+.rb-type:hover { color: rgb(var(--rc)); border-color: rgba(var(--rc), .5); }
+.rb-type.active { color: #fff; background: rgb(var(--rc)); border-color: rgb(var(--rc)); }
+.rb-type.active .mdi { color: #fff; }
+
+.rb-hero {
+    border: 1px solid rgba(var(--rc), .2);
+    background: linear-gradient(100deg, rgba(var(--rc), .12), transparent 60%), var(--bs-card-bg, var(--bs-body-bg));
+}
+.rb-hero-icon {
+    width: 56px; height: 56px; border-radius: 16px; flex: 0 0 auto;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 28px; color: #fff; background: rgb(var(--rc));
+    box-shadow: 0 8px 18px rgba(var(--rc), .3);
+}
+.min-w-0 { min-width: 0; }
+
+.rb-step-no {
+    width: 24px; height: 24px; border-radius: 50%; flex: 0 0 auto;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: #fff; background: rgb(var(--rc));
+}
+
+.rb-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.rb-chip {
+    display: inline-flex; align-items: center;
+    padding: 5px 12px; border-radius: 999px;
+    font-size: 13px; cursor: pointer; user-select: none;
+    border: 1px solid var(--bs-border-color);
+    color: var(--bs-body-color);
+    transition: background .15s, border-color .15s, color .15s;
+}
+.rb-chip:hover { border-color: rgba(var(--rc), .6); }
+.btn-check:checked + .rb-chip { color: rgb(var(--rc)); background: rgba(var(--rc), .12); border-color: rgb(var(--rc)); font-weight: 500; }
+.btn-check:checked + .rb-chip::before { content: "\2713"; margin-right: 5px; font-weight: 700; }
+.btn-check:focus-visible + .rb-chip { box-shadow: 0 0 0 3px rgba(var(--rc), .25); }
+
+.rb-colgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 8px 16px; padding: 2px 0 4px 26px; }
+.rb-colgrid .form-check-label { font-size: 13.5px; }
+.rb .form-check-input:checked, .rb .form-check-input:indeterminate, .rb .form-check-input:checked:focus, .rb .form-check-input:indeterminate:focus { background-color: rgb(var(--rc)); border-color: rgb(var(--rc)); }
+
+.rb-summary { position: sticky; top: 85px; }
+.rb-summary-list { display: grid; grid-template-columns: auto 1fr; gap: 8px 12px; font-size: 13px; }
+.rb-summary-list dt { font-weight: 500; color: var(--bs-secondary-color); }
+.rb-summary-list dd { margin: 0; text-align: right; font-weight: 500; }
+.rb-summary-list .rb-sum-wide { grid-column: 1 / -1; text-align: left; }
+.rb-summary-list dd.rb-sum-wide { border: 1px solid var(--bs-border-color); border-radius: 8px; padding: 8px 10px; }
+.rb-sum-filter { display: flex; justify-content: space-between; gap: 10px; padding: 3px 0; font-weight: 400; }
+.rb-sum-filter > span:first-child { color: var(--bs-secondary-color); flex: 0 0 auto; }
+.rb-sum-filter > span:last-child { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 4px; }
+.rb-tag { font-size: 11.5px; padding: 1px 8px; border-radius: 999px; color: rgb(var(--rc)); background: rgba(var(--rc), .12); }
+.rb-note { font-size: 12px; color: var(--bs-secondary-color); background: var(--bs-tertiary-bg); border-radius: 8px; padding: 8px 10px; }
+
+.rb-table thead th { font-size: 12px; font-weight: 600; padding: 10px 12px; }
+.rb-empty { text-align: center; padding: 48px 16px !important; }
+.rb-empty > .mdi { font-size: 42px; color: rgba(var(--rc), .6); }
+.rb-empty .text-muted { max-width: 460px; margin: 4px auto 0; }
+@media (max-width: 1199.98px) { .rb-summary { position: static; } }
+
+/* --- Report result (build/pages/report-result.html) ----------------------- */
+.rr-meta {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px;
+    padding: 10px 20px; font-size: 12.5px;
+    border-top: 1px dashed rgba(var(--rc), .25);
+}
+.rr-meta-label { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgb(var(--rc)); }
+.rr-meta-item { color: var(--bs-secondary-color); }
+.rr-meta-item b { color: var(--bs-body-color); font-weight: 600; }
+#rr-table tfoot th { background: var(--bs-tertiary-bg); font-weight: 700; }
+
+/* Builder: collapsible steps and groups, the date-basis help, group notes. */
+.rb-collapse-head { cursor: pointer; user-select: none; }
+.rb-collapse-head:focus-visible { outline: 2px solid rgba(var(--rc), .5); outline-offset: -2px; }
+.rb-chev { font-size: 20px; line-height: 1; color: var(--bs-secondary-color); transition: transform .25s; }
+.rb-collapsible.is-collapsed > .rb-collapse-head .rb-chev { transform: rotate(-90deg); }
+.rb-collapsible.is-collapsed > .rb-collapse-body { display: none; }
+.rb-step.is-collapsed > .card-header { border-bottom: 0; }
+
+.rb-filter, .rb-colgroup { border: 1px solid var(--bs-border-color); border-radius: 10px; }
+.rb-filter + .rb-filter, .rb-colgroup + .rb-colgroup { margin-top: 10px; }
+.rb-group-head { display: flex; align-items: center; gap: 10px; padding: 10px 12px; }
+.rb-group-head .form-check-input { margin: 0; flex: 0 0 auto; cursor: pointer; }
+.rb-group-label { font-size: 13px; font-weight: 600; }
+.rb-group-count { margin-left: auto; font-size: 11.5px; font-weight: 500; padding: 1px 9px; border-radius: 999px; color: rgb(var(--rc)); background: rgba(var(--rc), .1); }
+.rb-group-count.is-none { color: var(--bs-danger); background: rgba(var(--bs-danger-rgb), .1); }
+.rb-filter > .rb-collapse-body, .rb-colgroup > .rb-collapse-body { padding: 0 12px 12px; }
+.rb-group-note { display: flex; gap: 6px; font-size: 12px; color: var(--bs-secondary-color); background: var(--bs-tertiary-bg); border-radius: 8px; padding: 7px 10px; margin-bottom: 10px; }
+.rb-group-note .mdi { color: rgb(var(--rc)); font-size: 14px; line-height: 1.2; }
+.rb-chip-section { font-size: 11.5px; font-weight: 600; color: var(--bs-secondary-color); margin: 4px 0 6px; }
+.rb-chips + .rb-chip-section { margin-top: 12px; }
+
+.rb-info { border: 0; background: none; padding: 0; line-height: 1; font-size: 15px; color: rgb(var(--rc)); cursor: pointer; }
+.rb-info.active, .rb-info:hover { color: var(--bs-body-color); }
+.rb-help { font-size: 12.5px; border-left: 3px solid rgb(var(--rc)); background: rgba(var(--rc), .06); border-radius: 0 8px 8px 0; padding: 10px 12px; }
+.rb-help li + li { margin-top: 3px; }
+.rb input[type="date"]:disabled { background-color: var(--bs-tertiary-bg); opacity: 1; cursor: not-allowed; }
+
+/* Result: one table that scrolls sideways inside the card. */
+.rr-card .dt-layout-table > div { overflow-x: auto; }
+.rr-card #rr-table td, .rr-card #rr-table th { white-space: nowrap; }

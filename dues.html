@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Payment Due | E Life Healthcare CRM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta content="E Life Healthcare — CRM System" name="description">
+    <meta content="E Life Healthcare" name="author">
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/logo-sm.png">
+    <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+    <!-- select2 -->
+    <link href="assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Simplebar Css -->
+    <link rel="stylesheet" href="assets/libs/simplebar/simplebar.min.css">
+
+    <!-- Bootstrap Css -->
+    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css">
+
+    <!--icons css-->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
+
+    <!-- App Css-->
+    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css">
+
+    <!-- CRM brand css -->
+    <link href="assets/css/crm-brand.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="layout-wrapper">
+
+    <!-- Start topbar -->
+    <header id="page-topbar">
+        <div class="navbar-header">
+
+            <!-- Start Navbar-Brand -->
+            <div class="navbar-logo-box">
+                <a href="index.html" class="logo logo-dark">
+                    <span class="logo-sm"><img src="assets/logo-icon.png" class="brand-logo-icon" alt="E Life Healthcare"></span>
+                    <span class="logo-lg"><img src="assets/logo.png" class="brand-logo-full" data-company-logo alt="E Life Healthcare"></span>
+                </a>
+                <a href="index.html" class="logo logo-light">
+                    <span class="logo-sm"><img src="assets/logo-icon.png" class="brand-logo-icon" alt="E Life Healthcare"></span>
+                    <span class="logo-lg"><img src="assets/logo.png" class="brand-logo-full" data-company-logo alt="E Life Healthcare"></span>
+                </a>
+                <button type="button" class="btn btn-icon top-icon sidebar-btn" id="sidebar-btn" aria-label="Toggle navigation"><i class="mdi mdi-menu-open align-middle fs-17"></i></button>
+                <button type="button" class="btn btn-icon top-icon sidebar-horizontal-btn d-none" aria-label="Toggle navigation"><i class="mdi mdi-menu align-middle fs-17"></i></button>
+            </div>
+
+            <!-- Start menu -->
+            <div class="d-flex justify-content-between menu-sm px-4 ms-auto">
+                <div class="d-flex align-items-center gap-2">
+                    <!--Start App Search-->
+                    <form class="app-search crm-topbar-search d-none d-lg-block" onsubmit="return false;">
+                        <div class="position-relative">
+                            <input type="text" class="form-control" placeholder="Search patient, phone, Lead ID, receipt no...">
+                            <i data-eva="search-outline" class="align-middle"></i>
+                        </div>
+                    </form>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <button type="button" class="btn btn-icon top-icon d-none d-md-block" id="fullscreen-toggle" aria-label="Toggle fullscreen">
+                        <i class="mdi mdi-fullscreen align-middle" id="fullscreen-icon"></i>
+                    </button>
+                    <button type="button" class="btn btn-icon top-icon d-none d-md-block" id="light-dark-mode" aria-label="Toggle Light/Dark">
+                        <i class="mdi mdi-brightness-7 align-middle"></i>
+                        <i class="mdi mdi-white-balance-sunny align-middle"></i>
+                    </button>
+                    <!-- Start Notifications -->
+                    <div class="dropdown d-inline-block">
+                        <button type="button" class="btn btn-icon top-icon" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Notifications">
+                            <i class="mdi mdi-bell-ring-outline fs-17"></i>
+                            <span class="position-absolute topbar-badge translate-middle badge rounded-pill bg-danger">5</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-md dropdown-menu-end dropdown-menu-animated p-0" aria-labelledby="page-header-notifications-dropdown">
+                            <div class="p-4 border-bottom">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="m-0"><i class="mdi mdi-bell-ring-outline me-1 fs-15"></i> Notifications</h6>
+                                    </div>
+                                    <div class="col-auto">
+                                        <a href="followups.html" class="badge bg-danger-subtle text-danger">5 new</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-simplebar style="max-height: 230px;">
+                                <a href="followups.html" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="avatar avatar-xs avatar-label-danger me-3">
+                                            <span class="rounded fs-16"><i class="mdi mdi-clock-alert-outline"></i></span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">3 overdue follow-ups</h6>
+                                            <p class="mb-0 fs-12 text-muted">Rahim Uddin, Karim Mia, Sultana Begum</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="payments.html" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="avatar avatar-xs avatar-label-warning me-3">
+                                            <span class="rounded fs-16"><i class="mdi mdi-timer-sand"></i></span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">Online payment awaiting verification</h6>
+                                            <p class="mb-0 fs-12 text-muted">bKash &#2547;50,000 &middot; Ref TRX8842K1</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="dues.html" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="avatar avatar-xs avatar-label-info me-3">
+                                            <span class="rounded fs-16"><i class="mdi mdi-alert-circle-outline"></i></span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">4 dues crossed 60 days</h6>
+                                            <p class="mb-0 fs-12 text-muted">Total outstanding &#2547;7,20,000</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="leads.html" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="avatar avatar-xs avatar-label-success me-3">
+                                            <span class="rounded fs-16"><i class="mdi mdi-account-plus-outline"></i></span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">6 new leads assigned to you</h6>
+                                            <p class="mb-0 fs-12 text-muted">From Facebook and Dr. Ilias Patowary</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="p-2 border-top text-center">
+                                <a href="followups.html" class="btn btn-sm btn-link text-decoration-none">View all</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Start Profile -->
+                    <div class="dropdown d-inline-block ps-3 ms-2 border-start admin-user-info">
+                        <button type="button" aria-label="profile" class="btn btn-sm p-0" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="avatar avatar-xs p-1 d-inline-block">
+                                <img src="assets/images/users/avatar-9.png" alt="Header Avatar" class="img-fluid">
+                            </span>
+                            <span class="d-none d-xl-inline-block ms-1 fw-semibold fs-14 admin-name">Mahi Alam</span>
+                            <i class="mdi mdi-chevron-down align-middle fs-16 d-none d-xl-inline-block"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end dropdown-menu-animated overflow-hidden py-0">
+                            <div class="card mb-0">
+                                <div class="card-header">
+                                    <div class="rich-list-item w-100 p-0">
+                                        <div class="rich-list-prepend">
+                                            <span class="rounded avatar-sm p-1 bg-body d-flex">
+                                                <img src="assets/images/users/avatar-9.png" alt="Header Avatar" class="img-fluid">
+                                            </span>
+                                        </div>
+                                        <div class="rich-list-content">
+                                            <h3 class="rich-list-title fs-13 mb-1">Mahi Alam</h3>
+                                            <span class="rich-list-subtitle">Administrator</span>
+                                        </div>
+                                        <div class="rich-list-append"><span class="badge badge-label-primary fs-6">Admin</span></div>
+                                    </div>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div class="grid-nav grid-nav-flush grid-nav-action grid-nav-no-rounded">
+                                        <div class="grid-nav-row">
+                                            <a href="my-account.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-address-card"></i></div>
+                                                <span class="grid-nav-content">My Account</span>
+                                            </a>
+                                            <a href="deals.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-handshake"></i></div>
+                                                <span class="grid-nav-content">Deals</span>
+                                            </a>
+                                            <a href="followups.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-clock"></i></div>
+                                                <span class="grid-nav-content">Follow-ups</span>
+                                            </a>
+                                        </div>
+                                        <div class="grid-nav-row">
+                                            <a href="settings.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="fas fa-cog"></i></div>
+                                                <span class="grid-nav-content">Settings</span>
+                                            </a>
+                                            <a href="audit-log.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-clone"></i></div>
+                                                <span class="grid-nav-content">Audit Log</span>
+                                            </a>
+                                            <a href="reports.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-chart-bar"></i></div>
+                                                <span class="grid-nav-content">Reports</span>
+                                            </a>
+                                        </div>
+                                        <div class="grid-nav-row">
+                                            <a href="my-account.html#security" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="fas fa-key"></i></div>
+                                                <span class="grid-nav-content">Change Password</span>
+                                            </a>
+                                            <a href="screen-lock.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="fas fa-lock"></i></div>
+                                                <span class="grid-nav-content">Screen Lock</span>
+                                            </a>
+                                            <a href="users.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="fas fa-users-cog"></i></div>
+                                                <span class="grid-nav-content">Users</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer card-footer-bordered rounded-0 border-top text-end"><a href="login.html" class="btn btn-label-danger">Sign Out</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End menu -->
+        </div>
+    </header>
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="sidebar-left">
+
+        <div class="sidebar-slide h-100" data-simplebar>
+
+            <!--- Sidebar-menu -->
+            <div id="sidebar-menu">
+                <!-- Left Menu Start -->
+                <ul class="left-menu list-unstyled" id="side-menu">
+                    <li>
+                        <a href="index.html">
+                            <i data-eva="home-outline"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Lead Module</li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i data-eva="person-add-outline"></i>
+                            <span>Leads</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="leads.html">All</a></li>
+                            <li><a href="leads.html?action=add-lead">Add</a></li>
+                            <li><a href="followups.html">Upcoming Follow Ups <span class="badge bg-danger ms-auto fs-10">5</span></a></li>
+                            <li><a href="interested-leads.html">Interested</a></li>
+                            <li><a href="not-interested-leads.html">Not Interested</a></li>
+                            <li><a href="applied-leads.html">Applied</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="conversations.html">
+                            <i data-eva="message-circle-outline"></i>
+                            <span>Conversations</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Visa Module</li>
+                    <li>
+                        <a href="visa-eligible.html">
+                            <i data-eva="checkmark-circle-2-outline"></i>
+                            <span>Eligible</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=processing">
+                            <i data-eva="sync-outline"></i>
+                            <span>Processing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=approved">
+                            <i data-eva="done-all-outline"></i>
+                            <span>Approved</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=rejected">
+                            <i data-eva="close-circle-outline"></i>
+                            <span>Rejected</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html">
+                            <i data-eva="list-outline"></i>
+                            <span>All</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Ticket Module</li>
+                    <li>
+                        <a href="tickets.html">
+                            <i data-eva="file-remove-outline"></i>
+                            <span>Not Purchased</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=upcoming">
+                            <i data-eva="calendar-outline"></i>
+                            <span>Upcoming Flight</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=passed">
+                            <i data-eva="alert-triangle-outline"></i>
+                            <span>Flight Passed</span> <span class="badge bg-danger ms-auto fs-10">2</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=cancelled">
+                            <i data-eva="close-square-outline"></i>
+                            <span>Cancelled</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=all">
+                            <i data-eva="list-outline"></i>
+                            <span>All</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Treatment Module</li>
+                    <li>
+                        <a href="treatment-countdown.html">
+                            <i data-eva="clock-outline"></i>
+                            <span>Countdown</span> <span class="badge bg-danger ms-auto fs-10">4</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html">
+                            <i data-eva="activity-outline"></i>
+                            <span>Treatment Ongoing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html?stage=successful">
+                            <i data-eva="heart-outline"></i>
+                            <span>Successful</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html?stage=failed">
+                            <i data-eva="slash-outline"></i>
+                            <span>Treatment Failed</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Dollar Module</li>
+                    <li>
+                        <a href="dollar-payments.html">
+                            <i data-eva="pricetags-outline"></i>
+                            <span>Dollar Payments</span> <span class="badge bg-warning ms-auto fs-10">4</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Payment Module</li>
+                    <li class="mm-active">
+                        <a href="dues.html" class="active">
+                            <i data-eva="alert-circle-outline"></i>
+                            <span>Payment Due</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="completed-leads.html">
+                            <i data-eva="credit-card-outline"></i>
+                            <span>Payment Completed</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Expense Module</li>
+                    <li>
+                        <a href="expenses.html">
+                            <i data-eva="trending-down-outline"></i>
+                            <span>Expenses</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="expense-patient.html">
+                            <i data-eva="person-outline"></i>
+                            <span>Patient Expense</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="expense-report.html">
+                            <i data-eva="bar-chart-outline"></i>
+                            <span>Expense Report</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Source Module</li>
+                    <li>
+                        <a href="sources.html">
+                            <i data-eva="share-outline"></i>
+                            <span>Source List</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Report Module</li>
+                    <li>
+                        <a href="reports.html">
+                            <i data-eva="pie-chart-outline"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Administration</li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i data-eva="settings-2-outline"></i>
+                            <span>Settings</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="settings.html">General</a></li>
+                            <li><a href="packages.html">Packages</a></li>
+                            <li><a href="source-admin.html">Sources</a></li>
+                            <li><a href="users.html">Users</a></li>
+                            <li><a href="roles.html">Roles & Permissions</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="audit-log.html">
+                            <i data-eva="eye-outline"></i>
+                            <span>Audit Logs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="login.html">
+                            <i data-eva="log-out-outline"></i>
+                            <span>Log Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Sidebar -->
+        </div>
+    </div>
+    <!-- Left Sidebar End -->
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="sidebar-left horizontal-sidebar">
+
+        <div class="sidebar-slide h-100">
+
+            <!--- Sidebar-menu -->
+            <div id="sidebar-menu">
+                <!-- Left Menu Start -->
+                <ul class="left-menu list-unstyled" id="side-menu">
+                    <li>
+                        <a href="index.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Lead Module</li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i class="fas fa-user-plus"></i>
+                            <span>Leads</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="leads.html">All</a></li>
+                            <li><a href="leads.html?action=add-lead">Add</a></li>
+                            <li><a href="followups.html">Upcoming Follow Ups <span class="badge bg-danger ms-auto fs-10">5</span></a></li>
+                            <li><a href="interested-leads.html">Interested</a></li>
+                            <li><a href="not-interested-leads.html">Not Interested</a></li>
+                            <li><a href="applied-leads.html">Applied</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="conversations.html">
+                            <i class="fas fa-comments"></i>
+                            <span>Conversations</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Visa Module</li>
+                    <li>
+                        <a href="visa-eligible.html">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Eligible</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=processing">
+                            <i class="fas fa-sync-alt"></i>
+                            <span>Processing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=approved">
+                            <i class="fas fa-stamp"></i>
+                            <span>Approved</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=rejected">
+                            <i class="fas fa-times-circle"></i>
+                            <span>Rejected</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html">
+                            <i class="fas fa-list"></i>
+                            <span>All</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Ticket Module</li>
+                    <li>
+                        <a href="tickets.html">
+                            <i class="fas fa-ticket-alt"></i>
+                            <span>Not Purchased</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=upcoming">
+                            <i class="fas fa-plane-departure"></i>
+                            <span>Upcoming Flight</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=passed">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Flight Passed</span> <span class="badge bg-danger ms-auto fs-10">2</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=cancelled">
+                            <i class="fas fa-ban"></i>
+                            <span>Cancelled</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=all">
+                            <i class="fas fa-list"></i>
+                            <span>All</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Treatment Module</li>
+                    <li>
+                        <a href="treatment-countdown.html">
+                            <i class="fas fa-hourglass-half"></i>
+                            <span>Countdown</span> <span class="badge bg-danger ms-auto fs-10">4</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html">
+                            <i class="fas fa-heartbeat"></i>
+                            <span>Treatment Ongoing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html?stage=successful">
+                            <i class="fas fa-smile"></i>
+                            <span>Successful</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html?stage=failed">
+                            <i class="fas fa-frown"></i>
+                            <span>Treatment Failed</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Dollar Module</li>
+                    <li>
+                        <a href="dollar-payments.html">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span>Dollar Payments</span> <span class="badge bg-warning ms-auto fs-10">4</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Payment Module</li>
+                    <li class="mm-active">
+                        <a href="dues.html" class="active">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>Payment Due</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="completed-leads.html">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Payment Completed</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Expense Module</li>
+                    <li>
+                        <a href="expenses.html">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Expenses</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="expense-patient.html">
+                            <i class="fas fa-user-injured"></i>
+                            <span>Patient Expense</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="expense-report.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Expense Report</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Source Module</li>
+                    <li>
+                        <a href="sources.html">
+                            <i class="fas fa-share-alt"></i>
+                            <span>Source List</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Report Module</li>
+                    <li>
+                        <a href="reports.html">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Administration</li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="settings.html">General</a></li>
+                            <li><a href="packages.html">Packages</a></li>
+                            <li><a href="source-admin.html">Sources</a></li>
+                            <li><a href="users.html">Users</a></li>
+                            <li><a href="roles.html">Roles & Permissions</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="audit-log.html">
+                            <i class="fas fa-history"></i>
+                            <span>Audit Logs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="login.html">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Log Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Sidebar -->
+        </div>
+    </div>
+    <!-- Left Sidebar End -->
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0">Payment Due</h4>
+                            <nav aria-label="breadcrumb" class="page-title-right">
+                                <ol class="breadcrumb border-0">
+                                    <li class="breadcrumb-item"><a href="index.html">CRM</a></li>
+                                    <li class="breadcrumb-item">Payment Module</li>
+                                    <li class="breadcrumb-item active">Payment Due</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                <div class="row">
+                    <div class="col-md-4"><div class="card stat-tile border-start border-3 border-danger"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-danger-subtle text-danger"><i class="mdi mdi-alert-circle-outline"></i></span>
+                        <div><div class="stat-value cur text-danger" data-pm-tile="due">&#2547;3,00,000</div><div class="stat-label text-muted">Total Outstanding</div></div>
+                    </div></div></div>
+                    <div class="col-md-4"><div class="card stat-tile border-start border-3 border-warning"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-warning-subtle text-warning"><i class="mdi mdi-account-clock-outline"></i></span>
+                        <div><div class="stat-value cur" data-pm-tile="count">2</div><div class="stat-label text-muted">Patients Owing</div></div>
+                    </div></div></div>
+                    <div class="col-md-4"><div class="card stat-tile border-start border-3 border-success"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-success-subtle text-success"><i class="mdi mdi-cash-check"></i></span>
+                        <div><div class="stat-value cur text-success" data-pm-tile="paid">&#2547;3,50,000</div><div class="stat-label text-muted">Received So Far</div></div>
+                    </div></div></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-2">
+                        <div>
+                            <h5 class="card-title mb-0">Payment Due</h5>
+                            <p class="fs-12 text-muted mb-0">Everyone who still owes on their package. <span class="fw-semibold">Pay Now</span> records a payment and gives you its invoice straight away. The phone button logs a reminder call.</p>
+                        </div>
+                        <div class="position-relative">
+                            <input type="text" class="form-control form-control-sm" id="pm-search" placeholder="Search patient, guardian or phone..." style="padding-left:34px;width:260px;max-width:100%;">
+                            <i class="mdi mdi-magnify position-absolute" style="left:12px;top:50%;transform:translateY(-50%);color:#8a92a4;font-size:15px;line-height:1;pointer-events:none;"></i>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-2 align-items-end mb-3 crm-filter">
+                            <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Last payment from</label><input type="date" class="form-control form-control-sm" data-filter="from:Last Payment"></div>
+                            <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Last payment to</label><input type="date" class="form-control form-control-sm" data-filter="to:Last Payment"></div>
+                            <div class="col-auto"><button type="button" class="btn btn-light btn-sm" data-filter-reset title="Reset filters"><i class="mdi mdi-refresh"></i></button></div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0" data-pm-list="due">
+                                <thead class="table-light"><tr><th>Patient / Guardian</th><th>Phone</th><th>Last Payment</th><th class="text-end">Outstanding</th><th class="no-sort text-end">Actions</th></tr></thead>
+                                <tbody>
+                                        <tr data-pm-row data-due-row data-lead-id="ELH-L-2026-000412" data-lead-name="Rahim Uddin" data-lead-patient="Ayesha Rahim" data-due-bdt="150000" data-due-usd="0">
+                                            <td><div class="fw-semibold">Ayesha Rahim</div><div class="fs-12 text-muted">G: Rahim Uddin</div></td>
+                                            <td class="fs-13">+880 1711-234567</td>
+                                            <td class="fs-13 pm-last"><span class="cur">&#2547;1,00,000</span><div class="fs-12 text-muted">12 Aug 2026 &middot; Cash</div></td>
+                                            <td class="text-end pm-due"><div class="cur fw-bold text-danger">&#2547;1,50,000</div><div class="fs-12 text-muted">&#2547;1,00,000 of &#2547;2,50,000 paid</div></td>
+                                            <td class="text-end"><div class="d-flex gap-1 justify-content-end flex-wrap">
+                                                <button type="button" class="btn btn-sm btn-success pm-open-pay"><i class="mdi mdi-cash-plus me-1"></i>Pay Now</button>
+                                                <button type="button" class="btn btn-sm btn-light pm-open-history"><i class="mdi mdi-history me-1"></i>History</button>
+                                                <button type="button" class="btn btn-sm btn-light pm-open-invoice" title="Invoice for the whole package"><i class="mdi mdi-file-document-multiple-outline me-1"></i>Package Invoice</button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-label-primary" title="Log a reminder call" data-bs-toggle="modal" data-bs-target="#logConvModal" data-cv-note="Reminded the guardian about the outstanding balance of ৳1,50,000."><i class="mdi mdi-phone-message-outline"></i></button>
+                                            </div></td>
+                                        </tr>
+                                        <tr data-pm-row data-due-row data-lead-id="ELH-L-2026-000411" data-lead-name="Karim Mia" data-lead-patient="Karim Mia" data-due-bdt="150000" data-due-usd="0">
+                                            <td><div class="fw-semibold">Karim Mia</div><div class="fs-12 text-muted">G: Karim Mia</div></td>
+                                            <td class="fs-13">+880 1812-445566</td>
+                                            <td class="fs-13 pm-last"><span class="cur">&#2547;1,00,000</span><div class="fs-12 text-muted">10 Aug 2026 &middot; Bank Transfer</div></td>
+                                            <td class="text-end pm-due"><div class="cur fw-bold text-danger">&#2547;1,50,000</div><div class="fs-12 text-muted">&#2547;2,50,000 of &#2547;4,00,000 paid</div></td>
+                                            <td class="text-end"><div class="d-flex gap-1 justify-content-end flex-wrap">
+                                                <button type="button" class="btn btn-sm btn-success pm-open-pay"><i class="mdi mdi-cash-plus me-1"></i>Pay Now</button>
+                                                <button type="button" class="btn btn-sm btn-light pm-open-history"><i class="mdi mdi-history me-1"></i>History</button>
+                                                <button type="button" class="btn btn-sm btn-light pm-open-invoice" title="Invoice for the whole package"><i class="mdi mdi-file-document-multiple-outline me-1"></i>Package Invoice</button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-label-primary" title="Log a reminder call" data-bs-toggle="modal" data-bs-target="#logConvModal" data-cv-note="Reminded the guardian about the outstanding balance of ৳1,50,000."><i class="mdi mdi-phone-message-outline"></i></button>
+                                            </div></td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                            <p class="text-muted fs-13 text-center py-4 mb-0 d-none" id="pm-empty">Nobody owes anything right now.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The patients on this page, with every payment — the source for
+                     Pay Now, Payment History and each invoice (crm-payments.js).
+                     The rows above are the same figures, authored in the page so
+                     build/verify-money.js can reconcile them against Deals. -->
+                <script type="application/json" id="pm-data">
+                {
+                    "ELH-L-2026-000412": {
+                        "patient": "Ayesha Rahim",
+                        "guardian": "Rahim Uddin",
+                        "phone": "+880 1711-234567",
+                        "address": "Chattogram",
+                        "pkgId": "ELH-D-2026-000094",
+                        "pkgName": "Partial-Funded Package",
+                        "listPrice": 270000,
+                        "agreed": 250000,
+                        "agreedUsd": 2500,
+                        "appliedOn": "12 Aug 2026",
+                        "appliedBy": "Tanvir Ahmed",
+                        "payments": [
+                            {
+                                "date": "12 Aug 2026",
+                                "type": "Advance",
+                                "method": "Cash",
+                                "receipt": "MR-000231",
+                                "amount": 100000
+                            }
+                        ]
+                    },
+                    "ELH-L-2026-000411": {
+                        "patient": "Karim Mia",
+                        "guardian": "Karim Mia",
+                        "phone": "+880 1812-445566",
+                        "address": "",
+                        "pkgId": "ELH-D-2026-000093",
+                        "pkgName": "Full-Funded Package",
+                        "listPrice": 400000,
+                        "agreed": 400000,
+                        "agreedUsd": 0,
+                        "appliedOn": "18 Jul 2026",
+                        "appliedBy": "Sabbir Hossain",
+                        "payments": [
+                            {
+                                "date": "18 Jul 2026",
+                                "type": "Advance",
+                                "method": "Cash",
+                                "receipt": "MR-000180",
+                                "amount": 150000
+                            },
+                            {
+                                "date": "10 Aug 2026",
+                                "type": "2nd instalment",
+                                "method": "Bank Transfer",
+                                "receipt": "MR-000214",
+                                "amount": 100000
+                            }
+                        ]
+                    }
+                }
+                </script>
+
+                                <!-- ===== Payment module windows — Payment Due and Payment
+                     Completed. Pay Now records a payment and immediately opens
+                     its invoice; Payment History lists every payment on the
+                     package, each with its own invoice, plus one for the whole
+                     package. All read the page's #pm-data block and are wired in
+                     crm-payments.js. Injected at @payment-modals. ===== -->
+
+                <!-- Pay Now -->
+                <div class="modal fade" id="pmPayModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div>
+                                    <h5 class="modal-title mb-0">Pay Now</h5>
+                                    <span class="fs-12 text-muted" id="pm-pay-label"></span>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="pp-stats mb-3" style="grid-template-columns:repeat(3,1fr)">
+                                    <div class="pp-stat"><div class="crm-info-label">Package</div><div class="fw-bold cur" id="pm-pay-agreed"></div></div>
+                                    <div class="pp-stat"><div class="crm-info-label">Paid</div><div class="fw-bold cur text-success" id="pm-pay-paid"></div></div>
+                                    <div class="pp-stat pp-stat-due is-owing"><div class="crm-info-label">Outstanding</div><div class="fw-bold cur text-danger" id="pm-pay-due"></div></div>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-12">
+                                        <div class="d-flex justify-content-between align-items-end">
+                                            <label class="form-label" for="pm-amount">Amount received <span class="text-danger">*</span></label>
+                                            <button type="button" class="btn btn-link btn-sm p-0 mb-2 fs-12" id="pm-full">Pay full outstanding</button>
+                                        </div>
+                                        <div class="input-group input-group-lg"><span class="input-group-text">&#2547;</span><input type="number" class="form-control" id="pm-amount" min="1" placeholder="0"></div>
+                                        <div class="invalid-feedback d-block d-none" id="pm-amount-error"></div>
+                                        <div class="form-text fs-12" id="pm-after"></div>
+                                    </div>
+                                    <div class="col-6"><label class="form-label">Method <span class="text-danger">*</span></label><select class="form-select" id="pm-method" data-crm-list="paymentMethods"><option>Cash</option><option>Bank Transfer</option><option>bKash</option><option>Nagad</option><option>Rocket</option><option>Card</option><option>Other</option></select></div>
+                                    <div class="col-6"><label class="form-label">Date</label><input type="date" class="form-control" id="pm-date"></div>
+                                    <div class="col-12"><label class="form-label">Reference / Transaction ID <span class="text-muted fw-normal fs-12">(optional)</span></label><input type="text" class="form-control" id="pm-ref" placeholder="e.g. TXN123456"></div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-success" id="pm-pay-save"><i class="mdi mdi-check-circle-outline me-1"></i>Save &amp; Generate Invoice</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment History -->
+                <div class="modal fade" id="pmHistoryModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div>
+                                    <h5 class="modal-title mb-0">Payment History</h5>
+                                    <span class="fs-12 text-muted" id="pm-hist-label"></span>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="pp-stats mb-3" style="grid-template-columns:repeat(3,1fr)">
+                                    <div class="pp-stat"><div class="crm-info-label">Package</div><div class="fw-bold cur" id="pm-hist-agreed"></div><div class="fs-11 text-muted" id="pm-hist-pkg"></div></div>
+                                    <div class="pp-stat"><div class="crm-info-label">Paid</div><div class="fw-bold cur text-success" id="pm-hist-paid"></div></div>
+                                    <div class="pp-stat pp-stat-due" id="pm-hist-due-tile"><div class="crm-info-label">Outstanding</div><div class="fw-bold cur" id="pm-hist-due"></div></div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table align-middle mb-0">
+                                        <thead class="table-light"><tr><th>Date</th><th>Type</th><th>Method</th><th>Receipt</th><th class="text-end">Amount</th><th class="text-end">Invoice</th></tr></thead>
+                                        <tbody class="fs-13" id="pm-hist-body"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success me-auto pm-open-pay" id="pm-hist-pay"><i class="mdi mdi-cash-plus me-1"></i>Pay Now</button>
+                                <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary pm-open-invoice" id="pm-hist-invoice"><i class="mdi mdi-file-document-multiple-outline me-1"></i>Full Package Invoice</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Invoice — one payment or the whole package; prints on its own. -->
+                <div class="modal fade crm-print-modal" id="pmInvoiceModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header no-print">
+                                <h5 class="modal-title mb-0"><i class="mdi mdi-file-document-outline me-1"></i><span id="pm-inv-title">Invoice</span></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="alert alert-success py-2 fs-13 no-print d-none" id="pm-inv-note"></div>
+                                <div class="p-2" id="pm-invoice"></div>
+                            </div>
+                            <div class="modal-footer no-print">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                <button class="btn btn-primary" id="pm-inv-print"><i class="mdi mdi-printer me-1"></i>Print / Save PDF</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                                <!-- ===== Log Conversation — shared by Leads (All / Interested),
+                     Upcoming Follow-ups and Not Interested. Logging a call always
+                     ends in a next action, picked below: another follow-up, still
+                     interested, apply for a package, not interested, or
+                     unreachable. Applying hands over to the row's own "Apply for
+                     Package" step (status-modals.html, which carries the Apply
+                     block — it can only exist once per page), then the invoice.
+                     The rest update the row in place. Wired in crm-leads.js
+                     ("Log Conversation"). Injected at @log-conversation. ===== -->
+                <div class="modal fade" id="logConvModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div>
+                                    <h5 class="modal-title mb-0">Log Conversation</h5>
+                                    <span class="fs-12 text-muted" id="cv-lead-label"></span>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="alert alert-light border py-2 fs-13 d-none" id="cv-last"><i class="mdi mdi-history me-1"></i><span class="text-muted me-1">Last time:</span><span id="cv-last-text"></span></div>
+
+                                <div class="row g-3">
+                                    <div class="col-md-6"><label class="form-label">Channel <span class="text-danger">*</span></label><select class="form-select" id="cv-channel" data-crm-list="conversationChannels"><option selected>Phone</option><option>WhatsApp</option><option>In Person</option></select></div>
+                                    <div class="col-md-6"><label class="form-label">Date</label><input type="date" class="form-control" id="cv-when"></div>
+                                    <div class="col-12"><label class="form-label">What was discussed? <span class="text-danger">*</span></label><textarea class="form-control" id="cv-discussion" rows="3" placeholder="e.g. Guardian asked about the cost of the kidney package and the travel dates."></textarea><div class="invalid-feedback">Write a short note of the conversation.</div></div>
+                                </div>
+
+                                <div class="mt-3">
+                                    <label class="form-label mb-2">What happens next? <span class="text-danger">*</span></label>
+                                    <div class="cv-actions" id="cv-actions">
+                                        <input type="radio" class="btn-check" name="cv-outcome" id="cv-o-followup" value="followup" autocomplete="off">
+                                        <label class="btn cv-action" for="cv-o-followup"><i class="mdi mdi-calendar-clock"></i><span>Follow up again</span></label>
+                                        <input type="radio" class="btn-check" name="cv-outcome" id="cv-o-interested" value="interested" autocomplete="off">
+                                        <label class="btn cv-action" for="cv-o-interested"><i class="mdi mdi-thumb-up-outline"></i><span>Interested</span></label>
+                                        <input type="radio" class="btn-check" name="cv-outcome" id="cv-o-applied" value="applied" autocomplete="off">
+                                        <label class="btn cv-action cv-action-primary" for="cv-o-applied"><i class="mdi mdi-clipboard-check-outline"></i><span>Apply for Package</span></label>
+                                        <input type="radio" class="btn-check" name="cv-outcome" id="cv-o-not-interested" value="not-interested" autocomplete="off">
+                                        <label class="btn cv-action" for="cv-o-not-interested"><i class="mdi mdi-thumb-down-outline"></i><span>Not Interested</span></label>
+                                        <input type="radio" class="btn-check" name="cv-outcome" id="cv-o-unreachable" value="unreachable" autocomplete="off">
+                                        <label class="btn cv-action" for="cv-o-unreachable"><i class="mdi mdi-phone-off-outline"></i><span>Unreachable</span></label>
+                                    </div>
+                                    <div class="text-danger fs-12 mt-1 d-none" id="cv-outcome-error">Choose what happens next.</div>
+                                </div>
+
+                                <div class="row g-3 mt-0">
+                                    <div class="col-md-6 d-none" id="cv-date-wrap">
+                                        <label class="form-label" id="cv-date-label">Next follow-up date</label>
+                                        <input type="date" class="form-control" id="cv-date">
+                                        <div class="invalid-feedback">Pick the date for the next follow-up.</div>
+                                    </div>
+                                    <div class="col-md-6 d-none" id="cv-plan-wrap">
+                                        <label class="form-label">Planned action</label>
+                                        <select class="form-select" id="cv-plan" data-crm-list="followupActions"><option>Call again</option><option>Send package quotation</option><option>Share doctor's opinion</option><option>Invite to office visit</option><option>Collect documents</option></select>
+                                    </div>
+                                    <div class="col-12 d-none" id="cv-reason-wrap">
+                                        <label class="form-label">Reason <span class="text-danger">*</span></label>
+                                        <select class="form-select mb-2" id="cv-reason-pick" data-crm-list="notInterestedReasons,unreachableReasons"><option value="">Select a reason</option><option>Price beyond budget</option><option>Continuing treatment locally</option><option>Chose another agency</option><option>Patient condition changed</option><option>Phone switched off / no answer</option><option>Wrong number</option><option>Other</option></select>
+                                        <textarea class="form-control" id="cv-reason" rows="2" placeholder="Anything else worth recording"></textarea>
+                                        <div class="invalid-feedback">Choose a reason.</div>
+                                    </div>
+                                    <div class="col-12 d-none" id="cv-apply-note">
+                                        <div class="alert alert-primary py-2 fs-13 mb-0"><i class="mdi mdi-arrow-right-circle-outline me-1"></i>Saving opens <strong>Apply for Package</strong> for this lead &mdash; choose the package, agree the price and log any payment, then the invoice.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="conversations.html" class="btn btn-light me-auto" id="cv-timeline"><i class="mdi mdi-timeline-text-outline me-1"></i>Full Timeline</a>
+                                <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-primary" id="cv-save"><i class="mdi mdi-content-save-outline me-1"></i><span>Save Conversation</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- container-fluid -->
+        </div><!-- page-content -->
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        &copy; <script>document.write(new Date().getFullYear())</script> E Life Healthcare. All rights reserved.
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end d-none d-sm-block">
+                            CRM System &middot; v1.0
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- END Footer -->
+        <!-- Begin scroll top -->
+          <div class="progress-wrap" id="progress-scroll">
+            <svg class="progress-circle" width="100%" height="100%" viewBox="-1 -1 102 102">
+              <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+            </svg>
+          </div>
+        <!-- END scroll top -->
+    </div><!-- end main content-->
+
+</div><!-- END layout-wrapper -->
+
+<!-- Bootstrap bundle js -->
+<script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Layouts main js -->
+<script src="assets/libs/jquery/jquery.min.js"></script>
+
+<!-- Metimenu js -->
+<script src="assets/libs/metismenu/metisMenu.min.js"></script>
+
+<!-- simplebar js -->
+<script src="assets/libs/simplebar/simplebar.min.js"></script>
+
+<script src="assets/libs/eva-icons/eva.min.js"></script>
+
+<!-- Scroll Top init -->
+<script src="assets/js/scroll-top.init.js"></script>
+
+<!-- select2 -->
+<script src="assets/libs/select2/js/select2.min.js"></script>
+
+<!-- App js -->
+<script src="assets/js/app.js"></script>
+
+<!-- sweetalert2 -->
+<script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
+
+<!-- CRM demo js -->
+<script src="assets/js/crm-demo.js"></script>
+
+<!-- CRM leads module js -->
+<script src="assets/js/crm-leads.js"></script>
+
+<!-- CRM payment module js -->
+<script src="assets/js/crm-payments.js"></script>
+
+<!-- Sidebar deep links (page.html?x=y): highlight the entry matching the query -->
+<script>
+window.addEventListener('load', function () {
+  var page = location.pathname.split('/').pop(), q = location.search;
+  var links = [].slice.call(document.querySelectorAll('#sidebar-menu a[href]:not(.has-arrow)'));
+  var exact = links.filter(function (a) {
+    var h = a.getAttribute('href') || '', i = h.indexOf('?');
+    return i > -1 && h.slice(0, i) === page && h.slice(i) === q;
+  });
+  if (!exact.length) return;
+  links.forEach(function (a) { a.classList.remove('active'); a.parentNode.classList.remove('mm-active'); });
+  exact.forEach(function (a) { a.classList.add('active'); a.parentNode.classList.add('mm-active'); });
+});
+</script>
+</body>
+</html>

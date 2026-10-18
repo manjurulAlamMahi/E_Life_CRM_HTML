@@ -1,0 +1,44 @@
+                <!-- ===== Next Follow-up — for Interested / Follow Up / Not Interested
+                     leads, who all stay in touch: pick when to reach out next and
+                     what for. One modal serves every row; crm-leads.js fills the
+                     lead label and writes the date back into the row. ===== -->
+                <div class="modal fade" id="nextFollowupModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div>
+                                    <h5 class="modal-title mb-0">Next Follow-up</h5>
+                                    <span class="fs-12 text-muted nf-lead-label"></span>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Follow-up Date <span class="text-danger">*</span></label>
+                                        <input type="date" class="form-control" id="nf-date">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Planned Action <span class="text-danger">*</span></label>
+                                        <select class="form-select" id="nf-action" data-crm-list="followupActions">
+                                            <option>Call back</option>
+                                            <option>WhatsApp message</option>
+                                            <option>Send package quotation</option>
+                                            <option>Request medical documents</option>
+                                            <option>Invite to office visit</option>
+                                            <option>Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Note <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                        <textarea class="form-control" id="nf-note" rows="2" placeholder="Anything to remember for this follow-up"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-primary" id="nf-save"><i class="mdi mdi-calendar-check-outline me-1"></i>Save Follow-up</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>

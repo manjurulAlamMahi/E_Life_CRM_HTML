@@ -1,0 +1,1 @@
+"use strict";$((function(){new Sortable(document.getElementById("draggable-3-start")),new Sortable(document.getElementById("draggable-3-end"))}));

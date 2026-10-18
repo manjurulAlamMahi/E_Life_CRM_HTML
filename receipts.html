@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Money Receipts | E Life Healthcare CRM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta content="E Life Healthcare — CRM System" name="description">
+    <meta content="E Life Healthcare" name="author">
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/logo-sm.png">
+    <link href="assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+    <!-- select2 -->
+    <link href="assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Simplebar Css -->
+    <link rel="stylesheet" href="assets/libs/simplebar/simplebar.min.css">
+
+    <!-- Bootstrap Css -->
+    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css">
+
+    <!--icons css-->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
+
+    <!-- App Css-->
+    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css">
+
+    <!-- CRM brand css -->
+    <link href="assets/css/crm-brand.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="layout-wrapper">
+
+    <!-- Start topbar -->
+    <header id="page-topbar">
+        <div class="navbar-header">
+
+            <!-- Start Navbar-Brand -->
+            <div class="navbar-logo-box">
+                <a href="index.html" class="logo logo-dark">
+                    <span class="logo-sm"><img src="assets/logo-icon.png" class="brand-logo-icon" alt="E Life Healthcare"></span>
+                    <span class="logo-lg"><img src="assets/logo.png" class="brand-logo-full" data-company-logo alt="E Life Healthcare"></span>
+                </a>
+                <a href="index.html" class="logo logo-light">
+                    <span class="logo-sm"><img src="assets/logo-icon.png" class="brand-logo-icon" alt="E Life Healthcare"></span>
+                    <span class="logo-lg"><img src="assets/logo.png" class="brand-logo-full" data-company-logo alt="E Life Healthcare"></span>
+                </a>
+                <button type="button" class="btn btn-icon top-icon sidebar-btn" id="sidebar-btn" aria-label="Toggle navigation"><i class="mdi mdi-menu-open align-middle fs-17"></i></button>
+                <button type="button" class="btn btn-icon top-icon sidebar-horizontal-btn d-none" aria-label="Toggle navigation"><i class="mdi mdi-menu align-middle fs-17"></i></button>
+            </div>
+
+            <!-- Start menu -->
+            <div class="d-flex justify-content-between menu-sm px-4 ms-auto">
+                <div class="d-flex align-items-center gap-2">
+                    <!--Start App Search-->
+                    <form class="app-search crm-topbar-search d-none d-lg-block" onsubmit="return false;">
+                        <div class="position-relative">
+                            <input type="text" class="form-control" placeholder="Search patient, phone, Lead ID, receipt no...">
+                            <i data-eva="search-outline" class="align-middle"></i>
+                        </div>
+                    </form>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <button type="button" class="btn btn-icon top-icon d-none d-md-block" id="fullscreen-toggle" aria-label="Toggle fullscreen">
+                        <i class="mdi mdi-fullscreen align-middle" id="fullscreen-icon"></i>
+                    </button>
+                    <button type="button" class="btn btn-icon top-icon d-none d-md-block" id="light-dark-mode" aria-label="Toggle Light/Dark">
+                        <i class="mdi mdi-brightness-7 align-middle"></i>
+                        <i class="mdi mdi-white-balance-sunny align-middle"></i>
+                    </button>
+                    <!-- Start Notifications -->
+                    <div class="dropdown d-inline-block">
+                        <button type="button" class="btn btn-icon top-icon" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Notifications">
+                            <i class="mdi mdi-bell-ring-outline fs-17"></i>
+                            <span class="position-absolute topbar-badge translate-middle badge rounded-pill bg-danger">5</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-md dropdown-menu-end dropdown-menu-animated p-0" aria-labelledby="page-header-notifications-dropdown">
+                            <div class="p-4 border-bottom">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="m-0"><i class="mdi mdi-bell-ring-outline me-1 fs-15"></i> Notifications</h6>
+                                    </div>
+                                    <div class="col-auto">
+                                        <a href="followups.html" class="badge bg-danger-subtle text-danger">5 new</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-simplebar style="max-height: 230px;">
+                                <a href="followups.html" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="avatar avatar-xs avatar-label-danger me-3">
+                                            <span class="rounded fs-16"><i class="mdi mdi-clock-alert-outline"></i></span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">3 overdue follow-ups</h6>
+                                            <p class="mb-0 fs-12 text-muted">Rahim Uddin, Karim Mia, Sultana Begum</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="payments.html" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="avatar avatar-xs avatar-label-warning me-3">
+                                            <span class="rounded fs-16"><i class="mdi mdi-timer-sand"></i></span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">Online payment awaiting verification</h6>
+                                            <p class="mb-0 fs-12 text-muted">bKash &#2547;50,000 &middot; Ref TRX8842K1</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="dues.html" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="avatar avatar-xs avatar-label-info me-3">
+                                            <span class="rounded fs-16"><i class="mdi mdi-alert-circle-outline"></i></span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">4 dues crossed 60 days</h6>
+                                            <p class="mb-0 fs-12 text-muted">Total outstanding &#2547;7,20,000</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="leads.html" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="avatar avatar-xs avatar-label-success me-3">
+                                            <span class="rounded fs-16"><i class="mdi mdi-account-plus-outline"></i></span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">6 new leads assigned to you</h6>
+                                            <p class="mb-0 fs-12 text-muted">From Facebook and Dr. Ilias Patowary</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="p-2 border-top text-center">
+                                <a href="followups.html" class="btn btn-sm btn-link text-decoration-none">View all</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Start Profile -->
+                    <div class="dropdown d-inline-block ps-3 ms-2 border-start admin-user-info">
+                        <button type="button" aria-label="profile" class="btn btn-sm p-0" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="avatar avatar-xs p-1 d-inline-block">
+                                <img src="assets/images/users/avatar-9.png" alt="Header Avatar" class="img-fluid">
+                            </span>
+                            <span class="d-none d-xl-inline-block ms-1 fw-semibold fs-14 admin-name">Mahi Alam</span>
+                            <i class="mdi mdi-chevron-down align-middle fs-16 d-none d-xl-inline-block"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end dropdown-menu-animated overflow-hidden py-0">
+                            <div class="card mb-0">
+                                <div class="card-header">
+                                    <div class="rich-list-item w-100 p-0">
+                                        <div class="rich-list-prepend">
+                                            <span class="rounded avatar-sm p-1 bg-body d-flex">
+                                                <img src="assets/images/users/avatar-9.png" alt="Header Avatar" class="img-fluid">
+                                            </span>
+                                        </div>
+                                        <div class="rich-list-content">
+                                            <h3 class="rich-list-title fs-13 mb-1">Mahi Alam</h3>
+                                            <span class="rich-list-subtitle">Administrator</span>
+                                        </div>
+                                        <div class="rich-list-append"><span class="badge badge-label-primary fs-6">Admin</span></div>
+                                    </div>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div class="grid-nav grid-nav-flush grid-nav-action grid-nav-no-rounded">
+                                        <div class="grid-nav-row">
+                                            <a href="my-account.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-address-card"></i></div>
+                                                <span class="grid-nav-content">My Account</span>
+                                            </a>
+                                            <a href="deals.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-handshake"></i></div>
+                                                <span class="grid-nav-content">Deals</span>
+                                            </a>
+                                            <a href="followups.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-clock"></i></div>
+                                                <span class="grid-nav-content">Follow-ups</span>
+                                            </a>
+                                        </div>
+                                        <div class="grid-nav-row">
+                                            <a href="settings.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="fas fa-cog"></i></div>
+                                                <span class="grid-nav-content">Settings</span>
+                                            </a>
+                                            <a href="audit-log.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-clone"></i></div>
+                                                <span class="grid-nav-content">Audit Log</span>
+                                            </a>
+                                            <a href="reports.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-chart-bar"></i></div>
+                                                <span class="grid-nav-content">Reports</span>
+                                            </a>
+                                        </div>
+                                        <div class="grid-nav-row">
+                                            <a href="my-account.html#security" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="fas fa-key"></i></div>
+                                                <span class="grid-nav-content">Change Password</span>
+                                            </a>
+                                            <a href="screen-lock.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="fas fa-lock"></i></div>
+                                                <span class="grid-nav-content">Screen Lock</span>
+                                            </a>
+                                            <a href="users.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="fas fa-users-cog"></i></div>
+                                                <span class="grid-nav-content">Users</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer card-footer-bordered rounded-0 border-top text-end"><a href="login.html" class="btn btn-label-danger">Sign Out</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End menu -->
+        </div>
+    </header>
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="sidebar-left">
+
+        <div class="sidebar-slide h-100" data-simplebar>
+
+            <!--- Sidebar-menu -->
+            <div id="sidebar-menu">
+                <!-- Left Menu Start -->
+                <ul class="left-menu list-unstyled" id="side-menu">
+                    <li>
+                        <a href="index.html">
+                            <i data-eva="home-outline"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Lead Module</li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i data-eva="person-add-outline"></i>
+                            <span>Leads</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="leads.html">All</a></li>
+                            <li><a href="leads.html?action=add-lead">Add</a></li>
+                            <li><a href="followups.html">Upcoming Follow Ups <span class="badge bg-danger ms-auto fs-10">5</span></a></li>
+                            <li><a href="interested-leads.html">Interested</a></li>
+                            <li><a href="not-interested-leads.html">Not Interested</a></li>
+                            <li><a href="applied-leads.html">Applied</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="conversations.html">
+                            <i data-eva="message-circle-outline"></i>
+                            <span>Conversations</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Visa Module</li>
+                    <li>
+                        <a href="visa-eligible.html">
+                            <i data-eva="checkmark-circle-2-outline"></i>
+                            <span>Eligible</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=processing">
+                            <i data-eva="sync-outline"></i>
+                            <span>Processing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=approved">
+                            <i data-eva="done-all-outline"></i>
+                            <span>Approved</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=rejected">
+                            <i data-eva="close-circle-outline"></i>
+                            <span>Rejected</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html">
+                            <i data-eva="list-outline"></i>
+                            <span>All</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Ticket Module</li>
+                    <li>
+                        <a href="tickets.html">
+                            <i data-eva="file-remove-outline"></i>
+                            <span>Not Purchased</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=upcoming">
+                            <i data-eva="calendar-outline"></i>
+                            <span>Upcoming Flight</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=passed">
+                            <i data-eva="alert-triangle-outline"></i>
+                            <span>Flight Passed</span> <span class="badge bg-danger ms-auto fs-10">2</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=cancelled">
+                            <i data-eva="close-square-outline"></i>
+                            <span>Cancelled</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=all">
+                            <i data-eva="list-outline"></i>
+                            <span>All</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Treatment Module</li>
+                    <li>
+                        <a href="treatment-countdown.html">
+                            <i data-eva="clock-outline"></i>
+                            <span>Countdown</span> <span class="badge bg-danger ms-auto fs-10">4</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html">
+                            <i data-eva="activity-outline"></i>
+                            <span>Treatment Ongoing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html?stage=successful">
+                            <i data-eva="heart-outline"></i>
+                            <span>Successful</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html?stage=failed">
+                            <i data-eva="slash-outline"></i>
+                            <span>Treatment Failed</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Dollar Module</li>
+                    <li>
+                        <a href="dollar-payments.html">
+                            <i data-eva="pricetags-outline"></i>
+                            <span>Dollar Payments</span> <span class="badge bg-warning ms-auto fs-10">4</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Payment Module</li>
+                    <li>
+                        <a href="dues.html">
+                            <i data-eva="alert-circle-outline"></i>
+                            <span>Payment Due</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="completed-leads.html">
+                            <i data-eva="credit-card-outline"></i>
+                            <span>Payment Completed</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Expense Module</li>
+                    <li>
+                        <a href="expenses.html">
+                            <i data-eva="trending-down-outline"></i>
+                            <span>Expenses</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="expense-patient.html">
+                            <i data-eva="person-outline"></i>
+                            <span>Patient Expense</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="expense-report.html">
+                            <i data-eva="bar-chart-outline"></i>
+                            <span>Expense Report</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Source Module</li>
+                    <li>
+                        <a href="sources.html">
+                            <i data-eva="share-outline"></i>
+                            <span>Source List</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Report Module</li>
+                    <li>
+                        <a href="reports.html">
+                            <i data-eva="pie-chart-outline"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Administration</li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i data-eva="settings-2-outline"></i>
+                            <span>Settings</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="settings.html">General</a></li>
+                            <li><a href="packages.html">Packages</a></li>
+                            <li><a href="source-admin.html">Sources</a></li>
+                            <li><a href="users.html">Users</a></li>
+                            <li><a href="roles.html">Roles & Permissions</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="audit-log.html">
+                            <i data-eva="eye-outline"></i>
+                            <span>Audit Logs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="login.html">
+                            <i data-eva="log-out-outline"></i>
+                            <span>Log Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Sidebar -->
+        </div>
+    </div>
+    <!-- Left Sidebar End -->
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="sidebar-left horizontal-sidebar">
+
+        <div class="sidebar-slide h-100">
+
+            <!--- Sidebar-menu -->
+            <div id="sidebar-menu">
+                <!-- Left Menu Start -->
+                <ul class="left-menu list-unstyled" id="side-menu">
+                    <li>
+                        <a href="index.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Lead Module</li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i class="fas fa-user-plus"></i>
+                            <span>Leads</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="leads.html">All</a></li>
+                            <li><a href="leads.html?action=add-lead">Add</a></li>
+                            <li><a href="followups.html">Upcoming Follow Ups <span class="badge bg-danger ms-auto fs-10">5</span></a></li>
+                            <li><a href="interested-leads.html">Interested</a></li>
+                            <li><a href="not-interested-leads.html">Not Interested</a></li>
+                            <li><a href="applied-leads.html">Applied</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="conversations.html">
+                            <i class="fas fa-comments"></i>
+                            <span>Conversations</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Visa Module</li>
+                    <li>
+                        <a href="visa-eligible.html">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Eligible</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=processing">
+                            <i class="fas fa-sync-alt"></i>
+                            <span>Processing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=approved">
+                            <i class="fas fa-stamp"></i>
+                            <span>Approved</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=rejected">
+                            <i class="fas fa-times-circle"></i>
+                            <span>Rejected</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html">
+                            <i class="fas fa-list"></i>
+                            <span>All</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Ticket Module</li>
+                    <li>
+                        <a href="tickets.html">
+                            <i class="fas fa-ticket-alt"></i>
+                            <span>Not Purchased</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=upcoming">
+                            <i class="fas fa-plane-departure"></i>
+                            <span>Upcoming Flight</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=passed">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Flight Passed</span> <span class="badge bg-danger ms-auto fs-10">2</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=cancelled">
+                            <i class="fas fa-ban"></i>
+                            <span>Cancelled</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=all">
+                            <i class="fas fa-list"></i>
+                            <span>All</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Treatment Module</li>
+                    <li>
+                        <a href="treatment-countdown.html">
+                            <i class="fas fa-hourglass-half"></i>
+                            <span>Countdown</span> <span class="badge bg-danger ms-auto fs-10">4</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html">
+                            <i class="fas fa-heartbeat"></i>
+                            <span>Treatment Ongoing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html?stage=successful">
+                            <i class="fas fa-smile"></i>
+                            <span>Successful</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html?stage=failed">
+                            <i class="fas fa-frown"></i>
+                            <span>Treatment Failed</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Dollar Module</li>
+                    <li>
+                        <a href="dollar-payments.html">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span>Dollar Payments</span> <span class="badge bg-warning ms-auto fs-10">4</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Payment Module</li>
+                    <li>
+                        <a href="dues.html">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>Payment Due</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="completed-leads.html">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Payment Completed</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Expense Module</li>
+                    <li>
+                        <a href="expenses.html">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Expenses</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="expense-patient.html">
+                            <i class="fas fa-user-injured"></i>
+                            <span>Patient Expense</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="expense-report.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Expense Report</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Source Module</li>
+                    <li>
+                        <a href="sources.html">
+                            <i class="fas fa-share-alt"></i>
+                            <span>Source List</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Report Module</li>
+                    <li>
+                        <a href="reports.html">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Administration</li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="settings.html">General</a></li>
+                            <li><a href="packages.html">Packages</a></li>
+                            <li><a href="source-admin.html">Sources</a></li>
+                            <li><a href="users.html">Users</a></li>
+                            <li><a href="roles.html">Roles & Permissions</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="audit-log.html">
+                            <i class="fas fa-history"></i>
+                            <span>Audit Logs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="login.html">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Log Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Sidebar -->
+        </div>
+    </div>
+    <!-- Left Sidebar End -->
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0">Money Receipts</h4>
+                            <nav aria-label="breadcrumb" class="page-title-right">
+                                <ol class="breadcrumb border-0">
+                                    <li class="breadcrumb-item"><a href="index.html">CRM</a></li>
+                                    <li class="breadcrumb-item">Accounts</li>
+                                    <li class="breadcrumb-item active">Money Receipts</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                <div class="row">
+                    <!-- ===== Receipt preview: Office + Client copy — plan.md §9 ===== -->
+                    <div class="col-xl-7">
+                        <div class="card">
+                            <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-2">
+                                <div>
+                                    <h5 class="card-title mb-0">Receipt <span class="mono">ELH-R-2026-000318</span></h5>
+                                    <span class="receipt-locked mt-1"><i class="mdi mdi-lock-check"></i> Finalised &mdash; corrections create a reversal receipt</span>
+                                </div>
+                                <div class="d-flex gap-2 no-print">
+                                    <button class="btn btn-sm btn-label-primary" onclick="window.print()"><i class="mdi mdi-printer me-1"></i>Print both</button>
+                                    <button class="btn btn-sm btn-label-primary"><i class="mdi mdi-file-pdf-box me-1"></i>PDF</button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="print-two-up">
+                                    <div class="receipt-paper mb-3">
+                                        <div class="r-watermark">PARTIALLY PAID</div>
+                                        <div class="r-letterhead">
+                                            <div class="d-flex gap-3">
+                                                <span class="r-mark r-mark-logo"><img src="assets/logo-icon.png" data-company-logo alt="E Life Healthcare"></span>
+                                                <div>
+                                                    <div class="r-org" data-company="name" data-company-case="upper">E LIFE HEALTHCARE</div>
+                                                    <div class="r-contact" data-company="contact">House 42, Road 6, Dhanmondi, Dhaka&nbsp;1205, Bangladesh<br>+880 9600-123456 &middot; info@elifehealthcare.com</div>
+                                                    <div class="r-reg">Trade License: TRAD/DNCC/044219/2023 &middot; BIN: 002345678-0102</div>
+                                                </div>
+                                            </div>
+                                            <div class="text-end">
+                                                <span class="r-copy" style="color:#fff;border-color:rgba(255,255,255,.6);">Office Copy</span>
+                                                <div style="font-size:11px;margin-top:8px;color:rgba(255,255,255,.82);">Receipt No.</div>
+                                                <div class="r-no" style="color:#fff;font-size:15px;">ELH-R-2026-000318</div>
+                                                <div style="font-size:11px;color:rgba(255,255,255,.82);">Issued 31 Aug 2026, 09:24 AM</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="r-body">
+                                            <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 r-head">
+                                                <div>
+                                                    <div class="r-party-label">Billed To (Guardian)</div>
+                                                    <div class="r-party-name">Jahanara Khatun</div>
+                                                    <div class="r-party-meta">+880 1677-112233<br>Rajshahi, Bangladesh</div>
+                                                </div>
+                                                <div>
+                                                    <div class="r-party-label">Patient</div>
+                                                    <div class="r-party-name">Mim Akter <span class="fw-normal text-muted mono fs-12">(ELH-P-2026-000094)</span></div>
+                                                    <div class="r-party-meta">Lead ELH-L-2026-000408 &middot; Deal ELH-D-2026-000247</div>
+                                                </div>
+                                                <div class="text-md-end">
+                                                    <span class="r-status-pill is-partial"><i class="mdi mdi-clock-outline"></i> Partially Paid</span>
+                                                    <div class="r-party-meta mt-1">Payment method: Cash</div>
+                                                </div>
+                                            </div>
+
+                                            <table class="r-mini-table mb-3">
+                                                <thead><tr><th>Service / Package</th><th>Doctor</th><th>Hospital</th><th class="text-end">Validity</th></tr></thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="fw-semibold">Cardiac Surgery &mdash; Standard Package</td>
+                                                        <td>Dr. Ilias Patowary</td>
+                                                        <td>Square Hospital, Dhaka</td>
+                                                        <td class="text-end">90 days from confirmation</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                            <table>
+                                                <tr style="border-bottom:1px solid #e5eaef;"><td style="padding:6px 0;font-weight:600;">Package Amount</td><td class="text-end cur" style="padding:6px 0;font-weight:600;">&#2547;3,00,000.00</td></tr>
+                                                <tr style="border-bottom:1px solid #e5eaef;"><td style="padding:6px 0;color:#5b6b7a;">Previously Paid</td><td class="text-end cur" style="padding:6px 0;">&#2547;0.00</td></tr>
+                                                <tr style="border-bottom:1px solid #e5eaef;"><td style="padding:6px 0;font-weight:600;color:#326616;">This Payment (Cash)</td><td class="text-end cur" style="padding:6px 0;font-weight:700;color:#326616;">&#2547;50,000.00</td></tr>
+                                                <tr style="border-bottom:1px solid #e5eaef;"><td style="padding:6px 0;color:#5b6b7a;">Total Paid to Date</td><td class="text-end cur" style="padding:6px 0;">&#2547;50,000.00</td></tr>
+                                                <tr class="r-total-row"><td style="padding:8px 0;">Remaining Due</td><td class="text-end cur r-due" style="padding:8px 0;">&#2547;2,50,000.00</td></tr>
+                                            </table>
+                                            <div class="r-words"><i class="mdi mdi-format-quote-open fs-12"></i> In words: Taka Fifty Thousand Only, received towards the Cardiac Surgery &mdash; Standard package.</div>
+
+                                            <div class="r-party-label mt-3 mb-1">Payment History</div>
+                                            <table class="r-mini-table">
+                                                <thead><tr><th>Receipt No.</th><th>Date</th><th>Method</th><th class="text-end">Amount</th></tr></thead>
+                                                <tbody>
+                                                    <tr><td class="mono">ELH-R-2026-000318</td><td>31 Aug 2026</td><td>Cash</td><td class="text-end cur fw-semibold">&#2547;50,000.00</td></tr>
+                                                </tbody>
+                                            </table>
+
+                                            <ul class="r-terms">
+                                                <li>This receipt must be produced for any service-related query or refund request.</li>
+                                                <li>Package validity is 90 days from the confirmation date shown above.</li>
+                                                <li>Refunds and adjustments are subject to E Life Healthcare's refund policy and require management approval.</li>
+                                                <li>Finalised receipts are locked &mdash; any correction is issued as a separate reversal receipt, never an edit.</li>
+                                            </ul>
+
+                                            <div class="row align-items-end mt-3">
+                                                <div class="col-4 r-sign-box">
+                                                    <div class="r-sign-line r-sign-name">Rezaul Karim</div>
+                                                    <div class="r-sign-role">Received By &middot; Accounts Executive</div>
+                                                </div>
+                                                <div class="col-4 text-center">
+                                                    <div class="r-qr">QR CODE</div>
+                                                    <div class="fs-11 text-muted mt-1">Scan to verify online</div>
+                                                </div>
+                                                <div class="col-4 r-sign-box">
+                                                    <div class="r-sign-line r-sign-name">&nbsp;</div>
+                                                    <div class="r-sign-role">Authorised Signature &middot; Accounts Manager</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="receipt-paper">
+                                        <div class="r-watermark">PARTIALLY PAID</div>
+                                        <div class="r-letterhead">
+                                            <div class="d-flex gap-3">
+                                                <span class="r-mark r-mark-logo"><img src="assets/logo-icon.png" data-company-logo alt="E Life Healthcare"></span>
+                                                <div>
+                                                    <div class="r-org" data-company="name" data-company-case="upper">E LIFE HEALTHCARE</div>
+                                                    <div class="r-contact" data-company="contact">House 42, Road 6, Dhanmondi, Dhaka&nbsp;1205, Bangladesh<br>+880 9600-123456 &middot; info@elifehealthcare.com</div>
+                                                </div>
+                                            </div>
+                                            <div class="text-end">
+                                                <span class="r-copy" style="color:#fff;border-color:rgba(255,255,255,.6);">Client Copy</span>
+                                                <div style="font-size:11px;margin-top:8px;color:rgba(255,255,255,.82);">Receipt No.</div>
+                                                <div class="r-no" style="color:#fff;font-size:15px;">ELH-R-2026-000318</div>
+                                                <div style="font-size:11px;color:rgba(255,255,255,.82);">31 Aug 2026</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="r-body">
+                                            <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 r-head">
+                                                <div>
+                                                    <div class="r-party-label">Guardian</div>
+                                                    <div class="r-party-name">Jahanara Khatun</div>
+                                                    <div class="r-party-meta">+880 1677-112233</div>
+                                                </div>
+                                                <div>
+                                                    <div class="r-party-label">Patient</div>
+                                                    <div class="r-party-name">Mim Akter <span class="fw-normal text-muted mono fs-12">(ELH-P-2026-000094)</span></div>
+                                                    <div class="r-party-meta">Cardiac Surgery &mdash; Standard &middot; Dr. Ilias Patowary</div>
+                                                </div>
+                                                <div class="text-md-end">
+                                                    <span class="r-status-pill is-partial"><i class="mdi mdi-clock-outline"></i> Partially Paid</span>
+                                                </div>
+                                            </div>
+                                            <table>
+                                                <tr style="border-bottom:1px solid #e5eaef;"><td style="padding:6px 0;font-weight:600;">Package Amount</td><td class="text-end cur" style="padding:6px 0;font-weight:600;">&#2547;3,00,000.00</td></tr>
+                                                <tr style="border-bottom:1px solid #e5eaef;"><td style="padding:6px 0;font-weight:600;color:#326616;">This Payment (Cash)</td><td class="text-end cur" style="padding:6px 0;font-weight:700;color:#326616;">&#2547;50,000.00</td></tr>
+                                                <tr style="border-bottom:1px solid #e5eaef;"><td style="padding:6px 0;color:#5b6b7a;">Total Paid to Date</td><td class="text-end cur" style="padding:6px 0;">&#2547;50,000.00</td></tr>
+                                                <tr class="r-total-row"><td style="padding:8px 0;">Remaining Due</td><td class="text-end cur r-due" style="padding:8px 0;">&#2547;2,50,000.00</td></tr>
+                                            </table>
+                                            <div class="r-words"><i class="mdi mdi-format-quote-open fs-12"></i> In words: Taka Fifty Thousand Only.</div>
+
+                                            <div class="row align-items-end mt-4">
+                                                <div class="col-8">
+                                                    <div class="fs-11 text-muted">This receipt is computer generated and valid without signature once verified online. Please retain it for your records and bring it for any future visit.</div>
+                                                </div>
+                                                <div class="col-4 text-center">
+                                                    <div class="r-qr">QR CODE</div>
+                                                    <div class="fs-11 text-muted mt-1">Scan to verify</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== Receipt register ===== -->
+                    <div class="col-xl-5">
+                        <div class="card">
+                            <div class="card-header d-flex align-items-center justify-content-between">
+                                <h5 class="card-title mb-0">Receipt Register</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="alert alert-warning d-flex align-items-start gap-2 py-2 fs-12">
+                                    <i class="mdi mdi-shield-lock-outline mt-1"></i>
+                                    <div>Receipt numbers come from a locking sequence, so two accountants saving at the same moment can never collide. Finalised receipts are never edited &mdash; a correction issues a reversal.</div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle mb-0 crm-table w-100">
+                                        <thead class="table-light"><tr><th>Receipt No.</th><th>Patient</th><th>Amount</th><th>Type</th><th class="no-sort"></th></tr></thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="mono fs-12">ELH-R-2026-000318</td>
+                                                <td class="fs-13">Mim Akter</td>
+                                                <td class="text-end cur fs-13">&#2547;50,000</td>
+                                                <td><span class="badge bg-success-subtle text-success">Payment</span></td>
+                                                <td><button class="btn btn-sm btn-icon btn-light"><i class="mdi mdi-printer"></i></button></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="mono fs-12">ELH-R-2026-000317</td>
+                                                <td class="fs-13">Nadia Sultana</td>
+                                                <td class="text-end cur fs-13">&#2547;1,20,000</td>
+                                                <td><span class="badge bg-success-subtle text-success">Payment</span></td>
+                                                <td><button class="btn btn-sm btn-icon btn-light"><i class="mdi mdi-printer"></i></button></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="mono fs-12">ELH-R-2026-000316</td>
+                                                <td class="fs-13">Ayesha Rahim</td>
+                                                <td class="text-end cur fs-13">&#2547;75,000</td>
+                                                <td><span class="badge bg-success-subtle text-success">Payment</span></td>
+                                                <td><button class="btn btn-sm btn-icon btn-light"><i class="mdi mdi-printer"></i></button></td>
+                                            </tr>
+                                            <tr class="table-warning">
+                                                <td class="mono fs-12">ELH-R-2026-000315</td>
+                                                <td class="fs-13">Rafi Alam</td>
+                                                <td class="text-end cur fs-13 text-danger">&minus;&#2547;25,000</td>
+                                                <td><span class="badge bg-danger-subtle text-danger">Reversal</span></td>
+                                                <td><button class="btn btn-sm btn-icon btn-light"><i class="mdi mdi-printer"></i></button></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="mono fs-12">ELH-R-2026-000314</td>
+                                                <td class="fs-13">Rafi Alam</td>
+                                                <td class="text-end cur fs-13">&#2547;25,000</td>
+                                                <td><span class="badge bg-secondary-subtle text-secondary">Reversed</span></td>
+                                                <td><button class="btn btn-sm btn-icon btn-light"><i class="mdi mdi-printer"></i></button></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="mono fs-12">ELH-R-2026-000313</td>
+                                                <td class="fs-13">Karim Mia</td>
+                                                <td class="text-end cur fs-13">&#2547;2,00,000</td>
+                                                <td><span class="badge bg-success-subtle text-success">Payment</span></td>
+                                                <td><button class="btn btn-sm btn-icon btn-light"><i class="mdi mdi-printer"></i></button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ ALL TRANSACTIONS ============ -->
+                <!-- Added BELOW the receipt preview and register above, not in place
+                     of them. A receipt can be generated for any verified transaction,
+                     and the filters find the one you want. Pending payments are absent
+                     by design: there is nothing to receipt until Accounts has
+                     confirmed the money. -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-2">
+                                <div>
+                                    <h5 class="card-title mb-0">All Transactions</h5>
+                                    <p class="fs-12 text-muted mb-0">25 verified transactions &middot; 23 receipted, 2 awaiting generation.</p>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-2 align-items-end mb-3" id="receipt-filters">
+                                    <div class="col-md-3">
+                                        <label class="form-label fs-12 mb-1">Search</label>
+                                        <input type="text" class="form-control form-control-sm" id="rf-search" placeholder="Patient, deal, receipt no.">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label fs-12 mb-1">Receipt</label>
+                                        <select class="form-select form-select-sm" id="rf-state">
+                                            <option value="">All</option><option value="true">Issued</option><option value="false">Not issued</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label fs-12 mb-1">Executive</label>
+                                        <select class="form-select form-select-sm" id="rf-exec">
+                                            <option value="">All executives</option>
+                                            <option>Tanvir Ahmed</option><option>Nusrat Jahan</option><option>Sabbir Hossain</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label fs-12 mb-1">Method</label>
+                                        <select class="form-select form-select-sm" id="rf-method" data-crm-list="paymentMethods">
+                                            <option value="">All methods</option>
+                                            <option>Cash</option><option>Bank Transfer</option><option>bKash</option><option>Nagad</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button class="btn btn-light btn-sm w-100" id="rf-reset" title="Reset filters"><i class="mdi mdi-refresh"></i></button>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table crm-table align-middle w-100" id="receipt-transactions">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Date</th><th>Patient / Deal</th><th>Method</th>
+                                                <th class="text-end">Amount</th><th>Receipt No.</th><th class="no-sort">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr data-has-receipt="true" data-exec="Sabbir Hossain" data-method="bKash" data-cur="bdt" data-executive="Sabbir Hossain">
+                                                <td class="fs-13">02 Sep 2026</td>
+                                                <td><div class="fw-semibold">Nadia Sultana</div><div class="fs-12 text-muted mono">ELH-D-2026-000092</div></td>
+                                                <td class="fs-13">bKash</td>
+                                                <td class="text-end cur fs-13">&#2547;1,00,000</td>
+                                                <td class="mono fs-12">MR-000268</td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Print receipt"><i class="mdi mdi-printer"></i></button>
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Download"><i class="mdi mdi-download"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-has-receipt="false" data-exec="Nusrat Jahan" data-method="Cash" data-cur="bdt" data-executive="Nusrat Jahan">
+                                                <td class="fs-13">01 Sep 2026</td>
+                                                <td><div class="fw-semibold">Jamal Uddin</div><div class="fs-12 text-muted mono">ELH-D-2026-000090</div></td>
+                                                <td class="fs-13">Cash</td>
+                                                <td class="text-end cur fs-13">&#2547;4,00,000</td>
+                                                <td class="mono fs-12"><span class="text-warning">not issued</span></td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-primary crm-receipt-generate" data-person="Jamal Uddin" data-amount="&#2547;4,00,000"><i class="mdi mdi-receipt me-1"></i>Generate</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-has-receipt="true" data-exec="Nusrat Jahan" data-method="bKash" data-cur="bdt" data-executive="Nusrat Jahan">
+                                                <td class="fs-13">28 Aug 2026</td>
+                                                <td><div class="fw-semibold">Sharmin Akter</div><div class="fs-12 text-muted mono">ELH-D-2026-000089</div></td>
+                                                <td class="fs-13">bKash</td>
+                                                <td class="text-end cur fs-13">&#2547;1,00,000</td>
+                                                <td class="mono fs-12">MR-000296</td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Print receipt"><i class="mdi mdi-printer"></i></button>
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Download"><i class="mdi mdi-download"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-has-receipt="true" data-exec="Nusrat Jahan" data-method="Bank Transfer" data-cur="bdt" data-executive="Nusrat Jahan">
+                                                <td class="fs-13">24 Aug 2026</td>
+                                                <td><div class="fw-semibold">Sharmin Akter</div><div class="fs-12 text-muted mono">ELH-D-2026-000089</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13">&#2547;2,00,000</td>
+                                                <td class="mono fs-12">MR-000290</td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Print receipt"><i class="mdi mdi-printer"></i></button>
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Download"><i class="mdi mdi-download"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-has-receipt="true" data-exec="Sabbir Hossain" data-method="Bank Transfer" data-cur="bdt" data-executive="Sabbir Hossain">
+                                                <td class="fs-13">21 Aug 2026</td>
+                                                <td><div class="fw-semibold">Nadia Sultana</div><div class="fs-12 text-muted mono">ELH-D-2026-000092</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13">&#2547;2,00,000</td>
+                                                <td class="mono fs-12">MR-000241</td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Print receipt"><i class="mdi mdi-printer"></i></button>
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Download"><i class="mdi mdi-download"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-has-receipt="true" data-exec="Tanvir Ahmed" data-method="Bank Transfer" data-cur="bdt" data-executive="Tanvir Ahmed">
+                                                <td class="fs-13">18 Aug 2026</td>
+                                                <td><div class="fw-semibold">Rokeya Begum</div><div class="fs-12 text-muted mono">ELH-D-2026-000088</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13">&#2547;4,00,000</td>
+                                                <td class="mono fs-12">MR-000284</td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Print receipt"><i class="mdi mdi-printer"></i></button>
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Download"><i class="mdi mdi-download"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-has-receipt="true" data-exec="Sabbir Hossain" data-method="Bank Transfer" data-cur="bdt" data-executive="Sabbir Hossain">
+                                                <td class="fs-13">12 Aug 2026</td>
+                                                <td><div class="fw-semibold">Sajid Hasan</div><div class="fs-12 text-muted mono">ELH-D-2026-000087</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13">&#2547;2,50,000</td>
+                                                <td class="mono fs-12">MR-000276</td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Print receipt"><i class="mdi mdi-printer"></i></button>
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Download"><i class="mdi mdi-download"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-has-receipt="true" data-exec="Tanvir Ahmed" data-method="Cash" data-cur="bdt" data-executive="Tanvir Ahmed">
+                                                <td class="fs-13">12 Aug 2026</td>
+                                                <td><div class="fw-semibold">Ayesha Rahim</div><div class="fs-12 text-muted mono">ELH-D-2026-000094</div></td>
+                                                <td class="fs-13">Cash</td>
+                                                <td class="text-end cur fs-13">&#2547;1,00,000</td>
+                                                <td class="mono fs-12">MR-000231</td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Print receipt"><i class="mdi mdi-printer"></i></button>
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Download"><i class="mdi mdi-download"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-has-receipt="true" data-exec="Sabbir Hossain" data-method="Bank Transfer" data-cur="bdt" data-executive="Sabbir Hossain">
+                                                <td class="fs-13">10 Aug 2026</td>
+                                                <td><div class="fw-semibold">Karim Mia</div><div class="fs-12 text-muted mono">ELH-D-2026-000093</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13">&#2547;1,00,000</td>
+                                                <td class="mono fs-12">MR-000214</td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Print receipt"><i class="mdi mdi-printer"></i></button>
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Download"><i class="mdi mdi-download"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-has-receipt="true" data-exec="Nusrat Jahan" data-method="Cash" data-cur="bdt" data-executive="Nusrat Jahan">
+                                                <td class="fs-13">05 Aug 2026</td>
+                                                <td><div class="fw-semibold">Halima Khatun</div><div class="fs-12 text-muted mono">ELH-D-2026-000086</div></td>
+                                                <td class="fs-13">Cash</td>
+                                                <td class="text-end cur fs-13">&#2547;4,00,000</td>
+                                                <td class="mono fs-12">MR-000262</td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Print receipt"><i class="mdi mdi-printer"></i></button>
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Download"><i class="mdi mdi-download"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-has-receipt="true" data-exec="Tanvir Ahmed" data-method="Bank Transfer" data-cur="bdt" data-executive="Tanvir Ahmed">
+                                                <td class="fs-13">28 Jul 2026</td>
+                                                <td><div class="fw-semibold">Tanjila Akter</div><div class="fs-12 text-muted mono">ELH-D-2026-000085</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13">&#2547;2,50,000</td>
+                                                <td class="mono fs-12">MR-000244</td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Print receipt"><i class="mdi mdi-printer"></i></button>
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Download"><i class="mdi mdi-download"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-has-receipt="true" data-exec="Sabbir Hossain" data-method="Bank Transfer" data-cur="bdt" data-executive="Sabbir Hossain">
+                                                <td class="fs-13">20 Jul 2026</td>
+                                                <td><div class="fw-semibold">Nurul Islam</div><div class="fs-12 text-muted mono">ELH-D-2026-000084</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13">&#2547;3,00,000</td>
+                                                <td class="mono fs-12">MR-000221</td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Print receipt"><i class="mdi mdi-printer"></i></button>
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Download"><i class="mdi mdi-download"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-has-receipt="true" data-exec="Sabbir Hossain" data-method="Cash" data-cur="bdt" data-executive="Sabbir Hossain">
+                                                <td class="fs-13">18 Jul 2026</td>
+                                                <td><div class="fw-semibold">Karim Mia</div><div class="fs-12 text-muted mono">ELH-D-2026-000093</div></td>
+                                                <td class="fs-13">Cash</td>
+                                                <td class="text-end cur fs-13">&#2547;1,50,000</td>
+                                                <td class="mono fs-12">MR-000180</td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Print receipt"><i class="mdi mdi-printer"></i></button>
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Download"><i class="mdi mdi-download"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-has-receipt="true" data-exec="Tanvir Ahmed" data-method="Bank Transfer" data-cur="bdt" data-executive="Tanvir Ahmed">
+                                                <td class="fs-13">20 Jun 2026</td>
+                                                <td><div class="fw-semibold">Mim Akter</div><div class="fs-12 text-muted mono">ELH-D-2026-000091</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13">&#2547;2,50,000</td>
+                                                <td class="mono fs-12">MR-000150</td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Print receipt"><i class="mdi mdi-printer"></i></button>
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Download"><i class="mdi mdi-download"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-has-receipt="true" data-exec="Nusrat Jahan" data-method="Bank Transfer" data-cur="bdt" data-executive="Nusrat Jahan">
+                                                <td class="fs-13">03 Dec 2025</td>
+                                                <td><div class="fw-semibold">Sharmin Akter</div><div class="fs-12 text-muted mono">ELH-D-2025-000042</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13">&#2547;1,50,000</td>
+                                                <td class="mono fs-12">MR-000197</td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Print receipt"><i class="mdi mdi-printer"></i></button>
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Download"><i class="mdi mdi-download"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-has-receipt="true" data-exec="Nusrat Jahan" data-method="Cash" data-cur="bdt" data-executive="Nusrat Jahan">
+                                                <td class="fs-13">11 Nov 2025</td>
+                                                <td><div class="fw-semibold">Sharmin Akter</div><div class="fs-12 text-muted mono">ELH-D-2025-000042</div></td>
+                                                <td class="fs-13">Cash</td>
+                                                <td class="text-end cur fs-13">&#2547;2,50,000</td>
+                                                <td class="mono fs-12">MR-000188</td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Print receipt"><i class="mdi mdi-printer"></i></button>
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Download"><i class="mdi mdi-download"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-has-receipt="true" data-exec="Nusrat Jahan" data-method="Bank Transfer" data-cur="bdt" data-executive="Nusrat Jahan">
+                                                <td class="fs-13">04 Feb 2025</td>
+                                                <td><div class="fw-semibold">Ayesha Rahim</div><div class="fs-12 text-muted mono">ELH-D-2025-000061</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13">&#2547;3,00,000</td>
+                                                <td class="mono fs-12">MR-000041</td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Print receipt"><i class="mdi mdi-printer"></i></button>
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Download"><i class="mdi mdi-download"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- container-fluid -->
+        </div><!-- page-content -->
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        &copy; <script>document.write(new Date().getFullYear())</script> E Life Healthcare. All rights reserved.
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end d-none d-sm-block">
+                            CRM System &middot; v1.0
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- END Footer -->
+        <!-- Begin scroll top -->
+          <div class="progress-wrap" id="progress-scroll">
+            <svg class="progress-circle" width="100%" height="100%" viewBox="-1 -1 102 102">
+              <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+            </svg>
+          </div>
+        <!-- END scroll top -->
+    </div><!-- end main content-->
+
+</div><!-- END layout-wrapper -->
+
+<!-- Bootstrap bundle js -->
+<script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Layouts main js -->
+<script src="assets/libs/jquery/jquery.min.js"></script>
+
+<!-- Metimenu js -->
+<script src="assets/libs/metismenu/metisMenu.min.js"></script>
+
+<!-- simplebar js -->
+<script src="assets/libs/simplebar/simplebar.min.js"></script>
+
+<script src="assets/libs/eva-icons/eva.min.js"></script>
+
+<!-- Scroll Top init -->
+<script src="assets/js/scroll-top.init.js"></script>
+
+<!-- datatables js -->
+<script src="assets/libs/datatables.net/js/dataTables.min.js"></script>
+<script src="assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+<script src="assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+
+<!-- select2 -->
+<script src="assets/libs/select2/js/select2.min.js"></script>
+
+<!-- App js -->
+<script src="assets/js/app.js"></script>
+
+<!-- sweetalert2 -->
+<script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
+
+<!-- CRM demo js -->
+<script src="assets/js/crm-demo.js"></script>
+
+<!-- CRM accounts js -->
+<script src="assets/js/crm-accounts.js"></script>
+
+<!-- Sidebar deep links (page.html?x=y): highlight the entry matching the query -->
+<script>
+window.addEventListener('load', function () {
+  var page = location.pathname.split('/').pop(), q = location.search;
+  var links = [].slice.call(document.querySelectorAll('#sidebar-menu a[href]:not(.has-arrow)'));
+  var exact = links.filter(function (a) {
+    var h = a.getAttribute('href') || '', i = h.indexOf('?');
+    return i > -1 && h.slice(0, i) === page && h.slice(i) === q;
+  });
+  if (!exact.length) return;
+  links.forEach(function (a) { a.classList.remove('active'); a.parentNode.classList.remove('mm-active'); });
+  exact.forEach(function (a) { a.classList.add('active'); a.parentNode.classList.add('mm-active'); });
+});
+</script>
+</body>
+</html>

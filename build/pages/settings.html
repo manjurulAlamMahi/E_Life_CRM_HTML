@@ -1,0 +1,163 @@
+                <!-- ===== Settings — the one place the business configures the CRM.
+                     Company details and ID formats feed invoices, receipts and printed
+                     forms; the Dropdown Options feed every form's select lists
+                     (select[data-crm-list]). Stored by CRMSettings (crm-demo.js);
+                     this page is driven by crm-settings.js. Packages, Sources, Users
+                     and Roles have their own pages, reached from the Settings menu. ===== -->
+                <div class="row">
+                    <div class="col-xl-3">
+                        <div class="card set-nav-card">
+                            <div class="card-body p-2">
+                                <div class="nav flex-column nav-pills set-nav" role="tablist">
+                                    <div class="set-nav-title">General</div>
+                                    <a class="nav-link active" data-bs-toggle="pill" href="#set-company"><i class="mdi mdi-domain"></i>Company Profile</a>
+                                    <a class="nav-link" data-bs-toggle="pill" href="#set-ids"><i class="mdi mdi-identifier"></i>ID Format</a>
+                                    <a class="nav-link" data-bs-toggle="pill" href="#set-backup"><i class="mdi mdi-database-outline"></i>Database Backup</a>
+
+                                    <div class="set-nav-title">Dropdown Options</div>
+                                    <a class="nav-link" data-bs-toggle="pill" href="#set-payments"><i class="mdi mdi-credit-card-outline"></i>Payments</a>
+                                    <a class="nav-link" data-bs-toggle="pill" href="#set-leads"><i class="mdi mdi-account-question-outline"></i>Lead Outcomes</a>
+                                    <a class="nav-link" data-bs-toggle="pill" href="#set-conversations"><i class="mdi mdi-forum-outline"></i>Conversations</a>
+                                    <a class="nav-link" data-bs-toggle="pill" href="#set-expenses"><i class="mdi mdi-cash-minus"></i>Expense Categories</a>
+                                    <a class="nav-link" data-bs-toggle="pill" href="#set-visa"><i class="mdi mdi-passport"></i>Visa</a>
+
+                                    <div class="set-nav-title">Manage</div>
+                                    <a class="nav-link" href="packages.html"><i class="mdi mdi-package-variant-closed"></i>Packages<i class="mdi mdi-chevron-right ms-auto me-0"></i></a>
+                                    <a class="nav-link" href="source-admin.html"><i class="mdi mdi-share-variant-outline"></i>Sources<i class="mdi mdi-chevron-right ms-auto me-0"></i></a>
+                                    <a class="nav-link" href="users.html"><i class="mdi mdi-account-group-outline"></i>Users<i class="mdi mdi-chevron-right ms-auto me-0"></i></a>
+                                    <a class="nav-link" href="roles.html"><i class="mdi mdi-shield-account-outline"></i>Roles &amp; Permissions<i class="mdi mdi-chevron-right ms-auto me-0"></i></a>
+                                </div>
+                            </div>
+                            <!-- Preview-only switch for the yellow "Demo notice" banners;
+                                 crm-demo.js keeps the choice. -->
+                            <div class="card-footer bg-transparent d-flex align-items-center justify-content-between py-2 px-3">
+                                <label class="form-check-label fs-12 text-muted" for="set-demo-notes">Show demo notices</label>
+                                <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" id="set-demo-notes" checked></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-9">
+                        <div class="tab-content">
+
+                            <!-- ============ COMPANY PROFILE ============ -->
+                            <div class="tab-pane active" id="set-company">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div><h5 class="card-title mb-0">Company Profile</h5>
+                                        <p class="fs-12 text-muted mb-0">Printed on every invoice, money receipt and registration form.</p></div>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="set-company-form" class="row g-3" novalidate>
+                                            <div class="col-lg-8">
+                                                <div class="row g-3">
+                                                    <div class="col-12"><label class="form-label" for="co-name">Company name <span class="text-danger">*</span></label><input type="text" class="form-control" id="co-name" required></div>
+                                                    <div class="col-12"><label class="form-label" for="co-address">Address <span class="text-danger">*</span></label><textarea class="form-control" id="co-address" rows="2" required></textarea></div>
+                                                    <div class="col-md-6"><label class="form-label" for="co-phone">Phone</label><input type="text" class="form-control" id="co-phone"></div>
+                                                    <div class="col-md-6"><label class="form-label" for="co-email">Email</label><input type="email" class="form-control" id="co-email"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <label class="form-label">Logo</label>
+                                                <div class="set-logo-box">
+                                                    <img id="co-logo-preview" src="assets/logo.png" alt="Company logo">
+                                                </div>
+                                                <div class="d-flex gap-2 mt-2">
+                                                    <label class="btn btn-sm btn-light flex-fill mb-0"><i class="mdi mdi-upload me-1"></i>Upload<input type="file" id="co-logo" accept="image/png,image/jpeg,image/svg+xml,image/webp" class="d-none"></label>
+                                                    <button type="button" class="btn btn-sm btn-light" id="co-logo-reset" title="Use the default logo"><i class="mdi mdi-restore"></i></button>
+                                                </div>
+                                                <div class="form-text fs-11">PNG, JPG or SVG, wide format, under 500 KB.</div>
+                                            </div>
+                                            <div class="col-12 d-flex align-items-center gap-2 border-top pt-3">
+                                                <button type="submit" class="btn btn-primary"><i class="mdi mdi-content-save-outline me-1"></i>Save Changes</button>
+                                                <a href="invoice.html" class="btn btn-light"><i class="mdi mdi-file-document-outline me-1"></i>Preview Invoice</a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ============ ID FORMAT ============ -->
+                            <div class="tab-pane" id="set-ids">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div><h5 class="card-title mb-0">ID Format</h5>
+                                        <p class="fs-12 text-muted mb-0">How new IDs are written. With <span class="fw-semibold">Yearly</span> on, the year part updates on its own &mdash; the first lead of 2027 becomes <span class="mono">Lead27-0001</span>.</p></div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table align-middle mb-0 set-id-table">
+                                                <thead class="table-light"><tr><th>Record &amp; preview</th><th>Prefix</th><th>Year</th><th>Separator</th><th>Digits</th><th>Next No.</th><th class="text-center" title="Start again at 1 every new year">Yearly</th></tr></thead>
+                                                <tbody id="set-id-rows"></tbody>
+                                            </table>
+                                        </div>
+                                        <div class="alert alert-info d-flex align-items-center gap-2 py-2 fs-12 mt-3 mb-0"><i class="mdi mdi-information-outline fs-5 lh-1"></i><div>Only <span class="fw-semibold">new</span> records use a changed format. Existing IDs never change &mdash; they are printed on invoices and receipts already given out.</div></div>
+                                        <div class="d-flex gap-2 mt-3"><button type="button" class="btn btn-primary" id="set-ids-save"><i class="mdi mdi-content-save-outline me-1"></i>Save Changes</button></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ============ DATABASE BACKUP ============ -->
+                            <div class="tab-pane" id="set-backup">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div><h5 class="card-title mb-0">Database Backup</h5>
+                                        <p class="fs-12 text-muted mb-0">A copy of the whole database, kept off this server so it survives a hosting failure.</p></div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="set-backup-status mb-4">
+                                            <span class="set-backup-icon"><i class="mdi mdi-database-check-outline"></i></span>
+                                            <div class="flex-grow-1">
+                                                <div class="fw-semibold">Last backup: <span id="bk-last"></span></div>
+                                                <div class="fs-12 text-muted">Completed successfully</div>
+                                            </div>
+                                            <button type="button" class="btn btn-primary" id="bk-run"><i class="mdi mdi-database-arrow-up-outline me-1"></i>Back Up Now</button>
+                                        </div>
+                                        <div class="row g-3">
+                                            <div class="col-md-4"><label class="form-label" for="bk-schedule">Automatic backup</label><select class="form-select" id="bk-schedule"><option>Daily at 02:00</option><option>Twice daily</option><option>Weekly</option><option>Off</option></select></div>
+                                            <div class="col-md-4"><label class="form-label" for="bk-destination">Store backups in</label><select class="form-select" id="bk-destination"><option>Google Drive</option><option>Dropbox</option><option>Amazon S3</option></select></div>
+                                            <div class="col-md-4"><label class="form-label" for="bk-retention">Keep backups for</label><select class="form-select" id="bk-retention"><option>30 days</option><option>60 days</option><option>90 days</option></select></div>
+                                        </div>
+                                        <div class="d-flex gap-2 mt-3"><button type="button" class="btn btn-light" id="bk-save"><i class="mdi mdi-content-save-outline me-1"></i>Save Schedule</button></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ============ DROPDOWN OPTIONS ============ -->
+                            <!-- Each [data-list-editor] is filled by crm-settings.js from the
+                                 list of that name; data-used-in says where it appears. -->
+                            <div class="tab-pane" id="set-payments">
+                                <div class="set-list-grid">
+                                    <div data-list-editor="paymentMethods" data-title="Payment Methods" data-used-in="Record Payment, Pay Now, Apply for Package, Expenses and the payment filters" data-placeholder="e.g. Upay, PayPal"></div>
+                                    <div data-list-editor="paymentRejectReasons" data-title="Payment Rejection Reasons" data-used-in="Rejecting an online payment on Payments" data-placeholder="e.g. Wrong account"></div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="set-leads">
+                                <div class="set-list-grid">
+                                    <div data-list-editor="notInterestedReasons" data-title="Not Interested Reasons" data-used-in="Marking a lead Not Interested and Log Conversation" data-placeholder="e.g. Found a cheaper option"></div>
+                                    <div data-list-editor="unreachableReasons" data-title="Unreachable Reasons" data-used-in="Marking a lead Unreachable and Log Conversation" data-placeholder="e.g. Number not in service"></div>
+                                    <div data-list-editor="leadPriorities" data-title="Lead Priorities" data-used-in="Add Lead and Edit Lead" data-placeholder="e.g. VIP"></div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="set-conversations">
+                                <div class="set-list-grid">
+                                    <div data-list-editor="conversationChannels" data-title="Conversation Channels" data-used-in="Log Conversation" data-placeholder="e.g. Messenger"></div>
+                                    <div data-list-editor="followupActions" data-title="Follow-up Actions" data-used-in="Log Conversation and Next Follow-up" data-placeholder="e.g. Send hospital brochure"></div>
+                                    <div data-list-editor="rescheduleReasons" data-title="Reschedule Reasons" data-used-in="Rescheduling a follow-up" data-placeholder="e.g. Patient admitted"></div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="set-expenses">
+                                <div class="set-list-grid">
+                                    <div data-list-editor="expenseCategories" data-title="Expense Categories" data-used-in="Expenses, Category-wise and Weekly / Monthly" data-placeholder="e.g. Legal &amp; Licences"></div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="set-visa">
+                                <div class="set-list-grid">
+                                    <div data-list-editor="visaCountries" data-title="Destination Countries" data-used-in="Apply for Visa" data-placeholder="e.g. Turkey"></div>
+                                    <div data-list-editor="visaTypes" data-title="Visa Types" data-used-in="Apply for Visa" data-placeholder="e.g. Business Visa"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>

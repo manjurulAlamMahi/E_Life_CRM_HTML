@@ -1,0 +1,354 @@
+                <!-- ============ TILES ============ -->
+                <div class="row">
+                    <div class="col-xl-3 col-md-6"><div class="card stat-tile"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-primary-subtle text-primary"><i class="mdi mdi-account-group-outline"></i></span>
+                        <div><div class="stat-value">8</div><div class="stat-label text-muted">Total Users</div></div>
+                    </div></div></div>
+                    <div class="col-xl-3 col-md-6"><div class="card stat-tile"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-danger-subtle text-danger"><i class="mdi mdi-shield-account-outline"></i></span>
+                        <div><div class="stat-value">2</div><div class="stat-label text-muted">Administrators</div></div>
+                    </div></div></div>
+                    <div class="col-xl-3 col-md-6"><div class="card stat-tile"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-info-subtle text-info"><i class="mdi mdi-account-tie-outline"></i></span>
+                        <div><div class="stat-value">4</div><div class="stat-label text-muted">Sales Executives</div></div>
+                    </div></div></div>
+                    <div class="col-xl-3 col-md-6"><div class="card stat-tile"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-secondary-subtle text-secondary"><i class="mdi mdi-account-off-outline"></i></span>
+                        <div><div class="stat-value">1</div><div class="stat-label text-muted">Disabled</div></div>
+                    </div></div></div>
+                </div>
+
+                <!-- ============ USERS ============ -->
+                <!-- Everyone is listed, administrators included. A user's role is what
+                     grants their permissions; the matrix that defines each role lives
+                     on Roles & Permissions. -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-2">
+                                <div>
+                                    <h5 class="card-title mb-0">Users</h5>
+                                    <p class="fs-12 text-muted mb-0">Every account in the system. Adding a user assigns their role, and the role carries the permissions.</p>
+                                </div>
+                                <div class="d-flex gap-2">
+                                    <a href="roles.html" class="btn btn-sm btn-label-primary"><i class="mdi mdi-shield-key-outline me-1"></i>Roles &amp; Permissions</a>
+                                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#userModal"><i class="mdi mdi-plus me-1"></i>Add User</button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-2 align-items-end mb-3" id="user-filters">
+                                    <div class="col-md-4">
+                                        <label class="form-label fs-12 mb-1">Search</label>
+                                        <input type="text" class="form-control form-control-sm" id="uf-search" placeholder="Name, email, phone">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label fs-12 mb-1">Role</label>
+                                        <select class="form-select form-select-sm" id="uf-role">
+                                            <option value="">All roles</option>
+                                            <option>Admin</option>
+                                            <option>Manager</option>
+                                            <option>Sales Executive</option>
+                                            <option>Accounts</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label fs-12 mb-1">Status</label>
+                                        <select class="form-select form-select-sm" id="uf-active">
+                                            <option value="">All</option><option value="true">Active</option><option value="false">Disabled</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button class="btn btn-light btn-sm w-100" id="uf-reset" title="Reset filters"><i class="mdi mdi-refresh"></i></button>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table crm-table align-middle">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>User</th><th>Email</th><th>Phone</th><th>Role</th>
+                                                <th>Last Login</th><th>Active</th><th class="no-sort">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr data-role="Admin" data-active="true">
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <span class="avatar-initial rounded-circle bg-primary-subtle text-primary fw-semibold d-inline-flex align-items-center justify-content-center" style="width:34px;height:34px">MA</span>
+                                                        <div>
+                                                            <div class="fw-semibold">Manjurul Alam</div>
+                                                            <div class="fs-12 text-muted">Managing Director</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="fs-13">manjurul@elifehealthcare.com</td>
+                                                <td class="fs-13">+880 1711-000101</td>
+                                                <td><span class="badge bg-danger-subtle text-danger">Admin</span></td>
+                                                <td class="fs-13">03 Sep 2026, 09:12 AM</td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0">
+                                                        <input class="form-check-input crm-user-toggle" type="checkbox" role="switch" checked>
+                                                        <label class="form-check-label fs-12 crm-user-state">Active</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Edit user" data-bs-toggle="modal" data-bs-target="#userModal"
+                                                                data-user-name="Manjurul Alam" data-user-email="manjurul@elifehealthcare.com" data-user-phone="+880 1711-000101"
+                                                                data-user-role="Admin" data-user-desig="Managing Director"><i class="mdi mdi-pencil-outline"></i></button>
+                                                        <a href="roles.html" class="btn btn-sm btn-icon btn-light" title="What this role can do"><i class="mdi mdi-shield-key-outline"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-role="Admin" data-active="true">
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <span class="avatar-initial rounded-circle bg-primary-subtle text-primary fw-semibold d-inline-flex align-items-center justify-content-center" style="width:34px;height:34px">SS</span>
+                                                        <div>
+                                                            <div class="fw-semibold">Shirin Sultana</div>
+                                                            <div class="fs-12 text-muted">System Administrator</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="fs-13">shirin@elifehealthcare.com</td>
+                                                <td class="fs-13">+880 1711-000102</td>
+                                                <td><span class="badge bg-danger-subtle text-danger">Admin</span></td>
+                                                <td class="fs-13">03 Sep 2026, 08:40 AM</td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0">
+                                                        <input class="form-check-input crm-user-toggle" type="checkbox" role="switch" checked>
+                                                        <label class="form-check-label fs-12 crm-user-state">Active</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Edit user" data-bs-toggle="modal" data-bs-target="#userModal"
+                                                                data-user-name="Shirin Sultana" data-user-email="shirin@elifehealthcare.com" data-user-phone="+880 1711-000102"
+                                                                data-user-role="Admin" data-user-desig="System Administrator"><i class="mdi mdi-pencil-outline"></i></button>
+                                                        <a href="roles.html" class="btn btn-sm btn-icon btn-light" title="What this role can do"><i class="mdi mdi-shield-key-outline"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-role="Manager" data-active="true">
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <span class="avatar-initial rounded-circle bg-primary-subtle text-primary fw-semibold d-inline-flex align-items-center justify-content-center" style="width:34px;height:34px">NJ</span>
+                                                        <div>
+                                                            <div class="fw-semibold">Nusrat Jahan</div>
+                                                            <div class="fs-12 text-muted">Operations Manager</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="fs-13">nusrat@elifehealthcare.com</td>
+                                                <td class="fs-13">+880 1712-000201</td>
+                                                <td><span class="badge bg-primary-subtle text-primary">Manager</span></td>
+                                                <td class="fs-13">03 Sep 2026, 10:05 AM</td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0">
+                                                        <input class="form-check-input crm-user-toggle" type="checkbox" role="switch" checked>
+                                                        <label class="form-check-label fs-12 crm-user-state">Active</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Edit user" data-bs-toggle="modal" data-bs-target="#userModal"
+                                                                data-user-name="Nusrat Jahan" data-user-email="nusrat@elifehealthcare.com" data-user-phone="+880 1712-000201"
+                                                                data-user-role="Manager" data-user-desig="Operations Manager"><i class="mdi mdi-pencil-outline"></i></button>
+                                                        <a href="roles.html" class="btn btn-sm btn-icon btn-light" title="What this role can do"><i class="mdi mdi-shield-key-outline"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-role="Sales Executive" data-active="true">
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <span class="avatar-initial rounded-circle bg-primary-subtle text-primary fw-semibold d-inline-flex align-items-center justify-content-center" style="width:34px;height:34px">TA</span>
+                                                        <div>
+                                                            <div class="fw-semibold">Tanvir Ahmed</div>
+                                                            <div class="fs-12 text-muted">Senior Sales Executive</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="fs-13">tanvir@elifehealthcare.com</td>
+                                                <td class="fs-13">+880 1713-000301</td>
+                                                <td><span class="badge bg-info-subtle text-info">Sales Executive</span></td>
+                                                <td class="fs-13">03 Sep 2026, 09:55 AM</td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0">
+                                                        <input class="form-check-input crm-user-toggle" type="checkbox" role="switch" checked>
+                                                        <label class="form-check-label fs-12 crm-user-state">Active</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Edit user" data-bs-toggle="modal" data-bs-target="#userModal"
+                                                                data-user-name="Tanvir Ahmed" data-user-email="tanvir@elifehealthcare.com" data-user-phone="+880 1713-000301"
+                                                                data-user-role="Sales Executive" data-user-desig="Senior Sales Executive"><i class="mdi mdi-pencil-outline"></i></button>
+                                                        <a href="roles.html" class="btn btn-sm btn-icon btn-light" title="What this role can do"><i class="mdi mdi-shield-key-outline"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-role="Sales Executive" data-active="true">
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <span class="avatar-initial rounded-circle bg-primary-subtle text-primary fw-semibold d-inline-flex align-items-center justify-content-center" style="width:34px;height:34px">SH</span>
+                                                        <div>
+                                                            <div class="fw-semibold">Sabbir Hossain</div>
+                                                            <div class="fs-12 text-muted">Sales Executive</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="fs-13">sabbir@elifehealthcare.com</td>
+                                                <td class="fs-13">+880 1713-000302</td>
+                                                <td><span class="badge bg-info-subtle text-info">Sales Executive</span></td>
+                                                <td class="fs-13">02 Sep 2026, 06:20 PM</td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0">
+                                                        <input class="form-check-input crm-user-toggle" type="checkbox" role="switch" checked>
+                                                        <label class="form-check-label fs-12 crm-user-state">Active</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Edit user" data-bs-toggle="modal" data-bs-target="#userModal"
+                                                                data-user-name="Sabbir Hossain" data-user-email="sabbir@elifehealthcare.com" data-user-phone="+880 1713-000302"
+                                                                data-user-role="Sales Executive" data-user-desig="Sales Executive"><i class="mdi mdi-pencil-outline"></i></button>
+                                                        <a href="roles.html" class="btn btn-sm btn-icon btn-light" title="What this role can do"><i class="mdi mdi-shield-key-outline"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-role="Sales Executive" data-active="true">
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <span class="avatar-initial rounded-circle bg-primary-subtle text-primary fw-semibold d-inline-flex align-items-center justify-content-center" style="width:34px;height:34px">FA</span>
+                                                        <div>
+                                                            <div class="fw-semibold">Farhana Akter</div>
+                                                            <div class="fs-12 text-muted">Junior Sales Executive</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="fs-13">farhana@elifehealthcare.com</td>
+                                                <td class="fs-13">+880 1713-000303</td>
+                                                <td><span class="badge bg-info-subtle text-info">Sales Executive</span></td>
+                                                <td class="fs-13">01 Sep 2026, 04:10 PM</td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0">
+                                                        <input class="form-check-input crm-user-toggle" type="checkbox" role="switch" checked>
+                                                        <label class="form-check-label fs-12 crm-user-state">Active</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Edit user" data-bs-toggle="modal" data-bs-target="#userModal"
+                                                                data-user-name="Farhana Akter" data-user-email="farhana@elifehealthcare.com" data-user-phone="+880 1713-000303"
+                                                                data-user-role="Sales Executive" data-user-desig="Junior Sales Executive"><i class="mdi mdi-pencil-outline"></i></button>
+                                                        <a href="roles.html" class="btn btn-sm btn-icon btn-light" title="What this role can do"><i class="mdi mdi-shield-key-outline"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-role="Accounts" data-active="true">
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <span class="avatar-initial rounded-circle bg-primary-subtle text-primary fw-semibold d-inline-flex align-items-center justify-content-center" style="width:34px;height:34px">RK</span>
+                                                        <div>
+                                                            <div class="fw-semibold">Rafiul Karim</div>
+                                                            <div class="fs-12 text-muted">Accounts Officer</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="fs-13">rafiul@elifehealthcare.com</td>
+                                                <td class="fs-13">+880 1714-000401</td>
+                                                <td><span class="badge bg-success-subtle text-success">Accounts</span></td>
+                                                <td class="fs-13">03 Sep 2026, 09:30 AM</td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0">
+                                                        <input class="form-check-input crm-user-toggle" type="checkbox" role="switch" checked>
+                                                        <label class="form-check-label fs-12 crm-user-state">Active</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Edit user" data-bs-toggle="modal" data-bs-target="#userModal"
+                                                                data-user-name="Rafiul Karim" data-user-email="rafiul@elifehealthcare.com" data-user-phone="+880 1714-000401"
+                                                                data-user-role="Accounts" data-user-desig="Accounts Officer"><i class="mdi mdi-pencil-outline"></i></button>
+                                                        <a href="roles.html" class="btn btn-sm btn-icon btn-light" title="What this role can do"><i class="mdi mdi-shield-key-outline"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-role="Sales Executive" data-active="false">
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <span class="avatar-initial rounded-circle bg-primary-subtle text-primary fw-semibold d-inline-flex align-items-center justify-content-center" style="width:34px;height:34px">IH</span>
+                                                        <div>
+                                                            <div class="fw-semibold">Imran Hossain</div>
+                                                            <div class="fs-12 text-muted">Sales Executive</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="fs-13">imran@elifehealthcare.com</td>
+                                                <td class="fs-13">+880 1713-000304</td>
+                                                <td><span class="badge bg-info-subtle text-info">Sales Executive</span></td>
+                                                <td class="fs-13">12 Aug 2026, 11:02 AM</td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0">
+                                                        <input class="form-check-input crm-user-toggle" type="checkbox" role="switch">
+                                                        <label class="form-check-label fs-12 crm-user-state">Disabled</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Edit user" data-bs-toggle="modal" data-bs-target="#userModal"
+                                                                data-user-name="Imran Hossain" data-user-email="imran@elifehealthcare.com" data-user-phone="+880 1713-000304"
+                                                                data-user-role="Sales Executive" data-user-desig="Sales Executive"><i class="mdi mdi-pencil-outline"></i></button>
+                                                        <a href="roles.html" class="btn btn-sm btn-icon btn-light" title="What this role can do"><i class="mdi mdi-shield-key-outline"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ ADD / EDIT USER ============ -->
+                <div class="modal fade" id="userModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title mb-0 um-title">Add User</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6"><label class="form-label">Full name <span class="text-danger">*</span></label><input type="text" class="form-control" id="um-name"></div>
+                                    <div class="col-md-6"><label class="form-label">Employee ID</label><input type="text" class="form-control mono" id="um-empid" readonly><div class="form-text fs-11">Assigned automatically &mdash; format set in Settings &rarr; ID Format.</div></div>
+                                    <div class="col-md-6"><label class="form-label">Designation</label><input type="text" class="form-control" id="um-desig" placeholder="e.g. Sales Executive"></div>
+                                    <div class="col-md-6"><label class="form-label">Email <span class="text-danger">*</span></label><input type="email" class="form-control" id="um-email"></div>
+                                    <div class="col-md-6"><label class="form-label">Phone</label><input type="text" class="form-control" id="um-phone"></div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Role <span class="text-danger">*</span></label>
+                                        <select class="form-select" id="um-role">
+                                            <option>Admin</option>
+                                            <option>Manager</option>
+                                            <option>Sales Executive</option>
+                                            <option>Accounts</option>
+                                        </select>
+                                        <div class="form-text fs-11" id="um-role-note"></div>
+                                    </div>
+                                    <div class="col-md-6"><label class="form-label">Branch</label><select class="form-select"><option>Dhaka (Head Office)</option></select></div>
+                                    <div class="col-12"><hr class="my-1"></div>
+                                    <div class="col-md-6"><label class="form-label">Initial password <span class="text-danger">*</span></label><input type="password" class="form-control" placeholder="Temporary password"></div>
+                                    <div class="col-md-6">
+                                        <label class="form-label d-block">Status</label>
+                                        <div class="form-check form-switch mt-2"><input class="form-check-input" type="checkbox" checked><label class="form-check-label fs-13">Active &mdash; can sign in immediately</label></div>
+                                    </div>
+                                    <div class="col-12"><div class="form-check"><input class="form-check-input" type="checkbox" checked id="um-forcepw"><label class="form-check-label fs-13" for="um-forcepw">Require password change at first sign-in</label></div></div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-primary" data-bs-dismiss="modal">Save User</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>

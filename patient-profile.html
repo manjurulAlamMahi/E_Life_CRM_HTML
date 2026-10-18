@@ -1,0 +1,1858 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Patient Profile | E Life Healthcare CRM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta content="E Life Healthcare — CRM System" name="description">
+    <meta content="E Life Healthcare" name="author">
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/logo-sm.png">
+    <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+    <!-- select2 -->
+    <link href="assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Simplebar Css -->
+    <link rel="stylesheet" href="assets/libs/simplebar/simplebar.min.css">
+
+    <!-- Bootstrap Css -->
+    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css">
+
+    <!--icons css-->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
+
+    <!-- App Css-->
+    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css">
+
+    <!-- CRM brand css -->
+    <link href="assets/css/crm-brand.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="layout-wrapper">
+
+    <!-- Start topbar -->
+    <header id="page-topbar">
+        <div class="navbar-header">
+
+            <!-- Start Navbar-Brand -->
+            <div class="navbar-logo-box">
+                <a href="index.html" class="logo logo-dark">
+                    <span class="logo-sm"><img src="assets/logo-icon.png" class="brand-logo-icon" alt="E Life Healthcare"></span>
+                    <span class="logo-lg"><img src="assets/logo.png" class="brand-logo-full" data-company-logo alt="E Life Healthcare"></span>
+                </a>
+                <a href="index.html" class="logo logo-light">
+                    <span class="logo-sm"><img src="assets/logo-icon.png" class="brand-logo-icon" alt="E Life Healthcare"></span>
+                    <span class="logo-lg"><img src="assets/logo.png" class="brand-logo-full" data-company-logo alt="E Life Healthcare"></span>
+                </a>
+                <button type="button" class="btn btn-icon top-icon sidebar-btn" id="sidebar-btn" aria-label="Toggle navigation"><i class="mdi mdi-menu-open align-middle fs-17"></i></button>
+                <button type="button" class="btn btn-icon top-icon sidebar-horizontal-btn d-none" aria-label="Toggle navigation"><i class="mdi mdi-menu align-middle fs-17"></i></button>
+            </div>
+
+            <!-- Start menu -->
+            <div class="d-flex justify-content-between menu-sm px-4 ms-auto">
+                <div class="d-flex align-items-center gap-2">
+                    <!--Start App Search-->
+                    <form class="app-search crm-topbar-search d-none d-lg-block" onsubmit="return false;">
+                        <div class="position-relative">
+                            <input type="text" class="form-control" placeholder="Search patient, phone, Lead ID, receipt no...">
+                            <i data-eva="search-outline" class="align-middle"></i>
+                        </div>
+                    </form>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <button type="button" class="btn btn-icon top-icon d-none d-md-block" id="fullscreen-toggle" aria-label="Toggle fullscreen">
+                        <i class="mdi mdi-fullscreen align-middle" id="fullscreen-icon"></i>
+                    </button>
+                    <button type="button" class="btn btn-icon top-icon d-none d-md-block" id="light-dark-mode" aria-label="Toggle Light/Dark">
+                        <i class="mdi mdi-brightness-7 align-middle"></i>
+                        <i class="mdi mdi-white-balance-sunny align-middle"></i>
+                    </button>
+                    <!-- Start Notifications -->
+                    <div class="dropdown d-inline-block">
+                        <button type="button" class="btn btn-icon top-icon" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Notifications">
+                            <i class="mdi mdi-bell-ring-outline fs-17"></i>
+                            <span class="position-absolute topbar-badge translate-middle badge rounded-pill bg-danger">5</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-md dropdown-menu-end dropdown-menu-animated p-0" aria-labelledby="page-header-notifications-dropdown">
+                            <div class="p-4 border-bottom">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="m-0"><i class="mdi mdi-bell-ring-outline me-1 fs-15"></i> Notifications</h6>
+                                    </div>
+                                    <div class="col-auto">
+                                        <a href="followups.html" class="badge bg-danger-subtle text-danger">5 new</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-simplebar style="max-height: 230px;">
+                                <a href="followups.html" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="avatar avatar-xs avatar-label-danger me-3">
+                                            <span class="rounded fs-16"><i class="mdi mdi-clock-alert-outline"></i></span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">3 overdue follow-ups</h6>
+                                            <p class="mb-0 fs-12 text-muted">Rahim Uddin, Karim Mia, Sultana Begum</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="payments.html" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="avatar avatar-xs avatar-label-warning me-3">
+                                            <span class="rounded fs-16"><i class="mdi mdi-timer-sand"></i></span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">Online payment awaiting verification</h6>
+                                            <p class="mb-0 fs-12 text-muted">bKash &#2547;50,000 &middot; Ref TRX8842K1</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="dues.html" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="avatar avatar-xs avatar-label-info me-3">
+                                            <span class="rounded fs-16"><i class="mdi mdi-alert-circle-outline"></i></span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">4 dues crossed 60 days</h6>
+                                            <p class="mb-0 fs-12 text-muted">Total outstanding &#2547;7,20,000</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="leads.html" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="avatar avatar-xs avatar-label-success me-3">
+                                            <span class="rounded fs-16"><i class="mdi mdi-account-plus-outline"></i></span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">6 new leads assigned to you</h6>
+                                            <p class="mb-0 fs-12 text-muted">From Facebook and Dr. Ilias Patowary</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="p-2 border-top text-center">
+                                <a href="followups.html" class="btn btn-sm btn-link text-decoration-none">View all</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Start Profile -->
+                    <div class="dropdown d-inline-block ps-3 ms-2 border-start admin-user-info">
+                        <button type="button" aria-label="profile" class="btn btn-sm p-0" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="avatar avatar-xs p-1 d-inline-block">
+                                <img src="assets/images/users/avatar-9.png" alt="Header Avatar" class="img-fluid">
+                            </span>
+                            <span class="d-none d-xl-inline-block ms-1 fw-semibold fs-14 admin-name">Mahi Alam</span>
+                            <i class="mdi mdi-chevron-down align-middle fs-16 d-none d-xl-inline-block"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end dropdown-menu-animated overflow-hidden py-0">
+                            <div class="card mb-0">
+                                <div class="card-header">
+                                    <div class="rich-list-item w-100 p-0">
+                                        <div class="rich-list-prepend">
+                                            <span class="rounded avatar-sm p-1 bg-body d-flex">
+                                                <img src="assets/images/users/avatar-9.png" alt="Header Avatar" class="img-fluid">
+                                            </span>
+                                        </div>
+                                        <div class="rich-list-content">
+                                            <h3 class="rich-list-title fs-13 mb-1">Mahi Alam</h3>
+                                            <span class="rich-list-subtitle">Administrator</span>
+                                        </div>
+                                        <div class="rich-list-append"><span class="badge badge-label-primary fs-6">Admin</span></div>
+                                    </div>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div class="grid-nav grid-nav-flush grid-nav-action grid-nav-no-rounded">
+                                        <div class="grid-nav-row">
+                                            <a href="my-account.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-address-card"></i></div>
+                                                <span class="grid-nav-content">My Account</span>
+                                            </a>
+                                            <a href="deals.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-handshake"></i></div>
+                                                <span class="grid-nav-content">Deals</span>
+                                            </a>
+                                            <a href="followups.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-clock"></i></div>
+                                                <span class="grid-nav-content">Follow-ups</span>
+                                            </a>
+                                        </div>
+                                        <div class="grid-nav-row">
+                                            <a href="settings.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="fas fa-cog"></i></div>
+                                                <span class="grid-nav-content">Settings</span>
+                                            </a>
+                                            <a href="audit-log.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-clone"></i></div>
+                                                <span class="grid-nav-content">Audit Log</span>
+                                            </a>
+                                            <a href="reports.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-chart-bar"></i></div>
+                                                <span class="grid-nav-content">Reports</span>
+                                            </a>
+                                        </div>
+                                        <div class="grid-nav-row">
+                                            <a href="my-account.html#security" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="fas fa-key"></i></div>
+                                                <span class="grid-nav-content">Change Password</span>
+                                            </a>
+                                            <a href="screen-lock.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="fas fa-lock"></i></div>
+                                                <span class="grid-nav-content">Screen Lock</span>
+                                            </a>
+                                            <a href="users.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="fas fa-users-cog"></i></div>
+                                                <span class="grid-nav-content">Users</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer card-footer-bordered rounded-0 border-top text-end"><a href="login.html" class="btn btn-label-danger">Sign Out</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End menu -->
+        </div>
+    </header>
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="sidebar-left">
+
+        <div class="sidebar-slide h-100" data-simplebar>
+
+            <!--- Sidebar-menu -->
+            <div id="sidebar-menu">
+                <!-- Left Menu Start -->
+                <ul class="left-menu list-unstyled" id="side-menu">
+                    <li>
+                        <a href="index.html">
+                            <i data-eva="home-outline"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Lead Module</li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i data-eva="person-add-outline"></i>
+                            <span>Leads</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="leads.html">All</a></li>
+                            <li><a href="leads.html?action=add-lead">Add</a></li>
+                            <li><a href="followups.html">Upcoming Follow Ups <span class="badge bg-danger ms-auto fs-10">5</span></a></li>
+                            <li><a href="interested-leads.html">Interested</a></li>
+                            <li><a href="not-interested-leads.html">Not Interested</a></li>
+                            <li><a href="applied-leads.html">Applied</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="conversations.html">
+                            <i data-eva="message-circle-outline"></i>
+                            <span>Conversations</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Visa Module</li>
+                    <li>
+                        <a href="visa-eligible.html">
+                            <i data-eva="checkmark-circle-2-outline"></i>
+                            <span>Eligible</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=processing">
+                            <i data-eva="sync-outline"></i>
+                            <span>Processing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=approved">
+                            <i data-eva="done-all-outline"></i>
+                            <span>Approved</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=rejected">
+                            <i data-eva="close-circle-outline"></i>
+                            <span>Rejected</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html">
+                            <i data-eva="list-outline"></i>
+                            <span>All</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Ticket Module</li>
+                    <li>
+                        <a href="tickets.html">
+                            <i data-eva="file-remove-outline"></i>
+                            <span>Not Purchased</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=upcoming">
+                            <i data-eva="calendar-outline"></i>
+                            <span>Upcoming Flight</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=passed">
+                            <i data-eva="alert-triangle-outline"></i>
+                            <span>Flight Passed</span> <span class="badge bg-danger ms-auto fs-10">2</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=cancelled">
+                            <i data-eva="close-square-outline"></i>
+                            <span>Cancelled</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=all">
+                            <i data-eva="list-outline"></i>
+                            <span>All</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Treatment Module</li>
+                    <li>
+                        <a href="treatment-countdown.html">
+                            <i data-eva="clock-outline"></i>
+                            <span>Countdown</span> <span class="badge bg-danger ms-auto fs-10">4</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html">
+                            <i data-eva="activity-outline"></i>
+                            <span>Treatment Ongoing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html?stage=successful">
+                            <i data-eva="heart-outline"></i>
+                            <span>Successful</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html?stage=failed">
+                            <i data-eva="slash-outline"></i>
+                            <span>Treatment Failed</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Dollar Module</li>
+                    <li>
+                        <a href="dollar-payments.html">
+                            <i data-eva="pricetags-outline"></i>
+                            <span>Dollar Payments</span> <span class="badge bg-warning ms-auto fs-10">4</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Payment Module</li>
+                    <li>
+                        <a href="dues.html">
+                            <i data-eva="alert-circle-outline"></i>
+                            <span>Payment Due</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="completed-leads.html">
+                            <i data-eva="credit-card-outline"></i>
+                            <span>Payment Completed</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Expense Module</li>
+                    <li>
+                        <a href="expenses.html">
+                            <i data-eva="trending-down-outline"></i>
+                            <span>Expenses</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="expense-patient.html">
+                            <i data-eva="person-outline"></i>
+                            <span>Patient Expense</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="expense-report.html">
+                            <i data-eva="bar-chart-outline"></i>
+                            <span>Expense Report</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Source Module</li>
+                    <li>
+                        <a href="sources.html">
+                            <i data-eva="share-outline"></i>
+                            <span>Source List</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Report Module</li>
+                    <li>
+                        <a href="reports.html">
+                            <i data-eva="pie-chart-outline"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Administration</li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i data-eva="settings-2-outline"></i>
+                            <span>Settings</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="settings.html">General</a></li>
+                            <li><a href="packages.html">Packages</a></li>
+                            <li><a href="source-admin.html">Sources</a></li>
+                            <li><a href="users.html">Users</a></li>
+                            <li><a href="roles.html">Roles & Permissions</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="audit-log.html">
+                            <i data-eva="eye-outline"></i>
+                            <span>Audit Logs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="login.html">
+                            <i data-eva="log-out-outline"></i>
+                            <span>Log Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Sidebar -->
+        </div>
+    </div>
+    <!-- Left Sidebar End -->
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="sidebar-left horizontal-sidebar">
+
+        <div class="sidebar-slide h-100">
+
+            <!--- Sidebar-menu -->
+            <div id="sidebar-menu">
+                <!-- Left Menu Start -->
+                <ul class="left-menu list-unstyled" id="side-menu">
+                    <li>
+                        <a href="index.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Lead Module</li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i class="fas fa-user-plus"></i>
+                            <span>Leads</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="leads.html">All</a></li>
+                            <li><a href="leads.html?action=add-lead">Add</a></li>
+                            <li><a href="followups.html">Upcoming Follow Ups <span class="badge bg-danger ms-auto fs-10">5</span></a></li>
+                            <li><a href="interested-leads.html">Interested</a></li>
+                            <li><a href="not-interested-leads.html">Not Interested</a></li>
+                            <li><a href="applied-leads.html">Applied</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="conversations.html">
+                            <i class="fas fa-comments"></i>
+                            <span>Conversations</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Visa Module</li>
+                    <li>
+                        <a href="visa-eligible.html">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Eligible</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=processing">
+                            <i class="fas fa-sync-alt"></i>
+                            <span>Processing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=approved">
+                            <i class="fas fa-stamp"></i>
+                            <span>Approved</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=rejected">
+                            <i class="fas fa-times-circle"></i>
+                            <span>Rejected</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html">
+                            <i class="fas fa-list"></i>
+                            <span>All</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Ticket Module</li>
+                    <li>
+                        <a href="tickets.html">
+                            <i class="fas fa-ticket-alt"></i>
+                            <span>Not Purchased</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=upcoming">
+                            <i class="fas fa-plane-departure"></i>
+                            <span>Upcoming Flight</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=passed">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Flight Passed</span> <span class="badge bg-danger ms-auto fs-10">2</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=cancelled">
+                            <i class="fas fa-ban"></i>
+                            <span>Cancelled</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=all">
+                            <i class="fas fa-list"></i>
+                            <span>All</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Treatment Module</li>
+                    <li>
+                        <a href="treatment-countdown.html">
+                            <i class="fas fa-hourglass-half"></i>
+                            <span>Countdown</span> <span class="badge bg-danger ms-auto fs-10">4</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html">
+                            <i class="fas fa-heartbeat"></i>
+                            <span>Treatment Ongoing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html?stage=successful">
+                            <i class="fas fa-smile"></i>
+                            <span>Successful</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html?stage=failed">
+                            <i class="fas fa-frown"></i>
+                            <span>Treatment Failed</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Dollar Module</li>
+                    <li>
+                        <a href="dollar-payments.html">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span>Dollar Payments</span> <span class="badge bg-warning ms-auto fs-10">4</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Payment Module</li>
+                    <li>
+                        <a href="dues.html">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>Payment Due</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="completed-leads.html">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Payment Completed</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Expense Module</li>
+                    <li>
+                        <a href="expenses.html">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Expenses</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="expense-patient.html">
+                            <i class="fas fa-user-injured"></i>
+                            <span>Patient Expense</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="expense-report.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Expense Report</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Source Module</li>
+                    <li>
+                        <a href="sources.html">
+                            <i class="fas fa-share-alt"></i>
+                            <span>Source List</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Report Module</li>
+                    <li>
+                        <a href="reports.html">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Administration</li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="settings.html">General</a></li>
+                            <li><a href="packages.html">Packages</a></li>
+                            <li><a href="source-admin.html">Sources</a></li>
+                            <li><a href="users.html">Users</a></li>
+                            <li><a href="roles.html">Roles & Permissions</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="audit-log.html">
+                            <i class="fas fa-history"></i>
+                            <span>Audit Logs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="login.html">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Log Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Sidebar -->
+        </div>
+    </div>
+    <!-- Left Sidebar End -->
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0">Patient Profile</h4>
+                            <nav aria-label="breadcrumb" class="page-title-right">
+                                <ol class="breadcrumb border-0">
+                                    <li class="breadcrumb-item"><a href="index.html">CRM</a></li>
+                                    <li class="breadcrumb-item">Patients & Deals</li>
+                                    <li class="breadcrumb-item active">Patient Profile</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                <!-- Shown only when the employee arrived for a different patient.
+                     This demo carries one fully worked profile; saying so is better
+                     than rendering someone else's history under the wrong name. -->
+                <div class="alert alert-warning crm-demo-note d-flex align-items-start gap-2 py-2 fs-13 d-none" id="pp-sample-note">
+                    <i class="mdi mdi-alert-outline fs-16 mt-1"></i>
+                    <span><strong>Demo notice:</strong> this static preview has one fully worked profile, always for patient <span class="mono">ELH-P-2026-000406</span> — the details below are <u>not</u> for <span class="mono" id="pp-requested-patient"></span>, the patient you opened. In the live system every patient opens their own real profile.</span>
+                    <div class="ms-auto d-flex align-items-center gap-2 flex-shrink-0 d-print-none">
+                        <button type="button" class="btn btn-link btn-sm p-0 fs-12 text-reset text-decoration-underline" data-demo-hide="all">Don't show again</button>
+                        <button type="button" class="btn-close" data-demo-hide="once" aria-label="Close"></button>
+                    </div>
+                </div>
+
+                <!-- The profile's live state. crm-deals.js reads these to draw the
+                     journey and payment progress and to decide which quick actions
+                     apply: journey-stage counts completed journey steps (see
+                     renderJourney in crm-leads.js) for the package named by
+                     current-pkg; its money comes from #pp-package-data. The data-lead-* attributes are what
+                     the shared modals (payment, visa, follow-up) label themselves
+                     with. -->
+                <div id="pp-root"
+                     data-lead-id="ELH-L-2026-000406"
+                     data-lead-name="Abul Kalam"
+                     data-lead-patient="Sharmin Akter"
+                     data-status="confirmed"
+                     data-journey-stage="4"
+                     data-current-pkg="ELH-D-2026-000089">
+
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                    <a href="patients.html" class="btn btn-sm btn-light"><i class="mdi mdi-arrow-left me-1"></i>Back to Patients</a>
+                </div>
+
+                <!-- ============ HEADER ============ -->
+                <!-- Three bands: who this is (with the Drive folder beside the
+                     name, since it's the most-used link), the current package's
+                     figures as one strip with Due emphasised and lifetime last and
+                     muted, then the quick actions. Figures are filled from
+                     #pp-package-data by crm-deals.js. -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-wrap align-items-center gap-3">
+                            <div class="crm-avatar crm-avatar-xl" id="pp-avatar">SA</div>
+                            <div class="flex-grow-1" style="min-width:0">
+                                <div class="d-flex flex-wrap align-items-center gap-2">
+                                    <h4 class="mb-0">Sharmin Akter</h4>
+                                    <span class="badge bg-success-subtle text-success">Confirmed</span>
+                                    <span class="badge bg-success-subtle text-success" id="pp-pay-badge">Fully Paid</span>
+                                </div>
+                                <div class="fs-13 text-muted mt-1">
+                                    <span class="mono text-body">ELH-L-2026-000406</span>
+                                    <span class="mx-1">&middot;</span>Guardian: Abul Kalam
+                                    <span class="mx-1">&middot;</span>39 yrs, Female
+                                    <span class="mx-1">&middot;</span>Dhaka
+                                </div>
+                                <div class="fs-13 text-muted">
+                                    <i class="mdi mdi-phone-outline"></i> <a href="tel:+8801521889900" class="text-muted">+880 1521-889900</a>
+                                    <span class="mx-1">&middot;</span>Source: Hospital
+                                    <span class="mx-1">&middot;</span>Executive: Nusrat Jahan
+                                </div>
+                            </div>
+                            <div class="btn-group">
+                                <a href="https://drive.google.com/drive/folders/ELH-L-2026-000406" target="_blank" rel="noopener" class="btn btn-primary" id="pp-drive-link"><i class="mdi mdi-google-drive me-1"></i>Drive Folder</a>
+                                <button type="button" class="btn btn-primary" id="pp-drive-copy" title="Copy Drive link"><i class="mdi mdi-content-copy"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="pp-stats mt-3">
+                            <div class="pp-stat">
+                                <div class="crm-info-label">Current package</div>
+                                <div class="fw-semibold fs-14" id="pp-cur-name"></div>
+                                <div class="mono fs-11 text-muted" id="pp-cur-id"></div>
+                            </div>
+                            <div class="pp-stat">
+                                <div class="crm-info-label">Package rate</div>
+                                <div class="fw-bold cur fs-16" id="pp-cur-rate"></div>
+                            </div>
+                            <div class="pp-stat">
+                                <div class="crm-info-label">Paid</div>
+                                <div class="fw-bold cur fs-16 text-success" id="pp-cur-paid"></div>
+                                <div class="progress mt-1" style="height:4px"><div class="progress-bar bg-success" id="pp-cur-bar"></div></div>
+                            </div>
+                            <div class="pp-stat pp-stat-due" id="pp-due-tile">
+                                <div class="crm-info-label">Due</div>
+                                <div class="fw-bold cur fs-20" id="pp-cur-due"></div>
+                            </div>
+                            <div class="pp-stat">
+                                <div class="crm-info-label">Lifetime paid</div>
+                                <div class="fw-semibold cur fs-14 text-muted" id="pp-lifetime"></div>
+                                <div class="fs-11 text-muted" id="pp-lifetime-sub"></div>
+                            </div>
+                        </div>
+
+                        <!-- Quick actions. Record Payment and the next-step button follow
+                             the profile's state (crm-deals.js): payment disables once the
+                             current package is fully paid, and the next-step button always
+                             offers whatever comes next on the journey. -->
+                        <div class="d-flex flex-wrap align-items-center gap-2 mt-3">
+                            <button type="button" class="btn btn-sm btn-success" id="pp-pay-btn" data-bs-toggle="modal" data-bs-target="#addPaymentModal"
+                                    data-lead-id="ELH-L-2026-000406" data-lead-name="Abul Kalam" data-due-bdt="0" data-due-usd="0" data-accepts-usd="true"><i class="mdi mdi-cash-multiple me-1"></i><span>Record Payment</span></button>
+                            <button type="button" class="btn btn-sm btn-primary" id="pp-next-step"><i class="mdi mdi-arrow-right-circle-outline me-1"></i><span>Next step</span></button>
+                            <button type="button" class="btn btn-sm btn-label-primary" data-bs-toggle="modal" data-bs-target="#nextFollowupModal"><i class="mdi mdi-calendar-clock me-1"></i>Next Follow-up</button>
+                            <a href="conversations.html?lead=ELH-L-2026-000406&log=1" class="btn btn-sm btn-label-primary"><i class="mdi mdi-comment-plus-outline me-1"></i>Log Conversation</a>
+                            <button type="button" class="btn btn-sm btn-label-primary" data-bs-toggle="modal" data-bs-target="#ppNewPackageModal"><i class="mdi mdi-plus-box-outline me-1"></i>Add New Package</button>
+                            <button type="button" class="btn btn-sm btn-light ms-auto" data-bs-toggle="modal" data-bs-target="#editLeadModal"><i class="mdi mdi-pencil-outline me-1"></i>Edit Patient</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ PARTIAL DOLLAR + COUNTDOWN ============ -->
+                <!-- Partial dollar: status only (amounts are tracked on Dollar
+                     Payments, crm-dollar.js). Countdown reads the same browser
+                     record as the Treatment Countdown page. Filled by crm-deals.js. -->
+                <div class="row g-3 mb-4">
+                    <div class="col-lg-6">
+                        <div class="card h-100 mb-0">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between gap-2 mb-2">
+                                    <div class="crm-info-title mb-0"><i class="mdi mdi-currency-usd"></i>Partial Dollar</div>
+                                    <span class="badge" id="pp-dl-badge"></span>
+                                </div>
+                                <div class="d-flex align-items-end justify-content-between flex-wrap gap-2">
+                                    <div class="fs-13 text-muted" id="pp-dl-note"></div>
+                                    <a href="dollar-payments.html" class="btn btn-sm btn-light" title="Open Dollar Payments"><i class="mdi mdi-open-in-new"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card h-100 mb-0">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between gap-2 mb-2">
+                                    <div class="crm-info-title mb-0"><i class="mdi mdi-timer-sand"></i>Treatment Countdown <span class="text-muted fw-normal text-lowercase ms-1">(90 days)</span></div>
+                                    <span class="badge" id="pp-tc-badge"></span>
+                                </div>
+                                <div class="d-flex align-items-end justify-content-between gap-3">
+                                    <div class="flex-grow-1">
+                                        <div class="d-flex justify-content-between align-items-baseline mb-1">
+                                            <span class="fw-bold fs-20" id="pp-tc-left"></span>
+                                            <span class="fs-12 text-muted" id="pp-tc-passed"></span>
+                                        </div>
+                                        <div class="progress" style="height:6px"><div class="progress-bar" id="pp-tc-bar"></div></div>
+                                        <div class="fs-12 text-muted mt-1" id="pp-tc-dates"></div>
+                                    </div>
+                                    <a href="treatment-countdown.html" class="btn btn-sm btn-light" title="Open Treatment Countdown"><i class="mdi mdi-open-in-new"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ JOURNEY ============ -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="fs-11 text-uppercase text-muted fw-semibold mb-3">Patient Journey</div>
+                        <div class="crm-journey" id="pp-journey">
+                            <div class="crm-journey-step" data-step="1">
+                                <div class="crm-journey-icon"><i class="mdi mdi-account-clock-outline js-journey-status-icon"></i></div>
+                                <div class="crm-journey-caption">Current Status</div>
+                                <div class="crm-journey-label js-journey-status-label">Lead</div>
+                            </div>
+                            <div class="crm-journey-step" data-step="2">
+                                <div class="crm-journey-icon"><i class="mdi mdi-clipboard-check-outline"></i></div>
+                                <div class="crm-journey-label">Applied for Package</div>
+                            </div>
+                            <div class="crm-journey-step" data-step="3">
+                                <div class="crm-journey-icon"><i class="mdi mdi-passport"></i></div>
+                                <div class="crm-journey-label">Visa Applied</div>
+                            </div>
+                            <div class="crm-journey-step" data-step="4">
+                                <div class="crm-journey-icon"><i class="mdi mdi-check-decagram js-journey-visa-icon"></i></div>
+                                <div class="crm-journey-label js-journey-visa-label">Visa Approved</div>
+                            </div>
+                            <div class="crm-journey-step" data-step="5">
+                                <div class="crm-journey-icon"><i class="mdi mdi-airplane"></i></div>
+                                <div class="crm-journey-label">Ticket Purchased</div>
+                            </div>
+                            <div class="crm-journey-step" data-step="6">
+                                <div class="crm-journey-icon"><i class="mdi mdi-hospital-building"></i></div>
+                                <div class="crm-journey-label">Treatment Ongoing</div>
+                            </div>
+                            <div class="crm-journey-step" data-step="7">
+                                <div class="crm-journey-icon"><i class="mdi mdi-flag-checkered"></i></div>
+                                <div class="crm-journey-label">Returned to Country</div>
+                            </div>
+                        </div>
+
+                        <div class="border-top pt-3" id="pp-payment">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <div class="fs-11 text-uppercase text-muted fw-semibold">Payment Progress &mdash; current package</div>
+                                <div class="fs-12 fw-semibold js-payment-pct"></div>
+                            </div>
+                            <div class="crm-journey mb-0">
+                                <div class="crm-journey-step" data-pct="25">
+                                    <div class="crm-journey-icon"><i class="mdi mdi-circle-slice-2"></i></div>
+                                    <div class="crm-journey-label">25% Paid</div>
+                                </div>
+                                <div class="crm-journey-step" data-pct="50">
+                                    <div class="crm-journey-icon"><i class="mdi mdi-circle-slice-4"></i></div>
+                                    <div class="crm-journey-label">50% Paid</div>
+                                </div>
+                                <div class="crm-journey-step" data-pct="75">
+                                    <div class="crm-journey-icon"><i class="mdi mdi-circle-slice-6"></i></div>
+                                    <div class="crm-journey-label">75% Paid</div>
+                                </div>
+                                <div class="crm-journey-step" data-pct="100">
+                                    <div class="crm-journey-icon"><i class="mdi mdi-circle-slice-8"></i></div>
+                                    <div class="crm-journey-label">100% Paid</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ DETAIL TABS ============ -->
+                <div class="card">
+                    <!-- The card header carries its own bottom border, and
+                         .card-header-tabs offsets the nav to sit on it. With pb-0 the
+                         two did not line up, so the border ran behind the active tab
+                         and read as an underline struck through the whole strip. The
+                         header's border is dropped and the nav provides its own. -->
+                    <div class="card-header border-bottom-0 pb-0">
+                        <ul class="nav nav-tabs fs-13" id="pp-tabs" role="tablist">
+                            <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#pp-overview" type="button">Overview</button></li>
+                            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#pp-packages" type="button">Package History <span class="badge bg-secondary-subtle text-secondary ms-1" id="pp-pkg-count"></span></button></li>
+                            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#pp-payments" type="button">Payments <span class="badge bg-secondary-subtle text-secondary ms-1" id="pp-pay-count"></span></button></li>
+                            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#pp-conversations" type="button">Conversations <span class="badge bg-secondary-subtle text-secondary ms-1">4</span></button></li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+
+                            <!-- ===== Overview — every field captured on Add / Edit Lead, grouped
+                                 into small cards (label over value, two per row) so the whole
+                                 record fits on one screen instead of a long two-column table. ===== -->
+                            <div class="tab-pane fade show active" id="pp-overview">
+                                <div class="row g-3">
+                                    <div class="col-md-6 col-xl-4">
+                                        <div class="crm-info-card">
+                                            <div class="crm-info-title"><i class="mdi mdi-account-heart-outline"></i>Patient</div>
+                                            <div class="crm-info-grid">
+                                                <div class="crm-info-item"><div class="crm-info-label">Name</div><div class="crm-info-value">Sharmin Akter</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Patient ID</div><div class="crm-info-value"><span class="mono">ELH-P-2026-000406</span></div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Date of birth</div><div class="crm-info-value">12 Mar 1987</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Age · Gender</div><div class="crm-info-value">39 yrs · Female</div></div>
+                                                <div class="crm-info-item span-2"><div class="crm-info-label">Issue / condition</div><div class="crm-info-value">End-stage renal disease; donor matched, kidney transplant planned.</div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xl-4">
+                                        <div class="crm-info-card">
+                                            <div class="crm-info-title"><i class="mdi mdi-account-supervisor-outline"></i>Guardian</div>
+                                            <div class="crm-info-grid">
+                                                <div class="crm-info-item"><div class="crm-info-label">Name</div><div class="crm-info-value">Abul Kalam</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Relation</div><div class="crm-info-value">Husband</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Phone</div><div class="crm-info-value"><a href="tel:+8801521889900">+880 1521-889900</a></div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Alternative phone</div><div class="crm-info-value"><a href="tel:+8801711552203">+880 1711-552203</a></div></div>
+                                                <div class="crm-info-item span-2"><div class="crm-info-label">Email</div><div class="crm-info-value"><a href="mailto:abul.kalam@example.com">abul.kalam@example.com</a></div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xl-4">
+                                        <div class="crm-info-card">
+                                            <div class="crm-info-title"><i class="mdi mdi-map-marker-outline"></i>Address</div>
+                                            <div class="crm-info-grid">
+                                                <div class="crm-info-item"><div class="crm-info-label">Division</div><div class="crm-info-value">Dhaka</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">District</div><div class="crm-info-value">Dhaka</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Upazila</div><div class="crm-info-value">Mirpur</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Post code</div><div class="crm-info-value">1216</div></div>
+                                                <div class="crm-info-item span-2"><div class="crm-info-label">Address</div><div class="crm-info-value">House 14, Road 7, Section 10</div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xl-4">
+                                        <div class="crm-info-card">
+                                            <div class="crm-info-title"><i class="mdi mdi-card-account-details-outline"></i>Lead</div>
+                                            <div class="crm-info-grid">
+                                                <div class="crm-info-item"><div class="crm-info-label">Lead ID</div><div class="crm-info-value"><span class="mono">ELH-L-2026-000406</span></div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Lead date</div><div class="crm-info-value">14 Aug 2026</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Assigned executive</div><div class="crm-info-value">Nusrat Jahan</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Priority</div><div class="crm-info-value"><span class="badge bg-danger-subtle text-danger">High</span></div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Source</div><div class="crm-info-value">Hospital</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Secondary source</div><div class="crm-info-value">Referral from BSMMU nephrology</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Expected value</div><div class="crm-info-value"><span class="cur">&#2547;3,50,000</span></div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Offered value</div><div class="crm-info-value"><span class="cur">&#2547;3,00,000</span></div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xl-4">
+                                        <div class="crm-info-card">
+                                            <div class="crm-info-title"><i class="mdi mdi-hospital-building"></i>Treatment &amp; Visa</div>
+                                            <div class="crm-info-grid" data-travel-lead="ELH-L-2026-000406">
+                                                <div class="crm-info-item"><div class="crm-info-label">Doctor</div><div class="crm-info-value">Dr. Anil Kumar</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Hospital</div><div class="crm-info-value">Apollo, Chennai</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Visa</div><div class="crm-info-value">India · Medical Visa</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Visa ref.</div><div class="crm-info-value"><span class="mono">MV-88214</span></div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Visa applied</div><div class="crm-info-value">25 Aug 2026</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Visa approved</div><div class="crm-info-value">09 Sep 2026</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Ticket start</div><div class="crm-info-value js-ticket-start">&mdash;</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Ticket end</div><div class="crm-info-value js-ticket-end">&mdash;</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Treatment days</div><div class="crm-info-value js-ticket-days">&mdash;</div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xl-4">
+                                        <div class="crm-info-card">
+                                            <div class="crm-info-title"><i class="mdi mdi-package-variant"></i>Current Package</div>
+                                            <div class="crm-info-grid">
+                                                <div class="crm-info-item"><div class="crm-info-label">Package</div><div class="crm-info-value">Paid Package</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Package ID</div><div class="crm-info-value"><span class="mono">ELH-D-2026-000089</span></div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Agreed</div><div class="crm-info-value"><span class="cur">&#2547;3,00,000</span></div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Started</div><div class="crm-info-value">24 Aug 2026</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Paid</div><div class="crm-info-value"><span class="cur text-success">&#2547;3,00,000</span></div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Due</div><div class="crm-info-value"><span class="cur text-muted">&#2547;0</span></div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="crm-info-card">
+                                            <div class="crm-info-title"><i class="mdi mdi-note-text-outline"></i>Notes</div>
+                                            <div class="fs-13">Returning patient &mdash; applied under the Full-Funded Package in Nov 2025 but the family postponed travel. Came back in Aug 2026 after a hospital referral and took the Paid Package. Prefers WhatsApp in the evening.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ===== Package history — a lead can apply more than once
+                                 (e.g. changed their mind, didn't travel, came back later).
+                                 The eye button (or a click anywhere on the row) opens that
+                                 package's whole journey: each step's date, who did it, and — for
+                                 a closed package — where it stopped and why. The detail itself is
+                                 the JSON block below, read by crm-deals.js. ===== -->
+                            <div class="tab-pane fade" id="pp-packages">
+                                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                                    <div class="fs-12 text-muted">Every package this lead has applied for, newest first. Open one to see its full journey.</div>
+                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#ppNewPackageModal"><i class="mdi mdi-plus me-1"></i>Add New Package</button>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table align-middle mb-0">
+                                        <thead class="table-light">
+                                            <tr><th>Package</th><th>Started</th><th class="text-end">Agreed</th><th class="text-end">Paid</th><th class="text-end">Due</th><th>Reached</th><th>Status</th><th class="no-sort text-end">Actions</th></tr>
+                                        </thead>
+                                        <tbody id="pp-pkg-body"></tbody>
+                                    </table>
+                                </div>
+
+                                <!-- Per-package journey data. `steps` is keyed by journey step
+                                     (1 = lead registered … 7 = returned; see renderJourney in
+                                     crm-leads.js). A closed package has `closed.atStep` — the step it
+                                     stopped before — with the date, who closed it and why.
+                                     `agreedUsd` is the partial dollar; its payments are tracked
+                                     only on Dollar Payments (crm-dollar.js). Amounts
+                                     are plain taka numbers; paid and due are summed
+                                     from `payments`. This block drives the header's current
+                                     package, Package History, Payments and every invoice. -->
+                                <script type="application/json" id="pp-package-data">
+                                {
+                                    "ELH-D-2026-000089": {
+                                        "name": "Paid Package", "status": "active",
+                                        "listPrice": 300000, "agreed": 300000, "agreedUsd": 4000,
+                                        "hospital": "Apollo, Chennai", "appliedBy": "Nusrat Jahan",
+                                        "steps": {
+                                            "1": { "date": "14 Aug 2026", "by": "Nusrat Jahan", "note": "Lead registered from a hospital referral." },
+                                            "2": { "date": "24 Aug 2026", "by": "Nusrat Jahan", "note": "Paid Package agreed at &#2547;3,00,000." },
+                                            "3": { "date": "25 Aug 2026", "by": "Nusrat Jahan", "note": "India &middot; Medical Visa &middot; ref. MV-88214." },
+                                            "4": { "date": "09 Sep 2026", "by": "Nusrat Jahan", "note": "Visa approved by the Indian High Commission." }
+                                        },
+                                        "payments": [
+                                            { "date": "24 Aug 2026", "type": "Advance", "method": "Bank Transfer", "receipt": "MR-000290", "by": "Nusrat Jahan", "amount": 200000 },
+                                            { "date": "28 Aug 2026", "type": "Final instalment", "method": "bKash", "receipt": "MR-000296", "by": "Nusrat Jahan", "amount": 100000 }
+                                        ]
+                                    },
+                                    "ELH-D-2025-000042": {
+                                        "name": "Full-Funded Package", "status": "closed",
+                                        "listPrice": 400000, "agreed": 400000, "agreedUsd": 0,
+                                        "hospital": "Apollo, Chennai", "appliedBy": "Nusrat Jahan",
+                                        "steps": {
+                                            "1": { "date": "02 Nov 2025", "by": "Nusrat Jahan", "note": "Lead registered as a walk-in." },
+                                            "2": { "date": "11 Nov 2025", "by": "Nusrat Jahan", "note": "Full-Funded Package agreed at &#2547;4,00,000." },
+                                            "3": { "date": "05 Dec 2025", "by": "Nusrat Jahan", "note": "India &middot; Medical Visa &middot; ref. MV-71190." }
+                                        },
+                                        "closed": {
+                                            "atStep": 4, "date": "15 Jan 2026", "by": "Nusrat Jahan",
+                                            "reason": "Family postponed travel &mdash; dialysis stabilised her condition and they decided to wait. Did not travel; the visa application was withdrawn."
+                                        },
+                                        "payments": [
+                                            { "date": "11 Nov 2025", "type": "Advance", "method": "Cash", "receipt": "MR-000188", "by": "Nusrat Jahan", "amount": 250000 },
+                                            { "date": "03 Dec 2025", "type": "Final instalment", "method": "Bank Transfer", "receipt": "MR-000197", "by": "Nusrat Jahan", "amount": 150000 }
+                                        ]
+                                    }
+                                }
+                                </script>
+                            </div>
+
+                            <!-- ===== Payments — every payment this lead has made, across
+                                 all packages. ===== -->
+                            <div class="tab-pane fade" id="pp-payments">
+                                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+                                    <div class="fs-13 text-muted" id="pp-pay-summary"></div>
+                                    <div class="fs-12 text-muted">Whole-package invoices are in <a href="#" id="pp-goto-packages">Package History</a>.</div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table align-middle mb-0">
+                                        <thead class="table-light">
+                                            <tr><th>Date</th><th>Package</th><th>Method</th><th>Receipt</th><th class="text-end">Amount</th><th class="no-sort text-end">Invoice</th></tr>
+                                        </thead>
+                                        <tbody id="pp-pay-body"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- ===== Conversations ===== -->
+                            <div class="tab-pane fade" id="pp-conversations">
+                                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                                    <div class="fs-12 text-muted">Every contact with this family, newest first.</div>
+                                    <a href="conversations.html?lead=ELH-L-2026-000406&log=1" class="btn btn-sm btn-primary"><i class="mdi mdi-comment-plus-outline me-1"></i>Log Conversation</a>
+                                </div>
+                                <div class="border-start border-3 border-primary-subtle ps-3 mb-3">
+                                    <div class="fs-12 text-muted">30 Aug 2026, 04:20 PM &middot; Phone &middot; Nusrat Jahan</div>
+                                    <div class="fs-13">Final taka instalment confirmed by the bank. Told the guardian the package is settled and travel dates are next.</div>
+                                    <div class="fs-12"><span class="badge bg-success-subtle text-success">Outcome: Applied</span></div>
+                                </div>
+                                <div class="border-start border-3 border-primary-subtle ps-3 mb-3">
+                                    <div class="fs-12 text-muted">24 Aug 2026, 11:05 AM &middot; In-person &middot; Nusrat Jahan</div>
+                                    <div class="fs-13">Guardian visited the office, signed the package agreement and paid the first instalment by bank.</div>
+                                    <div class="fs-12"><span class="badge bg-success-subtle text-success">Outcome: Applied</span></div>
+                                </div>
+                                <div class="border-start border-3 border-secondary-subtle ps-3 mb-3">
+                                    <div class="fs-12 text-muted">19 Aug 2026, 06:40 PM &middot; WhatsApp &middot; Nusrat Jahan</div>
+                                    <div class="fs-13">Sent the donor match report and the Apollo cost breakdown. Guardian said he would decide within the week.</div>
+                                    <div class="fs-12"><span class="badge bg-primary-subtle text-primary">Outcome: Interested</span></div>
+                                </div>
+                                <div class="border-start border-3 border-secondary-subtle ps-3">
+                                    <div class="fs-12 text-muted">14 Aug 2026, 10:15 AM &middot; Phone &middot; Nusrat Jahan</div>
+                                    <div class="fs-13">First contact after the hospital referral. Explained the transplant process and what we coordinate in Chennai.</div>
+                                    <div class="fs-12"><span class="badge bg-info-subtle text-info">Outcome: Follow-up</span></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                </div><!-- #pp-root -->
+
+                                <!-- ===== Printable Lead Registration form — reachable both from
+                     the post-save overview and from any row's Print action on
+                     the list, so it must populate from either source. Kept
+                     deliberately plain (black on white, no signatures, no
+                     Drive link — this is a paper form, not a receipt), and
+                     organised into the same Guardian / Patient / Address /
+                     Lead / Package sections as the Add Lead form itself.
+                     Print rules live in crm-brand.css, scoped to
+                     #leadPrintModal.show. ===== -->
+                <div class="modal fade" id="leadPrintModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header no-print">
+                                <h5 class="modal-title"><i class="mdi mdi-file-account-outline me-1"></i>Lead Registration Form</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="lead-form-sheet">
+                                    <!-- Letterhead from Settings → Company Profile (crm-demo.js fills it). -->
+                                    <div class="lf-logo"><img src="assets/logo.png" data-company-logo alt="E Life Healthcare"></div>
+                                    <div class="lf-title" data-company="name" data-company-case="upper">E LIFE HEALTHCARE</div>
+                                    <div class="lf-contact" data-company="contact">House 42, Road 6, Dhanmondi, Dhaka 1205, Bangladesh<br>+880 9600-123456 &middot; info@elifehealthcare.com</div>
+                                    <div class="lf-sub">Lead Registration Form</div>
+                                    <div class="lf-meta">
+                                        <span>Lead ID: <strong class="mono" id="lp-id"></strong></span>
+                                        <span>Registered: <span id="lp-date"></span></span>
+                                    </div>
+
+                                    <div class="lf-section">Guardian Information</div>
+                                    <div class="lf-row"><div class="lf-label">Name</div><div class="lf-value" id="lp-guardian"></div></div>
+                                    <div class="lf-row"><div class="lf-label">Phone</div><div class="lf-value" id="lp-phone"></div></div>
+                                    <div class="lf-row"><div class="lf-label">Alternative Phone</div><div class="lf-value" id="lp-altphone"></div></div>
+                                    <div class="lf-row"><div class="lf-label">Email</div><div class="lf-value" id="lp-email"></div></div>
+
+                                    <div class="lf-section">Patient Information</div>
+                                    <div class="lf-row"><div class="lf-label">Name</div><div class="lf-value" id="lp-patient"></div></div>
+                                    <div class="lf-row"><div class="lf-label">Date of Birth / Age</div><div class="lf-value" id="lp-dobage"></div></div>
+                                    <div class="lf-row"><div class="lf-label">Gender</div><div class="lf-value" id="lp-gender"></div></div>
+                                    <div class="lf-row"><div class="lf-label">Issue / Condition</div><div class="lf-value" id="lp-condition"></div></div>
+
+                                    <div class="lf-section">Address</div>
+                                    <div class="lf-row"><div class="lf-label">Division / District / Upazila</div><div class="lf-value" id="lp-geo"></div></div>
+                                    <div class="lf-row"><div class="lf-label">Address</div><div class="lf-value" id="lp-village"></div></div>
+                                    <div class="lf-row"><div class="lf-label">Post Code</div><div class="lf-value" id="lp-postcode"></div></div>
+
+                                    <div class="lf-section">Lead Details</div>
+                                    <div class="lf-row"><div class="lf-label">Source</div><div class="lf-value" id="lp-source"></div></div>
+                                    <div class="lf-row"><div class="lf-label">Secondary / Campaign</div><div class="lf-value" id="lp-secondary"></div></div>
+                                    <div class="lf-row"><div class="lf-label">Assigned Executive</div><div class="lf-value" id="lp-executive"></div></div>
+                                    <div class="lf-row"><div class="lf-label">Lead Date</div><div class="lf-value" id="lp-date-lead"></div></div>
+
+                                    <div class="lf-section">Package &amp; Value</div>
+                                    <div class="lf-row"><div class="lf-label">Expected Value</div><div class="lf-value" id="lp-expected"></div></div>
+                                    <div class="lf-row"><div class="lf-label">Offered Value</div><div class="lf-value" id="lp-offered"></div></div>
+                                    <div class="lf-row"><div class="lf-label">Package Offered</div><div class="lf-value" id="lp-package"></div></div>
+
+                                    <div class="lf-section">Notes</div>
+                                    <div class="fs-13" id="lp-notes"></div>
+                                </div>
+                            </div>
+                            <div class="modal-footer no-print">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                <button class="btn btn-outline-primary" id="lp-print"><i class="mdi mdi-printer me-1"></i>Print</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== Edit Lead — mirrors the Add Lead field set. This is a
+                     static preview with no backend, so only the fields already
+                     visible on the row (guardian, patient, phone, source) are
+                     prefilled; the rest are left for the executive to fill in,
+                     same as Add Lead. Saving is cosmetic (toast), matching every
+                     other action in this module. ===== -->
+                <div class="modal fade" id="editLeadModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Edit Lead <span class="fs-12 text-muted mono ms-1" id="el-lead-id"></span></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <!-- Patient photo — shown as the avatar on the patient
+                                         profile. Previewed locally on pick; static demo, so
+                                         nothing is uploaded. -->
+                                    <div class="col-12">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="crm-avatar crm-avatar-lg" id="el-photo-preview"><i class="mdi mdi-account"></i></div>
+                                            <div class="flex-grow-1">
+                                                <label class="form-label mb-1" for="el-photo">Patient Photo <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                                <input type="file" class="form-control form-control-sm" id="el-photo" accept="image/*">
+                                                <div class="form-text fs-11">JPG or PNG, a clear face photo.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Unlike Add Lead, these are plain editable fields with no
+                                         lock/checkbox — editing an existing lead is exactly what
+                                         this form is for, so both the date and the assigned
+                                         executive can be changed directly. -->
+                                    <div class="col-12">
+                                        <div class="border rounded-3 p-3 bg-light-subtle">
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Lead Date</label>
+                                                    <input type="date" class="form-control" id="el-date">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Assigned Sales Executive</label>
+                                                    <select class="form-select" id="el-executive">
+                                                        <option>Tanvir Ahmed</option><option>Nusrat Jahan</option><option>Sabbir Hossain</option><option>Farhana Akter</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12"><h6 class="text-uppercase fs-11 fw-bold text-muted border-bottom pb-1 mb-0">Guardian Information</h6></div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Guardian Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="el-guardian" placeholder="Guardian full name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Guardian Phone <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="el-phone" placeholder="+880 1XXX-XXXXXX">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Alternative Phone</label>
+                                        <input type="text" class="form-control" id="el-altphone" placeholder="Optional">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Guardian Email <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                        <input type="email" class="form-control" id="el-email" placeholder="name@example.com">
+                                    </div>
+
+                                    <div class="col-12"><h6 class="text-uppercase fs-11 fw-bold text-muted border-bottom pb-1 mb-0 mt-2">Patient Information</h6></div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Patient Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="el-patient" placeholder="Patient full name">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">Patient Date of Birth</label>
+                                        <input type="date" class="form-control" id="el-dob">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">Patient Age</label>
+                                        <input type="text" class="form-control" id="el-age" placeholder="From date of birth" readonly>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Patient Gender</label>
+                                        <select class="form-select" id="el-gender"><option>Select</option><option>Male</option><option>Female</option><option>Other</option></select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Patient Issue / Condition</label>
+                                        <textarea class="form-control" id="el-condition" rows="3"></textarea>
+                                    </div>
+
+                                    <div class="col-12"><h6 class="text-uppercase fs-11 fw-bold text-muted border-bottom pb-1 mb-0 mt-2">Address</h6></div>
+                                    <div class="col-12">
+                                        <div class="border rounded-3 p-3 bg-light-subtle">
+                                            <div class="row g-3">
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Division <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                                    <select class="form-select" id="el-division">
+                                                        <option value="">Select division</option>
+                                                        <option>Dhaka</option><option>Chattogram</option><option>Rajshahi</option>
+                                                        <option>Khulna</option><option>Barishal</option><option>Sylhet</option>
+                                                        <option>Rangpur</option><option>Mymensingh</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">District <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                                    <select class="form-select" id="el-district" disabled><option value="">Select division first</option></select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Upazila <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                                    <select class="form-select" id="el-upazila" disabled><option value="">Select district first</option></select>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <label class="form-label">Address <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                                    <input type="text" class="form-control" id="el-village" placeholder="House / road / village / area">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Post Code <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                                    <input type="text" class="form-control" id="el-postcode" placeholder="Optional">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12"><h6 class="text-uppercase fs-11 fw-bold text-muted border-bottom pb-1 mb-0 mt-2">Lead &amp; Source Details</h6></div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Lead Source <span class="text-danger">*</span></label>
+                                        <select class="form-select" id="el-source"><option>Select source</option><option>Noman</option><option>Dr. Ilias Patowary</option><option>Facebook</option><option>Website</option><option>Hospital</option><option>Doctor Referral</option><option>Walk-in</option><option>Campaign</option><option>Other</option></select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Secondary Source / Campaign</label>
+                                        <input type="text" class="form-control" id="el-secondary" placeholder="Optional">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Priority <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                        <select class="form-select" id="el-priority" data-crm-list="leadPriorities">
+                                            <option value="" selected>Select priority</option>
+                                            <option>Normal</option><option>High</option><option>Critical</option><option>Special</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-12"><h6 class="text-uppercase fs-11 fw-bold text-muted border-bottom pb-1 mb-0 mt-2">Package &amp; Value</h6></div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Expected Value</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">&#2547;</span>
+                                            <input type="number" class="form-control" id="el-expected" placeholder="0.00">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Offered Value</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">&#2547;</span>
+                                            <input type="number" class="form-control" id="el-offered" placeholder="0.00">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Package Offered</label>
+                                        <select class="form-select" id="el-package-offered">
+                                            <option value="">Not yet offered</option>
+                                            <option>Full-Funded Package</option>
+                                            <option>Partial-Funded Package</option>
+                                            <option>Paid Package</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-12"><h6 class="text-uppercase fs-11 fw-bold text-muted border-bottom pb-1 mb-0 mt-2">Documents &amp; Notes</h6></div>
+                                    <div class="col-12">
+                                        <label class="form-label">Documents <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="mdi mdi-google-drive"></i></span>
+                                            <input type="url" class="form-control" id="el-drive" placeholder="https://drive.google.com/...">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Notes</label>
+                                        <textarea class="form-control" id="el-notes" rows="2" placeholder="Any additional information"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-primary" id="el-save"><i class="mdi mdi-content-save-outline me-1"></i>Save Changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                                <!-- ===== Apply Visa — the step after a lead has applied for a package
+                     (Applied Leads, payment still open) or has paid in full
+                     (Completed Leads). Saving hands the patient over to Visa &
+                     Travel, where the visa result and travel are tracked. ===== -->
+                <div class="modal fade" id="applyVisaModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div>
+                                    <h5 class="modal-title mb-0">Apply for Visa</h5>
+                                    <span class="fs-12 text-muted av-lead-label"></span>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Destination Country <span class="text-danger">*</span></label>
+                                        <select class="form-select" id="av-country" data-crm-list="visaCountries">
+                                            <option>India</option><option>Thailand</option><option>Singapore</option><option>Malaysia</option><option>Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Visa Type <span class="text-danger">*</span></label>
+                                        <select class="form-select" id="av-type" data-crm-list="visaTypes">
+                                            <option>Medical Visa</option><option>Medical Attendant Visa</option><option>Tourist Visa</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Application Date <span class="text-danger">*</span></label>
+                                        <input type="date" class="form-control" id="av-date">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Application Reference <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                        <input type="text" class="form-control" id="av-ref" placeholder="Embassy / portal reference no.">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Note <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                        <textarea class="form-control" id="av-notes" rows="2" placeholder="Passport status, appointment date, anything relevant"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-primary" id="av-save"><i class="mdi mdi-passport me-1"></i>Submit Visa Application</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                                <!-- ===== Next Follow-up — for Interested / Follow Up / Not Interested
+                     leads, who all stay in touch: pick when to reach out next and
+                     what for. One modal serves every row; crm-leads.js fills the
+                     lead label and writes the date back into the row. ===== -->
+                <div class="modal fade" id="nextFollowupModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div>
+                                    <h5 class="modal-title mb-0">Next Follow-up</h5>
+                                    <span class="fs-12 text-muted nf-lead-label"></span>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Follow-up Date <span class="text-danger">*</span></label>
+                                        <input type="date" class="form-control" id="nf-date">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Planned Action <span class="text-danger">*</span></label>
+                                        <select class="form-select" id="nf-action" data-crm-list="followupActions">
+                                            <option>Call back</option>
+                                            <option>WhatsApp message</option>
+                                            <option>Send package quotation</option>
+                                            <option>Request medical documents</option>
+                                            <option>Invite to office visit</option>
+                                            <option>Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Note <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                        <textarea class="form-control" id="nf-note" rows="2" placeholder="Anything to remember for this follow-up"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-primary" id="nf-save"><i class="mdi mdi-calendar-check-outline me-1"></i>Save Follow-up</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ RECORD PAYMENT ============ -->
+                <!-- Same modal as Applied Leads; crm-leads.js drives it from the
+                     quick-action button's data-due-* attributes. -->
+                                <!-- ===== Record Payment — shared by Applied Leads, Invoice and Patient
+                     Profile (crm-leads.js, "Record payment"). Taka only: the partial
+                     dollar is logged on Dollar Payments, never here. Injected at
+                     @record-payment. ===== -->
+                <div class="modal fade" id="addPaymentModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div>
+                                    <h5 class="modal-title mb-0">Record Payment</h5>
+                                    <span class="fs-12 text-muted" id="pay-lead-label"></span>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <div class="col-md-4"><label class="form-label">Payment date</label><input type="date" class="form-control" id="pay-date"></div>
+                                    <div class="col-md-4"><label class="form-label">Method <span class="text-danger">*</span></label><select class="form-select" id="pay-method" data-crm-list="paymentMethods"><option>Cash</option><option>Bank Transfer</option><option>Card</option><option>bKash</option><option>Nagad</option><option>Rocket</option><option>Other</option></select></div>
+                                    <div class="col-md-4"><label class="form-label">Reference no.</label><input type="text" class="form-control" id="pay-ref" placeholder="If applicable"></div>
+
+                                    <div class="col-12"><hr class="my-1"></div>
+
+                                    <!-- Taka only. The select stays (hidden) because the shared payment JS reads it. -->
+                                    <select class="d-none" id="pay-currency"><option value="bdt" selected>Taka</option></select>
+                                    <div class="col-md-8">
+                                        <label class="form-label">Amount received <span class="text-danger">*</span></label>
+                                        <div class="input-group"><span class="input-group-text" id="pay-prefix">&#2547;</span><input type="number" class="form-control" id="pay-amount" min="0" placeholder="0"></div>
+                                        <div class="form-text fs-11 text-warning d-none" id="pay-over"></div>
+                                    </div>
+
+                                    <div class="col-md-6"><label class="form-label">Payment proof</label><input type="file" class="form-control" id="pay-proof"></div>
+                                    <div class="col-md-6"><label class="form-label">Note</label><input type="text" class="form-control" id="pay-note"></div>
+                                </div>
+
+                                <div class="card bg-light-subtle border mt-3 mb-0"><div class="card-body py-3">
+                                    <div class="row text-center">
+                                        <div class="col"><div class="fs-11 text-uppercase text-muted">This Payment</div><div class="fw-bold cur text-success" id="pay-total">&#2547;0</div></div>
+                                        <div class="col"><div class="fs-11 text-uppercase text-muted">Due After This Payment</div><div class="fw-bold cur text-danger" id="pay-due-after">&#2547;0</div></div>
+                                    </div>
+                                </div></div>
+
+                                <div class="alert alert-success d-none mt-3 mb-0 py-2 fs-13" id="pay-settled"><i class="mdi mdi-check-decagram me-1"></i>Fully paid &mdash; this lead becomes Completed and can be Confirmed.</div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-primary" id="pay-save"><i class="mdi mdi-file-check-outline me-1"></i>Save &amp; Issue Receipt</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ ADD NEW PACKAGE ============ -->
+                <!-- A returning lead (changed their mind, didn't travel, came back)
+                     starts a fresh package here. The previous one stays in Package
+                     History with its own payments, and the journey restarts from
+                     Applied for Package. -->
+                <div class="modal fade" id="ppNewPackageModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div>
+                                    <h5 class="modal-title mb-0">Add New Package</h5>
+                                    <span class="fs-12 text-muted">Sharmin Akter &middot; ELH-L-2026-000406</span>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="alert alert-info py-2 fs-13 mb-3"><i class="mdi mdi-information-outline me-1"></i>The current package (Paid Package &middot; ELH-D-2026-000089) will be closed and kept in Package History.</div>
+                                <div id="lc-apply-block">                                    <!-- Package. Three fixed packages seeded here; each carries its
+                                         own default prices and a flag saying whether it accepts
+                                         dollars. Adding a package on packages.html asks for exactly
+                                         these attributes, so nothing below hardcodes the three names.
+                                         A plain <select> on purpose: three options need no select2,
+                                         which is also what made this control unusable inside a modal. -->
+                                    <div class="row g-3">
+                                        <div class="col-12">
+                                            <label class="form-label">Package <span class="text-danger">*</span></label>
+                                            <select class="form-select" id="lc-package">
+                                                <option value="">Select a package</option>
+                                                <option value="PKG-FULL" data-accepts-usd="false" data-price-bdt="400000" data-price-usd="">Full-Funded Package</option>
+                                                <option value="PKG-PARTIAL" data-accepts-usd="true" data-price-bdt="250000" data-price-usd="2500" selected>Partial-Funded Package</option>
+                                                <option value="PKG-PAID" data-accepts-usd="true" data-price-bdt="300000" data-price-usd="4000">Paid Package</option>
+                                            </select>
+                                            <div class="form-text fs-11" id="lc-package-note">Choose the package this patient is applying under.</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Carried over from what was captured during the first
+                                         conversation with this lead (Expected Value / Offered Value
+                                         on Add Lead) — shown here in taka, read-only and purely for
+                                         reference while the actual price is agreed below. Filled
+                                         from the lead's row in openStatus (crm-leads.js). -->
+                                    <div class="row g-3 mt-1">
+                                        <div class="col-6">
+                                            <label class="form-label fs-12 mb-1">Expected Value <span class="text-muted fw-normal">(from first conversation)</span></label>
+                                            <div class="input-group input-group-sm"><span class="input-group-text">&#2547;</span><input type="number" class="form-control" id="lc-expected-bdt" placeholder="—" readonly></div>
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="form-label fs-12 mb-1">Offered Value <span class="text-muted fw-normal">(from first conversation)</span></label>
+                                            <div class="input-group input-group-sm"><span class="input-group-text">&#2547;</span><input type="number" class="form-control" id="lc-offered-bdt" placeholder="—" readonly></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Wide (modal-xl) on purpose: dollars, taka and the payment
+                                         log side by side in one row instead of stacked, so applying
+                                         a package fits without much scrolling. -->
+                                    <div class="row g-3 mt-1">
+                                        <!-- Partial dollar. Present only for packages that carry one
+                                             (every package except Full-Funded); a taka-only package
+                                             hides this outright. Only the amount is set here. Payments
+                                             against it are tracked on their own on Dollar Payments
+                                             (crm-dollar.js) and never touch taka balances, invoices or
+                                             receipts. -->
+                                        <div class="col-md-4" id="lc-usd-block">
+                                            <div class="border rounded p-3 h-100">
+                                                <div class="fs-11 text-uppercase text-muted fw-semibold mb-3"><i class="mdi mdi-currency-usd me-1"></i>Partial Dollar</div>
+                                                <div class="mb-2">
+                                                    <label class="form-label fs-12 mb-1">Package Price</label>
+                                                    <div class="input-group input-group-sm"><span class="input-group-text">$</span><input type="number" class="form-control" id="lc-price-usd" min="0" placeholder="0" readonly></div>
+                                                    <div class="form-text fs-11">Set automatically from the selected package.</div>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <label class="form-label fs-12 mb-1">Partial Dollar Amount</label>
+                                                    <div class="input-group input-group-sm"><span class="input-group-text">$</span><input type="number" class="form-control" id="lc-negotiated-usd" min="0" placeholder="0"></div>
+                                                </div>
+                                                <div class="mb-0">
+                                                    <label class="form-label fs-12 mb-1">Suggested Price <span class="text-muted fw-normal">(from first conversation)</span></label>
+                                                    <div class="input-group input-group-sm"><span class="input-group-text">$</span><input type="number" class="form-control" id="lc-suggested-usd" min="0" placeholder="0"></div>
+                                                    <div class="form-text fs-11"><i class="mdi mdi-lock-outline"></i> Internal. Payments are logged on Dollar Payments.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Taka. Every package is settled at least in taka, and
+                                             tracked as a real balance: negotiated minus paid.
+                                             Package Price is read-only (the package's own list
+                                             price); Negotiated Package Price is what was actually
+                                             agreed and is the figure that counts as revenue. No
+                                             discount field — the client does not give discounts. -->
+                                        <div class="col-md-4">
+                                            <div class="border rounded p-3 h-100">
+                                                <div class="fs-11 text-uppercase text-muted fw-semibold mb-3"><i class="mdi mdi-currency-bdt me-1"></i>Bangladeshi Taka</div>
+                                                <div class="mb-2">
+                                                    <label class="form-label fs-12 mb-1">Package Price</label>
+                                                    <div class="input-group input-group-sm"><span class="input-group-text">&#2547;</span><input type="number" class="form-control" id="lc-price-bdt" min="0" placeholder="0" readonly></div>
+                                                    <div class="form-text fs-11">Set automatically from the selected package.</div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label fs-12 mb-1">Negotiated Package Price <span class="text-danger">*</span></label>
+                                                    <div class="input-group input-group-sm"><span class="input-group-text">&#2547;</span><input type="number" class="form-control" id="lc-negotiated-bdt" min="0" placeholder="0"></div>
+                                                    <div class="form-text fs-11">The price actually agreed with the patient — this is what counts as revenue.</div>
+                                                </div>
+                                                <div class="d-flex justify-content-between align-items-center border-top pt-2">
+                                                    <span class="fs-12 text-uppercase text-muted fw-semibold">Agreed Amount</span>
+                                                    <span class="fw-bold cur text-primary fs-16" id="lc-agreed-bdt">&#2547;0</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Payment Log — what was actually collected against this
+                                             application, on record alongside the price that was
+                                             agreed. Taka only: patients pay in taka regardless of
+                                             how the package is priced — the dollar figures above
+                                             are recorded for the package's cost, not collected as a
+                                             dollar payment. A lead can apply today and still pay
+                                             later, so logging a payment is optional here — the
+                                             toggle below leaves it for Applied Leads to record once
+                                             it actually happens. -->
+                                        <div class="col-md-4">
+                                            <div class="border rounded p-3 h-100">
+                                                <div class="fs-11 text-uppercase text-muted fw-semibold mb-3"><i class="mdi mdi-cash-check me-1"></i>Payment Log</div>
+                                                <div class="mb-3">
+                                                    <label class="form-label fs-12 mb-1 d-block">Has the patient paid?</label>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="lc-payment-done" id="lc-payment-not-done" value="not-done" checked>
+                                                        <label class="form-check-label fs-13" for="lc-payment-not-done">Not yet</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="lc-payment-done" id="lc-payment-is-done" value="done">
+                                                        <label class="form-check-label fs-13" for="lc-payment-is-done">Paid now</label>
+                                                    </div>
+                                                </div>
+                                                <p class="text-muted fs-12" id="lc-payment-later-note">No payment collected yet — this can be logged later from Applied Leads once the patient pays.</p>
+                                                <div class="d-none" id="lc-payment-fields-wrap">
+                                                    <div class="mb-2">
+                                                        <label class="form-label fs-12 mb-1">Amount Paid</label>
+                                                        <div class="input-group input-group-sm"><span class="input-group-text">&#2547;</span><input type="number" class="form-control" id="lc-pay-amount" min="0" placeholder="0"></div>
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label fs-12 mb-1">Payment Method</label>
+                                                        <select class="form-select form-select-sm" id="lc-pay-method" data-crm-list="paymentMethods">
+                                                            <option value="">Select method</option>
+                                                            <option>Cash</option>
+                                                            <option>Bank Transfer</option>
+                                                            <option>bKash</option>
+                                                            <option>Nagad</option>
+                                                            <option>Rocket</option>
+                                                            <option>Card</option>
+                                                            <option>Other</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label fs-12 mb-1">Transaction ID <span class="text-muted fw-normal">(optional)</span></label>
+                                                        <input type="text" class="form-control form-control-sm" id="lc-pay-txn" placeholder="e.g. TXN123456">
+                                                    </div>
+                                                    <div class="mb-0">
+                                                        <label class="form-label fs-12 mb-1">Date Paid</label>
+                                                        <input type="date" class="form-control form-control-sm" id="lc-pay-date">
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex justify-content-between align-items-center border-top pt-2 mt-3">
+                                                    <span class="fs-12 text-uppercase text-muted fw-semibold">Remaining Amount</span>
+                                                    <span class="fw-bold cur text-primary fs-16" id="lc-remaining-bdt">&#2547;0</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Shown only once a price has been typed and the package then
+                                         changed: seeding must never silently overwrite a figure that
+                                         was just negotiated on the phone. -->
+                                    <div class="form-text fs-11 mt-2 d-none" id="lc-reseed-wrap"><a href="#" id="lc-reseed" class="link-primary"></a></div></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-primary" id="pp-np-save"><i class="mdi mdi-plus-box-outline me-1"></i>Create Package</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ PACKAGE JOURNEY ============ -->
+                <!-- One package's whole journey, opened from Package History. The
+                     journey and payment strips are cloned from the page's own at
+                     open time (crm-deals.js), so the step list exists once. -->
+                <div class="modal fade" id="ppPackageModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div>
+                                    <h5 class="modal-title mb-0"><span id="pk-title"></span> <span class="badge ms-1 align-middle" id="pk-status"></span></h5>
+                                    <span class="fs-12 text-muted" id="pk-sub"></span>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row g-3 mb-3">
+                                    <div class="col-6 col-lg-3"><div class="crm-info-card"><div class="crm-info-label">Applied on</div><div class="crm-info-value" id="pk-applied"></div></div></div>
+                                    <div class="col-6 col-lg-3"><div class="crm-info-card"><div class="crm-info-label">Agreed</div><div class="crm-info-value cur" id="pk-agreed"></div></div></div>
+                                    <div class="col-6 col-lg-3"><div class="crm-info-card"><div class="crm-info-label">Paid &middot; Due</div><div class="crm-info-value cur" id="pk-paid"></div></div></div>
+                                    <div class="col-6 col-lg-3"><div class="crm-info-card"><div class="crm-info-label">Reached</div><div class="crm-info-value" id="pk-reached"></div></div></div>
+                                </div>
+
+                                <div class="alert alert-danger d-flex gap-2 py-2 fs-13 d-none" id="pk-closed">
+                                    <i class="mdi mdi-close-octagon-outline fs-18"></i>
+                                    <div>
+                                        <div class="fw-semibold" id="pk-closed-head"></div>
+                                        <div><span class="fw-semibold">Reason:</span> <span id="pk-closed-reason"></span></div>
+                                    </div>
+                                </div>
+
+                                <div class="fs-11 text-uppercase text-muted fw-semibold mb-2">Journey</div>
+                                <div class="crm-journey" id="pk-journey"></div>
+
+                                <div class="fs-11 text-uppercase text-muted fw-semibold mb-2">Step by step</div>
+                                <div class="table-responsive mb-4">
+                                    <table class="table table-sm align-middle mb-0">
+                                        <thead class="table-light"><tr><th style="width:4%">#</th><th>Step</th><th>Status</th><th>Date</th><th>Note</th></tr></thead>
+                                        <tbody class="fs-13" id="pk-steps"></tbody>
+                                    </table>
+                                </div>
+
+                                <div class="d-flex align-items-center justify-content-between mb-2" id="pk-payment">
+                                    <div class="fs-11 text-uppercase text-muted fw-semibold">Payments on this package</div>
+                                    <div class="fs-12 fw-semibold js-payment-pct"></div>
+                                </div>
+                                <div class="crm-journey" id="pk-payment-track"></div>
+                                <div class="table-responsive">
+                                    <table class="table table-sm align-middle mb-0">
+                                        <thead class="table-light"><tr><th>Date</th><th>Method</th><th>Receipt</th><th class="text-end">Amount</th><th class="text-end">Invoice</th></tr></thead>
+                                        <tbody class="fs-13" id="pk-payments"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-primary pp-inv-btn" id="pk-invoice-btn"><i class="mdi mdi-file-document-multiple-outline me-1"></i>Package Invoice</button>
+                                <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ INVOICE ============ -->
+                <!-- Generated on demand from #pp-package-data: one payment
+                     (data-receipt set) or a whole package. Printing is scoped to
+                     this modal in crm-brand.css, same as the lead print form. -->
+                <div class="modal fade crm-print-modal" id="ppInvoiceModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header no-print">
+                                <h5 class="modal-title mb-0"><i class="mdi mdi-file-document-outline me-1"></i><span id="inv-kind">Invoice</span></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="pp-invoice p-2" id="pp-invoice"></div>
+                            </div>
+                            <div class="modal-footer no-print">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                <button class="btn btn-primary" id="pp-inv-print"><i class="mdi mdi-printer me-1"></i>Print / Save PDF</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- container-fluid -->
+        </div><!-- page-content -->
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        &copy; <script>document.write(new Date().getFullYear())</script> E Life Healthcare. All rights reserved.
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end d-none d-sm-block">
+                            CRM System &middot; v1.0
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- END Footer -->
+        <!-- Begin scroll top -->
+          <div class="progress-wrap" id="progress-scroll">
+            <svg class="progress-circle" width="100%" height="100%" viewBox="-1 -1 102 102">
+              <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+            </svg>
+          </div>
+        <!-- END scroll top -->
+    </div><!-- end main content-->
+
+</div><!-- END layout-wrapper -->
+
+<!-- Bootstrap bundle js -->
+<script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Layouts main js -->
+<script src="assets/libs/jquery/jquery.min.js"></script>
+
+<!-- Metimenu js -->
+<script src="assets/libs/metismenu/metisMenu.min.js"></script>
+
+<!-- simplebar js -->
+<script src="assets/libs/simplebar/simplebar.min.js"></script>
+
+<script src="assets/libs/eva-icons/eva.min.js"></script>
+
+<!-- Scroll Top init -->
+<script src="assets/js/scroll-top.init.js"></script>
+
+<!-- select2 -->
+<script src="assets/libs/select2/js/select2.min.js"></script>
+
+<!-- App js -->
+<script src="assets/js/app.js"></script>
+
+<!-- sweetalert2 -->
+<script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
+
+<!-- CRM demo js -->
+<script src="assets/js/crm-demo.js"></script>
+
+<!-- CRM leads module js -->
+<script src="assets/js/crm-leads.js"></script>
+
+<!-- CRM patients & deals js -->
+<script src="assets/js/crm-deals.js"></script>
+
+<!-- CRM dollar payments js -->
+<script src="assets/js/crm-dollar.js"></script>
+
+<!-- Sidebar deep links (page.html?x=y): highlight the entry matching the query -->
+<script>
+window.addEventListener('load', function () {
+  var page = location.pathname.split('/').pop(), q = location.search;
+  var links = [].slice.call(document.querySelectorAll('#sidebar-menu a[href]:not(.has-arrow)'));
+  var exact = links.filter(function (a) {
+    var h = a.getAttribute('href') || '', i = h.indexOf('?');
+    return i > -1 && h.slice(0, i) === page && h.slice(i) === q;
+  });
+  if (!exact.length) return;
+  links.forEach(function (a) { a.classList.remove('active'); a.parentNode.classList.remove('mm-active'); });
+  exact.forEach(function (a) { a.classList.add('active'); a.parentNode.classList.add('mm-active'); });
+});
+</script>
+</body>
+</html>

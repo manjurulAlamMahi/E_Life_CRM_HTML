@@ -1,0 +1,109 @@
+                <!-- ===== Eligible to apply for a visa — every lead that has applied for a
+                     package (payment still open, or paid in full) and has not yet
+                     applied for a visa. Apply Visa hands the patient over to the visa
+                     tracker, so the row leaves this list. ===== -->
+                <div class="row">
+                    <div class="col-6 col-xl-3">
+                        <div class="card stat-tile"><div class="card-body py-3">
+                            <div class="stat-label text-muted">Eligible for Visa</div>
+                            <div class="stat-value cur text-primary" id="ve-count">5</div>
+                        </div></div>
+                    </div>
+                    <div class="col-6 col-xl-3">
+                        <div class="card stat-tile"><div class="card-body py-3">
+                            <div class="stat-label text-muted">Paid in Full</div>
+                            <div class="stat-value cur text-success" id="ve-paid-count">3</div>
+                        </div></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-2">
+                        <h5 class="card-title mb-0">Eligible to Apply for Visa</h5>
+                        <div class="position-relative">
+                            <input type="text" class="form-control form-control-sm" id="ve-search" placeholder="Search by name, phone or Lead ID..." style="padding-left:34px;width:260px;max-width:100%;">
+                            <i class="mdi mdi-magnify position-absolute" style="left:12px;top:50%;transform:translateY(-50%);color:#8a92a4;font-size:15px;line-height:1;pointer-events:none;"></i>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-2 align-items-end mb-3 crm-filter">
+                            <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Package</label><select class="form-select form-select-sm" data-filter="col:Package"><option value="">All packages</option><option>Full-Funded Package</option><option>Partial-Funded Package</option><option>Paid Package</option></select></div>
+                            <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Payment</label><select class="form-select form-select-sm" data-filter="col:Payment"><option value="">All payments</option><option>Paid in Full</option><option>Payment Due</option></select></div>
+                            <div class="col-auto"><button type="button" class="btn btn-light btn-sm" data-filter-reset title="Reset filters"><i class="mdi mdi-refresh"></i></button></div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0" id="ve-table">
+                                <thead class="table-light">
+                                    <tr><th>Lead ID</th><th>Patient / Guardian</th><th>Phone</th><th>Package</th><th>Payment</th><th class="no-sort">Action</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-status="applied" data-paid="0" data-lead-id="ELH-L-2026-000412" data-lead-name="Rahim Uddin" data-executive="Tanvir Ahmed">
+                                        <td class="mono fs-12">ELH-L-2026-000412</td>
+                                        <td><div class="fw-semibold">Ayesha Rahim</div><div class="fs-12 text-muted">G: Rahim Uddin</div></td>
+                                        <td class="fs-13">+880 1711-234567</td>
+                                        <td class="fs-13">Partial-Funded Package</td>
+                                        <td><span class="badge bg-warning-subtle text-warning">Payment Due</span><div class="fs-12 text-muted mt-1">&#2547;1,50,000</div></td>
+                                        <td><div class="d-flex flex-wrap gap-1">
+                                            <button type="button" class="btn btn-sm btn-label-success crm-apply-visa" title="Apply for visa" data-bs-toggle="modal" data-bs-target="#applyVisaModal"><i class="mdi mdi-passport me-1"></i>Apply Visa</button>
+                                            <button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-journey-stage="2" data-paid-pct="40" data-lead-id="ELH-L-2026-000412" data-lead-name="Rahim Uddin" data-lead-patient="Ayesha Rahim"><i class="mdi mdi-card-account-details-outline"></i></button>
+                                            <a href="conversations.html?lead=ELH-L-2026-000412" class="btn btn-sm btn-icon btn-light" title="Conversation log"><i class="mdi mdi-comment-text-outline"></i></a>
+                                        </div></td>
+                                    </tr>
+                                    <tr data-status="applied" data-paid="0" data-lead-id="ELH-L-2026-000411" data-lead-name="Karim Mia" data-executive="Sabbir Hossain">
+                                        <td class="mono fs-12">ELH-L-2026-000411</td>
+                                        <td><div class="fw-semibold">Karim Mia</div><div class="fs-12 text-muted">G: Karim Mia</div></td>
+                                        <td class="fs-13">+880 1812-445566</td>
+                                        <td class="fs-13">Full-Funded Package</td>
+                                        <td><span class="badge bg-warning-subtle text-warning">Payment Due</span><div class="fs-12 text-muted mt-1">&#2547;1,50,000</div></td>
+                                        <td><div class="d-flex flex-wrap gap-1">
+                                            <button type="button" class="btn btn-sm btn-label-success crm-apply-visa" title="Apply for visa" data-bs-toggle="modal" data-bs-target="#applyVisaModal"><i class="mdi mdi-passport me-1"></i>Apply Visa</button>
+                                            <button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-journey-stage="2" data-paid-pct="62.5" data-lead-id="ELH-L-2026-000411" data-lead-name="Karim Mia" data-lead-patient="Karim Mia"><i class="mdi mdi-card-account-details-outline"></i></button>
+                                            <a href="conversations.html?lead=ELH-L-2026-000411" class="btn btn-sm btn-icon btn-light" title="Conversation log"><i class="mdi mdi-comment-text-outline"></i></a>
+                                        </div></td>
+                                    </tr>
+                                    <tr data-status="applied" data-paid="1" data-lead-id="ELH-L-2026-000410" data-lead-name="Sultana Begum" data-executive="Sabbir Hossain">
+                                        <td class="mono fs-12">ELH-L-2026-000410</td>
+                                        <td><div class="fw-semibold">Nadia Sultana</div><div class="fs-12 text-muted">G: Sultana Begum</div></td>
+                                        <td class="fs-13">+880 1911-778899</td>
+                                        <td class="fs-13">Paid Package</td>
+                                        <td><span class="badge bg-success-subtle text-success">Paid in Full</span></td>
+                                        <td><div class="d-flex flex-wrap gap-1">
+                                            <button type="button" class="btn btn-sm btn-label-success crm-apply-visa" title="Apply for visa" data-bs-toggle="modal" data-bs-target="#applyVisaModal"><i class="mdi mdi-passport me-1"></i>Apply Visa</button>
+                                            <button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-journey-stage="2" data-paid-pct="100" data-lead-id="ELH-L-2026-000410" data-lead-name="Sultana Begum" data-lead-patient="Nadia Sultana"><i class="mdi mdi-card-account-details-outline"></i></button>
+                                            <a href="conversations.html?lead=ELH-L-2026-000410" class="btn btn-sm btn-icon btn-light" title="Conversation log"><i class="mdi mdi-comment-text-outline"></i></a>
+                                        </div></td>
+                                    </tr>
+                                    <tr data-status="applied" data-paid="1" data-lead-id="ELH-L-2026-000408" data-lead-name="Jahanara Khatun" data-executive="Tanvir Ahmed">
+                                        <td class="mono fs-12">ELH-L-2026-000408</td>
+                                        <td><div class="fw-semibold">Mim Akter</div><div class="fs-12 text-muted">G: Jahanara Khatun</div></td>
+                                        <td class="fs-13">+880 1677-112233</td>
+                                        <td class="fs-13">Partial-Funded Package</td>
+                                        <td><span class="badge bg-success-subtle text-success">Paid in Full</span></td>
+                                        <td><div class="d-flex flex-wrap gap-1">
+                                            <button type="button" class="btn btn-sm btn-label-success crm-apply-visa" title="Apply for visa" data-bs-toggle="modal" data-bs-target="#applyVisaModal"><i class="mdi mdi-passport me-1"></i>Apply Visa</button>
+                                            <button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-journey-stage="2" data-paid-pct="100" data-lead-id="ELH-L-2026-000408" data-lead-name="Jahanara Khatun" data-lead-patient="Mim Akter"><i class="mdi mdi-card-account-details-outline"></i></button>
+                                            <a href="conversations.html?lead=ELH-L-2026-000408" class="btn btn-sm btn-icon btn-light" title="Conversation log"><i class="mdi mdi-comment-text-outline"></i></a>
+                                        </div></td>
+                                    </tr>
+                                    <tr data-status="applied" data-paid="1" data-lead-id="ELH-L-2026-000405" data-lead-name="Jamal Uddin" data-executive="Nusrat Jahan">
+                                        <td class="mono fs-12">ELH-L-2026-000405</td>
+                                        <td><div class="fw-semibold">Jamal Uddin</div><div class="fs-12 text-muted">G: Jamal Uddin</div></td>
+                                        <td class="fs-13">+880 1745-330011</td>
+                                        <td class="fs-13">Full-Funded Package</td>
+                                        <td><span class="badge bg-success-subtle text-success">Paid in Full</span></td>
+                                        <td><div class="d-flex flex-wrap gap-1">
+                                            <button type="button" class="btn btn-sm btn-label-success crm-apply-visa" title="Apply for visa" data-bs-toggle="modal" data-bs-target="#applyVisaModal"><i class="mdi mdi-passport me-1"></i>Apply Visa</button>
+                                            <button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-journey-stage="2" data-paid-pct="100" data-lead-id="ELH-L-2026-000405" data-lead-name="Jamal Uddin" data-lead-patient="Jamal Uddin"><i class="mdi mdi-card-account-details-outline"></i></button>
+                                            <a href="conversations.html?lead=ELH-L-2026-000405" class="btn btn-sm btn-icon btn-light" title="Conversation log"><i class="mdi mdi-comment-text-outline"></i></a>
+                                        </div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p class="text-muted fs-13 text-center py-4 d-none" id="ve-empty">No leads are waiting to apply for a visa.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!--@apply-visa-->
+
+                <!--@quick-view-->

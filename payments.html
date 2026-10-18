@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Payments | E Life Healthcare CRM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta content="E Life Healthcare — CRM System" name="description">
+    <meta content="E Life Healthcare" name="author">
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/logo-sm.png">
+    <link href="assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+    <!-- select2 -->
+    <link href="assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Simplebar Css -->
+    <link rel="stylesheet" href="assets/libs/simplebar/simplebar.min.css">
+
+    <!-- Bootstrap Css -->
+    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css">
+
+    <!--icons css-->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
+
+    <!-- App Css-->
+    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css">
+
+    <!-- CRM brand css -->
+    <link href="assets/css/crm-brand.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="layout-wrapper">
+
+    <!-- Start topbar -->
+    <header id="page-topbar">
+        <div class="navbar-header">
+
+            <!-- Start Navbar-Brand -->
+            <div class="navbar-logo-box">
+                <a href="index.html" class="logo logo-dark">
+                    <span class="logo-sm"><img src="assets/logo-icon.png" class="brand-logo-icon" alt="E Life Healthcare"></span>
+                    <span class="logo-lg"><img src="assets/logo.png" class="brand-logo-full" data-company-logo alt="E Life Healthcare"></span>
+                </a>
+                <a href="index.html" class="logo logo-light">
+                    <span class="logo-sm"><img src="assets/logo-icon.png" class="brand-logo-icon" alt="E Life Healthcare"></span>
+                    <span class="logo-lg"><img src="assets/logo.png" class="brand-logo-full" data-company-logo alt="E Life Healthcare"></span>
+                </a>
+                <button type="button" class="btn btn-icon top-icon sidebar-btn" id="sidebar-btn" aria-label="Toggle navigation"><i class="mdi mdi-menu-open align-middle fs-17"></i></button>
+                <button type="button" class="btn btn-icon top-icon sidebar-horizontal-btn d-none" aria-label="Toggle navigation"><i class="mdi mdi-menu align-middle fs-17"></i></button>
+            </div>
+
+            <!-- Start menu -->
+            <div class="d-flex justify-content-between menu-sm px-4 ms-auto">
+                <div class="d-flex align-items-center gap-2">
+                    <!--Start App Search-->
+                    <form class="app-search crm-topbar-search d-none d-lg-block" onsubmit="return false;">
+                        <div class="position-relative">
+                            <input type="text" class="form-control" placeholder="Search patient, phone, Lead ID, receipt no...">
+                            <i data-eva="search-outline" class="align-middle"></i>
+                        </div>
+                    </form>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <button type="button" class="btn btn-icon top-icon d-none d-md-block" id="fullscreen-toggle" aria-label="Toggle fullscreen">
+                        <i class="mdi mdi-fullscreen align-middle" id="fullscreen-icon"></i>
+                    </button>
+                    <button type="button" class="btn btn-icon top-icon d-none d-md-block" id="light-dark-mode" aria-label="Toggle Light/Dark">
+                        <i class="mdi mdi-brightness-7 align-middle"></i>
+                        <i class="mdi mdi-white-balance-sunny align-middle"></i>
+                    </button>
+                    <!-- Start Notifications -->
+                    <div class="dropdown d-inline-block">
+                        <button type="button" class="btn btn-icon top-icon" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Notifications">
+                            <i class="mdi mdi-bell-ring-outline fs-17"></i>
+                            <span class="position-absolute topbar-badge translate-middle badge rounded-pill bg-danger">5</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-md dropdown-menu-end dropdown-menu-animated p-0" aria-labelledby="page-header-notifications-dropdown">
+                            <div class="p-4 border-bottom">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="m-0"><i class="mdi mdi-bell-ring-outline me-1 fs-15"></i> Notifications</h6>
+                                    </div>
+                                    <div class="col-auto">
+                                        <a href="followups.html" class="badge bg-danger-subtle text-danger">5 new</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-simplebar style="max-height: 230px;">
+                                <a href="followups.html" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="avatar avatar-xs avatar-label-danger me-3">
+                                            <span class="rounded fs-16"><i class="mdi mdi-clock-alert-outline"></i></span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">3 overdue follow-ups</h6>
+                                            <p class="mb-0 fs-12 text-muted">Rahim Uddin, Karim Mia, Sultana Begum</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="payments.html" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="avatar avatar-xs avatar-label-warning me-3">
+                                            <span class="rounded fs-16"><i class="mdi mdi-timer-sand"></i></span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">Online payment awaiting verification</h6>
+                                            <p class="mb-0 fs-12 text-muted">bKash &#2547;50,000 &middot; Ref TRX8842K1</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="dues.html" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="avatar avatar-xs avatar-label-info me-3">
+                                            <span class="rounded fs-16"><i class="mdi mdi-alert-circle-outline"></i></span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">4 dues crossed 60 days</h6>
+                                            <p class="mb-0 fs-12 text-muted">Total outstanding &#2547;7,20,000</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="leads.html" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="avatar avatar-xs avatar-label-success me-3">
+                                            <span class="rounded fs-16"><i class="mdi mdi-account-plus-outline"></i></span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">6 new leads assigned to you</h6>
+                                            <p class="mb-0 fs-12 text-muted">From Facebook and Dr. Ilias Patowary</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="p-2 border-top text-center">
+                                <a href="followups.html" class="btn btn-sm btn-link text-decoration-none">View all</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Start Profile -->
+                    <div class="dropdown d-inline-block ps-3 ms-2 border-start admin-user-info">
+                        <button type="button" aria-label="profile" class="btn btn-sm p-0" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="avatar avatar-xs p-1 d-inline-block">
+                                <img src="assets/images/users/avatar-9.png" alt="Header Avatar" class="img-fluid">
+                            </span>
+                            <span class="d-none d-xl-inline-block ms-1 fw-semibold fs-14 admin-name">Mahi Alam</span>
+                            <i class="mdi mdi-chevron-down align-middle fs-16 d-none d-xl-inline-block"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end dropdown-menu-animated overflow-hidden py-0">
+                            <div class="card mb-0">
+                                <div class="card-header">
+                                    <div class="rich-list-item w-100 p-0">
+                                        <div class="rich-list-prepend">
+                                            <span class="rounded avatar-sm p-1 bg-body d-flex">
+                                                <img src="assets/images/users/avatar-9.png" alt="Header Avatar" class="img-fluid">
+                                            </span>
+                                        </div>
+                                        <div class="rich-list-content">
+                                            <h3 class="rich-list-title fs-13 mb-1">Mahi Alam</h3>
+                                            <span class="rich-list-subtitle">Administrator</span>
+                                        </div>
+                                        <div class="rich-list-append"><span class="badge badge-label-primary fs-6">Admin</span></div>
+                                    </div>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div class="grid-nav grid-nav-flush grid-nav-action grid-nav-no-rounded">
+                                        <div class="grid-nav-row">
+                                            <a href="my-account.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-address-card"></i></div>
+                                                <span class="grid-nav-content">My Account</span>
+                                            </a>
+                                            <a href="deals.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-handshake"></i></div>
+                                                <span class="grid-nav-content">Deals</span>
+                                            </a>
+                                            <a href="followups.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-clock"></i></div>
+                                                <span class="grid-nav-content">Follow-ups</span>
+                                            </a>
+                                        </div>
+                                        <div class="grid-nav-row">
+                                            <a href="settings.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="fas fa-cog"></i></div>
+                                                <span class="grid-nav-content">Settings</span>
+                                            </a>
+                                            <a href="audit-log.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-clone"></i></div>
+                                                <span class="grid-nav-content">Audit Log</span>
+                                            </a>
+                                            <a href="reports.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-chart-bar"></i></div>
+                                                <span class="grid-nav-content">Reports</span>
+                                            </a>
+                                        </div>
+                                        <div class="grid-nav-row">
+                                            <a href="my-account.html#security" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="fas fa-key"></i></div>
+                                                <span class="grid-nav-content">Change Password</span>
+                                            </a>
+                                            <a href="screen-lock.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="fas fa-lock"></i></div>
+                                                <span class="grid-nav-content">Screen Lock</span>
+                                            </a>
+                                            <a href="users.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="fas fa-users-cog"></i></div>
+                                                <span class="grid-nav-content">Users</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer card-footer-bordered rounded-0 border-top text-end"><a href="login.html" class="btn btn-label-danger">Sign Out</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End menu -->
+        </div>
+    </header>
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="sidebar-left">
+
+        <div class="sidebar-slide h-100" data-simplebar>
+
+            <!--- Sidebar-menu -->
+            <div id="sidebar-menu">
+                <!-- Left Menu Start -->
+                <ul class="left-menu list-unstyled" id="side-menu">
+                    <li>
+                        <a href="index.html">
+                            <i data-eva="home-outline"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Lead Module</li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i data-eva="person-add-outline"></i>
+                            <span>Leads</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="leads.html">All</a></li>
+                            <li><a href="leads.html?action=add-lead">Add</a></li>
+                            <li><a href="followups.html">Upcoming Follow Ups <span class="badge bg-danger ms-auto fs-10">5</span></a></li>
+                            <li><a href="interested-leads.html">Interested</a></li>
+                            <li><a href="not-interested-leads.html">Not Interested</a></li>
+                            <li><a href="applied-leads.html">Applied</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="conversations.html">
+                            <i data-eva="message-circle-outline"></i>
+                            <span>Conversations</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Visa Module</li>
+                    <li>
+                        <a href="visa-eligible.html">
+                            <i data-eva="checkmark-circle-2-outline"></i>
+                            <span>Eligible</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=processing">
+                            <i data-eva="sync-outline"></i>
+                            <span>Processing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=approved">
+                            <i data-eva="done-all-outline"></i>
+                            <span>Approved</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=rejected">
+                            <i data-eva="close-circle-outline"></i>
+                            <span>Rejected</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html">
+                            <i data-eva="list-outline"></i>
+                            <span>All</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Ticket Module</li>
+                    <li>
+                        <a href="tickets.html">
+                            <i data-eva="file-remove-outline"></i>
+                            <span>Not Purchased</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=upcoming">
+                            <i data-eva="calendar-outline"></i>
+                            <span>Upcoming Flight</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=passed">
+                            <i data-eva="alert-triangle-outline"></i>
+                            <span>Flight Passed</span> <span class="badge bg-danger ms-auto fs-10">2</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=cancelled">
+                            <i data-eva="close-square-outline"></i>
+                            <span>Cancelled</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=all">
+                            <i data-eva="list-outline"></i>
+                            <span>All</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Treatment Module</li>
+                    <li>
+                        <a href="treatment-countdown.html">
+                            <i data-eva="clock-outline"></i>
+                            <span>Countdown</span> <span class="badge bg-danger ms-auto fs-10">4</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html">
+                            <i data-eva="activity-outline"></i>
+                            <span>Treatment Ongoing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html?stage=successful">
+                            <i data-eva="heart-outline"></i>
+                            <span>Successful</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html?stage=failed">
+                            <i data-eva="slash-outline"></i>
+                            <span>Treatment Failed</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Dollar Module</li>
+                    <li>
+                        <a href="dollar-payments.html">
+                            <i data-eva="pricetags-outline"></i>
+                            <span>Dollar Payments</span> <span class="badge bg-warning ms-auto fs-10">4</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Payment Module</li>
+                    <li>
+                        <a href="dues.html">
+                            <i data-eva="alert-circle-outline"></i>
+                            <span>Payment Due</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="completed-leads.html">
+                            <i data-eva="credit-card-outline"></i>
+                            <span>Payment Completed</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Expense Module</li>
+                    <li>
+                        <a href="expenses.html">
+                            <i data-eva="trending-down-outline"></i>
+                            <span>Expenses</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="expense-patient.html">
+                            <i data-eva="person-outline"></i>
+                            <span>Patient Expense</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="expense-report.html">
+                            <i data-eva="bar-chart-outline"></i>
+                            <span>Expense Report</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Source Module</li>
+                    <li>
+                        <a href="sources.html">
+                            <i data-eva="share-outline"></i>
+                            <span>Source List</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Report Module</li>
+                    <li>
+                        <a href="reports.html">
+                            <i data-eva="pie-chart-outline"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Administration</li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i data-eva="settings-2-outline"></i>
+                            <span>Settings</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="settings.html">General</a></li>
+                            <li><a href="packages.html">Packages</a></li>
+                            <li><a href="source-admin.html">Sources</a></li>
+                            <li><a href="users.html">Users</a></li>
+                            <li><a href="roles.html">Roles & Permissions</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="audit-log.html">
+                            <i data-eva="eye-outline"></i>
+                            <span>Audit Logs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="login.html">
+                            <i data-eva="log-out-outline"></i>
+                            <span>Log Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Sidebar -->
+        </div>
+    </div>
+    <!-- Left Sidebar End -->
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="sidebar-left horizontal-sidebar">
+
+        <div class="sidebar-slide h-100">
+
+            <!--- Sidebar-menu -->
+            <div id="sidebar-menu">
+                <!-- Left Menu Start -->
+                <ul class="left-menu list-unstyled" id="side-menu">
+                    <li>
+                        <a href="index.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Lead Module</li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i class="fas fa-user-plus"></i>
+                            <span>Leads</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="leads.html">All</a></li>
+                            <li><a href="leads.html?action=add-lead">Add</a></li>
+                            <li><a href="followups.html">Upcoming Follow Ups <span class="badge bg-danger ms-auto fs-10">5</span></a></li>
+                            <li><a href="interested-leads.html">Interested</a></li>
+                            <li><a href="not-interested-leads.html">Not Interested</a></li>
+                            <li><a href="applied-leads.html">Applied</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="conversations.html">
+                            <i class="fas fa-comments"></i>
+                            <span>Conversations</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Visa Module</li>
+                    <li>
+                        <a href="visa-eligible.html">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Eligible</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=processing">
+                            <i class="fas fa-sync-alt"></i>
+                            <span>Processing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=approved">
+                            <i class="fas fa-stamp"></i>
+                            <span>Approved</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=rejected">
+                            <i class="fas fa-times-circle"></i>
+                            <span>Rejected</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html">
+                            <i class="fas fa-list"></i>
+                            <span>All</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Ticket Module</li>
+                    <li>
+                        <a href="tickets.html">
+                            <i class="fas fa-ticket-alt"></i>
+                            <span>Not Purchased</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=upcoming">
+                            <i class="fas fa-plane-departure"></i>
+                            <span>Upcoming Flight</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=passed">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Flight Passed</span> <span class="badge bg-danger ms-auto fs-10">2</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=cancelled">
+                            <i class="fas fa-ban"></i>
+                            <span>Cancelled</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=all">
+                            <i class="fas fa-list"></i>
+                            <span>All</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Treatment Module</li>
+                    <li>
+                        <a href="treatment-countdown.html">
+                            <i class="fas fa-hourglass-half"></i>
+                            <span>Countdown</span> <span class="badge bg-danger ms-auto fs-10">4</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html">
+                            <i class="fas fa-heartbeat"></i>
+                            <span>Treatment Ongoing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html?stage=successful">
+                            <i class="fas fa-smile"></i>
+                            <span>Successful</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html?stage=failed">
+                            <i class="fas fa-frown"></i>
+                            <span>Treatment Failed</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Dollar Module</li>
+                    <li>
+                        <a href="dollar-payments.html">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span>Dollar Payments</span> <span class="badge bg-warning ms-auto fs-10">4</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Payment Module</li>
+                    <li>
+                        <a href="dues.html">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>Payment Due</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="completed-leads.html">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Payment Completed</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Expense Module</li>
+                    <li>
+                        <a href="expenses.html">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Expenses</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="expense-patient.html">
+                            <i class="fas fa-user-injured"></i>
+                            <span>Patient Expense</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="expense-report.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Expense Report</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Source Module</li>
+                    <li>
+                        <a href="sources.html">
+                            <i class="fas fa-share-alt"></i>
+                            <span>Source List</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Report Module</li>
+                    <li>
+                        <a href="reports.html">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Administration</li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="settings.html">General</a></li>
+                            <li><a href="packages.html">Packages</a></li>
+                            <li><a href="source-admin.html">Sources</a></li>
+                            <li><a href="users.html">Users</a></li>
+                            <li><a href="roles.html">Roles & Permissions</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="audit-log.html">
+                            <i class="fas fa-history"></i>
+                            <span>Audit Logs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="login.html">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Log Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Sidebar -->
+        </div>
+    </div>
+    <!-- Left Sidebar End -->
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0">Payments</h4>
+                            <nav aria-label="breadcrumb" class="page-title-right">
+                                <ol class="breadcrumb border-0">
+                                    <li class="breadcrumb-item"><a href="index.html">CRM</a></li>
+                                    <li class="breadcrumb-item">Accounts</li>
+                                    <li class="breadcrumb-item active">Payments</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                <!-- ============ TILES ============ -->
+                <div class="row">
+                    <div class="col-xl-3 col-md-6"><div class="card stat-tile"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-warning-subtle text-warning"><i class="mdi mdi-clock-alert-outline"></i></span>
+                        <div><div class="stat-value ">3</div><div class="stat-label text-muted">Awaiting Verification</div></div>
+                    </div></div></div>
+                    <div class="col-xl-3 col-md-6"><div class="card stat-tile"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-success-subtle text-success"><i class="mdi mdi-cash-check"></i></span>
+                        <div><div class="stat-value cur text-success">&#2547;5,00,000</div><div class="stat-label text-muted">Verified This Month</div></div>
+                    </div></div></div>
+                    <div class="col-xl-3 col-md-6"><div class="card stat-tile"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-primary-subtle text-primary"><i class="mdi mdi-cash-multiple"></i></span>
+                        <div><div class="stat-value cur ">&#2547;39,00,000</div><div class="stat-label text-muted">Verified All Time</div></div>
+                    </div></div></div>
+                    <div class="col-xl-3 col-md-6"><div class="card stat-tile"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-info-subtle text-info"><i class="mdi mdi-receipt"></i></span>
+                        <div><div class="stat-value ">17</div><div class="stat-label text-muted">Verified Payments</div></div>
+                    </div></div></div>
+                </div>
+
+                <!-- ============ PENDING VERIFICATION ============ -->
+                <!-- A patient says they paid; nothing counts as money until Accounts
+                     verifies it. Verifying issues the receipt and reduces that
+                     currency's balance; rejecting records a reason and changes nothing. -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card border-warning-subtle">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0"><i class="mdi mdi-clock-alert-outline text-warning me-1"></i>Pending Verification</h5>
+                                <p class="fs-12 text-muted mb-0">These amounts are claims. They are counted nowhere &mdash; not in the tiles above, not against any due &mdash; until they are verified.</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table align-middle mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Submitted</th><th>Patient / Deal</th><th>Method / Ref</th>
+                                                <th class="text-end">Amount</th><th>Proof</th><th>State</th><th class="no-sort">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr data-pending="true" data-cur="bdt" data-amt="50000" data-executive="Tanvir Ahmed">
+                                                <td class="fs-13">03 Sep 2026</td>
+                                                <td><div class="fw-semibold">Ayesha Rahim</div><div class="fs-12 text-muted mono">ELH-D-2026-000094</div></td>
+                                                <td class="fs-13">bKash<div class="fs-11 text-muted mono">BK7XK92211</div></td>
+                                                <td class="text-end cur fs-13 fw-bold">&#2547;50,000</td>
+                                                <td><a href="#!" class="fs-12"><i class="mdi mdi-paperclip me-1"></i>bkash-screenshot.jpg</a></td>
+                                                <td><span class="badge bg-warning-subtle text-warning">Pending</span></td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-success crm-pay-verify" data-person="Ayesha Rahim" data-amount="&#2547;50,000"><i class="mdi mdi-check me-1"></i>Verify</button>
+                                                        <button class="btn btn-sm btn-icon btn-light crm-pay-reject" data-bs-toggle="modal" data-bs-target="#rejectModal" data-person="Ayesha Rahim" title="Reject"><i class="mdi mdi-close"></i></button>
+                                                        <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                                data-person="Ayesha Rahim" data-deal="ELH-D-2026-000094" data-exec="Tanvir Ahmed" data-method="bKash" data-ref="BK7XK92211"
+                                                                data-amount="&#2547;50,000" data-date="03 Sep 2026" data-proof="bkash-screenshot.jpg" data-state="Pending" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-pending="true" data-cur="bdt" data-amt="75000" data-executive="Sabbir Hossain">
+                                                <td class="fs-13">02 Sep 2026</td>
+                                                <td><div class="fw-semibold">Karim Mia</div><div class="fs-12 text-muted mono">ELH-D-2026-000093</div></td>
+                                                <td class="fs-13">Nagad<div class="fs-11 text-muted mono">NG5521P</div></td>
+                                                <td class="text-end cur fs-13 fw-bold">&#2547;75,000</td>
+                                                <td><a href="#!" class="fs-12"><i class="mdi mdi-paperclip me-1"></i>nagad-sms.png</a></td>
+                                                <td><span class="badge bg-warning-subtle text-warning">Pending</span></td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-success crm-pay-verify" data-person="Karim Mia" data-amount="&#2547;75,000"><i class="mdi mdi-check me-1"></i>Verify</button>
+                                                        <button class="btn btn-sm btn-icon btn-light crm-pay-reject" data-bs-toggle="modal" data-bs-target="#rejectModal" data-person="Karim Mia" title="Reject"><i class="mdi mdi-close"></i></button>
+                                                        <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                                data-person="Karim Mia" data-deal="ELH-D-2026-000093" data-exec="Sabbir Hossain" data-method="Nagad" data-ref="NG5521P"
+                                                                data-amount="&#2547;75,000" data-date="02 Sep 2026" data-proof="nagad-sms.png" data-state="Pending" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-pending="true" data-cur="bdt" data-amt="25000" data-executive="Tanvir Ahmed">
+                                                <td class="fs-13">01 Sep 2026</td>
+                                                <td><div class="fw-semibold">Ayesha Rahim</div><div class="fs-12 text-muted mono">ELH-D-2026-000094</div></td>
+                                                <td class="fs-13">Cash<div class="fs-11 text-muted mono">—</div></td>
+                                                <td class="text-end cur fs-13 fw-bold">&#2547;25,000</td>
+                                                <td><a href="#!" class="fs-12"><i class="mdi mdi-paperclip me-1"></i>counter-slip.jpg</a></td>
+                                                <td><span class="badge bg-warning-subtle text-warning">Pending</span></td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-success crm-pay-verify" data-person="Ayesha Rahim" data-amount="&#2547;25,000"><i class="mdi mdi-check me-1"></i>Verify</button>
+                                                        <button class="btn btn-sm btn-icon btn-light crm-pay-reject" data-bs-toggle="modal" data-bs-target="#rejectModal" data-person="Ayesha Rahim" title="Reject"><i class="mdi mdi-close"></i></button>
+                                                        <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                                data-person="Ayesha Rahim" data-deal="ELH-D-2026-000094" data-exec="Tanvir Ahmed" data-method="Cash" data-ref="—"
+                                                                data-amount="&#2547;25,000" data-date="01 Sep 2026" data-proof="counter-slip.jpg" data-state="Pending" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ PAYMENT HISTORY ============ -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-2">
+                                <div>
+                                    <h5 class="card-title mb-0">Payment History</h5>
+                                    <p class="fs-12 text-muted mb-0">Every verified payment, newest first. These sum to the lifetime collected figure on Deals.</p>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-2 align-items-end mb-3 crm-filter">
+                                    <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Method</label><select class="form-select form-select-sm" data-filter="col:Method" data-crm-list="paymentMethods"><option value="">All methods</option><option>Cash</option><option>bKash</option><option>Nagad</option><option>Bank Transfer</option></select></div>
+                                    <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">From</label><input type="date" class="form-control form-control-sm" data-filter="from:Date"></div>
+                                    <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">To</label><input type="date" class="form-control form-control-sm" data-filter="to:Date"></div>
+                                    <div class="col-auto"><button type="button" class="btn btn-light btn-sm" data-filter-reset title="Reset filters"><i class="mdi mdi-refresh"></i></button></div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table crm-table align-middle">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Date</th><th>Patient / Deal</th><th>Method</th>
+                                                <th class="text-end">Amount</th><th>Receipt</th><th>State</th><th class="no-sort">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="100000" data-month="2026-09" data-executive="Sabbir Hossain">
+                                                <td class="fs-13">02 Sep 2026</td>
+                                                <td><div class="fw-semibold">Nadia Sultana</div><div class="fs-12 text-muted mono">ELH-D-2026-000092</div></td>
+                                                <td class="fs-13">bKash</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;1,00,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000268</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Nadia Sultana" data-deal="ELH-D-2026-000092" data-exec="Sabbir Hossain" data-method="bKash" data-ref="MR-000268"
+                                                            data-amount="&#2547;1,00,000" data-date="02 Sep 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="400000" data-month="2026-09" data-executive="Nusrat Jahan">
+                                                <td class="fs-13">01 Sep 2026</td>
+                                                <td><div class="fw-semibold">Jamal Uddin</div><div class="fs-12 text-muted mono">ELH-D-2026-000090</div></td>
+                                                <td class="fs-13">Cash</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;4,00,000</td>
+                                                <td class="mono fs-12 text-warning">not issued</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Jamal Uddin" data-deal="ELH-D-2026-000090" data-exec="Nusrat Jahan" data-method="Cash" data-ref="—"
+                                                            data-amount="&#2547;4,00,000" data-date="01 Sep 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="100000" data-month="2026-08" data-executive="Nusrat Jahan">
+                                                <td class="fs-13">28 Aug 2026</td>
+                                                <td><div class="fw-semibold">Sharmin Akter</div><div class="fs-12 text-muted mono">ELH-D-2026-000089</div></td>
+                                                <td class="fs-13">bKash</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;1,00,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000296</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Sharmin Akter" data-deal="ELH-D-2026-000089" data-exec="Nusrat Jahan" data-method="bKash" data-ref="MR-000296"
+                                                            data-amount="&#2547;1,00,000" data-date="28 Aug 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="200000" data-month="2026-08" data-executive="Nusrat Jahan">
+                                                <td class="fs-13">24 Aug 2026</td>
+                                                <td><div class="fw-semibold">Sharmin Akter</div><div class="fs-12 text-muted mono">ELH-D-2026-000089</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;2,00,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000290</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Sharmin Akter" data-deal="ELH-D-2026-000089" data-exec="Nusrat Jahan" data-method="Bank Transfer" data-ref="MR-000290"
+                                                            data-amount="&#2547;2,00,000" data-date="24 Aug 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="200000" data-month="2026-08" data-executive="Sabbir Hossain">
+                                                <td class="fs-13">21 Aug 2026</td>
+                                                <td><div class="fw-semibold">Nadia Sultana</div><div class="fs-12 text-muted mono">ELH-D-2026-000092</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;2,00,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000241</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Nadia Sultana" data-deal="ELH-D-2026-000092" data-exec="Sabbir Hossain" data-method="Bank Transfer" data-ref="MR-000241"
+                                                            data-amount="&#2547;2,00,000" data-date="21 Aug 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="400000" data-month="2026-08" data-executive="Tanvir Ahmed">
+                                                <td class="fs-13">18 Aug 2026</td>
+                                                <td><div class="fw-semibold">Rokeya Begum</div><div class="fs-12 text-muted mono">ELH-D-2026-000088</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;4,00,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000284</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Rokeya Begum" data-deal="ELH-D-2026-000088" data-exec="Tanvir Ahmed" data-method="Bank Transfer" data-ref="MR-000284"
+                                                            data-amount="&#2547;4,00,000" data-date="18 Aug 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="250000" data-month="2026-08" data-executive="Sabbir Hossain">
+                                                <td class="fs-13">12 Aug 2026</td>
+                                                <td><div class="fw-semibold">Sajid Hasan</div><div class="fs-12 text-muted mono">ELH-D-2026-000087</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;2,50,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000276</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Sajid Hasan" data-deal="ELH-D-2026-000087" data-exec="Sabbir Hossain" data-method="Bank Transfer" data-ref="MR-000276"
+                                                            data-amount="&#2547;2,50,000" data-date="12 Aug 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="100000" data-month="2026-08" data-executive="Tanvir Ahmed">
+                                                <td class="fs-13">12 Aug 2026</td>
+                                                <td><div class="fw-semibold">Ayesha Rahim</div><div class="fs-12 text-muted mono">ELH-D-2026-000094</div></td>
+                                                <td class="fs-13">Cash</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;1,00,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000231</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Ayesha Rahim" data-deal="ELH-D-2026-000094" data-exec="Tanvir Ahmed" data-method="Cash" data-ref="MR-000231"
+                                                            data-amount="&#2547;1,00,000" data-date="12 Aug 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="100000" data-month="2026-08" data-executive="Sabbir Hossain">
+                                                <td class="fs-13">10 Aug 2026</td>
+                                                <td><div class="fw-semibold">Karim Mia</div><div class="fs-12 text-muted mono">ELH-D-2026-000093</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;1,00,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000214</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Karim Mia" data-deal="ELH-D-2026-000093" data-exec="Sabbir Hossain" data-method="Bank Transfer" data-ref="MR-000214"
+                                                            data-amount="&#2547;1,00,000" data-date="10 Aug 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="400000" data-month="2026-08" data-executive="Nusrat Jahan">
+                                                <td class="fs-13">05 Aug 2026</td>
+                                                <td><div class="fw-semibold">Halima Khatun</div><div class="fs-12 text-muted mono">ELH-D-2026-000086</div></td>
+                                                <td class="fs-13">Cash</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;4,00,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000262</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Halima Khatun" data-deal="ELH-D-2026-000086" data-exec="Nusrat Jahan" data-method="Cash" data-ref="MR-000262"
+                                                            data-amount="&#2547;4,00,000" data-date="05 Aug 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="250000" data-month="2026-07" data-executive="Tanvir Ahmed">
+                                                <td class="fs-13">28 Jul 2026</td>
+                                                <td><div class="fw-semibold">Tanjila Akter</div><div class="fs-12 text-muted mono">ELH-D-2026-000085</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;2,50,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000244</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Tanjila Akter" data-deal="ELH-D-2026-000085" data-exec="Tanvir Ahmed" data-method="Bank Transfer" data-ref="MR-000244"
+                                                            data-amount="&#2547;2,50,000" data-date="28 Jul 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="300000" data-month="2026-07" data-executive="Sabbir Hossain">
+                                                <td class="fs-13">20 Jul 2026</td>
+                                                <td><div class="fw-semibold">Nurul Islam</div><div class="fs-12 text-muted mono">ELH-D-2026-000084</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;3,00,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000221</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Nurul Islam" data-deal="ELH-D-2026-000084" data-exec="Sabbir Hossain" data-method="Bank Transfer" data-ref="MR-000221"
+                                                            data-amount="&#2547;3,00,000" data-date="20 Jul 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="150000" data-month="2026-07" data-executive="Sabbir Hossain">
+                                                <td class="fs-13">18 Jul 2026</td>
+                                                <td><div class="fw-semibold">Karim Mia</div><div class="fs-12 text-muted mono">ELH-D-2026-000093</div></td>
+                                                <td class="fs-13">Cash</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;1,50,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000180</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Karim Mia" data-deal="ELH-D-2026-000093" data-exec="Sabbir Hossain" data-method="Cash" data-ref="MR-000180"
+                                                            data-amount="&#2547;1,50,000" data-date="18 Jul 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="250000" data-month="2026-06" data-executive="Tanvir Ahmed">
+                                                <td class="fs-13">20 Jun 2026</td>
+                                                <td><div class="fw-semibold">Mim Akter</div><div class="fs-12 text-muted mono">ELH-D-2026-000091</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;2,50,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000150</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Mim Akter" data-deal="ELH-D-2026-000091" data-exec="Tanvir Ahmed" data-method="Bank Transfer" data-ref="MR-000150"
+                                                            data-amount="&#2547;2,50,000" data-date="20 Jun 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="150000" data-month="2025-12" data-executive="Nusrat Jahan">
+                                                <td class="fs-13">03 Dec 2025</td>
+                                                <td><div class="fw-semibold">Sharmin Akter</div><div class="fs-12 text-muted mono">ELH-D-2025-000042</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;1,50,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000197</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Sharmin Akter" data-deal="ELH-D-2025-000042" data-exec="Nusrat Jahan" data-method="Bank Transfer" data-ref="MR-000197"
+                                                            data-amount="&#2547;1,50,000" data-date="03 Dec 2025" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="250000" data-month="2025-11" data-executive="Nusrat Jahan">
+                                                <td class="fs-13">11 Nov 2025</td>
+                                                <td><div class="fw-semibold">Sharmin Akter</div><div class="fs-12 text-muted mono">ELH-D-2025-000042</div></td>
+                                                <td class="fs-13">Cash</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;2,50,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000188</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Sharmin Akter" data-deal="ELH-D-2025-000042" data-exec="Nusrat Jahan" data-method="Cash" data-ref="MR-000188"
+                                                            data-amount="&#2547;2,50,000" data-date="11 Nov 2025" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="300000" data-month="2025-02" data-executive="Nusrat Jahan">
+                                                <td class="fs-13">04 Feb 2025</td>
+                                                <td><div class="fw-semibold">Ayesha Rahim</div><div class="fs-12 text-muted mono">ELH-D-2025-000061</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;3,00,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000041</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Ayesha Rahim" data-deal="ELH-D-2025-000061" data-exec="Nusrat Jahan" data-method="Bank Transfer" data-ref="MR-000041"
+                                                            data-amount="&#2547;3,00,000" data-date="04 Feb 2025" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ DETAILS ============ -->
+
+                <!-- ============ REJECT ============ -->
+                                <!-- ===== Payment review popups — Reject (with reason) and Payment Details,
+                     shared by Payments and the Dashboard's pending queue. Wired in
+                     crm-accounts.js. Injected at @payment-review. ===== -->
+                <div class="modal fade" id="rejectModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div><h5 class="modal-title mb-0">Reject Payment</h5><span class="fs-12 text-muted" id="rj-label"></span></div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <label class="form-label">Reason <span class="text-danger">*</span></label>
+                                <select class="form-select mb-3" id="rj-reason" data-crm-list="paymentRejectReasons">
+                                    <option value="">Select a reason</option>
+                                    <option>No such transaction found</option>
+                                    <option>Amount does not match</option>
+                                    <option>Proof unreadable</option>
+                                    <option>Duplicate submission</option>
+                                    <option>Other</option>
+                                </select>
+                                <label class="form-label">Note</label>
+                                <textarea class="form-control" id="rj-note" rows="3"></textarea>
+                                <div class="form-text fs-11 mt-2">Rejecting changes no balance. The patient's due stays exactly as it was.</div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-danger" id="rj-save">Reject</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="paymentDetailsModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title mb-0">Payment Details</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-sm mb-0">
+                                    <tbody class="fs-13">
+                                        <tr><td class="text-muted" style="width:40%">Patient</td><td id="pd-person"></td></tr>
+                                        <tr><td class="text-muted">Deal</td><td class="mono" id="pd-deal"></td></tr>
+                                        <tr><td class="text-muted">Collected by</td><td id="pd-exec"></td></tr>
+                                        <tr><td class="text-muted">Method</td><td id="pd-method"></td></tr>
+                                        <tr><td class="text-muted">Reference</td><td class="mono" id="pd-ref"></td></tr>
+                                        <tr><td class="text-muted">Amount</td><td class="cur fw-bold" id="pd-amount"></td></tr>
+                                        <tr><td class="text-muted">Date</td><td id="pd-date"></td></tr>
+                                        <tr><td class="text-muted">Branch</td><td id="pd-branch"></td></tr>
+                                        <tr><td class="text-muted">Proof</td><td id="pd-proof"></td></tr>
+                                        <tr><td class="text-muted">Notes</td><td id="pd-notes"></td></tr>
+                                        <tr><td class="text-muted">State</td><td id="pd-state"></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer"><button class="btn btn-light" data-bs-dismiss="modal">Close</button></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- container-fluid -->
+        </div><!-- page-content -->
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        &copy; <script>document.write(new Date().getFullYear())</script> E Life Healthcare. All rights reserved.
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end d-none d-sm-block">
+                            CRM System &middot; v1.0
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- END Footer -->
+        <!-- Begin scroll top -->
+          <div class="progress-wrap" id="progress-scroll">
+            <svg class="progress-circle" width="100%" height="100%" viewBox="-1 -1 102 102">
+              <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+            </svg>
+          </div>
+        <!-- END scroll top -->
+    </div><!-- end main content-->
+
+</div><!-- END layout-wrapper -->
+
+<!-- Bootstrap bundle js -->
+<script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Layouts main js -->
+<script src="assets/libs/jquery/jquery.min.js"></script>
+
+<!-- Metimenu js -->
+<script src="assets/libs/metismenu/metisMenu.min.js"></script>
+
+<!-- simplebar js -->
+<script src="assets/libs/simplebar/simplebar.min.js"></script>
+
+<script src="assets/libs/eva-icons/eva.min.js"></script>
+
+<!-- Scroll Top init -->
+<script src="assets/js/scroll-top.init.js"></script>
+
+<!-- datatables js -->
+<script src="assets/libs/datatables.net/js/dataTables.min.js"></script>
+<script src="assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+<script src="assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+
+<!-- select2 -->
+<script src="assets/libs/select2/js/select2.min.js"></script>
+
+<!-- App js -->
+<script src="assets/js/app.js"></script>
+
+<!-- sweetalert2 -->
+<script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
+
+<!-- CRM demo js -->
+<script src="assets/js/crm-demo.js"></script>
+
+<!-- CRM accounts js -->
+<script src="assets/js/crm-accounts.js"></script>
+
+<!-- Sidebar deep links (page.html?x=y): highlight the entry matching the query -->
+<script>
+window.addEventListener('load', function () {
+  var page = location.pathname.split('/').pop(), q = location.search;
+  var links = [].slice.call(document.querySelectorAll('#sidebar-menu a[href]:not(.has-arrow)'));
+  var exact = links.filter(function (a) {
+    var h = a.getAttribute('href') || '', i = h.indexOf('?');
+    return i > -1 && h.slice(0, i) === page && h.slice(i) === q;
+  });
+  if (!exact.length) return;
+  links.forEach(function (a) { a.classList.remove('active'); a.parentNode.classList.remove('mm-active'); });
+  exact.forEach(function (a) { a.classList.add('active'); a.parentNode.classList.add('mm-active'); });
+});
+</script>
+</body>
+</html>

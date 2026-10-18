@@ -1,0 +1,49 @@
+                <!-- ===== Apply Visa — the step after a lead has applied for a package
+                     (Applied Leads, payment still open) or has paid in full
+                     (Completed Leads). Saving hands the patient over to Visa &
+                     Travel, where the visa result and travel are tracked. ===== -->
+                <div class="modal fade" id="applyVisaModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div>
+                                    <h5 class="modal-title mb-0">Apply for Visa</h5>
+                                    <span class="fs-12 text-muted av-lead-label"></span>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Destination Country <span class="text-danger">*</span></label>
+                                        <select class="form-select" id="av-country" data-crm-list="visaCountries">
+                                            <option>India</option><option>Thailand</option><option>Singapore</option><option>Malaysia</option><option>Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Visa Type <span class="text-danger">*</span></label>
+                                        <select class="form-select" id="av-type" data-crm-list="visaTypes">
+                                            <option>Medical Visa</option><option>Medical Attendant Visa</option><option>Tourist Visa</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Application Date <span class="text-danger">*</span></label>
+                                        <input type="date" class="form-control" id="av-date">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Application Reference <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                        <input type="text" class="form-control" id="av-ref" placeholder="Embassy / portal reference no.">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Note <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                        <textarea class="form-control" id="av-notes" rows="2" placeholder="Passport status, appointment date, anything relevant"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-primary" id="av-save"><i class="mdi mdi-passport me-1"></i>Submit Visa Application</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>

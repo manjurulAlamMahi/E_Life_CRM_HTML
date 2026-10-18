@@ -1,0 +1,359 @@
+                <!-- ============ TILES ============ -->
+                <div class="row">
+                    <div class="col-xl-3 col-md-6"><div class="card stat-tile"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-warning-subtle text-warning"><i class="mdi mdi-clock-alert-outline"></i></span>
+                        <div><div class="stat-value ">3</div><div class="stat-label text-muted">Awaiting Verification</div></div>
+                    </div></div></div>
+                    <div class="col-xl-3 col-md-6"><div class="card stat-tile"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-success-subtle text-success"><i class="mdi mdi-cash-check"></i></span>
+                        <div><div class="stat-value cur text-success">&#2547;5,00,000</div><div class="stat-label text-muted">Verified This Month</div></div>
+                    </div></div></div>
+                    <div class="col-xl-3 col-md-6"><div class="card stat-tile"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-primary-subtle text-primary"><i class="mdi mdi-cash-multiple"></i></span>
+                        <div><div class="stat-value cur ">&#2547;39,00,000</div><div class="stat-label text-muted">Verified All Time</div></div>
+                    </div></div></div>
+                    <div class="col-xl-3 col-md-6"><div class="card stat-tile"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-info-subtle text-info"><i class="mdi mdi-receipt"></i></span>
+                        <div><div class="stat-value ">17</div><div class="stat-label text-muted">Verified Payments</div></div>
+                    </div></div></div>
+                </div>
+
+                <!-- ============ PENDING VERIFICATION ============ -->
+                <!-- A patient says they paid; nothing counts as money until Accounts
+                     verifies it. Verifying issues the receipt and reduces that
+                     currency's balance; rejecting records a reason and changes nothing. -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card border-warning-subtle">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0"><i class="mdi mdi-clock-alert-outline text-warning me-1"></i>Pending Verification</h5>
+                                <p class="fs-12 text-muted mb-0">These amounts are claims. They are counted nowhere &mdash; not in the tiles above, not against any due &mdash; until they are verified.</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table align-middle mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Submitted</th><th>Patient / Deal</th><th>Method / Ref</th>
+                                                <th class="text-end">Amount</th><th>Proof</th><th>State</th><th class="no-sort">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr data-pending="true" data-cur="bdt" data-amt="50000" data-executive="Tanvir Ahmed">
+                                                <td class="fs-13">03 Sep 2026</td>
+                                                <td><div class="fw-semibold">Ayesha Rahim</div><div class="fs-12 text-muted mono">ELH-D-2026-000094</div></td>
+                                                <td class="fs-13">bKash<div class="fs-11 text-muted mono">BK7XK92211</div></td>
+                                                <td class="text-end cur fs-13 fw-bold">&#2547;50,000</td>
+                                                <td><a href="#!" class="fs-12"><i class="mdi mdi-paperclip me-1"></i>bkash-screenshot.jpg</a></td>
+                                                <td><span class="badge bg-warning-subtle text-warning">Pending</span></td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-success crm-pay-verify" data-person="Ayesha Rahim" data-amount="&#2547;50,000"><i class="mdi mdi-check me-1"></i>Verify</button>
+                                                        <button class="btn btn-sm btn-icon btn-light crm-pay-reject" data-bs-toggle="modal" data-bs-target="#rejectModal" data-person="Ayesha Rahim" title="Reject"><i class="mdi mdi-close"></i></button>
+                                                        <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                                data-person="Ayesha Rahim" data-deal="ELH-D-2026-000094" data-exec="Tanvir Ahmed" data-method="bKash" data-ref="BK7XK92211"
+                                                                data-amount="&#2547;50,000" data-date="03 Sep 2026" data-proof="bkash-screenshot.jpg" data-state="Pending" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-pending="true" data-cur="bdt" data-amt="75000" data-executive="Sabbir Hossain">
+                                                <td class="fs-13">02 Sep 2026</td>
+                                                <td><div class="fw-semibold">Karim Mia</div><div class="fs-12 text-muted mono">ELH-D-2026-000093</div></td>
+                                                <td class="fs-13">Nagad<div class="fs-11 text-muted mono">NG5521P</div></td>
+                                                <td class="text-end cur fs-13 fw-bold">&#2547;75,000</td>
+                                                <td><a href="#!" class="fs-12"><i class="mdi mdi-paperclip me-1"></i>nagad-sms.png</a></td>
+                                                <td><span class="badge bg-warning-subtle text-warning">Pending</span></td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-success crm-pay-verify" data-person="Karim Mia" data-amount="&#2547;75,000"><i class="mdi mdi-check me-1"></i>Verify</button>
+                                                        <button class="btn btn-sm btn-icon btn-light crm-pay-reject" data-bs-toggle="modal" data-bs-target="#rejectModal" data-person="Karim Mia" title="Reject"><i class="mdi mdi-close"></i></button>
+                                                        <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                                data-person="Karim Mia" data-deal="ELH-D-2026-000093" data-exec="Sabbir Hossain" data-method="Nagad" data-ref="NG5521P"
+                                                                data-amount="&#2547;75,000" data-date="02 Sep 2026" data-proof="nagad-sms.png" data-state="Pending" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-pending="true" data-cur="bdt" data-amt="25000" data-executive="Tanvir Ahmed">
+                                                <td class="fs-13">01 Sep 2026</td>
+                                                <td><div class="fw-semibold">Ayesha Rahim</div><div class="fs-12 text-muted mono">ELH-D-2026-000094</div></td>
+                                                <td class="fs-13">Cash<div class="fs-11 text-muted mono">—</div></td>
+                                                <td class="text-end cur fs-13 fw-bold">&#2547;25,000</td>
+                                                <td><a href="#!" class="fs-12"><i class="mdi mdi-paperclip me-1"></i>counter-slip.jpg</a></td>
+                                                <td><span class="badge bg-warning-subtle text-warning">Pending</span></td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-success crm-pay-verify" data-person="Ayesha Rahim" data-amount="&#2547;25,000"><i class="mdi mdi-check me-1"></i>Verify</button>
+                                                        <button class="btn btn-sm btn-icon btn-light crm-pay-reject" data-bs-toggle="modal" data-bs-target="#rejectModal" data-person="Ayesha Rahim" title="Reject"><i class="mdi mdi-close"></i></button>
+                                                        <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                                data-person="Ayesha Rahim" data-deal="ELH-D-2026-000094" data-exec="Tanvir Ahmed" data-method="Cash" data-ref="—"
+                                                                data-amount="&#2547;25,000" data-date="01 Sep 2026" data-proof="counter-slip.jpg" data-state="Pending" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ PAYMENT HISTORY ============ -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-2">
+                                <div>
+                                    <h5 class="card-title mb-0">Payment History</h5>
+                                    <p class="fs-12 text-muted mb-0">Every verified payment, newest first. These sum to the lifetime collected figure on Deals.</p>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-2 align-items-end mb-3 crm-filter">
+                                    <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Method</label><select class="form-select form-select-sm" data-filter="col:Method" data-crm-list="paymentMethods"><option value="">All methods</option><option>Cash</option><option>bKash</option><option>Nagad</option><option>Bank Transfer</option></select></div>
+                                    <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">From</label><input type="date" class="form-control form-control-sm" data-filter="from:Date"></div>
+                                    <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">To</label><input type="date" class="form-control form-control-sm" data-filter="to:Date"></div>
+                                    <div class="col-auto"><button type="button" class="btn btn-light btn-sm" data-filter-reset title="Reset filters"><i class="mdi mdi-refresh"></i></button></div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table crm-table align-middle">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Date</th><th>Patient / Deal</th><th>Method</th>
+                                                <th class="text-end">Amount</th><th>Receipt</th><th>State</th><th class="no-sort">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="100000" data-month="2026-09" data-executive="Sabbir Hossain">
+                                                <td class="fs-13">02 Sep 2026</td>
+                                                <td><div class="fw-semibold">Nadia Sultana</div><div class="fs-12 text-muted mono">ELH-D-2026-000092</div></td>
+                                                <td class="fs-13">bKash</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;1,00,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000268</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Nadia Sultana" data-deal="ELH-D-2026-000092" data-exec="Sabbir Hossain" data-method="bKash" data-ref="MR-000268"
+                                                            data-amount="&#2547;1,00,000" data-date="02 Sep 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="400000" data-month="2026-09" data-executive="Nusrat Jahan">
+                                                <td class="fs-13">01 Sep 2026</td>
+                                                <td><div class="fw-semibold">Jamal Uddin</div><div class="fs-12 text-muted mono">ELH-D-2026-000090</div></td>
+                                                <td class="fs-13">Cash</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;4,00,000</td>
+                                                <td class="mono fs-12 text-warning">not issued</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Jamal Uddin" data-deal="ELH-D-2026-000090" data-exec="Nusrat Jahan" data-method="Cash" data-ref="—"
+                                                            data-amount="&#2547;4,00,000" data-date="01 Sep 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="100000" data-month="2026-08" data-executive="Nusrat Jahan">
+                                                <td class="fs-13">28 Aug 2026</td>
+                                                <td><div class="fw-semibold">Sharmin Akter</div><div class="fs-12 text-muted mono">ELH-D-2026-000089</div></td>
+                                                <td class="fs-13">bKash</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;1,00,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000296</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Sharmin Akter" data-deal="ELH-D-2026-000089" data-exec="Nusrat Jahan" data-method="bKash" data-ref="MR-000296"
+                                                            data-amount="&#2547;1,00,000" data-date="28 Aug 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="200000" data-month="2026-08" data-executive="Nusrat Jahan">
+                                                <td class="fs-13">24 Aug 2026</td>
+                                                <td><div class="fw-semibold">Sharmin Akter</div><div class="fs-12 text-muted mono">ELH-D-2026-000089</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;2,00,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000290</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Sharmin Akter" data-deal="ELH-D-2026-000089" data-exec="Nusrat Jahan" data-method="Bank Transfer" data-ref="MR-000290"
+                                                            data-amount="&#2547;2,00,000" data-date="24 Aug 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="200000" data-month="2026-08" data-executive="Sabbir Hossain">
+                                                <td class="fs-13">21 Aug 2026</td>
+                                                <td><div class="fw-semibold">Nadia Sultana</div><div class="fs-12 text-muted mono">ELH-D-2026-000092</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;2,00,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000241</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Nadia Sultana" data-deal="ELH-D-2026-000092" data-exec="Sabbir Hossain" data-method="Bank Transfer" data-ref="MR-000241"
+                                                            data-amount="&#2547;2,00,000" data-date="21 Aug 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="400000" data-month="2026-08" data-executive="Tanvir Ahmed">
+                                                <td class="fs-13">18 Aug 2026</td>
+                                                <td><div class="fw-semibold">Rokeya Begum</div><div class="fs-12 text-muted mono">ELH-D-2026-000088</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;4,00,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000284</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Rokeya Begum" data-deal="ELH-D-2026-000088" data-exec="Tanvir Ahmed" data-method="Bank Transfer" data-ref="MR-000284"
+                                                            data-amount="&#2547;4,00,000" data-date="18 Aug 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="250000" data-month="2026-08" data-executive="Sabbir Hossain">
+                                                <td class="fs-13">12 Aug 2026</td>
+                                                <td><div class="fw-semibold">Sajid Hasan</div><div class="fs-12 text-muted mono">ELH-D-2026-000087</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;2,50,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000276</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Sajid Hasan" data-deal="ELH-D-2026-000087" data-exec="Sabbir Hossain" data-method="Bank Transfer" data-ref="MR-000276"
+                                                            data-amount="&#2547;2,50,000" data-date="12 Aug 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="100000" data-month="2026-08" data-executive="Tanvir Ahmed">
+                                                <td class="fs-13">12 Aug 2026</td>
+                                                <td><div class="fw-semibold">Ayesha Rahim</div><div class="fs-12 text-muted mono">ELH-D-2026-000094</div></td>
+                                                <td class="fs-13">Cash</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;1,00,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000231</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Ayesha Rahim" data-deal="ELH-D-2026-000094" data-exec="Tanvir Ahmed" data-method="Cash" data-ref="MR-000231"
+                                                            data-amount="&#2547;1,00,000" data-date="12 Aug 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="100000" data-month="2026-08" data-executive="Sabbir Hossain">
+                                                <td class="fs-13">10 Aug 2026</td>
+                                                <td><div class="fw-semibold">Karim Mia</div><div class="fs-12 text-muted mono">ELH-D-2026-000093</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;1,00,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000214</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Karim Mia" data-deal="ELH-D-2026-000093" data-exec="Sabbir Hossain" data-method="Bank Transfer" data-ref="MR-000214"
+                                                            data-amount="&#2547;1,00,000" data-date="10 Aug 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="400000" data-month="2026-08" data-executive="Nusrat Jahan">
+                                                <td class="fs-13">05 Aug 2026</td>
+                                                <td><div class="fw-semibold">Halima Khatun</div><div class="fs-12 text-muted mono">ELH-D-2026-000086</div></td>
+                                                <td class="fs-13">Cash</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;4,00,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000262</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Halima Khatun" data-deal="ELH-D-2026-000086" data-exec="Nusrat Jahan" data-method="Cash" data-ref="MR-000262"
+                                                            data-amount="&#2547;4,00,000" data-date="05 Aug 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="250000" data-month="2026-07" data-executive="Tanvir Ahmed">
+                                                <td class="fs-13">28 Jul 2026</td>
+                                                <td><div class="fw-semibold">Tanjila Akter</div><div class="fs-12 text-muted mono">ELH-D-2026-000085</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;2,50,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000244</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Tanjila Akter" data-deal="ELH-D-2026-000085" data-exec="Tanvir Ahmed" data-method="Bank Transfer" data-ref="MR-000244"
+                                                            data-amount="&#2547;2,50,000" data-date="28 Jul 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="300000" data-month="2026-07" data-executive="Sabbir Hossain">
+                                                <td class="fs-13">20 Jul 2026</td>
+                                                <td><div class="fw-semibold">Nurul Islam</div><div class="fs-12 text-muted mono">ELH-D-2026-000084</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;3,00,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000221</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Nurul Islam" data-deal="ELH-D-2026-000084" data-exec="Sabbir Hossain" data-method="Bank Transfer" data-ref="MR-000221"
+                                                            data-amount="&#2547;3,00,000" data-date="20 Jul 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="150000" data-month="2026-07" data-executive="Sabbir Hossain">
+                                                <td class="fs-13">18 Jul 2026</td>
+                                                <td><div class="fw-semibold">Karim Mia</div><div class="fs-12 text-muted mono">ELH-D-2026-000093</div></td>
+                                                <td class="fs-13">Cash</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;1,50,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000180</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Karim Mia" data-deal="ELH-D-2026-000093" data-exec="Sabbir Hossain" data-method="Cash" data-ref="MR-000180"
+                                                            data-amount="&#2547;1,50,000" data-date="18 Jul 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="250000" data-month="2026-06" data-executive="Tanvir Ahmed">
+                                                <td class="fs-13">20 Jun 2026</td>
+                                                <td><div class="fw-semibold">Mim Akter</div><div class="fs-12 text-muted mono">ELH-D-2026-000091</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;2,50,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000150</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Mim Akter" data-deal="ELH-D-2026-000091" data-exec="Tanvir Ahmed" data-method="Bank Transfer" data-ref="MR-000150"
+                                                            data-amount="&#2547;2,50,000" data-date="20 Jun 2026" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="150000" data-month="2025-12" data-executive="Nusrat Jahan">
+                                                <td class="fs-13">03 Dec 2025</td>
+                                                <td><div class="fw-semibold">Sharmin Akter</div><div class="fs-12 text-muted mono">ELH-D-2025-000042</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;1,50,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000197</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Sharmin Akter" data-deal="ELH-D-2025-000042" data-exec="Nusrat Jahan" data-method="Bank Transfer" data-ref="MR-000197"
+                                                            data-amount="&#2547;1,50,000" data-date="03 Dec 2025" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="250000" data-month="2025-11" data-executive="Nusrat Jahan">
+                                                <td class="fs-13">11 Nov 2025</td>
+                                                <td><div class="fw-semibold">Sharmin Akter</div><div class="fs-12 text-muted mono">ELH-D-2025-000042</div></td>
+                                                <td class="fs-13">Cash</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;2,50,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000188</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Sharmin Akter" data-deal="ELH-D-2025-000042" data-exec="Nusrat Jahan" data-method="Cash" data-ref="MR-000188"
+                                                            data-amount="&#2547;2,50,000" data-date="11 Nov 2025" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-verified="true" data-cur="bdt" data-amt="300000" data-month="2025-02" data-executive="Nusrat Jahan">
+                                                <td class="fs-13">04 Feb 2025</td>
+                                                <td><div class="fw-semibold">Ayesha Rahim</div><div class="fs-12 text-muted mono">ELH-D-2025-000061</div></td>
+                                                <td class="fs-13">Bank Transfer</td>
+                                                <td class="text-end cur fs-13 text-success fw-bold">&#2547;3,00,000</td>
+                                                <td class="mono fs-12 text-muted">MR-000041</td>
+                                                <td><span class="badge bg-success-subtle text-success">Verified</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-icon btn-light crm-pay-details" data-bs-toggle="modal" data-bs-target="#paymentDetailsModal"
+                                                            data-person="Ayesha Rahim" data-deal="ELH-D-2025-000061" data-exec="Nusrat Jahan" data-method="Bank Transfer" data-ref="MR-000041"
+                                                            data-amount="&#2547;3,00,000" data-date="04 Feb 2025" data-proof="—" data-state="Verified" title="Details"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ DETAILS ============ -->
+
+                <!-- ============ REJECT ============ -->
+                <!--@payment-review-->

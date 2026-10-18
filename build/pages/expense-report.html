@@ -1,0 +1,101 @@
+                <!-- ===== Expense Module › Expense Report — the one place expenses are
+                     analysed. Pick any date range (e.g. 15 Aug to 15 Sep); everything on
+                     the page follows it: the totals, the week-by-week or month-by-month
+                     table, the category breakdown and what each source was paid. Entries
+                     are counted by their expense date, not the day they were typed in. ===== -->
+                <div class="card">
+                    <div class="card-body py-3">
+                        <div class="row g-2 align-items-end">
+                            <div class="col-6 col-md-3">
+                                <label class="form-label fs-12 mb-1" for="rp-preset">Quick range</label>
+                                <select class="form-select form-select-sm" id="rp-preset">
+                                    <option value="week">This week</option>
+                                    <option value="lastweek">Last week</option>
+                                    <option value="month" selected>This month</option>
+                                    <option value="lastmonth">Last month</option>
+                                    <option value="3m">Last 3 months</option>
+                                    <option value="6m">Last 6 months</option>
+                                    <option value="year">This year</option>
+                                    <option value="all">All time</option>
+                                    <option value="custom">Custom</option>
+                                </select>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <label class="form-label fs-12 mb-1" for="rp-from">From</label>
+                                <input type="date" class="form-control form-control-sm" id="rp-from">
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <label class="form-label fs-12 mb-1" for="rp-to">To</label>
+                                <input type="date" class="form-control form-control-sm" id="rp-to">
+                            </div>
+                            <div class="col-6 col-md-3 ms-md-auto text-md-end">
+                                <label class="form-label fs-12 mb-1 d-block">Group by</label>
+                                <div class="btn-group btn-group-sm" role="group" id="rp-view" aria-label="Weekly or monthly">
+                                    <button type="button" class="btn btn-outline-primary" data-view="week">Weekly</button>
+                                    <button type="button" class="btn btn-outline-primary active" data-view="month">Monthly</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fs-12 text-muted mt-2" id="rp-range-label"></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6 col-md-4 col-xl-2"><div class="card stat-tile"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-danger-subtle text-danger"><i class="mdi mdi-cash-minus"></i></span>
+                        <div><div class="stat-value cur fs-16" id="rp-total">&#2547;0</div><div class="stat-label text-muted">Total Expense</div></div>
+                    </div></div></div>
+                    <div class="col-6 col-md-4 col-xl-2"><div class="card stat-tile"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-primary-subtle text-primary"><i class="mdi mdi-calendar-sync"></i></span>
+                        <div><div class="stat-value cur fs-16" id="rp-fixed">&#2547;0</div><div class="stat-label text-muted">Fixed</div></div>
+                    </div></div></div>
+                    <div class="col-6 col-md-4 col-xl-2"><div class="card stat-tile"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-secondary-subtle text-secondary"><i class="mdi mdi-receipt"></i></span>
+                        <div><div class="stat-value cur fs-16" id="rp-other">&#2547;0</div><div class="stat-label text-muted">Other</div></div>
+                    </div></div></div>
+                    <div class="col-6 col-md-4 col-xl-2"><div class="card stat-tile"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-primary-subtle text-primary"><i class="mdi mdi-airplane"></i></span>
+                        <div><div class="stat-value cur fs-16" id="rp-ticket">&#2547;0</div><div class="stat-label text-muted">Ticket</div></div>
+                    </div></div></div>
+                    <div class="col-6 col-md-4 col-xl-2"><div class="card stat-tile"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-info-subtle text-info"><i class="mdi mdi-passport"></i></span>
+                        <div><div class="stat-value cur fs-16" id="rp-visa">&#2547;0</div><div class="stat-label text-muted">Visa</div></div>
+                    </div></div></div>
+                    <div class="col-6 col-md-4 col-xl-2"><div class="card stat-tile"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-warning-subtle text-warning"><i class="mdi mdi-share-variant-outline"></i></span>
+                        <div><div class="stat-value cur fs-16" id="rp-source">&#2547;0</div><div class="stat-label text-muted">Paid to Sources</div></div>
+                    </div></div></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><h5 class="card-title mb-0" id="rp-title">Expense by Month</h5></div>
+                    <div class="card-body" id="rp-table"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Source Expense</h5>
+                        <p class="text-muted fs-12 mb-0 mt-1">Leads each source brought and how many applied (as on Source List); Total Paid follows the date filter, Paid Lifetime is everything ever paid.</p>
+                    </div>
+                    <div class="card-body" id="rp-sources"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><h5 class="card-title mb-0">Patient Expense</h5></div>
+                    <div class="card-body" id="rp-patients"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="card">
+                            <div class="card-header"><h5 class="card-title mb-0">Fixed Expense</h5></div>
+                            <div class="card-body" id="rp-fixed-list"></div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card">
+                            <div class="card-header"><h5 class="card-title mb-0">Other Expense</h5></div>
+                            <div class="card-body" id="rp-other-list"></div>
+                        </div>
+                    </div>
+                </div>

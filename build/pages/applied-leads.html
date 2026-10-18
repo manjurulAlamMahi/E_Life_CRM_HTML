@@ -1,0 +1,366 @@
+                <!-- ============ TILES ============ -->
+                <div class="row">
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card stat-tile">
+                            <div class="card-body d-flex align-items-center gap-3">
+                                <span class="stat-icon bg-primary-subtle text-primary"><i class="mdi mdi-file-document-edit-outline"></i></span>
+                                <div>
+                                    <div class="stat-value">5</div>
+                                    <div class="stat-label text-muted">Total Applied</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card stat-tile">
+                            <div class="card-body d-flex align-items-center gap-3">
+                                <span class="stat-icon bg-info-subtle text-info"><i class="mdi mdi-handshake-outline"></i></span>
+                                <div>
+                                    <div class="stat-value cur">&#2547;16,00,000</div>
+                                    <div class="stat-label text-muted">Agreed Value</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card stat-tile">
+                            <div class="card-body d-flex align-items-center gap-3">
+                                <span class="stat-icon bg-success-subtle text-success"><i class="mdi mdi-cash-check"></i></span>
+                                <div>
+                                    <div class="stat-value cur text-success">&#2547;13,00,000</div>
+                                    <div class="stat-label text-muted">Total Received</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card stat-tile">
+                            <div class="card-body d-flex align-items-center gap-3">
+                                <span class="stat-icon bg-danger-subtle text-danger"><i class="mdi mdi-alert-circle-outline"></i></span>
+                                <div>
+                                    <div class="stat-value cur text-danger">&#2547;3,00,000</div>
+                                    <div class="stat-label text-muted">Total Outstanding</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ APPLIED LEADS TABLE ============ -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Applied Leads</h5>
+                                <p class="fs-12 text-muted mb-0">Leads that have agreed a package. All payments are collected in taka. A lead is <span class="fw-semibold">Completed</span> once nothing is left to pay in taka.</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-2 align-items-end mb-3 crm-filter">
+                                    <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Source</label><select class="form-select form-select-sm" data-filter="col:Source"><option value="">All sources</option><option>Noman</option><option>Dr. Ilias Patowary</option><option>Facebook</option><option>Website</option><option>Hospital</option><option>Doctor Referral</option><option>Walk-in</option><option>Campaign</option><option>Other</option></select></div>
+                                    <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Package</label><select class="form-select form-select-sm" data-filter="col:Package"><option value="">All packages</option><option>Full-Funded Package</option><option>Partial-Funded Package</option><option>Paid Package</option></select></div>
+                                    <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Payment</label><select class="form-select form-select-sm" data-filter="col:Status"><option value="">All</option><option value="Completed">Paid in full</option><option value="!Completed">Due remaining</option></select></div>
+                                    <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Executive</label><select class="form-select form-select-sm" data-filter="attr:executive"><option value="">All executives</option><option>Tanvir Ahmed</option><option>Nusrat Jahan</option><option>Sabbir Hossain</option><option>Farhana Akter</option></select></div>
+                                    <div class="col-auto"><button type="button" class="btn btn-light btn-sm" data-filter-reset title="Reset filters"><i class="mdi mdi-refresh"></i></button></div>
+                                </div>
+                                <div class="table-responsive">
+                                    <!-- No .crm-table here: DataTables would treat each collapsed
+                                         ledger <tr> as a data row and sort/paginate it away from its
+                                         parent. The ledger toggle needs the rows to stay adjacent. -->
+                                    <table class="table align-middle">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th class="no-sort"></th>
+                                                <th>Lead ID</th>
+                                                <th>Patient / Guardian</th>
+                                                <th>Phone</th>
+                                                <th>Source</th>
+                                                <th>Package</th>
+                                                <th class="text-end">Agreed</th>
+                                                <th class="text-end">Paid</th>
+                                                <th class="text-end">Due</th>
+                                                <th>Status</th>
+                                                <th class="no-sort">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr data-status="applied" data-lead-id="ELH-L-2026-000412" data-lead-name="Rahim Uddin" data-due-bdt="150000" data-due-usd="0" data-executive="Tanvir Ahmed">
+                                                <td><button class="btn btn-sm btn-icon btn-light crm-ledger-toggle" data-target="ledger-412" title="Payment history"><i class="mdi mdi-chevron-right"></i></button></td>
+                                                <td class="mono fs-12">ELH-L-2026-000412</td>
+                                                <td><div class="fw-semibold">Ayesha Rahim</div><div class="fs-12 text-muted">G: Rahim Uddin</div></td>
+                                                <td class="fs-13">+880 1711-234567</td>
+                                                <td><span class="badge bg-success-subtle text-success">Noman</span></td>
+                                                <td class="fs-13">Partial-Funded Package</td>
+                                                <td class="text-end"><div class="cur fs-13 ">&#2547;2,50,000</div></td>
+                                                <td class="text-end"><div class="cur fs-13 text-success">&#2547;1,00,000</div></td>
+                                                <td class="text-end"><div class="cur fs-13 text-danger fw-bold">&#2547;1,50,000</div></td>
+                                                <td><span class="badge crm-status-badge bg-warning-subtle text-warning">Applied</span></td>
+                                                <td>
+                                                    <div class="d-flex flex-wrap gap-1 mb-1">
+                                                        <button class="btn btn-sm btn-primary crm-add-payment" data-bs-toggle="modal" data-bs-target="#addPaymentModal" data-lead-id="ELH-L-2026-000412" data-lead-name="Rahim Uddin" data-due-bdt="150000" data-due-usd="0" data-accepts-usd="true"><i class="mdi mdi-cash-multiple me-1"></i>Payment Log</button>
+                                                        <button type="button" class="btn btn-sm btn-label-success crm-apply-visa" title="Apply for visa" data-bs-toggle="modal" data-bs-target="#applyVisaModal"><i class="mdi mdi-passport me-1"></i>Apply Visa</button>
+                                                    </div>
+                                                    <div class="d-flex flex-wrap gap-1">
+                                                        <button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-journey-stage="2" data-paid-pct="40" data-lead-id="ELH-L-2026-000412" data-lead-name="Rahim Uddin" data-lead-patient="Ayesha Rahim"><i class="mdi mdi-card-account-details-outline"></i></button>
+                                                        <a href="expense-patient.html?lead=ELH-L-2026-000412" class="btn btn-sm btn-icon btn-light" title="Patient expenses"><i class="mdi mdi-cash-minus"></i></a>
+                                                        <a href="conversations.html?lead=ELH-L-2026-000412" class="btn btn-sm btn-icon btn-light" title="Conversation log"><i class="mdi mdi-comment-text-outline"></i></a>
+                                                        <a href="invoice.html?lead=ELH-L-2026-000412" class="btn btn-sm btn-icon btn-light" title="Invoice"><i class="mdi mdi-file-document-outline"></i></a>
+                                                        <button type="button" class="btn btn-sm btn-icon btn-light" title="Edit" data-bs-toggle="modal" data-bs-target="#editLeadModal"><i class="mdi mdi-pencil-outline"></i></button>
+                                                        <button type="button" class="btn btn-sm btn-icon btn-light" title="Print registration form" data-bs-toggle="modal" data-bs-target="#leadPrintModal"><i class="mdi mdi-printer"></i></button>
+                                                        <button type="button" class="btn btn-sm btn-icon btn-light text-danger crm-row-delete" title="Delete lead"><i class="mdi mdi-trash-can-outline"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="d-none crm-ledger" id="ledger-412">
+                                                <td colspan="11" class="bg-light-subtle">
+                                                    <div class="p-3">
+                                                        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+                                                            <div class="fs-12 text-uppercase text-muted">Payments &mdash; ELH-L-2026-000412</div>
+                                                            <div class="d-flex gap-3 flex-wrap fs-13">
+                                                                <span class="text-muted">Paid <span class="fw-bold text-success cur">&#2547;1,00,000</span></span>
+                                                                <span class="text-muted">Due <span class="fw-bold text-danger cur">&#2547;1,50,000</span></span>
+                                                            </div>
+                                                        </div>
+                                                        <table class="table table-sm mb-0">
+                                                            <thead class="table-light"><tr><th>Date</th><th>Type</th><th>Method</th><th class="text-end">Amount</th><th>Receipt</th></tr></thead>
+                                                            <tbody>
+                                                                <tr><td class="fs-13">12 Aug 2026</td><td class="fs-13">Advance</td><td class="fs-13">Cash</td><td class="text-end cur fs-13">&#2547;1,00,000</td><td class="mono fs-12 text-muted">MR-000231</td></tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr data-status="applied" data-lead-id="ELH-L-2026-000411" data-lead-name="Karim Mia" data-due-bdt="150000" data-due-usd="0" data-executive="Sabbir Hossain">
+                                                <td><button class="btn btn-sm btn-icon btn-light crm-ledger-toggle" data-target="ledger-411" title="Payment history"><i class="mdi mdi-chevron-right"></i></button></td>
+                                                <td class="mono fs-12">ELH-L-2026-000411</td>
+                                                <td><div class="fw-semibold">Karim Mia</div><div class="fs-12 text-muted">G: Karim Mia</div></td>
+                                                <td class="fs-13">+880 1812-445566</td>
+                                                <td><span class="badge bg-secondary-subtle text-secondary">Website</span></td>
+                                                <td class="fs-13">Full-Funded Package</td>
+                                                <td class="text-end"><div class="cur fs-13 ">&#2547;4,00,000</div><div class="fs-11 text-muted">&mdash;</div></td>
+                                                <td class="text-end"><div class="cur fs-13 text-success">&#2547;2,50,000</div></td>
+                                                <td class="text-end"><div class="cur fs-13 text-danger fw-bold">&#2547;1,50,000</div></td>
+                                                <td><span class="badge crm-status-badge bg-warning-subtle text-warning">Applied</span></td>
+                                                <td>
+                                                    <div class="d-flex flex-wrap gap-1 mb-1">
+                                                        <button class="btn btn-sm btn-primary crm-add-payment" data-bs-toggle="modal" data-bs-target="#addPaymentModal" data-lead-id="ELH-L-2026-000411" data-lead-name="Karim Mia" data-due-bdt="150000" data-due-usd="0" data-accepts-usd="false"><i class="mdi mdi-cash-multiple me-1"></i>Payment Log</button>
+                                                        <button type="button" class="btn btn-sm btn-label-success crm-apply-visa" title="Apply for visa" data-bs-toggle="modal" data-bs-target="#applyVisaModal"><i class="mdi mdi-passport me-1"></i>Apply Visa</button>
+                                                    </div>
+                                                    <div class="d-flex flex-wrap gap-1">
+                                                        <button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-journey-stage="2" data-paid-pct="62.5" data-lead-id="ELH-L-2026-000411" data-lead-name="Karim Mia" data-lead-patient="Karim Mia"><i class="mdi mdi-card-account-details-outline"></i></button>
+                                                        <a href="expense-patient.html?lead=ELH-L-2026-000411" class="btn btn-sm btn-icon btn-light" title="Patient expenses"><i class="mdi mdi-cash-minus"></i></a>
+                                                        <a href="conversations.html?lead=ELH-L-2026-000411" class="btn btn-sm btn-icon btn-light" title="Conversation log"><i class="mdi mdi-comment-text-outline"></i></a>
+                                                        <a href="invoice.html?lead=ELH-L-2026-000411" class="btn btn-sm btn-icon btn-light" title="Invoice"><i class="mdi mdi-file-document-outline"></i></a>
+                                                        <button type="button" class="btn btn-sm btn-icon btn-light" title="Edit" data-bs-toggle="modal" data-bs-target="#editLeadModal"><i class="mdi mdi-pencil-outline"></i></button>
+                                                        <button type="button" class="btn btn-sm btn-icon btn-light" title="Print registration form" data-bs-toggle="modal" data-bs-target="#leadPrintModal"><i class="mdi mdi-printer"></i></button>
+                                                        <button type="button" class="btn btn-sm btn-icon btn-light text-danger crm-row-delete" title="Delete lead"><i class="mdi mdi-trash-can-outline"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="d-none crm-ledger" id="ledger-411">
+                                                <td colspan="11" class="bg-light-subtle">
+                                                    <div class="p-3">
+                                                        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+                                                            <div class="fs-12 text-uppercase text-muted">Payments &mdash; ELH-L-2026-000411</div>
+                                                            <div class="d-flex gap-3 flex-wrap fs-13">
+                                                                <span class="text-muted">Paid <span class="fw-bold text-success cur">&#2547;2,50,000</span></span>
+                                                                <span class="text-muted">Due <span class="fw-bold text-danger cur">&#2547;1,50,000</span></span>
+                                                            </div>
+                                                        </div>
+                                                        <table class="table table-sm mb-0">
+                                                            <thead class="table-light"><tr><th>Date</th><th>Type</th><th>Method</th><th class="text-end">Amount</th><th>Receipt</th></tr></thead>
+                                                            <tbody>
+                                                                <tr><td class="fs-13">18 Jul 2026</td><td class="fs-13">Advance</td><td class="fs-13">Cash</td><td class="text-end cur fs-13">&#2547;1,50,000</td><td class="mono fs-12 text-muted">MR-000180</td></tr>
+                                                                <tr><td class="fs-13">10 Aug 2026</td><td class="fs-13">2nd instalment</td><td class="fs-13">Bank Transfer</td><td class="text-end cur fs-13">&#2547;1,00,000</td><td class="mono fs-12 text-muted">MR-000214</td></tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr data-status="applied" data-lead-id="ELH-L-2026-000410" data-lead-name="Sultana Begum" data-due-bdt="0" data-due-usd="0" data-executive="Sabbir Hossain">
+                                                <td><button class="btn btn-sm btn-icon btn-light crm-ledger-toggle" data-target="ledger-410" title="Payment history"><i class="mdi mdi-chevron-right"></i></button></td>
+                                                <td class="mono fs-12">ELH-L-2026-000410</td>
+                                                <td><div class="fw-semibold">Nadia Sultana</div><div class="fs-12 text-muted">G: Sultana Begum</div></td>
+                                                <td class="fs-13">+880 1911-778899</td>
+                                                <td><span class="badge bg-info-subtle text-info">Facebook</span></td>
+                                                <td class="fs-13">Paid Package</td>
+                                                <td class="text-end"><div class="cur fs-13 ">&#2547;3,00,000</div></td>
+                                                <td class="text-end"><div class="cur fs-13 text-success">&#2547;3,00,000</div></td>
+                                                <td class="text-end"><div class="cur fs-13 text-muted">&#2547;0</div></td>
+                                                <td><span class="badge crm-status-badge bg-warning-subtle text-warning">Applied</span><div class="mt-1"><span class="badge bg-success-subtle text-success">Completed</span></div></td>
+                                                <td>
+                                                    <div class="d-flex flex-wrap gap-1 mb-1">
+                                                        <button class="btn btn-sm btn-primary crm-add-payment" data-bs-toggle="modal" data-bs-target="#addPaymentModal" data-lead-id="ELH-L-2026-000410" data-lead-name="Sultana Begum" data-due-bdt="0" data-due-usd="0" data-accepts-usd="true"><i class="mdi mdi-cash-multiple me-1"></i>Payment Log</button>
+                                                        <button type="button" class="btn btn-sm btn-label-success crm-apply-visa" title="Apply for visa" data-bs-toggle="modal" data-bs-target="#applyVisaModal"><i class="mdi mdi-passport me-1"></i>Apply Visa</button>
+                                                    </div>
+                                                    <div class="d-flex flex-wrap gap-1">
+                                                        <button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-journey-stage="2" data-paid-pct="100" data-lead-id="ELH-L-2026-000410" data-lead-name="Sultana Begum" data-lead-patient="Nadia Sultana"><i class="mdi mdi-card-account-details-outline"></i></button>
+                                                        <a href="expense-patient.html?lead=ELH-L-2026-000410" class="btn btn-sm btn-icon btn-light" title="Patient expenses"><i class="mdi mdi-cash-minus"></i></a>
+                                                        <a href="conversations.html?lead=ELH-L-2026-000410" class="btn btn-sm btn-icon btn-light" title="Conversation log"><i class="mdi mdi-comment-text-outline"></i></a>
+                                                        <a href="invoice.html?lead=ELH-L-2026-000410" class="btn btn-sm btn-icon btn-light" title="Invoice"><i class="mdi mdi-file-document-outline"></i></a>
+                                                        <button type="button" class="btn btn-sm btn-icon btn-light" title="Edit" data-bs-toggle="modal" data-bs-target="#editLeadModal"><i class="mdi mdi-pencil-outline"></i></button>
+                                                        <button type="button" class="btn btn-sm btn-icon btn-light" title="Print registration form" data-bs-toggle="modal" data-bs-target="#leadPrintModal"><i class="mdi mdi-printer"></i></button>
+                                                        <button type="button" class="btn btn-sm btn-icon btn-light text-danger crm-row-delete" title="Delete lead"><i class="mdi mdi-trash-can-outline"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="d-none crm-ledger" id="ledger-410">
+                                                <td colspan="11" class="bg-light-subtle">
+                                                    <div class="p-3">
+                                                        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+                                                            <div class="fs-12 text-uppercase text-muted">Payments &mdash; ELH-L-2026-000410</div>
+                                                            <div class="d-flex gap-3 flex-wrap fs-13">
+                                                                <span class="text-muted">Paid <span class="fw-bold text-success cur">&#2547;3,00,000</span></span>
+                                                                <span class="text-muted">Due <span class="fs-11">(taka side settled)</span></span>
+                                                            </div>
+                                                        </div>
+                                                        <table class="table table-sm mb-0">
+                                                            <thead class="table-light"><tr><th>Date</th><th>Type</th><th>Method</th><th class="text-end">Amount</th><th>Receipt</th></tr></thead>
+                                                            <tbody>
+                                                                <tr><td class="fs-13">21 Aug 2026</td><td class="fs-13">Advance</td><td class="fs-13">Bank Transfer</td><td class="text-end cur fs-13">&#2547;2,00,000</td><td class="mono fs-12 text-muted">MR-000241</td></tr>
+                                                                <tr><td class="fs-13">30 Aug 2026</td><td class="fs-13">2nd instalment</td><td class="fs-13">bKash</td><td class="text-end cur fs-13">&#2547;1,00,000</td><td class="mono fs-12 text-muted">MR-000268</td></tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr data-status="applied" data-lead-id="ELH-L-2026-000408" data-lead-name="Jahanara Khatun" data-due-bdt="0" data-due-usd="0" data-executive="Tanvir Ahmed">
+                                                <td><button class="btn btn-sm btn-icon btn-light crm-ledger-toggle" data-target="ledger-408" title="Payment history"><i class="mdi mdi-chevron-right"></i></button></td>
+                                                <td class="mono fs-12">ELH-L-2026-000408</td>
+                                                <td><div class="fw-semibold">Mim Akter</div><div class="fs-12 text-muted">G: Jahanara Khatun</div></td>
+                                                <td class="fs-13">+880 1677-112233</td>
+                                                <td><span class="badge bg-primary-subtle text-primary">Hospital</span></td>
+                                                <td class="fs-13">Partial-Funded Package</td>
+                                                <td class="text-end"><div class="cur fs-13 ">&#2547;2,50,000</div></td>
+                                                <td class="text-end"><div class="cur fs-13 text-success">&#2547;2,50,000</div></td>
+                                                <td class="text-end"><div class="cur fs-13 text-muted">&#2547;0</div></td>
+                                                <td><span class="badge crm-status-badge bg-warning-subtle text-warning">Applied</span><div class="mt-1"><span class="badge bg-success-subtle text-success">Completed</span></div></td>
+                                                <td>
+                                                    <div class="d-flex flex-wrap gap-1 mb-1">
+                                                        <button class="btn btn-sm btn-primary crm-add-payment" data-bs-toggle="modal" data-bs-target="#addPaymentModal" data-lead-id="ELH-L-2026-000408" data-lead-name="Jahanara Khatun" data-due-bdt="0" data-due-usd="0" data-accepts-usd="true"><i class="mdi mdi-cash-multiple me-1"></i>Payment Log</button>
+                                                        <button type="button" class="btn btn-sm btn-label-success crm-apply-visa" title="Apply for visa" data-bs-toggle="modal" data-bs-target="#applyVisaModal"><i class="mdi mdi-passport me-1"></i>Apply Visa</button>
+                                                    </div>
+                                                    <div class="d-flex flex-wrap gap-1">
+                                                        <button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-journey-stage="2" data-paid-pct="100" data-lead-id="ELH-L-2026-000408" data-lead-name="Jahanara Khatun" data-lead-patient="Mim Akter"><i class="mdi mdi-card-account-details-outline"></i></button>
+                                                        <a href="expense-patient.html?lead=ELH-L-2026-000408" class="btn btn-sm btn-icon btn-light" title="Patient expenses"><i class="mdi mdi-cash-minus"></i></a>
+                                                        <a href="conversations.html?lead=ELH-L-2026-000408" class="btn btn-sm btn-icon btn-light" title="Conversation log"><i class="mdi mdi-comment-text-outline"></i></a>
+                                                        <a href="invoice.html?lead=ELH-L-2026-000408" class="btn btn-sm btn-icon btn-light" title="Invoice"><i class="mdi mdi-file-document-outline"></i></a>
+                                                        <button type="button" class="btn btn-sm btn-icon btn-light" title="Edit" data-bs-toggle="modal" data-bs-target="#editLeadModal"><i class="mdi mdi-pencil-outline"></i></button>
+                                                        <button type="button" class="btn btn-sm btn-icon btn-light" title="Print registration form" data-bs-toggle="modal" data-bs-target="#leadPrintModal"><i class="mdi mdi-printer"></i></button>
+                                                        <button type="button" class="btn btn-sm btn-icon btn-light text-danger crm-row-delete" title="Delete lead"><i class="mdi mdi-trash-can-outline"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="d-none crm-ledger" id="ledger-408">
+                                                <td colspan="11" class="bg-light-subtle">
+                                                    <div class="p-3">
+                                                        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+                                                            <div class="fs-12 text-uppercase text-muted">Payments &mdash; ELH-L-2026-000408</div>
+                                                            <span class="fs-13 text-muted">Paid <span class="fw-bold text-success cur">&#2547;2,50,000</span></span>
+                                                        </div>
+                                                        <table class="table table-sm mb-0">
+                                                            <thead class="table-light"><tr><th>Date</th><th>Type</th><th>Method</th><th class="text-end">Amount</th><th>Receipt</th></tr></thead>
+                                                            <tbody>
+                                                                <tr><td class="fs-13">20 Jun 2026</td><td class="fs-13">Advance</td><td class="fs-13">Bank Transfer</td><td class="text-end cur fs-13">&#2547;2,50,000</td><td class="mono fs-12 text-muted">MR-000150</td></tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <div class="alert alert-success d-flex align-items-center gap-2 py-2 fs-13 mt-2 mb-0"><i class="mdi mdi-check-decagram"></i> Both balances are clear. Use the status menu to Confirm this lead.</div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr data-status="applied" data-lead-id="ELH-L-2026-000405" data-lead-name="Jamal Uddin" data-due-bdt="0" data-due-usd="0" data-executive="Nusrat Jahan">
+                                                <td><button class="btn btn-sm btn-icon btn-light crm-ledger-toggle" data-target="ledger-405" title="Payment history"><i class="mdi mdi-chevron-right"></i></button></td>
+                                                <td class="mono fs-12">ELH-L-2026-000405</td>
+                                                <td><div class="fw-semibold">Jamal Uddin</div><div class="fs-12 text-muted">G: Jamal Uddin</div></td>
+                                                <td class="fs-13">+880 1745-330011</td>
+                                                <td><span class="badge bg-success-subtle text-success">Dr. Ilias Patowary</span></td>
+                                                <td class="fs-13">Full-Funded Package</td>
+                                                <td class="text-end"><div class="cur fs-13 ">&#2547;4,00,000</div><div class="fs-11 text-muted">&mdash;</div></td>
+                                                <td class="text-end"><div class="cur fs-13 text-success">&#2547;4,00,000</div></td>
+                                                <td class="text-end"><div class="cur fs-13 text-muted">&#2547;0</div></td>
+                                                <td><span class="badge crm-status-badge bg-warning-subtle text-warning">Applied</span><div class="mt-1"><span class="badge bg-success-subtle text-success">Completed</span></div></td>
+                                                <td>
+                                                    <div class="d-flex flex-wrap gap-1 mb-1">
+                                                        <button class="btn btn-sm btn-primary crm-add-payment" data-bs-toggle="modal" data-bs-target="#addPaymentModal" data-lead-id="ELH-L-2026-000405" data-lead-name="Jamal Uddin" data-due-bdt="0" data-due-usd="0" data-accepts-usd="false"><i class="mdi mdi-cash-multiple me-1"></i>Payment Log</button>
+                                                        <button type="button" class="btn btn-sm btn-label-success crm-apply-visa" title="Apply for visa" data-bs-toggle="modal" data-bs-target="#applyVisaModal"><i class="mdi mdi-passport me-1"></i>Apply Visa</button>
+                                                    </div>
+                                                    <div class="d-flex flex-wrap gap-1">
+                                                        <button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-journey-stage="2" data-paid-pct="100" data-lead-id="ELH-L-2026-000405" data-lead-name="Jamal Uddin" data-lead-patient="Jamal Uddin"><i class="mdi mdi-card-account-details-outline"></i></button>
+                                                        <a href="expense-patient.html?lead=ELH-L-2026-000405" class="btn btn-sm btn-icon btn-light" title="Patient expenses"><i class="mdi mdi-cash-minus"></i></a>
+                                                        <a href="conversations.html?lead=ELH-L-2026-000405" class="btn btn-sm btn-icon btn-light" title="Conversation log"><i class="mdi mdi-comment-text-outline"></i></a>
+                                                        <a href="invoice.html?lead=ELH-L-2026-000405" class="btn btn-sm btn-icon btn-light" title="Invoice"><i class="mdi mdi-file-document-outline"></i></a>
+                                                        <button type="button" class="btn btn-sm btn-icon btn-light" title="Edit" data-bs-toggle="modal" data-bs-target="#editLeadModal"><i class="mdi mdi-pencil-outline"></i></button>
+                                                        <button type="button" class="btn btn-sm btn-icon btn-light" title="Print registration form" data-bs-toggle="modal" data-bs-target="#leadPrintModal"><i class="mdi mdi-printer"></i></button>
+                                                        <button type="button" class="btn btn-sm btn-icon btn-light text-danger crm-row-delete" title="Delete lead"><i class="mdi mdi-trash-can-outline"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="d-none crm-ledger" id="ledger-405">
+                                                <td colspan="11" class="bg-light-subtle">
+                                                    <div class="p-3">
+                                                        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+                                                            <div class="fs-12 text-uppercase text-muted">Payments &mdash; ELH-L-2026-000405</div>
+                                                            <span class="fs-13 text-muted">Paid <span class="fw-bold text-success cur">&#2547;4,00,000</span></span>
+                                                        </div>
+                                                        <table class="table table-sm mb-0">
+                                                            <thead class="table-light"><tr><th>Date</th><th>Type</th><th>Method</th><th class="text-end">Amount</th><th>Receipt</th></tr></thead>
+                                                            <tbody>
+                                                                <tr><td class="fs-13">30 Aug 2026</td><td class="fs-13">Full settlement</td><td class="fs-13">Cash</td><td class="text-end cur fs-13">&#2547;4,00,000</td><td class="mono fs-12 text-muted">MR-000271</td></tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <div class="alert alert-success d-flex align-items-center gap-2 py-2 fs-13 mt-2 mb-0"><i class="mdi mdi-check-decagram"></i> Both balances are clear. Use the status menu to Confirm this lead.</div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--@lead-modals-->
+
+                <!--@apply-visa-->
+
+                <!--@status-modals-->
+
+                <!--@quick-view-->
+
+                <!-- ============ RECORD PAYMENT ============ -->
+                <!-- A payment is made in one currency and reduces that currency's
+                     balance only. Nothing is converted, so there is no rate field. -->
+                <!--@record-payment-->
+
+                <!-- ============ DOCUMENTS ============ -->
+                <div class="modal fade" id="docsModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title mb-0">Documents</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="fs-13 text-muted">Collected after the lead applies. A missing file can be added here later without re-applying.</p>
+                                <div class="mb-3">
+                                    <label class="form-label fs-12 mb-1">Medical Documents</label>
+                                    <input type="file" class="form-control form-control-sm" id="doc-medical" multiple>
+                                    <div class="form-text fs-11">Reports, prescriptions, test results.</div>
+                                </div>
+                                <div>
+                                    <label class="form-label fs-12 mb-1">Other Documents</label>
+                                    <input type="file" class="form-control form-control-sm" id="doc-other" multiple>
+                                    <div class="form-text fs-11">NID, passport, consent forms.</div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-primary" data-bs-dismiss="modal">Upload</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>

@@ -1,0 +1,160 @@
+                <!-- ===== Treatment Countdown — after a lead applies for a package the
+                     patient must reach the treatment country within 3 months.
+                     Colours follow the month the lead is in: month 1 green, month 2
+                     yellow, month 3 red (past 90 days: overdue). Once the patient
+                     has reached the destination the lead turns blue and moves to the
+                     Reached tab. ===== -->
+                <div class="row">
+                    <div class="col-6 col-xl-3"><div class="card stat-tile"><div class="card-body py-3">
+                        <div class="stat-label text-muted">On Track (Month 1)</div>
+                        <div class="stat-value cur text-success" id="tc-n-ontrack">0</div>
+                    </div></div></div>
+                    <div class="col-6 col-xl-3"><div class="card stat-tile"><div class="card-body py-3">
+                        <div class="stat-label text-muted">Attention (Month 2)</div>
+                        <div class="stat-value cur text-warning" id="tc-n-attention">0</div>
+                    </div></div></div>
+                    <div class="col-6 col-xl-3"><div class="card stat-tile"><div class="card-body py-3">
+                        <div class="stat-label text-muted">Urgent (Month 3)</div>
+                        <div class="stat-value cur text-danger" id="tc-n-urgent">0</div>
+                    </div></div></div>
+                    <div class="col-6 col-xl-3"><div class="card stat-tile"><div class="card-body py-3">
+                        <div class="stat-label text-muted">Reached Destination</div>
+                        <div class="stat-value cur text-info" id="tc-n-reached">0</div>
+                    </div></div></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                            <ul class="nav nav-pills nav-sm flex-wrap gap-1" id="tc-tabs">
+                                <li class="nav-item"><a href="#" class="nav-link active" data-tab="active">Active <span class="badge bg-secondary-subtle text-secondary ms-1" id="tc-t-active">0</span></a></li>
+                                <li class="nav-item"><a href="#" class="nav-link" data-tab="ontrack">On Track <span class="badge bg-secondary-subtle text-secondary ms-1" id="tc-t-ontrack">0</span></a></li>
+                                <li class="nav-item"><a href="#" class="nav-link" data-tab="attention">Attention <span class="badge bg-secondary-subtle text-secondary ms-1" id="tc-t-attention">0</span></a></li>
+                                <li class="nav-item"><a href="#" class="nav-link" data-tab="urgent">Urgent <span class="badge bg-secondary-subtle text-secondary ms-1" id="tc-t-urgent">0</span></a></li>
+                                <li class="nav-item"><a href="#" class="nav-link" data-tab="reached">Reached <span class="badge bg-secondary-subtle text-secondary ms-1" id="tc-t-reached">0</span></a></li>
+                            </ul>
+                            <div class="position-relative">
+                                <input type="text" class="form-control form-control-sm" id="tc-search" placeholder="Search by name or Lead ID..." style="padding-left:34px;width:240px;max-width:100%;">
+                                <i class="mdi mdi-magnify position-absolute" style="left:12px;top:50%;transform:translateY(-50%);color:#8a92a4;font-size:15px;line-height:1;pointer-events:none;"></i>
+                            </div>
+                        </div>
+                        <p class="fs-12 text-muted mb-0 mt-2">Each patient must reach the destination within 3 months of the applied date. <span class="text-success fw-semibold">Green</span> = first month, <span class="text-warning fw-semibold">yellow</span> = second month, <span class="text-danger fw-semibold">red</span> = last month, <span class="text-info fw-semibold">blue</span> = reached.</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-2 align-items-end mb-3 crm-filter">
+                            <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Package</label><select class="form-select form-select-sm" data-filter="col:Package"><option value="">All packages</option><option>Full-Funded Package</option><option>Partial-Funded Package</option><option>Paid Package</option></select></div>
+                            <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Applied from</label><input type="date" class="form-control form-control-sm" data-filter="from:Applied On"></div>
+                            <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Applied to</label><input type="date" class="form-control form-control-sm" data-filter="to:Applied On"></div>
+                            <div class="col-auto"><button type="button" class="btn btn-light btn-sm" data-filter-reset title="Reset filters"><i class="mdi mdi-refresh"></i></button></div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0" id="tc-table">
+                                <thead class="table-light">
+                                    <tr><th>Lead ID</th><th>Patient / Guardian</th><th>Package / Journey</th><th>Applied On</th><th>Time (90 days)</th><th>Status</th><th class="no-sort">Action</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-lead-id="ELH-L-2026-000411" data-patient="Karim Mia" data-days-ago="12">
+                                        <td class="mono fs-12">ELH-L-2026-000411</td>
+                                        <td><div class="fw-semibold">Karim Mia</div><div class="fs-12 text-muted">G: Karim Mia</div></td>
+                                        <td class="fs-13">Full-Funded Package<div class="mt-1"><span class="badge bg-info-subtle text-info">Applied Package</span></div></td>
+                                        <td class="fs-13 tc-applied"></td>
+                                        <td class="tc-time" style="min-width:190px;"></td>
+                                        <td class="tc-status"></td>
+                                        <td class="tc-action text-nowrap"></td>
+                                    </tr>
+                                    <tr data-lead-id="ELH-L-2026-000412" data-patient="Ayesha Rahim" data-days-ago="25">
+                                        <td class="mono fs-12">ELH-L-2026-000412</td>
+                                        <td><div class="fw-semibold">Ayesha Rahim</div><div class="fs-12 text-muted">G: Rahim Uddin</div></td>
+                                        <td class="fs-13">Partial-Funded Package<div class="mt-1"><span class="badge bg-info-subtle text-info">Applied Package</span></div></td>
+                                        <td class="fs-13 tc-applied"></td>
+                                        <td class="tc-time" style="min-width:190px;"></td>
+                                        <td class="tc-status"></td>
+                                        <td class="tc-action text-nowrap"></td>
+                                    </tr>
+                                    <tr data-lead-id="ELH-L-2026-000405" data-patient="Jamal Uddin" data-days-ago="34">
+                                        <td class="mono fs-12">ELH-L-2026-000405</td>
+                                        <td><div class="fw-semibold">Jamal Uddin</div><div class="fs-12 text-muted">G: Jamal Uddin</div></td>
+                                        <td class="fs-13">Full-Funded Package<div class="mt-1"><span class="badge bg-info-subtle text-info">Applied Package</span></div></td>
+                                        <td class="fs-13 tc-applied"></td>
+                                        <td class="tc-time" style="min-width:190px;"></td>
+                                        <td class="tc-status"></td>
+                                        <td class="tc-action text-nowrap"></td>
+                                    </tr>
+                                    <tr data-lead-id="ELH-L-2026-000410" data-patient="Nadia Sultana" data-days-ago="41">
+                                        <td class="mono fs-12">ELH-L-2026-000410</td>
+                                        <td><div class="fw-semibold">Nadia Sultana</div><div class="fs-12 text-muted">G: Sultana Begum</div></td>
+                                        <td class="fs-13">Paid Package<div class="mt-1"><span class="badge bg-info-subtle text-info">Applied Package</span></div></td>
+                                        <td class="fs-13 tc-applied"></td>
+                                        <td class="tc-time" style="min-width:190px;"></td>
+                                        <td class="tc-status"></td>
+                                        <td class="tc-action text-nowrap"></td>
+                                    </tr>
+                                    <tr data-lead-id="ELH-L-2026-000408" data-patient="Mim Akter" data-days-ago="58">
+                                        <td class="mono fs-12">ELH-L-2026-000408</td>
+                                        <td><div class="fw-semibold">Mim Akter</div><div class="fs-12 text-muted">G: Jahanara Khatun</div></td>
+                                        <td class="fs-13">Partial-Funded Package<div class="mt-1"><span class="badge bg-info-subtle text-info">Applied Package</span></div></td>
+                                        <td class="fs-13 tc-applied"></td>
+                                        <td class="tc-time" style="min-width:190px;"></td>
+                                        <td class="tc-status"></td>
+                                        <td class="tc-action text-nowrap"></td>
+                                    </tr>
+                                    <tr data-lead-id="ELH-L-2026-000406" data-patient="Sharmin Akter" data-days-ago="66">
+                                        <td class="mono fs-12">ELH-L-2026-000406</td>
+                                        <td><div class="fw-semibold">Sharmin Akter</div><div class="fs-12 text-muted">G: Abul Kalam</div></td>
+                                        <td class="fs-13">Partial-Funded Package<div class="mt-1"><span class="badge bg-warning-subtle text-warning">Visa Processing</span></div></td>
+                                        <td class="fs-13 tc-applied"></td>
+                                        <td class="tc-time" style="min-width:190px;"></td>
+                                        <td class="tc-status"></td>
+                                        <td class="tc-action text-nowrap"></td>
+                                    </tr>
+                                    <tr data-lead-id="ELH-L-2026-000386" data-patient="Tanjila Akter" data-days-ago="79">
+                                        <td class="mono fs-12">ELH-L-2026-000386</td>
+                                        <td><div class="fw-semibold">Tanjila Akter</div><div class="fs-12 text-muted">G: Rafiqul Islam</div></td>
+                                        <td class="fs-13">Paid Package<div class="mt-1"><span class="badge bg-warning-subtle text-warning">Visa Processing</span></div></td>
+                                        <td class="fs-13 tc-applied"></td>
+                                        <td class="tc-time" style="min-width:190px;"></td>
+                                        <td class="tc-status"></td>
+                                        <td class="tc-action text-nowrap"></td>
+                                    </tr>
+                                    <tr data-lead-id="ELH-L-2026-000398" data-patient="Rokeya Begum" data-days-ago="85">
+                                        <td class="mono fs-12">ELH-L-2026-000398</td>
+                                        <td><div class="fw-semibold">Rokeya Begum</div><div class="fs-12 text-muted">G: Anwar Hossain</div></td>
+                                        <td class="fs-13">Full-Funded Package<div class="mt-1"><span class="badge bg-success-subtle text-success">Visa Approved</span></div></td>
+                                        <td class="fs-13 tc-applied"></td>
+                                        <td class="tc-time" style="min-width:190px;"></td>
+                                        <td class="tc-status"></td>
+                                        <td class="tc-action text-nowrap"></td>
+                                    </tr>
+                                    <tr data-lead-id="ELH-L-2026-000391" data-patient="Halima Khatun" data-days-ago="97">
+                                        <td class="mono fs-12">ELH-L-2026-000391</td>
+                                        <td><div class="fw-semibold">Halima Khatun</div><div class="fs-12 text-muted">G: Halima Khatun</div></td>
+                                        <td class="fs-13">Paid Package<div class="mt-1"><span class="badge bg-danger-subtle text-danger">Visa Rejected</span></div></td>
+                                        <td class="fs-13 tc-applied"></td>
+                                        <td class="tc-time" style="min-width:190px;"></td>
+                                        <td class="tc-status"></td>
+                                        <td class="tc-action text-nowrap"></td>
+                                    </tr>
+                                    <tr data-lead-id="ELH-L-2026-000395" data-patient="Sajid Hasan" data-days-ago="110">
+                                        <td class="mono fs-12">ELH-L-2026-000395</td>
+                                        <td><div class="fw-semibold">Sajid Hasan</div><div class="fs-12 text-muted">G: Mizanur Rahman</div></td>
+                                        <td class="fs-13">Full-Funded Package<div class="mt-1"><span class="badge bg-primary-subtle text-primary">Treatment Ongoing</span></div></td>
+                                        <td class="fs-13 tc-applied"></td>
+                                        <td class="tc-time" style="min-width:190px;"></td>
+                                        <td class="tc-status"></td>
+                                        <td class="tc-action text-nowrap"></td>
+                                    </tr>
+                                    <tr data-lead-id="ELH-L-2026-000380" data-patient="Nurul Islam" data-days-ago="150">
+                                        <td class="mono fs-12">ELH-L-2026-000380</td>
+                                        <td><div class="fw-semibold">Nurul Islam</div><div class="fs-12 text-muted">G: Nurul Islam</div></td>
+                                        <td class="fs-13">Paid Package<div class="mt-1"><span class="badge bg-secondary-subtle text-secondary">Returned</span></div></td>
+                                        <td class="fs-13 tc-applied"></td>
+                                        <td class="tc-time" style="min-width:190px;"></td>
+                                        <td class="tc-status"></td>
+                                        <td class="tc-action text-nowrap"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p class="text-muted fs-13 text-center py-4 d-none" id="tc-empty">Nothing to show here.</p>
+                        </div>
+                    </div>
+                </div>

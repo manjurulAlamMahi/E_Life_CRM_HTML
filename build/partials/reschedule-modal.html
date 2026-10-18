@@ -1,0 +1,21 @@
+                <!-- ===== Reschedule — Upcoming Follow-ups, Interested (next contact)
+                     and Not Interested (try-again date). The reason is mandatory,
+                     plan.md §4. The opening button may set the title via
+                     data-rs-title. Wired in crm-leads.js. Injected at @reschedule. ===== -->
+                <div class="modal fade" id="rescheduleModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header"><div><h5 class="modal-title mb-0" id="rs-title">Reschedule Follow-up</h5><span class="fs-12 text-muted" id="rs-lead-label"></span></div><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                            <div class="modal-body">
+                                <div class="fs-13 text-muted mb-3 d-none" id="rs-current"></div>
+                                <div class="mb-3"><label class="form-label">New date &amp; time <span class="text-danger">*</span></label><input type="datetime-local" class="form-control" id="rs-when"><div class="invalid-feedback">Pick the new date and time.</div></div>
+                                <div class="mb-0"><label class="form-label">Reason for reschedule <span class="text-danger">*</span></label>
+                                    <select class="form-select mb-2" id="rs-reason" data-crm-list="rescheduleReasons"><option>Patient unavailable</option><option>Guardian requested later date</option><option>Awaiting doctor opinion</option><option>Awaiting funds</option><option>Other</option></select>
+                                    <textarea class="form-control" id="rs-note" rows="2" placeholder="Additional detail"></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer"><button class="btn btn-light" data-bs-dismiss="modal">Cancel</button><button class="btn btn-primary" id="rs-save">Reschedule</button></div>
+                        </div>
+                    </div>
+                </div>
+

@@ -1,0 +1,39 @@
+                <!-- ===== Report Module › Report — the generated report. Opened by
+                     Generate Report on report-builder.html; every choice (type, dates,
+                     filters, columns, layout) arrives in the URL, so a report can be
+                     bookmarked or re-opened. Shows the rows in a searchable table and
+                     downloads exactly that table as an .xlsx (DataTables Buttons +
+                     JSZip). Static preview: the rows are sample data built to match
+                     the choices. Filled by crm-reports.js. ===== -->
+                <div class="rb" id="rr">
+                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+                        <a href="report-builder.html" class="btn btn-sm btn-light" id="rr-back"><i class="mdi mdi-arrow-left me-1"></i>Change selection</a>
+                        <a href="reports.html" class="btn btn-sm btn-link">All reports</a>
+                    </div>
+
+                    <div class="card rb-hero mb-3">
+                        <div class="card-body d-flex flex-wrap align-items-center gap-3">
+                            <span class="rb-hero-icon"><i class="mdi" id="rr-icon"></i></span>
+                            <div class="flex-grow-1 min-w-0">
+                                <h4 class="mb-1" id="rr-title"></h4>
+                                <div class="text-muted fs-13" id="rr-period"></div>
+                            </div>
+                            <button type="button" class="btn btn-success" id="rr-excel"><i class="mdi mdi-microsoft-excel me-1"></i>Download as Excel</button>
+                        </div>
+                        <div class="rr-meta" id="rr-meta"></div>
+                    </div>
+
+                    <div class="card rr-card">
+                        <div class="card-header d-flex flex-wrap align-items-center justify-content-start gap-2">
+                            <h5 class="card-title mb-0" id="rr-table-title">Report</h5>
+                            <span class="badge bg-primary-subtle text-primary" id="rr-count"></span>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-sm table-hover table-bordered align-middle w-100 mb-0 rb-table" id="rr-table">
+                                <thead class="table-light"><tr id="rr-thead"></tr></thead>
+                                <tbody id="rr-tbody"></tbody>
+                                <tfoot><tr id="rr-tfoot"></tr></tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>

@@ -1,0 +1,199 @@
+                <!-- ===== Visa & Travel — the journey after a lead has applied for a
+                     package: apply for the visa, record the result, enter the ticket,
+                     then follow the patient through treatment until they are back home.
+                     Stage tabs, the progress column, the status badge and each row's
+                     buttons are all driven from the row's data-* attributes in
+                     crm-visa.js, so changing a stage is one attribute plus a re-render. ===== -->
+                <div class="row" id="vt-tiles">
+                    <div class="col-6 col-xl">
+                        <div class="card stat-tile"><div class="card-body py-3"><div class="stat-label text-muted">Visa Processing</div><div class="stat-value cur text-warning" data-count="processing">0</div></div></div>
+                    </div>
+                    <div class="col-6 col-xl">
+                        <div class="card stat-tile"><div class="card-body py-3"><div class="stat-label text-muted">Visa Approved</div><div class="stat-value cur text-success" data-count="approved">0</div></div></div>
+                    </div>
+                    <div class="col-6 col-xl">
+                        <div class="card stat-tile"><div class="card-body py-3"><div class="stat-label text-muted">Visa Rejected</div><div class="stat-value cur text-danger" data-count="rejected">0</div></div></div>
+                    </div>
+                    <div class="col-6 col-xl">
+                        <div class="card stat-tile"><div class="card-body py-3"><div class="stat-label text-muted">Treatment Ongoing</div><div class="stat-value cur text-primary" data-count="ongoing">0</div></div></div>
+                    </div>
+                    <div class="col-12 col-xl">
+                        <div class="card stat-tile"><div class="card-body py-3"><div class="stat-label text-muted">Returned to Country</div><div class="stat-value cur" data-count="returned">0</div></div></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                            <ul class="nav nav-pills nav-sm flex-wrap gap-1" id="vt-tabs">
+                                <li class="nav-item"><a href="#" class="nav-link active" data-stage="all">All <span class="badge bg-secondary-subtle text-secondary ms-1" data-count="all">0</span></a></li>
+                                <li class="nav-item"><a href="#" class="nav-link" data-stage="processing">Visa Processing <span class="badge bg-secondary-subtle text-secondary ms-1" data-count="processing">0</span></a></li>
+                                <li class="nav-item"><a href="#" class="nav-link" data-stage="approved">Visa Approved <span class="badge bg-secondary-subtle text-secondary ms-1" data-count="approved">0</span></a></li>
+                                <li class="nav-item"><a href="#" class="nav-link" data-stage="rejected">Visa Rejected <span class="badge bg-secondary-subtle text-secondary ms-1" data-count="rejected">0</span></a></li>
+                                <li class="nav-item"><a href="#" class="nav-link" data-stage="ongoing">Treatment Ongoing <span class="badge bg-secondary-subtle text-secondary ms-1" data-count="ongoing">0</span></a></li>
+                                <li class="nav-item"><a href="#" class="nav-link" data-stage="returned">Returned <span class="badge bg-secondary-subtle text-secondary ms-1" data-count="returned">0</span></a></li>
+                            </ul>
+                            <div class="position-relative">
+                                <input type="text" class="form-control form-control-sm" id="vt-search" placeholder="Search by name or Lead ID..." style="padding-left:34px;width:240px;max-width:100%;">
+                                <i class="mdi mdi-magnify position-absolute" style="left:12px;top:50%;transform:translateY(-50%);color:#8a92a4;font-size:15px;line-height:1;pointer-events:none;"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0" id="vt-table">
+                                <thead class="table-light">
+                                    <tr><th>Lead ID</th><th>Patient / Guardian</th><th>Destination</th><th>Progress</th><th>Treatment Days</th><th>Status</th><th class="no-sort">Action</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-stage="processing" data-lead-id="ELH-L-2026-000406" data-lead-name="Abul Kalam" data-lead-patient="Sharmin Akter" data-country="India" data-visa-type="Medical Visa" data-visa-applied="2026-08-25" data-visa-ref="MV-88214">
+                                        <td class="mono fs-12">ELH-L-2026-000406</td>
+                                        <td><div class="fw-semibold">Sharmin Akter</div><div class="fs-12 text-muted">G: Abul Kalam</div></td>
+                                        <td class="fs-13">India<div class="fs-12 text-muted">Medical Visa</div></td>
+                                        <td class="fs-13 vt-details"></td>
+                                        <td class="vt-days text-nowrap"></td>
+                                        <td class="vt-status"></td>
+                                        <td class="vt-action"></td>
+                                    </tr>
+                                    <tr data-stage="processing" data-lead-id="ELH-L-2026-000386" data-lead-name="Rafiqul Islam" data-lead-patient="Tanjila Akter" data-country="India" data-visa-type="Medical Visa" data-visa-applied="2026-08-28" data-visa-ref="MV-88390">
+                                        <td class="mono fs-12">ELH-L-2026-000386</td>
+                                        <td><div class="fw-semibold">Tanjila Akter</div><div class="fs-12 text-muted">G: Rafiqul Islam</div></td>
+                                        <td class="fs-13">India<div class="fs-12 text-muted">Medical Visa</div></td>
+                                        <td class="fs-13 vt-details"></td>
+                                        <td class="vt-days text-nowrap"></td>
+                                        <td class="vt-status"></td>
+                                        <td class="vt-action"></td>
+                                    </tr>
+                                    <tr data-stage="approved" data-lead-id="ELH-L-2026-000398" data-lead-name="Anwar Hossain" data-lead-patient="Rokeya Begum" data-country="India" data-visa-type="Medical Visa" data-visa-applied="2026-08-12" data-visa-ref="MV-87102" data-visa-decided="2026-08-20" data-visa-valid="2027-02-20">
+                                        <td class="mono fs-12">ELH-L-2026-000398</td>
+                                        <td><div class="fw-semibold">Rokeya Begum</div><div class="fs-12 text-muted">G: Anwar Hossain</div></td>
+                                        <td class="fs-13">India<div class="fs-12 text-muted">Medical Visa</div></td>
+                                        <td class="fs-13 vt-details"></td>
+                                        <td class="vt-days text-nowrap"></td>
+                                        <td class="vt-status"></td>
+                                        <td class="vt-action"></td>
+                                    </tr>
+                                    <tr data-stage="rejected" data-lead-id="ELH-L-2026-000391" data-lead-name="Halima Khatun" data-lead-patient="Halima Khatun" data-country="India" data-visa-type="Medical Visa" data-visa-applied="2026-08-10" data-visa-ref="MV-86977" data-visa-decided="2026-08-22" data-reject-reason="Incomplete medical records submitted.">
+                                        <td class="mono fs-12">ELH-L-2026-000391</td>
+                                        <td><div class="fw-semibold">Halima Khatun</div><div class="fs-12 text-muted">G: Halima Khatun</div></td>
+                                        <td class="fs-13">India<div class="fs-12 text-muted">Medical Visa</div></td>
+                                        <td class="fs-13 vt-details"></td>
+                                        <td class="vt-days text-nowrap"></td>
+                                        <td class="vt-status"></td>
+                                        <td class="vt-action"></td>
+                                    </tr>
+                                    <tr data-stage="ongoing" data-lead-id="ELH-L-2026-000395" data-lead-name="Mizanur Rahman" data-lead-patient="Sajid Hasan" data-country="India" data-visa-type="Medical Visa" data-visa-applied="2026-07-20" data-visa-ref="MV-85420" data-visa-decided="2026-07-30" data-visa-valid="2027-01-30" data-dep-date="2026-08-10" data-dep-flight="Biman BG-2023" data-dep-route="Dhaka to Kolkata" data-dep-ref="PNR 7HK2LQ" data-ret-date="" data-ret-flight="">
+                                        <td class="mono fs-12">ELH-L-2026-000395</td>
+                                        <td><div class="fw-semibold">Sajid Hasan</div><div class="fs-12 text-muted">G: Mizanur Rahman</div></td>
+                                        <td class="fs-13">India<div class="fs-12 text-muted">Medical Visa</div></td>
+                                        <td class="fs-13 vt-details"></td>
+                                        <td class="vt-days text-nowrap"></td>
+                                        <td class="vt-status"></td>
+                                        <td class="vt-action"></td>
+                                    </tr>
+                                    <tr data-stage="returned" data-lead-id="ELH-L-2026-000380" data-lead-name="Nurul Islam" data-lead-patient="Nurul Islam" data-country="India" data-visa-type="Medical Visa" data-visa-applied="2026-06-15" data-visa-ref="MV-83001" data-visa-decided="2026-06-25" data-visa-valid="2026-12-25" data-dep-date="2026-07-05" data-dep-flight="US-Bangla BS-211" data-dep-route="Dhaka to Chennai" data-dep-ref="PNR 4PX9TT" data-ret-date="2026-08-18" data-ret-flight="US-Bangla BS-212">
+                                        <td class="mono fs-12">ELH-L-2026-000380</td>
+                                        <td><div class="fw-semibold">Nurul Islam</div><div class="fs-12 text-muted">G: Nurul Islam</div></td>
+                                        <td class="fs-13">India<div class="fs-12 text-muted">Medical Visa</div></td>
+                                        <td class="fs-13 vt-details"></td>
+                                        <td class="vt-days text-nowrap"></td>
+                                        <td class="vt-status"></td>
+                                        <td class="vt-action"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p class="text-muted fs-13 text-center py-4 d-none" id="vt-empty">No patients at this stage.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== Print — the row's visa (and travel) details on a paper sheet ===== -->
+                <div class="modal fade crm-print-modal" id="visaPrintModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header no-print">
+                                <h5 class="modal-title"><i class="mdi mdi-passport me-1"></i>Visa Details</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body"><div class="lead-form-sheet" id="vp-sheet"></div></div>
+                            <div class="modal-footer no-print">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                <button class="btn btn-outline-primary" id="vp-print"><i class="mdi mdi-printer me-1"></i>Print</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== Visa result — approved or rejected ===== -->
+                <div class="modal fade" id="visaResultModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div><h5 class="modal-title mb-0">Update Visa Result</h5><span class="fs-12 text-muted vt-lead-label"></span></div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label class="form-label d-block">Result <span class="text-danger">*</span></label>
+                                    <div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="vr-result" id="vr-approved" value="approved" checked><label class="form-check-label" for="vr-approved">Approved</label></div>
+                                    <div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="vr-result" id="vr-rejected" value="rejected"><label class="form-check-label" for="vr-rejected">Rejected</label></div>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-md-6"><label class="form-label">Decision Date <span class="text-danger">*</span></label><input type="date" class="form-control" id="vr-date"></div>
+                                    <div class="col-md-6" id="vr-valid-wrap"><label class="form-label">Valid Until <span class="text-muted fw-normal fs-12">(optional)</span></label><input type="date" class="form-control" id="vr-valid"></div>
+                                    <div class="col-12 d-none" id="vr-reason-wrap"><label class="form-label">Reason for Rejection <span class="text-danger">*</span></label><textarea class="form-control" id="vr-reason" rows="2" placeholder="What did the embassy give as the reason?"></textarea></div>
+                                </div>
+                            </div>
+                            <div class="modal-footer"><button class="btn btn-light" data-bs-dismiss="modal">Cancel</button><button class="btn btn-primary" id="vr-save"><i class="mdi mdi-content-save-outline me-1"></i>Save Result</button></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== Ticket — departure ticket; return date is optional because
+                     the return ticket is usually bought only after treatment succeeds ===== -->
+                <div class="modal fade" id="ticketModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div><h5 class="modal-title mb-0" id="tk-title">Add Ticket</h5><span class="fs-12 text-muted vt-lead-label"></span></div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6"><label class="form-label">Departure Date <span class="text-danger">*</span></label><input type="date" class="form-control" id="tk-date"></div>
+                                    <div class="col-md-6"><label class="form-label">Airline &amp; Flight <span class="text-danger">*</span></label><input type="text" class="form-control" id="tk-flight" placeholder="e.g. Biman BG-2023"></div>
+                                    <div class="col-md-6"><label class="form-label">Route <span class="text-muted fw-normal fs-12">(optional)</span></label><input type="text" class="form-control" id="tk-route" placeholder="e.g. Dhaka to Kolkata"></div>
+                                    <div class="col-md-6"><label class="form-label">Booking Reference <span class="text-muted fw-normal fs-12">(optional)</span></label><input type="text" class="form-control" id="tk-ref" placeholder="PNR / ticket no."></div>
+                                    <div class="col-12">
+                                        <label class="form-label">Return Date <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                        <input type="date" class="form-control" id="tk-return">
+                                        <div class="form-text fs-11">Leave blank if the return ticket has not been booked yet. It is usually bought after treatment is successful.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer"><button class="btn btn-light" data-bs-dismiss="modal">Cancel</button><button class="btn btn-primary" id="tk-save"><i class="mdi mdi-airplane-takeoff me-1"></i>Save Ticket</button></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== Returned to country — records the return ticket ===== -->
+                <div class="modal fade" id="returnModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div><h5 class="modal-title mb-0">Returned to Country</h5><span class="fs-12 text-muted vt-lead-label"></span></div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6"><label class="form-label">Return Date <span class="text-danger">*</span></label><input type="date" class="form-control" id="rt-date"></div>
+                                    <div class="col-md-6"><label class="form-label">Return Flight <span class="text-muted fw-normal fs-12">(optional)</span></label><input type="text" class="form-control" id="rt-flight" placeholder="e.g. US-Bangla BS-212"></div>
+                                    <div class="col-12"><label class="form-label">Booking Reference <span class="text-muted fw-normal fs-12">(optional)</span></label><input type="text" class="form-control" id="rt-ref" placeholder="PNR / ticket no."></div>
+                                </div>
+                            </div>
+                            <div class="modal-footer"><button class="btn btn-light" data-bs-dismiss="modal">Cancel</button><button class="btn btn-primary" id="rt-save"><i class="mdi mdi-flag-checkered me-1"></i>Mark as Returned</button></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--@quick-view-->

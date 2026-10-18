@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Patients | E Life Healthcare CRM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta content="E Life Healthcare — CRM System" name="description">
+    <meta content="E Life Healthcare" name="author">
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/logo-sm.png">
+    <link href="assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css">
+    <!-- select2 -->
+    <link href="assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Simplebar Css -->
+    <link rel="stylesheet" href="assets/libs/simplebar/simplebar.min.css">
+
+    <!-- Bootstrap Css -->
+    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css">
+
+    <!--icons css-->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
+
+    <!-- App Css-->
+    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css">
+
+    <!-- CRM brand css -->
+    <link href="assets/css/crm-brand.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="layout-wrapper">
+
+    <!-- Start topbar -->
+    <header id="page-topbar">
+        <div class="navbar-header">
+
+            <!-- Start Navbar-Brand -->
+            <div class="navbar-logo-box">
+                <a href="index.html" class="logo logo-dark">
+                    <span class="logo-sm"><img src="assets/logo-icon.png" class="brand-logo-icon" alt="E Life Healthcare"></span>
+                    <span class="logo-lg"><img src="assets/logo.png" class="brand-logo-full" data-company-logo alt="E Life Healthcare"></span>
+                </a>
+                <a href="index.html" class="logo logo-light">
+                    <span class="logo-sm"><img src="assets/logo-icon.png" class="brand-logo-icon" alt="E Life Healthcare"></span>
+                    <span class="logo-lg"><img src="assets/logo.png" class="brand-logo-full" data-company-logo alt="E Life Healthcare"></span>
+                </a>
+                <button type="button" class="btn btn-icon top-icon sidebar-btn" id="sidebar-btn" aria-label="Toggle navigation"><i class="mdi mdi-menu-open align-middle fs-17"></i></button>
+                <button type="button" class="btn btn-icon top-icon sidebar-horizontal-btn d-none" aria-label="Toggle navigation"><i class="mdi mdi-menu align-middle fs-17"></i></button>
+            </div>
+
+            <!-- Start menu -->
+            <div class="d-flex justify-content-between menu-sm px-4 ms-auto">
+                <div class="d-flex align-items-center gap-2">
+                    <!--Start App Search-->
+                    <form class="app-search crm-topbar-search d-none d-lg-block" onsubmit="return false;">
+                        <div class="position-relative">
+                            <input type="text" class="form-control" placeholder="Search patient, phone, Lead ID, receipt no...">
+                            <i data-eva="search-outline" class="align-middle"></i>
+                        </div>
+                    </form>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <button type="button" class="btn btn-icon top-icon d-none d-md-block" id="fullscreen-toggle" aria-label="Toggle fullscreen">
+                        <i class="mdi mdi-fullscreen align-middle" id="fullscreen-icon"></i>
+                    </button>
+                    <button type="button" class="btn btn-icon top-icon d-none d-md-block" id="light-dark-mode" aria-label="Toggle Light/Dark">
+                        <i class="mdi mdi-brightness-7 align-middle"></i>
+                        <i class="mdi mdi-white-balance-sunny align-middle"></i>
+                    </button>
+                    <!-- Start Notifications -->
+                    <div class="dropdown d-inline-block">
+                        <button type="button" class="btn btn-icon top-icon" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Notifications">
+                            <i class="mdi mdi-bell-ring-outline fs-17"></i>
+                            <span class="position-absolute topbar-badge translate-middle badge rounded-pill bg-danger">5</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-md dropdown-menu-end dropdown-menu-animated p-0" aria-labelledby="page-header-notifications-dropdown">
+                            <div class="p-4 border-bottom">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="m-0"><i class="mdi mdi-bell-ring-outline me-1 fs-15"></i> Notifications</h6>
+                                    </div>
+                                    <div class="col-auto">
+                                        <a href="followups.html" class="badge bg-danger-subtle text-danger">5 new</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-simplebar style="max-height: 230px;">
+                                <a href="followups.html" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="avatar avatar-xs avatar-label-danger me-3">
+                                            <span class="rounded fs-16"><i class="mdi mdi-clock-alert-outline"></i></span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">3 overdue follow-ups</h6>
+                                            <p class="mb-0 fs-12 text-muted">Rahim Uddin, Karim Mia, Sultana Begum</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="payments.html" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="avatar avatar-xs avatar-label-warning me-3">
+                                            <span class="rounded fs-16"><i class="mdi mdi-timer-sand"></i></span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">Online payment awaiting verification</h6>
+                                            <p class="mb-0 fs-12 text-muted">bKash &#2547;50,000 &middot; Ref TRX8842K1</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="dues.html" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="avatar avatar-xs avatar-label-info me-3">
+                                            <span class="rounded fs-16"><i class="mdi mdi-alert-circle-outline"></i></span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">4 dues crossed 60 days</h6>
+                                            <p class="mb-0 fs-12 text-muted">Total outstanding &#2547;7,20,000</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="leads.html" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="avatar avatar-xs avatar-label-success me-3">
+                                            <span class="rounded fs-16"><i class="mdi mdi-account-plus-outline"></i></span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">6 new leads assigned to you</h6>
+                                            <p class="mb-0 fs-12 text-muted">From Facebook and Dr. Ilias Patowary</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="p-2 border-top text-center">
+                                <a href="followups.html" class="btn btn-sm btn-link text-decoration-none">View all</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Start Profile -->
+                    <div class="dropdown d-inline-block ps-3 ms-2 border-start admin-user-info">
+                        <button type="button" aria-label="profile" class="btn btn-sm p-0" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="avatar avatar-xs p-1 d-inline-block">
+                                <img src="assets/images/users/avatar-9.png" alt="Header Avatar" class="img-fluid">
+                            </span>
+                            <span class="d-none d-xl-inline-block ms-1 fw-semibold fs-14 admin-name">Mahi Alam</span>
+                            <i class="mdi mdi-chevron-down align-middle fs-16 d-none d-xl-inline-block"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end dropdown-menu-animated overflow-hidden py-0">
+                            <div class="card mb-0">
+                                <div class="card-header">
+                                    <div class="rich-list-item w-100 p-0">
+                                        <div class="rich-list-prepend">
+                                            <span class="rounded avatar-sm p-1 bg-body d-flex">
+                                                <img src="assets/images/users/avatar-9.png" alt="Header Avatar" class="img-fluid">
+                                            </span>
+                                        </div>
+                                        <div class="rich-list-content">
+                                            <h3 class="rich-list-title fs-13 mb-1">Mahi Alam</h3>
+                                            <span class="rich-list-subtitle">Administrator</span>
+                                        </div>
+                                        <div class="rich-list-append"><span class="badge badge-label-primary fs-6">Admin</span></div>
+                                    </div>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div class="grid-nav grid-nav-flush grid-nav-action grid-nav-no-rounded">
+                                        <div class="grid-nav-row">
+                                            <a href="my-account.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-address-card"></i></div>
+                                                <span class="grid-nav-content">My Account</span>
+                                            </a>
+                                            <a href="deals.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-handshake"></i></div>
+                                                <span class="grid-nav-content">Deals</span>
+                                            </a>
+                                            <a href="followups.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-clock"></i></div>
+                                                <span class="grid-nav-content">Follow-ups</span>
+                                            </a>
+                                        </div>
+                                        <div class="grid-nav-row">
+                                            <a href="settings.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="fas fa-cog"></i></div>
+                                                <span class="grid-nav-content">Settings</span>
+                                            </a>
+                                            <a href="audit-log.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-clone"></i></div>
+                                                <span class="grid-nav-content">Audit Log</span>
+                                            </a>
+                                            <a href="reports.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-chart-bar"></i></div>
+                                                <span class="grid-nav-content">Reports</span>
+                                            </a>
+                                        </div>
+                                        <div class="grid-nav-row">
+                                            <a href="my-account.html#security" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="fas fa-key"></i></div>
+                                                <span class="grid-nav-content">Change Password</span>
+                                            </a>
+                                            <a href="screen-lock.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="fas fa-lock"></i></div>
+                                                <span class="grid-nav-content">Screen Lock</span>
+                                            </a>
+                                            <a href="users.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="fas fa-users-cog"></i></div>
+                                                <span class="grid-nav-content">Users</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer card-footer-bordered rounded-0 border-top text-end"><a href="login.html" class="btn btn-label-danger">Sign Out</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End menu -->
+        </div>
+    </header>
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="sidebar-left">
+
+        <div class="sidebar-slide h-100" data-simplebar>
+
+            <!--- Sidebar-menu -->
+            <div id="sidebar-menu">
+                <!-- Left Menu Start -->
+                <ul class="left-menu list-unstyled" id="side-menu">
+                    <li>
+                        <a href="index.html">
+                            <i data-eva="home-outline"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Lead Module</li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i data-eva="person-add-outline"></i>
+                            <span>Leads</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="leads.html">All</a></li>
+                            <li><a href="leads.html?action=add-lead">Add</a></li>
+                            <li><a href="followups.html">Upcoming Follow Ups <span class="badge bg-danger ms-auto fs-10">5</span></a></li>
+                            <li><a href="interested-leads.html">Interested</a></li>
+                            <li><a href="not-interested-leads.html">Not Interested</a></li>
+                            <li><a href="applied-leads.html">Applied</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="conversations.html">
+                            <i data-eva="message-circle-outline"></i>
+                            <span>Conversations</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Visa Module</li>
+                    <li>
+                        <a href="visa-eligible.html">
+                            <i data-eva="checkmark-circle-2-outline"></i>
+                            <span>Eligible</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=processing">
+                            <i data-eva="sync-outline"></i>
+                            <span>Processing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=approved">
+                            <i data-eva="done-all-outline"></i>
+                            <span>Approved</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=rejected">
+                            <i data-eva="close-circle-outline"></i>
+                            <span>Rejected</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html">
+                            <i data-eva="list-outline"></i>
+                            <span>All</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Ticket Module</li>
+                    <li>
+                        <a href="tickets.html">
+                            <i data-eva="file-remove-outline"></i>
+                            <span>Not Purchased</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=upcoming">
+                            <i data-eva="calendar-outline"></i>
+                            <span>Upcoming Flight</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=passed">
+                            <i data-eva="alert-triangle-outline"></i>
+                            <span>Flight Passed</span> <span class="badge bg-danger ms-auto fs-10">2</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=cancelled">
+                            <i data-eva="close-square-outline"></i>
+                            <span>Cancelled</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=all">
+                            <i data-eva="list-outline"></i>
+                            <span>All</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Treatment Module</li>
+                    <li>
+                        <a href="treatment-countdown.html">
+                            <i data-eva="clock-outline"></i>
+                            <span>Countdown</span> <span class="badge bg-danger ms-auto fs-10">4</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html">
+                            <i data-eva="activity-outline"></i>
+                            <span>Treatment Ongoing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html?stage=successful">
+                            <i data-eva="heart-outline"></i>
+                            <span>Successful</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html?stage=failed">
+                            <i data-eva="slash-outline"></i>
+                            <span>Treatment Failed</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Dollar Module</li>
+                    <li>
+                        <a href="dollar-payments.html">
+                            <i data-eva="pricetags-outline"></i>
+                            <span>Dollar Payments</span> <span class="badge bg-warning ms-auto fs-10">4</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Payment Module</li>
+                    <li>
+                        <a href="dues.html">
+                            <i data-eva="alert-circle-outline"></i>
+                            <span>Payment Due</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="completed-leads.html">
+                            <i data-eva="credit-card-outline"></i>
+                            <span>Payment Completed</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Expense Module</li>
+                    <li>
+                        <a href="expenses.html">
+                            <i data-eva="trending-down-outline"></i>
+                            <span>Expenses</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="expense-patient.html">
+                            <i data-eva="person-outline"></i>
+                            <span>Patient Expense</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="expense-report.html">
+                            <i data-eva="bar-chart-outline"></i>
+                            <span>Expense Report</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Source Module</li>
+                    <li>
+                        <a href="sources.html">
+                            <i data-eva="share-outline"></i>
+                            <span>Source List</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Report Module</li>
+                    <li>
+                        <a href="reports.html">
+                            <i data-eva="pie-chart-outline"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Administration</li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i data-eva="settings-2-outline"></i>
+                            <span>Settings</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="settings.html">General</a></li>
+                            <li><a href="packages.html">Packages</a></li>
+                            <li><a href="source-admin.html">Sources</a></li>
+                            <li><a href="users.html">Users</a></li>
+                            <li><a href="roles.html">Roles & Permissions</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="audit-log.html">
+                            <i data-eva="eye-outline"></i>
+                            <span>Audit Logs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="login.html">
+                            <i data-eva="log-out-outline"></i>
+                            <span>Log Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Sidebar -->
+        </div>
+    </div>
+    <!-- Left Sidebar End -->
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="sidebar-left horizontal-sidebar">
+
+        <div class="sidebar-slide h-100">
+
+            <!--- Sidebar-menu -->
+            <div id="sidebar-menu">
+                <!-- Left Menu Start -->
+                <ul class="left-menu list-unstyled" id="side-menu">
+                    <li>
+                        <a href="index.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Lead Module</li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i class="fas fa-user-plus"></i>
+                            <span>Leads</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="leads.html">All</a></li>
+                            <li><a href="leads.html?action=add-lead">Add</a></li>
+                            <li><a href="followups.html">Upcoming Follow Ups <span class="badge bg-danger ms-auto fs-10">5</span></a></li>
+                            <li><a href="interested-leads.html">Interested</a></li>
+                            <li><a href="not-interested-leads.html">Not Interested</a></li>
+                            <li><a href="applied-leads.html">Applied</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="conversations.html">
+                            <i class="fas fa-comments"></i>
+                            <span>Conversations</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Visa Module</li>
+                    <li>
+                        <a href="visa-eligible.html">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Eligible</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=processing">
+                            <i class="fas fa-sync-alt"></i>
+                            <span>Processing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=approved">
+                            <i class="fas fa-stamp"></i>
+                            <span>Approved</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=rejected">
+                            <i class="fas fa-times-circle"></i>
+                            <span>Rejected</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html">
+                            <i class="fas fa-list"></i>
+                            <span>All</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Ticket Module</li>
+                    <li>
+                        <a href="tickets.html">
+                            <i class="fas fa-ticket-alt"></i>
+                            <span>Not Purchased</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=upcoming">
+                            <i class="fas fa-plane-departure"></i>
+                            <span>Upcoming Flight</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=passed">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Flight Passed</span> <span class="badge bg-danger ms-auto fs-10">2</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=cancelled">
+                            <i class="fas fa-ban"></i>
+                            <span>Cancelled</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=all">
+                            <i class="fas fa-list"></i>
+                            <span>All</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Treatment Module</li>
+                    <li>
+                        <a href="treatment-countdown.html">
+                            <i class="fas fa-hourglass-half"></i>
+                            <span>Countdown</span> <span class="badge bg-danger ms-auto fs-10">4</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html">
+                            <i class="fas fa-heartbeat"></i>
+                            <span>Treatment Ongoing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html?stage=successful">
+                            <i class="fas fa-smile"></i>
+                            <span>Successful</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html?stage=failed">
+                            <i class="fas fa-frown"></i>
+                            <span>Treatment Failed</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Dollar Module</li>
+                    <li>
+                        <a href="dollar-payments.html">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span>Dollar Payments</span> <span class="badge bg-warning ms-auto fs-10">4</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Payment Module</li>
+                    <li>
+                        <a href="dues.html">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>Payment Due</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="completed-leads.html">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Payment Completed</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Expense Module</li>
+                    <li>
+                        <a href="expenses.html">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Expenses</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="expense-patient.html">
+                            <i class="fas fa-user-injured"></i>
+                            <span>Patient Expense</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="expense-report.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Expense Report</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Source Module</li>
+                    <li>
+                        <a href="sources.html">
+                            <i class="fas fa-share-alt"></i>
+                            <span>Source List</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Report Module</li>
+                    <li>
+                        <a href="reports.html">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Administration</li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="settings.html">General</a></li>
+                            <li><a href="packages.html">Packages</a></li>
+                            <li><a href="source-admin.html">Sources</a></li>
+                            <li><a href="users.html">Users</a></li>
+                            <li><a href="roles.html">Roles & Permissions</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="audit-log.html">
+                            <i class="fas fa-history"></i>
+                            <span>Audit Logs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="login.html">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Log Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Sidebar -->
+        </div>
+    </div>
+    <!-- Left Sidebar End -->
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0">Patients</h4>
+                            <nav aria-label="breadcrumb" class="page-title-right">
+                                <ol class="breadcrumb border-0">
+                                    <li class="breadcrumb-item"><a href="index.html">CRM</a></li>
+                                    <li class="breadcrumb-item">Patients & Deals</li>
+                                    <li class="breadcrumb-item active">Patients</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                <div class="row">
+                    <div class="col-6 col-xl-3"><div class="card stat-tile"><div class="card-body py-3"><div class="stat-label text-muted">Total Patients</div><div class="stat-value cur">11</div></div></div></div>
+                    <div class="col-6 col-xl-3"><div class="card stat-tile"><div class="card-body py-3"><div class="stat-label text-muted">Active Treatment</div><div class="stat-value cur text-primary">4</div></div></div></div>
+                    <div class="col-6 col-xl-3"><div class="card stat-tile"><div class="card-body py-3"><div class="stat-label text-muted">Completed</div><div class="stat-value cur text-success">3</div></div></div></div>
+                    <div class="col-6 col-xl-3"><div class="card stat-tile"><div class="card-body py-3"><div class="stat-label text-muted">Awaiting Treatment</div><div class="stat-value cur text-secondary">4</div></div></div></div>
+                </div>
+
+                <!-- ===== Filters ===== -->
+                <div class="card" id="patient-filters">
+                    <div class="card-body">
+                        <div class="row g-2 align-items-end">
+                            <div class="col-md-3">
+                                <label class="form-label fs-12 mb-1">Search</label>
+                                <input type="text" class="form-control form-control-sm" id="pf-search" placeholder="Name, guardian, phone, ID">
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fs-12 mb-1">Situation</label>
+                                <select class="form-select form-select-sm" id="pf-situation">
+                                    <option value="">All situations</option><option>Applied</option><option>Confirmed</option><option>Closed</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fs-12 mb-1">Treatment</label>
+                                <select class="form-select form-select-sm" id="pf-status">
+                                    <option value="">All</option><option>Awaiting</option><option>Active</option><option>Completed</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fs-12 mb-1">Package</label>
+                                <select class="form-select form-select-sm" id="pf-package">
+                                    <option value="">All packages</option>
+                                    <option>Full-Funded Package</option><option>Partial-Funded Package</option><option>Paid Package</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fs-12 mb-1">Assigned Staff</label>
+                                <select class="form-select form-select-sm" id="pf-staff">
+                                    <option value="">All staff</option>
+                                    <option>Tanvir Ahmed</option><option>Nusrat Jahan</option><option>Sabbir Hossain</option><option>Farhana Akter</option>
+                                </select>
+                            </div>
+                            <div class="col-md-1 d-flex gap-2">
+                                <button class="btn btn-light btn-sm w-100" id="pf-reset" title="Reset filters"><i class="mdi mdi-refresh"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== Patient database ===== -->
+                <div class="card">
+                    <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-2">
+                        <div>
+                            <h5 class="card-title mb-0">Patient Database</h5>
+                            <p class="fs-12 text-muted mb-0">Money is not shown here &mdash; a patient's balances live on Deals. View opens the full history.</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle crm-table w-100">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Patient ID</th>
+                                        <th>Patient / Guardian</th>
+                                        <th>Phone</th>
+                                        <th>Condition</th>
+                                        <th>Lead Created</th>
+                                        <th>Package</th>
+                                        <th>Situation</th>
+                                        <th>Treatment</th>
+                                        <th class="no-sort">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-status="Awaiting" data-situation="Applied" data-package="Partial-Funded Package" data-staff="Tanvir Ahmed" data-patient-id="ELH-P-2026-000412" data-lead="ELH-L-2026-000412">
+                                        <td class="mono fs-12">ELH-P-2026-000412</td>
+                                        <td><div class="fw-semibold">Ayesha Rahim</div><div class="fs-12 text-muted">G: Rahim Uddin</div></td>
+                                        <td class="fs-13">+880 1711-234567</td>
+                                        <td class="fs-13 text-truncate" style="max-width:220px" title="Blocked artery, advised bypass. Diabetic, on insulin 6 years.">Blocked artery, advised bypass. Diabetic, on insulin 6 years.</td>
+                                        <td class="fs-13">02 Aug 2026</td>
+                                        <td class="fs-13">Partial-Funded Package</td>
+                                        <td><span class="badge bg-warning-subtle text-warning">Applied</span></td>
+                                        <td><span class="badge bg-secondary-subtle text-secondary">Awaiting</span></td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <a href="patient-profile.html?patient=ELH-P-2026-000412" class="btn btn-sm btn-primary" title="View full history"><i class="mdi mdi-eye-outline me-1"></i>View</a>
+                                                <button class="btn btn-sm btn-icon btn-light" title="Edit"><i class="mdi mdi-pencil-outline"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="Awaiting" data-situation="Applied" data-package="Full-Funded Package" data-staff="Sabbir Hossain" data-patient-id="ELH-P-2026-000411" data-lead="ELH-L-2026-000411">
+                                        <td class="mono fs-12">ELH-P-2026-000411</td>
+                                        <td><div class="fw-semibold">Karim Mia</div><div class="fs-12 text-muted">G: Karim Mia</div></td>
+                                        <td class="fs-13">+880 1812-445566</td>
+                                        <td class="fs-13 text-truncate" style="max-width:220px" title="Chronic knee pain, advised total knee replacement. Hypertensive.">Chronic knee pain, advised total knee replacement. Hypertensive.</td>
+                                        <td class="fs-13">20 Jul 2026</td>
+                                        <td class="fs-13">Full-Funded Package</td>
+                                        <td><span class="badge bg-warning-subtle text-warning">Applied</span></td>
+                                        <td><span class="badge bg-secondary-subtle text-secondary">Awaiting</span></td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <a href="patient-profile.html?patient=ELH-P-2026-000411" class="btn btn-sm btn-primary" title="View full history"><i class="mdi mdi-eye-outline me-1"></i>View</a>
+                                                <button class="btn btn-sm btn-icon btn-light" title="Edit"><i class="mdi mdi-pencil-outline"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="Active" data-situation="Applied" data-package="Paid Package" data-staff="Sabbir Hossain" data-patient-id="ELH-P-2026-000410" data-lead="ELH-L-2026-000410">
+                                        <td class="mono fs-12">ELH-P-2026-000410</td>
+                                        <td><div class="fw-semibold">Nadia Sultana</div><div class="fs-12 text-muted">G: Sultana Begum</div></td>
+                                        <td class="fs-13">+880 1911-778899</td>
+                                        <td class="fs-13 text-truncate" style="max-width:220px" title="Confirmed breast malignancy; chemotherapy in progress.">Confirmed breast malignancy; chemotherapy in progress.</td>
+                                        <td class="fs-13">10 Aug 2026</td>
+                                        <td class="fs-13">Paid Package</td>
+                                        <td><span class="badge bg-warning-subtle text-warning">Applied</span></td>
+                                        <td><span class="badge bg-primary-subtle text-primary">Active</span></td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <a href="patient-profile.html?patient=ELH-P-2026-000410" class="btn btn-sm btn-primary" title="View full history"><i class="mdi mdi-eye-outline me-1"></i>View</a>
+                                                <button class="btn btn-sm btn-icon btn-light" title="Edit"><i class="mdi mdi-pencil-outline"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="Awaiting" data-situation="Applied" data-package="Partial-Funded Package" data-staff="Tanvir Ahmed" data-patient-id="ELH-P-2026-000408" data-lead="ELH-L-2026-000408">
+                                        <td class="mono fs-12">ELH-P-2026-000408</td>
+                                        <td><div class="fw-semibold">Mim Akter</div><div class="fs-12 text-muted">G: Jahanara Khatun</div></td>
+                                        <td class="fs-13">+880 1677-112233</td>
+                                        <td class="fs-13 text-truncate" style="max-width:220px" title="Congenital heart defect; corrective cardiac surgery scheduled.">Congenital heart defect; corrective cardiac surgery scheduled.</td>
+                                        <td class="fs-13">15 Jun 2026</td>
+                                        <td class="fs-13">Partial-Funded Package</td>
+                                        <td><span class="badge bg-warning-subtle text-warning">Applied</span></td>
+                                        <td><span class="badge bg-secondary-subtle text-secondary">Awaiting</span></td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <a href="patient-profile.html?patient=ELH-P-2026-000408" class="btn btn-sm btn-primary" title="View full history"><i class="mdi mdi-eye-outline me-1"></i>View</a>
+                                                <button class="btn btn-sm btn-icon btn-light" title="Edit"><i class="mdi mdi-pencil-outline"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="Awaiting" data-situation="Applied" data-package="Full-Funded Package" data-staff="Nusrat Jahan" data-patient-id="ELH-P-2026-000405" data-lead="ELH-L-2026-000405">
+                                        <td class="mono fs-12">ELH-P-2026-000405</td>
+                                        <td><div class="fw-semibold">Jamal Uddin</div><div class="fs-12 text-muted">G: Jamal Uddin</div></td>
+                                        <td class="fs-13">+880 1745-330011</td>
+                                        <td class="fs-13 text-truncate" style="max-width:220px" title="Cataract in both eyes; phacoemulsification advised.">Cataract in both eyes; phacoemulsification advised.</td>
+                                        <td class="fs-13">12 Aug 2026</td>
+                                        <td class="fs-13">Full-Funded Package</td>
+                                        <td><span class="badge bg-warning-subtle text-warning">Applied</span></td>
+                                        <td><span class="badge bg-secondary-subtle text-secondary">Awaiting</span></td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <a href="patient-profile.html?patient=ELH-P-2026-000405" class="btn btn-sm btn-primary" title="View full history"><i class="mdi mdi-eye-outline me-1"></i>View</a>
+                                                <button class="btn btn-sm btn-icon btn-light" title="Edit"><i class="mdi mdi-pencil-outline"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="Active" data-situation="Confirmed" data-package="Paid Package" data-staff="Nusrat Jahan" data-patient-id="ELH-P-2026-000406" data-lead="ELH-L-2026-000406">
+                                        <td class="mono fs-12">ELH-P-2026-000406</td>
+                                        <td><div class="fw-semibold">Sharmin Akter</div><div class="fs-12 text-muted">G: Abul Kalam</div></td>
+                                        <td class="fs-13">+880 1521-889900</td>
+                                        <td class="fs-13 text-truncate" style="max-width:220px" title="End-stage renal disease; donor matched, transplant completed.">End-stage renal disease; donor matched, transplant completed.</td>
+                                        <td class="fs-13">25 Jul 2026</td>
+                                        <td class="fs-13">Paid Package</td>
+                                        <td><span class="badge bg-success-subtle text-success">Confirmed</span></td>
+                                        <td><span class="badge bg-primary-subtle text-primary">Active</span></td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <a href="patient-profile.html?patient=ELH-P-2026-000406" class="btn btn-sm btn-primary" title="View full history"><i class="mdi mdi-eye-outline me-1"></i>View</a>
+                                                <button class="btn btn-sm btn-icon btn-light" title="Edit"><i class="mdi mdi-pencil-outline"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="Completed" data-situation="Confirmed" data-package="Full-Funded Package" data-staff="Tanvir Ahmed" data-patient-id="ELH-P-2026-000398" data-lead="ELH-L-2026-000398">
+                                        <td class="mono fs-12">ELH-P-2026-000398</td>
+                                        <td><div class="fw-semibold">Rokeya Begum</div><div class="fs-12 text-muted">G: Anwar Hossain</div></td>
+                                        <td class="fs-13">+880 1633-447788</td>
+                                        <td class="fs-13 text-truncate" style="max-width:220px" title="Cataract in both eyes; phacoemulsification, both eyes done.">Cataract in both eyes; phacoemulsification, both eyes done.</td>
+                                        <td class="fs-13">02 Aug 2026</td>
+                                        <td class="fs-13">Full-Funded Package</td>
+                                        <td><span class="badge bg-success-subtle text-success">Confirmed</span></td>
+                                        <td><span class="badge bg-success-subtle text-success">Completed</span></td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <a href="patient-profile.html?patient=ELH-P-2026-000398" class="btn btn-sm btn-primary" title="View full history"><i class="mdi mdi-eye-outline me-1"></i>View</a>
+                                                <button class="btn btn-sm btn-icon btn-light" title="Edit"><i class="mdi mdi-pencil-outline"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="Active" data-situation="Confirmed" data-package="Partial-Funded Package" data-staff="Sabbir Hossain" data-patient-id="ELH-P-2026-000395" data-lead="ELH-L-2026-000395">
+                                        <td class="mono fs-12">ELH-P-2026-000395</td>
+                                        <td><div class="fw-semibold">Sajid Hasan</div><div class="fs-12 text-muted">G: Mizanur Rahman</div></td>
+                                        <td class="fs-13">+880 1877-220044</td>
+                                        <td class="fs-13 text-truncate" style="max-width:220px" title="Single-vessel blockage; stent placed, on dual antiplatelet therapy.">Single-vessel blockage; stent placed, on dual antiplatelet therapy.</td>
+                                        <td class="fs-13">28 Jul 2026</td>
+                                        <td class="fs-13">Partial-Funded Package</td>
+                                        <td><span class="badge bg-success-subtle text-success">Confirmed</span></td>
+                                        <td><span class="badge bg-primary-subtle text-primary">Active</span></td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <a href="patient-profile.html?patient=ELH-P-2026-000395" class="btn btn-sm btn-primary" title="View full history"><i class="mdi mdi-eye-outline me-1"></i>View</a>
+                                                <button class="btn btn-sm btn-icon btn-light" title="Edit"><i class="mdi mdi-pencil-outline"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="Completed" data-situation="Confirmed" data-package="Full-Funded Package" data-staff="Nusrat Jahan" data-patient-id="ELH-P-2026-000391" data-lead="ELH-L-2026-000391">
+                                        <td class="mono fs-12">ELH-P-2026-000391</td>
+                                        <td><div class="fw-semibold">Halima Khatun</div><div class="fs-12 text-muted">G: Halima Khatun</div></td>
+                                        <td class="fs-13">+880 1955-661122</td>
+                                        <td class="fs-13 text-truncate" style="max-width:220px" title="Inguinal hernia; laparoscopic repair, discharged day two.">Inguinal hernia; laparoscopic repair, discharged day two.</td>
+                                        <td class="fs-13">21 Jul 2026</td>
+                                        <td class="fs-13">Full-Funded Package</td>
+                                        <td><span class="badge bg-success-subtle text-success">Confirmed</span></td>
+                                        <td><span class="badge bg-success-subtle text-success">Completed</span></td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <a href="patient-profile.html?patient=ELH-P-2026-000391" class="btn btn-sm btn-primary" title="View full history"><i class="mdi mdi-eye-outline me-1"></i>View</a>
+                                                <button class="btn btn-sm btn-icon btn-light" title="Edit"><i class="mdi mdi-pencil-outline"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="Active" data-situation="Confirmed" data-package="Partial-Funded Package" data-staff="Tanvir Ahmed" data-patient-id="ELH-P-2026-000386" data-lead="ELH-L-2026-000386">
+                                        <td class="mono fs-12">ELH-P-2026-000386</td>
+                                        <td><div class="fw-semibold">Tanjila Akter</div><div class="fs-12 text-muted">G: Rafiqul Islam</div></td>
+                                        <td class="fs-13">+880 1712-903344</td>
+                                        <td class="fs-13 text-truncate" style="max-width:220px" title="Breast malignancy; chemotherapy cycles in progress.">Breast malignancy; chemotherapy cycles in progress.</td>
+                                        <td class="fs-13">14 Jul 2026</td>
+                                        <td class="fs-13">Partial-Funded Package</td>
+                                        <td><span class="badge bg-success-subtle text-success">Confirmed</span></td>
+                                        <td><span class="badge bg-primary-subtle text-primary">Active</span></td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <a href="patient-profile.html?patient=ELH-P-2026-000386" class="btn btn-sm btn-primary" title="View full history"><i class="mdi mdi-eye-outline me-1"></i>View</a>
+                                                <button class="btn btn-sm btn-icon btn-light" title="Edit"><i class="mdi mdi-pencil-outline"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="Completed" data-situation="Confirmed" data-package="Paid Package" data-staff="Sabbir Hossain" data-patient-id="ELH-P-2026-000380" data-lead="ELH-L-2026-000380">
+                                        <td class="mono fs-12">ELH-P-2026-000380</td>
+                                        <td><div class="fw-semibold">Nurul Islam</div><div class="fs-12 text-muted">G: Nurul Islam</div></td>
+                                        <td class="fs-13">+880 1818-556677</td>
+                                        <td class="fs-13 text-truncate" style="max-width:220px" title="Lumbar spine fusion; post-operative rehabilitation ongoing.">Lumbar spine fusion; post-operative rehabilitation ongoing.</td>
+                                        <td class="fs-13">05 Jul 2026</td>
+                                        <td class="fs-13">Paid Package</td>
+                                        <td><span class="badge bg-success-subtle text-success">Confirmed</span></td>
+                                        <td><span class="badge bg-success-subtle text-success">Completed</span></td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <a href="patient-profile.html?patient=ELH-P-2026-000380" class="btn btn-sm btn-primary" title="View full history"><i class="mdi mdi-eye-outline me-1"></i>View</a>
+                                                <button class="btn btn-sm btn-icon btn-light" title="Edit"><i class="mdi mdi-pencil-outline"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- container-fluid -->
+        </div><!-- page-content -->
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        &copy; <script>document.write(new Date().getFullYear())</script> E Life Healthcare. All rights reserved.
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end d-none d-sm-block">
+                            CRM System &middot; v1.0
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- END Footer -->
+        <!-- Begin scroll top -->
+          <div class="progress-wrap" id="progress-scroll">
+            <svg class="progress-circle" width="100%" height="100%" viewBox="-1 -1 102 102">
+              <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+            </svg>
+          </div>
+        <!-- END scroll top -->
+    </div><!-- end main content-->
+
+</div><!-- END layout-wrapper -->
+
+<!-- Bootstrap bundle js -->
+<script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Layouts main js -->
+<script src="assets/libs/jquery/jquery.min.js"></script>
+
+<!-- Metimenu js -->
+<script src="assets/libs/metismenu/metisMenu.min.js"></script>
+
+<!-- simplebar js -->
+<script src="assets/libs/simplebar/simplebar.min.js"></script>
+
+<script src="assets/libs/eva-icons/eva.min.js"></script>
+
+<!-- Scroll Top init -->
+<script src="assets/js/scroll-top.init.js"></script>
+
+<!-- datatables js -->
+<script src="assets/libs/datatables.net/js/dataTables.min.js"></script>
+<script src="assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+<script src="assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+
+<!-- select2 -->
+<script src="assets/libs/select2/js/select2.min.js"></script>
+
+<!-- App js -->
+<script src="assets/js/app.js"></script>
+
+<!-- CRM demo js -->
+<script src="assets/js/crm-demo.js"></script>
+
+<!-- CRM patients & deals js -->
+<script src="assets/js/crm-deals.js"></script>
+
+<!-- Sidebar deep links (page.html?x=y): highlight the entry matching the query -->
+<script>
+window.addEventListener('load', function () {
+  var page = location.pathname.split('/').pop(), q = location.search;
+  var links = [].slice.call(document.querySelectorAll('#sidebar-menu a[href]:not(.has-arrow)'));
+  var exact = links.filter(function (a) {
+    var h = a.getAttribute('href') || '', i = h.indexOf('?');
+    return i > -1 && h.slice(0, i) === page && h.slice(i) === q;
+  });
+  if (!exact.length) return;
+  links.forEach(function (a) { a.classList.remove('active'); a.parentNode.classList.remove('mm-active'); });
+  exact.forEach(function (a) { a.classList.add('active'); a.parentNode.classList.add('mm-active'); });
+});
+</script>
+</body>
+</html>

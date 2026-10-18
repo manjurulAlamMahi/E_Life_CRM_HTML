@@ -1,0 +1,154 @@
+                <div class="row">
+                    <div class="col-6 col-xl-3"><div class="card stat-tile"><div class="card-body py-3"><div class="stat-label text-muted">Active Sources</div><div class="stat-value cur">7</div></div></div></div>
+                    <div class="col-6 col-xl-3"><div class="card stat-tile"><div class="card-body py-3"><div class="stat-label text-muted">Top Source</div><div class="stat-value" style="font-size:17px;">Facebook</div><div class="fs-12 text-muted">64 leads this month</div></div></div></div>
+                    <div class="col-6 col-xl-3"><div class="card stat-tile"><div class="card-body py-3"><div class="stat-label text-muted">Best Conversion</div><div class="stat-value" style="font-size:17px;">Dr. Ilias Patowary</div><div class="fs-12 text-success">50.0% applied</div></div></div></div>
+                    <div class="col-6 col-xl-3"><div class="card stat-tile"><div class="card-body py-3"><div class="stat-label text-muted">Leads Applied</div><div class="stat-value cur">97 <span class="fs-13 text-muted fw-normal">of 232</span></div><div class="fs-12 text-success">41.8% of all leads</div></div></div></div>
+                </div>
+
+                <!-- Source-wise report: one row per source, lead stages only (a
+                     lead comes in, is interested or leaves, applies, confirms).
+                     No revenue or commission — sources are not paid. "View" opens
+                     that source's leads: everything it sent, and the ones that
+                     applied for a package (crm-demo.js, #sourceViewModal). -->
+                <div class="card">
+                    <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-2">
+                        <div>
+                            <h5 class="card-title mb-0">Source-wise Report</h5>
+                            <p class="fs-12 text-muted mb-0">Click <span class="fw-semibold">View</span> to see every lead from a source and which of them applied.</p>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <input type="text" class="form-control form-control-sm w-auto" value="01 Aug 2026 - 31 Aug 2026">
+                            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addSourceModal"><i class="mdi mdi-plus me-1"></i>Add Source</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-2 align-items-end mb-3 crm-filter">
+                            <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Type</label><select class="form-select form-select-sm" data-filter="col:Type"><option value="">All types</option><option>Channel</option><option>Person</option></select></div>
+                            <div class="col-auto"><button type="button" class="btn btn-light btn-sm" data-filter-reset title="Reset filters"><i class="mdi mdi-refresh"></i></button></div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle crm-table w-100" id="source-table">
+                                <thead class="table-light"><tr><th>Source</th><th>Type</th><th class="text-end">Leads</th><th class="text-end">Interested</th><th class="text-end">Applied</th><th class="text-end">Confirmed</th><th class="text-end">Not Interested</th><th class="text-end">Applied Rate</th><th class="no-sort text-end">Leads</th></tr></thead>
+                                <tbody>
+                                    <tr data-source="Facebook" data-type="Channel" data-leads="64" data-interested="37" data-applied="28" data-confirmed="22" data-lost="14" data-contact="Marketing Team" data-phone="—">
+                                        <td class="fw-semibold">Facebook</td><td><span class="badge bg-info-subtle text-info">Channel</span></td>
+                                        <td class="text-end cur fw-semibold">64</td><td class="text-end cur">37</td><td class="text-end cur">28</td><td class="text-end cur text-success">22</td><td class="text-end cur text-muted">14</td>
+                                        <td class="text-end"><span class="badge bg-success-subtle text-success">43.8%</span></td>
+                                        <td class="text-end"><button type="button" class="btn btn-sm btn-light crm-source-view" data-bs-toggle="modal" data-bs-target="#sourceViewModal" title="View this source's leads"><i class="mdi mdi-eye-outline me-1"></i>View</button></td>
+                                    </tr>
+                                    <tr data-source="Dr. Ilias Patowary" data-type="Person" data-leads="48" data-interested="31" data-applied="24" data-confirmed="19" data-lost="8" data-contact="Dr. Ilias Patowary" data-phone="+880 1711-000111">
+                                        <td class="fw-semibold">Dr. Ilias Patowary</td><td><span class="badge bg-primary-subtle text-primary">Person</span></td>
+                                        <td class="text-end cur fw-semibold">48</td><td class="text-end cur">31</td><td class="text-end cur">24</td><td class="text-end cur text-success">19</td><td class="text-end cur text-muted">8</td>
+                                        <td class="text-end"><span class="badge bg-success-subtle text-success">50.0%</span></td>
+                                        <td class="text-end"><button type="button" class="btn btn-sm btn-light crm-source-view" data-bs-toggle="modal" data-bs-target="#sourceViewModal" title="View this source's leads"><i class="mdi mdi-eye-outline me-1"></i>View</button></td>
+                                    </tr>
+                                    <tr data-source="Noman" data-type="Person" data-leads="39" data-interested="21" data-applied="15" data-confirmed="11" data-lost="12" data-contact="Noman" data-phone="+880 1811-000222">
+                                        <td class="fw-semibold">Noman</td><td><span class="badge bg-primary-subtle text-primary">Person</span></td>
+                                        <td class="text-end cur fw-semibold">39</td><td class="text-end cur">21</td><td class="text-end cur">15</td><td class="text-end cur text-success">11</td><td class="text-end cur text-muted">12</td>
+                                        <td class="text-end"><span class="badge bg-warning-subtle text-warning">38.5%</span></td>
+                                        <td class="text-end"><button type="button" class="btn btn-sm btn-light crm-source-view" data-bs-toggle="modal" data-bs-target="#sourceViewModal" title="View this source's leads"><i class="mdi mdi-eye-outline me-1"></i>View</button></td>
+                                    </tr>
+                                    <tr data-source="Website" data-type="Channel" data-leads="27" data-interested="14" data-applied="11" data-confirmed="9" data-lost="7" data-contact="IT / Web Team" data-phone="—">
+                                        <td class="fw-semibold">Website</td><td><span class="badge bg-info-subtle text-info">Channel</span></td>
+                                        <td class="text-end cur fw-semibold">27</td><td class="text-end cur">14</td><td class="text-end cur">11</td><td class="text-end cur text-success">9</td><td class="text-end cur text-muted">7</td>
+                                        <td class="text-end"><span class="badge bg-success-subtle text-success">40.7%</span></td>
+                                        <td class="text-end"><button type="button" class="btn btn-sm btn-light crm-source-view" data-bs-toggle="modal" data-bs-target="#sourceViewModal" title="View this source's leads"><i class="mdi mdi-eye-outline me-1"></i>View</button></td>
+                                    </tr>
+                                    <tr data-source="Hospital" data-type="Channel" data-leads="22" data-interested="11" data-applied="8" data-confirmed="6" data-lost="6" data-contact="Partner Hospital Desk" data-phone="—">
+                                        <td class="fw-semibold">Hospital</td><td><span class="badge bg-info-subtle text-info">Channel</span></td>
+                                        <td class="text-end cur fw-semibold">22</td><td class="text-end cur">11</td><td class="text-end cur">8</td><td class="text-end cur text-success">6</td><td class="text-end cur text-muted">6</td>
+                                        <td class="text-end"><span class="badge bg-warning-subtle text-warning">36.4%</span></td>
+                                        <td class="text-end"><button type="button" class="btn btn-sm btn-light crm-source-view" data-bs-toggle="modal" data-bs-target="#sourceViewModal" title="View this source's leads"><i class="mdi mdi-eye-outline me-1"></i>View</button></td>
+                                    </tr>
+                                    <tr data-source="Walk-in" data-type="Channel" data-leads="18" data-interested="8" data-applied="6" data-confirmed="4" data-lost="5" data-contact="Front Desk" data-phone="—">
+                                        <td class="fw-semibold">Walk-in</td><td><span class="badge bg-secondary-subtle text-secondary">Channel</span></td>
+                                        <td class="text-end cur fw-semibold">18</td><td class="text-end cur">8</td><td class="text-end cur">6</td><td class="text-end cur text-success">4</td><td class="text-end cur text-muted">5</td>
+                                        <td class="text-end"><span class="badge bg-warning-subtle text-warning">33.3%</span></td>
+                                        <td class="text-end"><button type="button" class="btn btn-sm btn-light crm-source-view" data-bs-toggle="modal" data-bs-target="#sourceViewModal" title="View this source's leads"><i class="mdi mdi-eye-outline me-1"></i>View</button></td>
+                                    </tr>
+                                    <tr data-source="Doctor Referral" data-type="Person" data-leads="14" data-interested="7" data-applied="5" data-confirmed="3" data-lost="4" data-contact="Doctor Referral Pool" data-phone="—">
+                                        <td class="fw-semibold">Doctor Referral</td><td><span class="badge bg-primary-subtle text-primary">Person</span></td>
+                                        <td class="text-end cur fw-semibold">14</td><td class="text-end cur">7</td><td class="text-end cur">5</td><td class="text-end cur text-success">3</td><td class="text-end cur text-muted">4</td>
+                                        <td class="text-end"><span class="badge bg-warning-subtle text-warning">35.7%</span></td>
+                                        <td class="text-end"><button type="button" class="btn btn-sm btn-light crm-source-view" data-bs-toggle="modal" data-bs-target="#sourceViewModal" title="View this source's leads"><i class="mdi mdi-eye-outline me-1"></i>View</button></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot class="table-light fw-bold">
+                                    <tr><td colspan="2">Total</td><td class="text-end cur">232</td><td class="text-end cur">129</td><td class="text-end cur">97</td><td class="text-end cur">74</td><td class="text-end cur">56</td><td class="text-end">41.8%</td><td></td></tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ SOURCE VIEW ============ -->
+                <!-- One source's leads. A compact chart on top (leads received vs
+                     applied), then two columns: every lead from the source, and
+                     the ones that applied for a package. Filled by crm-demo.js
+                     from the clicked row's data-* attributes. -->
+                <div class="modal fade" id="sourceViewModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div>
+                                    <h5 class="modal-title mb-0"><span id="sv-name"></span> <span class="badge ms-1 align-middle" id="sv-type"></span></h5>
+                                    <span class="fs-12 text-muted" id="sv-contact"></span>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row g-3 align-items-center mb-3">
+                                    <div class="col-md-5">
+                                        <div class="d-flex gap-4">
+                                            <div><div class="crm-info-label">Leads received</div><div class="fw-bold fs-24" id="sv-leads"></div></div>
+                                            <div><div class="crm-info-label">Applied for package</div><div class="fw-bold fs-24 text-success" id="sv-applied"></div></div>
+                                            <div><div class="crm-info-label">Applied rate</div><div class="fw-bold fs-24" id="sv-rate"></div></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7"><div id="sv-chart"></div></div>
+                                </div>
+
+                                <div class="row g-3">
+                                    <div class="col-lg-6">
+                                        <div class="border rounded-3 h-100">
+                                            <div class="d-flex align-items-center justify-content-between px-3 py-2 border-bottom bg-light-subtle">
+                                                <span class="fw-semibold fs-13"><i class="mdi mdi-account-multiple-outline me-1"></i>All Leads</span>
+                                                <span class="badge bg-secondary-subtle text-secondary" id="sv-all-count"></span>
+                                            </div>
+                                            <div class="sv-list" id="sv-all"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="border rounded-3 h-100">
+                                            <div class="d-flex align-items-center justify-content-between px-3 py-2 border-bottom bg-light-subtle">
+                                                <span class="fw-semibold fs-13"><i class="mdi mdi-clipboard-check-outline me-1"></i>Applied for Package</span>
+                                                <span class="badge bg-success-subtle text-success" id="sv-applied-count"></span>
+                                            </div>
+                                            <div class="sv-list" id="sv-applied-list"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="addSourceModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header"><h5 class="modal-title">Add Source</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <div class="col-md-8"><label class="form-label">Name <span class="text-danger">*</span></label><input type="text" class="form-control"></div>
+                                    <div class="col-md-4"><label class="form-label">Type</label><select class="form-select"><option>Person</option><option>Channel</option><option>Campaign</option></select></div>
+                                    <div class="col-md-6"><label class="form-label">Contact person</label><input type="text" class="form-control"></div>
+                                    <div class="col-md-6"><label class="form-label">Phone</label><input type="text" class="form-control"></div>
+                                </div>
+                            </div>
+                            <div class="modal-footer"><button class="btn btn-light" data-bs-dismiss="modal">Cancel</button><button class="btn btn-primary" data-bs-dismiss="modal">Save</button></div>
+                        </div>
+                    </div>
+                </div>

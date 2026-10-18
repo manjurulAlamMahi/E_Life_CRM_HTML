@@ -1,0 +1,119 @@
+                <!-- ===== Row status modals — spec: the status only changes once
+                     the matching modal is saved, so a mis-click costs nothing.
+                     Authored once here, injected at @status-modals on leads.html,
+                     applied-leads.html and confirmed-leads.html. ===== -->
+
+                <!-- Follow Up — one of the spec's 4 lead statuses. -->
+                <div class="modal fade" id="stFollowupModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header"><div><h5 class="modal-title mb-0 st-followup-title">Schedule Follow-up</h5><span class="fs-12 text-muted st-lead-label"></span></div><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <div class="col-12" id="st-followup-date-wrap"><label class="form-label">Next follow-up date <span class="text-danger">*</span></label><input type="date" class="form-control" id="st-followup-date" required></div>
+                                    <div class="col-12"><label class="form-label">Remark</label><textarea class="form-control" id="st-followup-remark" rows="3" placeholder="What was agreed on this call?"></textarea></div>
+                                </div>
+                                <div class="form-text fs-11 mt-2"><i class="mdi mdi-information-outline"></i> <span id="st-followup-hint">Saving sets Last Follow-up to today.</span></div>
+                            </div>
+                            <div class="modal-footer"><button class="btn btn-light" data-bs-dismiss="modal">Cancel</button><button class="btn btn-primary st-save" data-status="followup">Save</button></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="stInterestedModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header"><div><h5 class="modal-title mb-0">Mark as Interested</h5><span class="fs-12 text-muted st-lead-label"></span></div><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <div class="col-12"><label class="form-label">What did they say? <span class="text-danger">*</span></label><textarea class="form-control" id="st-interested-remark" rows="3" placeholder="e.g. Wants to proceed with the cardiac package, discussing cost with family."></textarea></div>
+                                    <div class="col-12"><label class="form-label">Next contact <span class="text-muted fw-normal fs-12">(optional)</span></label><input type="date" class="form-control" id="st-interested-next"></div>
+                                </div>
+                                <div class="form-text fs-11 mt-2"><i class="mdi mdi-information-outline"></i> Interested leads get their own tab on this page.</div>
+                            </div>
+                            <div class="modal-footer"><button class="btn btn-light" data-bs-dismiss="modal">Cancel</button><button class="btn btn-primary st-save" data-status="interested">Save</button></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="stAppliedModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header"><div><h5 class="modal-title mb-0">Apply for Package</h5><span class="fs-12 text-muted st-lead-label"></span></div><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                            <div class="modal-body">
+                                <div id="lc-apply-block"><!--@apply-block--></div>
+                            </div>
+                            <div class="modal-footer"><button class="btn btn-light" data-bs-dismiss="modal">Cancel</button><button class="btn btn-primary st-save" data-status="applied">Save &amp; Continue to Invoice <i class="mdi mdi-arrow-right ms-1"></i></button></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Confirm is only reachable once the lead is Completed — the
+                     action menu disables it while either balance is outstanding,
+                     so by the time this opens there is nothing left to warn about. -->
+                <div class="modal fade" id="stConfirmedModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header"><div><h5 class="modal-title mb-0">Confirm Lead</h5><span class="fs-12 text-muted st-lead-label"></span></div><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                            <div class="modal-body">
+                                <div class="alert alert-success d-flex align-items-center gap-2 py-2 fs-13 mb-3"><i class="mdi mdi-check-decagram"></i> Payment is complete in every currency. This lead can be confirmed.</div>
+                                <label class="form-label">Confirmation note</label>
+                                <textarea class="form-control" id="st-confirmed-note" rows="3" placeholder="Optional"></textarea>
+                            </div>
+                            <div class="modal-footer"><button class="btn btn-light" data-bs-dismiss="modal">Cancel</button><button class="btn btn-success st-save" data-status="confirmed">Confirm</button></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="stNotInterestedModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header"><div><h5 class="modal-title mb-0">Mark as Not Interested</h5><span class="fs-12 text-muted st-lead-label"></span></div><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <div class="col-12"><label class="form-label">Reason <span class="text-danger">*</span></label>
+                                        <select class="form-select" id="st-notinterested-reason" data-crm-list="notInterestedReasons">
+                                            <option value="">Select a reason</option>
+                                            <option>Too expensive</option>
+                                            <option>Chose another provider</option>
+                                            <option>Treating locally</option>
+                                            <option>No longer needed</option>
+                                            <option>Duplicate enquiry</option>
+                                            <option>Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12"><label class="form-label">Remark <span class="text-muted fw-normal fs-12">(optional)</span></label><textarea class="form-control" id="st-notinterested-remark" rows="3"></textarea></div>
+                                </div>
+                            </div>
+                            <div class="modal-footer"><button class="btn btn-light" data-bs-dismiss="modal">Cancel</button><button class="btn btn-danger st-save" data-status="not-interested">Mark Not Interested</button></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unreachable — the fourth of the spec's 4 lead statuses:
+                     repeated attempts with no contact made, distinct from
+                     Not Interested (where the lead was reached and declined). -->
+                <div class="modal fade" id="stUnreachableModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header"><div><h5 class="modal-title mb-0">Mark as Unreachable</h5><span class="fs-12 text-muted st-lead-label"></span></div><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <div class="col-12"><label class="form-label">Reason <span class="text-danger">*</span></label>
+                                        <select class="form-select" id="st-unreachable-reason" data-crm-list="unreachableReasons">
+                                            <option value="">Select a reason</option>
+                                            <option>No answer</option>
+                                            <option>Switched off</option>
+                                            <option>Wrong number</option>
+                                            <option>Number busy every attempt</option>
+                                            <option>Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12"><label class="form-label">Remark <span class="text-muted fw-normal fs-12">(optional)</span></label><textarea class="form-control" id="st-unreachable-remark" rows="3" placeholder="e.g. Tried 3 times over 2 days, no response."></textarea></div>
+                                </div>
+                                <div class="form-text fs-11 mt-2"><i class="mdi mdi-information-outline"></i> Keep following up — this does not close the lead the way Not Interested does.</div>
+                            </div>
+                            <div class="modal-footer"><button class="btn btn-light" data-bs-dismiss="modal">Cancel</button><button class="btn btn-warning st-save" data-status="unreachable">Mark Unreachable</button></div>
+                        </div>
+                    </div>
+                </div>

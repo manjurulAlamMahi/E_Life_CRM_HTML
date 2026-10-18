@@ -1,0 +1,180 @@
+                <!-- ===== Dollar Payments — the partial dollar on every package other
+                     than Full-Funded. Internal only: kept apart from taka payments,
+                     invoices and receipts. Staff record each amount as it comes in
+                     ($500, $1,500, or all of it); paid, remaining and status follow.
+                     Nothing about who pays it is recorded. Wired in crm-dollar.js. ===== -->
+                <div class="row">
+                    <div class="col-6 col-xl-3"><div class="card stat-tile"><div class="card-body py-3">
+                        <div class="stat-label text-muted">Total Partial Dollar</div>
+                        <div class="stat-value cur" id="dl-sum-total">$0</div>
+                    </div></div></div>
+                    <div class="col-6 col-xl-3"><div class="card stat-tile"><div class="card-body py-3">
+                        <div class="stat-label text-muted">Paid</div>
+                        <div class="stat-value cur text-success" id="dl-sum-paid">$0</div>
+                    </div></div></div>
+                    <div class="col-6 col-xl-3"><div class="card stat-tile"><div class="card-body py-3">
+                        <div class="stat-label text-muted">Remaining</div>
+                        <div class="stat-value cur text-danger" id="dl-sum-remaining">$0</div>
+                    </div></div></div>
+                    <div class="col-6 col-xl-3"><div class="card stat-tile"><div class="card-body py-3">
+                        <div class="stat-label text-muted">Leads Not Fully Paid</div>
+                        <div class="stat-value cur text-warning" id="dl-n-open">0</div>
+                    </div></div></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                            <ul class="nav nav-pills nav-sm flex-wrap gap-1" id="dl-tabs">
+                                <li class="nav-item"><a href="#" class="nav-link active" data-tab="open">Not Fully Paid <span class="badge bg-secondary-subtle text-secondary ms-1" id="dl-tab-open">0</span></a></li>
+                                <li class="nav-item"><a href="#" class="nav-link" data-tab="paid">Paid <span class="badge bg-secondary-subtle text-secondary ms-1" id="dl-tab-paid">0</span></a></li>
+                                <li class="nav-item"><a href="#" class="nav-link" data-tab="all">All <span class="badge bg-secondary-subtle text-secondary ms-1" id="dl-tab-all">0</span></a></li>
+                            </ul>
+                            <div class="position-relative">
+                                <input type="text" class="form-control form-control-sm" id="dl-search" placeholder="Search by name or Lead ID..." style="padding-left:34px;width:240px;max-width:100%;">
+                                <i class="mdi mdi-magnify position-absolute" style="left:12px;top:50%;transform:translateY(-50%);color:#8a92a4;font-size:15px;line-height:1;pointer-events:none;"></i>
+                            </div>
+                        </div>
+                        <p class="fs-12 text-muted mb-0 mt-2"><i class="mdi mdi-lock-outline me-1"></i>Internal only. Kept separate from taka payments &mdash; never shown on invoices or receipts. Full-Funded packages have no partial dollar.</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-2 align-items-end mb-3 crm-filter">
+                            <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Package</label><select class="form-select form-select-sm" data-filter="col:Package"><option value="">All packages</option><option>Full-Funded Package</option><option>Partial-Funded Package</option><option>Paid Package</option></select></div>
+                            <div class="col-auto"><button type="button" class="btn btn-light btn-sm" data-filter-reset title="Reset filters"><i class="mdi mdi-refresh"></i></button></div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0" id="dl-table">
+                                <thead class="table-light">
+                                    <tr><th>Lead ID</th><th>Patient / Guardian</th><th>Package</th><th class="text-end">Partial Dollar</th><th class="text-end">Paid</th><th class="text-end">Remaining</th><th>Status</th><th class="no-sort">Action</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-lead-id="ELH-L-2026-000412" data-patient="Ayesha Rahim" data-usd="2500">
+                                        <td class="mono fs-12">ELH-L-2026-000412</td>
+                                        <td><div class="fw-semibold">Ayesha Rahim</div><div class="fs-12 text-muted">G: Rahim Uddin</div></td>
+                                        <td class="fs-13">Partial-Funded Package</td>
+                                        <td class="text-end cur fs-13 fw-semibold">$2,500</td>
+                                        <td class="dl-paid text-end cur fs-13"></td>
+                                        <td class="dl-remaining text-end cur fs-13"></td>
+                                        <td class="dl-status"></td>
+                                        <td class="dl-action text-nowrap"></td>
+                                    </tr>
+                                    <tr data-lead-id="ELH-L-2026-000410" data-patient="Nadia Sultana" data-usd="4000">
+                                        <td class="mono fs-12">ELH-L-2026-000410</td>
+                                        <td><div class="fw-semibold">Nadia Sultana</div><div class="fs-12 text-muted">G: Sultana Begum</div></td>
+                                        <td class="fs-13">Paid Package</td>
+                                        <td class="text-end cur fs-13 fw-semibold">$4,000</td>
+                                        <td class="dl-paid text-end cur fs-13"></td>
+                                        <td class="dl-remaining text-end cur fs-13"></td>
+                                        <td class="dl-status"></td>
+                                        <td class="dl-action text-nowrap"></td>
+                                    </tr>
+                                    <tr data-lead-id="ELH-L-2026-000408" data-patient="Mim Akter" data-usd="2500">
+                                        <td class="mono fs-12">ELH-L-2026-000408</td>
+                                        <td><div class="fw-semibold">Mim Akter</div><div class="fs-12 text-muted">G: Jahanara Khatun</div></td>
+                                        <td class="fs-13">Partial-Funded Package</td>
+                                        <td class="text-end cur fs-13 fw-semibold">$2,500</td>
+                                        <td class="dl-paid text-end cur fs-13"></td>
+                                        <td class="dl-remaining text-end cur fs-13"></td>
+                                        <td class="dl-status"></td>
+                                        <td class="dl-action text-nowrap"></td>
+                                    </tr>
+                                    <tr data-lead-id="ELH-L-2026-000406" data-patient="Sharmin Akter" data-usd="4000">
+                                        <td class="mono fs-12">ELH-L-2026-000406</td>
+                                        <td><div class="fw-semibold"><a href="patient-profile.html" class="text-reset">Sharmin Akter</a></div><div class="fs-12 text-muted">G: Abul Kalam</div></td>
+                                        <td class="fs-13">Paid Package</td>
+                                        <td class="text-end cur fs-13 fw-semibold">$4,000</td>
+                                        <td class="dl-paid text-end cur fs-13"></td>
+                                        <td class="dl-remaining text-end cur fs-13"></td>
+                                        <td class="dl-status"></td>
+                                        <td class="dl-action text-nowrap"></td>
+                                    </tr>
+                                    <tr data-lead-id="ELH-L-2026-000386" data-patient="Tanjila Akter" data-usd="2500">
+                                        <td class="mono fs-12">ELH-L-2026-000386</td>
+                                        <td><div class="fw-semibold">Tanjila Akter</div><div class="fs-12 text-muted">G: Rafiqul Islam</div></td>
+                                        <td class="fs-13">Paid Package</td>
+                                        <td class="text-end cur fs-13 fw-semibold">$2,500</td>
+                                        <td class="dl-paid text-end cur fs-13"></td>
+                                        <td class="dl-remaining text-end cur fs-13"></td>
+                                        <td class="dl-status"></td>
+                                        <td class="dl-action text-nowrap"></td>
+                                    </tr>
+                                    <tr data-lead-id="ELH-L-2026-000380" data-patient="Nurul Islam" data-usd="2500">
+                                        <td class="mono fs-12">ELH-L-2026-000380</td>
+                                        <td><div class="fw-semibold">Nurul Islam</div><div class="fs-12 text-muted">G: Nurul Islam</div></td>
+                                        <td class="fs-13">Paid Package</td>
+                                        <td class="text-end cur fs-13 fw-semibold">$2,500</td>
+                                        <td class="dl-paid text-end cur fs-13"></td>
+                                        <td class="dl-remaining text-end cur fs-13"></td>
+                                        <td class="dl-status"></td>
+                                        <td class="dl-action text-nowrap"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p class="text-muted fs-13 text-center py-4 d-none" id="dl-empty">Nothing to show here.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ ADD DOLLAR PAYMENT ============ -->
+                <div class="modal fade" id="dlPayModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div>
+                                    <h5 class="modal-title mb-0">Add Dollar Payment</h5>
+                                    <span class="fs-12 text-muted" id="dl-pay-who"></span>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row text-center g-2 mb-3">
+                                    <div class="col-4"><div class="border rounded py-2"><div class="fs-11 text-uppercase text-muted">Partial Dollar</div><div class="fw-bold cur" id="dl-pay-total"></div></div></div>
+                                    <div class="col-4"><div class="border rounded py-2"><div class="fs-11 text-uppercase text-muted">Paid</div><div class="fw-bold cur text-success" id="dl-pay-paid"></div></div></div>
+                                    <div class="col-4"><div class="border rounded py-2"><div class="fs-11 text-uppercase text-muted">Remaining</div><div class="fw-bold cur text-danger" id="dl-pay-left"></div></div></div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="dl-pay-amount">Amount paid <span class="text-danger">*</span></label>
+                                    <div class="input-group has-validation">
+                                        <span class="input-group-text">$</span>
+                                        <input type="number" class="form-control" id="dl-pay-amount" min="0" placeholder="e.g. 500">
+                                        <button type="button" class="btn btn-light border" id="dl-pay-all">All remaining</button>
+                                        <div class="invalid-feedback" id="dl-pay-amount-error">Enter the amount received.</div>
+                                    </div>
+                                </div>
+                                <div class="mb-0">
+                                    <label class="form-label" for="dl-pay-date">Date</label>
+                                    <input type="date" class="form-control" id="dl-pay-date">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-success" id="dl-pay-save"><i class="mdi mdi-content-save-outline me-1"></i>Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ DOLLAR PAYMENT HISTORY ============ -->
+                <div class="modal fade" id="dlHistoryModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div>
+                                    <h5 class="modal-title mb-0">Dollar Payment History</h5>
+                                    <span class="fs-12 text-muted" id="dl-hist-who"></span>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-sm align-middle mb-3">
+                                    <thead class="table-light"><tr><th style="width:40px">#</th><th>Date</th><th class="text-end">Amount</th></tr></thead>
+                                    <tbody class="fs-13" id="dl-hist-body"></tbody>
+                                </table>
+                                <div class="d-flex justify-content-between flex-wrap gap-2 fs-13 border-top pt-2" id="dl-hist-foot"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>

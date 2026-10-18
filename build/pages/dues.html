@@ -1,0 +1,130 @@
+                <div class="row">
+                    <div class="col-md-4"><div class="card stat-tile border-start border-3 border-danger"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-danger-subtle text-danger"><i class="mdi mdi-alert-circle-outline"></i></span>
+                        <div><div class="stat-value cur text-danger" data-pm-tile="due">&#2547;3,00,000</div><div class="stat-label text-muted">Total Outstanding</div></div>
+                    </div></div></div>
+                    <div class="col-md-4"><div class="card stat-tile border-start border-3 border-warning"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-warning-subtle text-warning"><i class="mdi mdi-account-clock-outline"></i></span>
+                        <div><div class="stat-value cur" data-pm-tile="count">2</div><div class="stat-label text-muted">Patients Owing</div></div>
+                    </div></div></div>
+                    <div class="col-md-4"><div class="card stat-tile border-start border-3 border-success"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-success-subtle text-success"><i class="mdi mdi-cash-check"></i></span>
+                        <div><div class="stat-value cur text-success" data-pm-tile="paid">&#2547;3,50,000</div><div class="stat-label text-muted">Received So Far</div></div>
+                    </div></div></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-2">
+                        <div>
+                            <h5 class="card-title mb-0">Payment Due</h5>
+                            <p class="fs-12 text-muted mb-0">Everyone who still owes on their package. <span class="fw-semibold">Pay Now</span> records a payment and gives you its invoice straight away. The phone button logs a reminder call.</p>
+                        </div>
+                        <div class="position-relative">
+                            <input type="text" class="form-control form-control-sm" id="pm-search" placeholder="Search patient, guardian or phone..." style="padding-left:34px;width:260px;max-width:100%;">
+                            <i class="mdi mdi-magnify position-absolute" style="left:12px;top:50%;transform:translateY(-50%);color:#8a92a4;font-size:15px;line-height:1;pointer-events:none;"></i>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-2 align-items-end mb-3 crm-filter">
+                            <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Last payment from</label><input type="date" class="form-control form-control-sm" data-filter="from:Last Payment"></div>
+                            <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Last payment to</label><input type="date" class="form-control form-control-sm" data-filter="to:Last Payment"></div>
+                            <div class="col-auto"><button type="button" class="btn btn-light btn-sm" data-filter-reset title="Reset filters"><i class="mdi mdi-refresh"></i></button></div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0" data-pm-list="due">
+                                <thead class="table-light"><tr><th>Patient / Guardian</th><th>Phone</th><th>Last Payment</th><th class="text-end">Outstanding</th><th class="no-sort text-end">Actions</th></tr></thead>
+                                <tbody>
+                                        <tr data-pm-row data-due-row data-lead-id="ELH-L-2026-000412" data-lead-name="Rahim Uddin" data-lead-patient="Ayesha Rahim" data-due-bdt="150000" data-due-usd="0">
+                                            <td><div class="fw-semibold">Ayesha Rahim</div><div class="fs-12 text-muted">G: Rahim Uddin</div></td>
+                                            <td class="fs-13">+880 1711-234567</td>
+                                            <td class="fs-13 pm-last"><span class="cur">&#2547;1,00,000</span><div class="fs-12 text-muted">12 Aug 2026 &middot; Cash</div></td>
+                                            <td class="text-end pm-due"><div class="cur fw-bold text-danger">&#2547;1,50,000</div><div class="fs-12 text-muted">&#2547;1,00,000 of &#2547;2,50,000 paid</div></td>
+                                            <td class="text-end"><div class="d-flex gap-1 justify-content-end flex-wrap">
+                                                <button type="button" class="btn btn-sm btn-success pm-open-pay"><i class="mdi mdi-cash-plus me-1"></i>Pay Now</button>
+                                                <button type="button" class="btn btn-sm btn-light pm-open-history"><i class="mdi mdi-history me-1"></i>History</button>
+                                                <button type="button" class="btn btn-sm btn-light pm-open-invoice" title="Invoice for the whole package"><i class="mdi mdi-file-document-multiple-outline me-1"></i>Package Invoice</button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-label-primary" title="Log a reminder call" data-bs-toggle="modal" data-bs-target="#logConvModal" data-cv-note="Reminded the guardian about the outstanding balance of ৳1,50,000."><i class="mdi mdi-phone-message-outline"></i></button>
+                                            </div></td>
+                                        </tr>
+                                        <tr data-pm-row data-due-row data-lead-id="ELH-L-2026-000411" data-lead-name="Karim Mia" data-lead-patient="Karim Mia" data-due-bdt="150000" data-due-usd="0">
+                                            <td><div class="fw-semibold">Karim Mia</div><div class="fs-12 text-muted">G: Karim Mia</div></td>
+                                            <td class="fs-13">+880 1812-445566</td>
+                                            <td class="fs-13 pm-last"><span class="cur">&#2547;1,00,000</span><div class="fs-12 text-muted">10 Aug 2026 &middot; Bank Transfer</div></td>
+                                            <td class="text-end pm-due"><div class="cur fw-bold text-danger">&#2547;1,50,000</div><div class="fs-12 text-muted">&#2547;2,50,000 of &#2547;4,00,000 paid</div></td>
+                                            <td class="text-end"><div class="d-flex gap-1 justify-content-end flex-wrap">
+                                                <button type="button" class="btn btn-sm btn-success pm-open-pay"><i class="mdi mdi-cash-plus me-1"></i>Pay Now</button>
+                                                <button type="button" class="btn btn-sm btn-light pm-open-history"><i class="mdi mdi-history me-1"></i>History</button>
+                                                <button type="button" class="btn btn-sm btn-light pm-open-invoice" title="Invoice for the whole package"><i class="mdi mdi-file-document-multiple-outline me-1"></i>Package Invoice</button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-label-primary" title="Log a reminder call" data-bs-toggle="modal" data-bs-target="#logConvModal" data-cv-note="Reminded the guardian about the outstanding balance of ৳1,50,000."><i class="mdi mdi-phone-message-outline"></i></button>
+                                            </div></td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                            <p class="text-muted fs-13 text-center py-4 mb-0 d-none" id="pm-empty">Nobody owes anything right now.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The patients on this page, with every payment — the source for
+                     Pay Now, Payment History and each invoice (crm-payments.js).
+                     The rows above are the same figures, authored in the page so
+                     build/verify-money.js can reconcile them against Deals. -->
+                <script type="application/json" id="pm-data">
+                {
+                    "ELH-L-2026-000412": {
+                        "patient": "Ayesha Rahim",
+                        "guardian": "Rahim Uddin",
+                        "phone": "+880 1711-234567",
+                        "address": "Chattogram",
+                        "pkgId": "ELH-D-2026-000094",
+                        "pkgName": "Partial-Funded Package",
+                        "listPrice": 270000,
+                        "agreed": 250000,
+                        "agreedUsd": 2500,
+                        "appliedOn": "12 Aug 2026",
+                        "appliedBy": "Tanvir Ahmed",
+                        "payments": [
+                            {
+                                "date": "12 Aug 2026",
+                                "type": "Advance",
+                                "method": "Cash",
+                                "receipt": "MR-000231",
+                                "amount": 100000
+                            }
+                        ]
+                    },
+                    "ELH-L-2026-000411": {
+                        "patient": "Karim Mia",
+                        "guardian": "Karim Mia",
+                        "phone": "+880 1812-445566",
+                        "address": "",
+                        "pkgId": "ELH-D-2026-000093",
+                        "pkgName": "Full-Funded Package",
+                        "listPrice": 400000,
+                        "agreed": 400000,
+                        "agreedUsd": 0,
+                        "appliedOn": "18 Jul 2026",
+                        "appliedBy": "Sabbir Hossain",
+                        "payments": [
+                            {
+                                "date": "18 Jul 2026",
+                                "type": "Advance",
+                                "method": "Cash",
+                                "receipt": "MR-000180",
+                                "amount": 150000
+                            },
+                            {
+                                "date": "10 Aug 2026",
+                                "type": "2nd instalment",
+                                "method": "Bank Transfer",
+                                "receipt": "MR-000214",
+                                "amount": 100000
+                            }
+                        ]
+                    }
+                }
+                </script>
+
+                <!--@payment-modals-->
+
+                <!--@log-conversation-->

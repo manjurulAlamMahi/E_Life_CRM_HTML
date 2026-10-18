@@ -1,0 +1,551 @@
+                <!-- ============ TILES ============ -->
+                <div class="row">
+                    <div class="col-xl-3 col-md-6"><div class="card stat-tile"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-primary-subtle text-primary"><i class="mdi mdi-account-group-outline"></i></span>
+                        <div><div class="stat-value">11</div><div class="stat-label text-muted">People with Deals</div></div>
+                    </div></div></div>
+                    <div class="col-xl-3 col-md-6"><div class="card stat-tile"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-info-subtle text-info"><i class="mdi mdi-handshake-outline"></i></span>
+                        <div><div class="stat-value">13</div><div class="stat-label text-muted">Total Deals</div></div>
+                    </div></div></div>
+                    <div class="col-xl-3 col-md-6"><div class="card stat-tile"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-success-subtle text-success"><i class="mdi mdi-cash-multiple"></i></span>
+                        <div><div class="stat-value cur text-success">&#2547;39,00,000</div><div class="stat-label text-muted">Lifetime Collected</div></div>
+                    </div></div></div>
+                    <div class="col-xl-3 col-md-6"><div class="card stat-tile"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-danger-subtle text-danger"><i class="mdi mdi-alert-circle-outline"></i></span>
+                        <div><div class="stat-value cur text-danger">&#2547;3,00,000</div><div class="stat-label text-muted">Outstanding</div></div>
+                    </div></div></div>
+                </div>
+
+                <!-- ============ DEALS ============ -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Deals</h5>
+                                <p class="fs-12 text-muted mb-0">Everyone who has ever reached a deal, with their lifetime history. <span class="fw-semibold">Settled</span> means nothing is outstanding in either currency; anything still owed makes the person <span class="fw-semibold">Dues</span>.</p>
+                            </div>
+                            <!-- Counts are derived from the rows by crm-deals.js and never
+                                 written here, so they cannot drift from the table below. -->
+                            <div class="px-3 pt-3" id="deal-state-tabs">
+                                <ul class="nav nav-tabs fs-13 border-bottom-0">
+                                    <li class="nav-item"><a href="#" class="nav-link active" data-state-tab="all">All <span class="badge bg-secondary-subtle text-secondary ms-1 tab-count">0</span></a></li>
+                                    <li class="nav-item"><a href="#" class="nav-link" data-state-tab="dues">Dues <span class="badge bg-secondary-subtle text-secondary ms-1 tab-count">0</span></a></li>
+                                    <li class="nav-item"><a href="#" class="nav-link" data-state-tab="settled">Settled <span class="badge bg-secondary-subtle text-secondary ms-1 tab-count">0</span></a></li>
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-2 align-items-end mb-3 crm-filter">
+                                    <div class="col-12 col-md-3"><label class="form-label fs-12 mb-1">Search</label><input type="text" class="form-control form-control-sm" data-filter="text" placeholder="Patient, guardian or deal ID"></div>
+                                    <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Latest deal from</label><input type="date" class="form-control form-control-sm" data-filter="from:Latest Deal"></div>
+                                    <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Latest deal to</label><input type="date" class="form-control form-control-sm" data-filter="to:Latest Deal"></div>
+                                    <div class="col-auto"><button type="button" class="btn btn-light btn-sm" data-filter-reset title="Reset filters"><i class="mdi mdi-refresh"></i></button></div>
+                                </div>
+                                <div class="table-responsive">
+                                    <!-- Not a .crm-table: DataTables would sort each expansion row
+                                         away from the person it belongs to. -->
+                                    <table class="table align-middle">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th class="no-sort"></th>
+                                                <th>Patient / Guardian</th>
+                                                <th>Deals</th>
+                                                <th class="text-end">Lifetime Paid</th>
+                                                <th class="text-end">Outstanding</th>
+                                                <th>Latest Deal</th>
+                                                <th>State</th>
+                                                <th class="no-sort">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr data-state="dues" data-person="Ayesha Rahim" data-lead="ELH-L-2026-000412" data-expansion="deals-412" data-due-bdt="150000" data-due-usd="0">
+                                                <td><button class="btn btn-sm btn-icon btn-light crm-expand-toggle" data-target="deals-412" title="Deal history"><i class="mdi mdi-chevron-right"></i></button></td>
+                                                <td><div class="fw-semibold">Ayesha Rahim</div><div class="fs-12 text-muted">G: Rahim Uddin</div></td>
+                                                <td class="fs-13">2</td>
+                                                <td class="text-end"><div class="cur fs-13 text-success fw-bold">&#2547;4,00,000</div></td>
+                                                <td class="text-end"><div class="cur fs-13 text-danger fw-bold">&#2547;1,50,000</div></td>
+                                                <td class="fs-13">12 Aug 2026</td>
+                                                <td><span class="badge bg-danger-subtle text-danger">Dues</span></td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-primary crm-deal-pay" data-bs-toggle="modal" data-bs-target="#dealPayModal" data-person="Ayesha Rahim" data-deal="ELH-D-2026-000094" data-due-bdt="150000" data-due-usd="0" data-accepts-usd="true"><i class="mdi mdi-cash-plus me-1"></i>Pay</button>
+                                                        <a href="patient-profile.html?patient=ELH-P-2026-000412" class="btn btn-sm btn-icon btn-light" title="View profile"><i class="mdi mdi-eye-outline"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="d-none crm-expansion" id="deals-412">
+                                                <td colspan="8" class="bg-light-subtle">
+                                                    <div class="p-2">
+                                                        <div class="fs-12 text-uppercase text-muted mb-2">Deal history &mdash; Ayesha Rahim</div>
+                                                        <table class="table table-sm mb-0">
+                                                            <thead><tr><th>Deal ID</th><th>Package</th><th>Started</th><th class="text-end">Agreed</th><th class="text-end">Paid</th><th class="text-end">Due</th><th>State</th></tr></thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="mono fs-12">ELH-D-2026-000094</td>
+                                                                    <td class="fs-13">Partial-Funded Package</td>
+                                                                    <td class="fs-13">12 Aug 2026</td>
+                                                                    <td class="text-end cur fs-13">&#2547;2,50,000</td>
+                                                                    <td class="text-end cur fs-13 text-success">&#2547;1,00,000</td>
+                                                                    <td class="text-end cur fs-13 text-danger fw-bold">&#2547;1,50,000</td>
+                                                                    <td><span class="badge bg-danger-subtle text-danger">Dues</span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="mono fs-12">ELH-D-2025-000061</td>
+                                                                    <td class="fs-13">Paid Package</td>
+                                                                    <td class="fs-13">04 Feb 2025<div class="fs-11 text-muted">closed</div></td>
+                                                                    <td class="text-end cur fs-13">&#2547;3,00,000</td>
+                                                                    <td class="text-end cur fs-13 text-success">&#2547;3,00,000</td>
+                                                                    <td class="text-end cur fs-13 text-muted">&mdash;</td>
+                                                                    <td><span class="badge bg-success-subtle text-success">Settled</span></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-state="dues" data-person="Karim Mia" data-lead="ELH-L-2026-000411" data-expansion="deals-411" data-due-bdt="150000" data-due-usd="0">
+                                                <td><button class="btn btn-sm btn-icon btn-light crm-expand-toggle" data-target="deals-411" title="Deal history"><i class="mdi mdi-chevron-right"></i></button></td>
+                                                <td><div class="fw-semibold">Karim Mia</div><div class="fs-12 text-muted">G: Karim Mia</div></td>
+                                                <td class="fs-13">1</td>
+                                                <td class="text-end"><div class="cur fs-13 text-success fw-bold">&#2547;2,50,000</div></td>
+                                                <td class="text-end"><div class="cur fs-13 text-danger fw-bold">&#2547;1,50,000</div></td>
+                                                <td class="fs-13">18 Jul 2026</td>
+                                                <td><span class="badge bg-danger-subtle text-danger">Dues</span></td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-primary crm-deal-pay" data-bs-toggle="modal" data-bs-target="#dealPayModal" data-person="Karim Mia" data-deal="ELH-D-2026-000093" data-due-bdt="150000" data-due-usd="0" data-accepts-usd="false"><i class="mdi mdi-cash-plus me-1"></i>Pay</button>
+                                                        <a href="patient-profile.html?patient=ELH-P-2026-000411" class="btn btn-sm btn-icon btn-light" title="View profile"><i class="mdi mdi-eye-outline"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="d-none crm-expansion" id="deals-411">
+                                                <td colspan="8" class="bg-light-subtle">
+                                                    <div class="p-2">
+                                                        <div class="fs-12 text-uppercase text-muted mb-2">Deal history &mdash; Karim Mia</div>
+                                                        <table class="table table-sm mb-0">
+                                                            <thead><tr><th>Deal ID</th><th>Package</th><th>Started</th><th class="text-end">Agreed</th><th class="text-end">Paid</th><th class="text-end">Due</th><th>State</th></tr></thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="mono fs-12">ELH-D-2026-000093</td>
+                                                                    <td class="fs-13">Full-Funded Package</td>
+                                                                    <td class="fs-13">18 Jul 2026</td>
+                                                                    <td class="text-end cur fs-13">&#2547;4,00,000</td>
+                                                                    <td class="text-end cur fs-13 text-success">&#2547;2,50,000</td>
+                                                                    <td class="text-end cur fs-13 text-danger fw-bold">&#2547;1,50,000</td>
+                                                                    <td><span class="badge bg-danger-subtle text-danger">Dues</span></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-state="settled" data-person="Nadia Sultana" data-lead="ELH-L-2026-000410" data-expansion="deals-410" data-due-bdt="0" data-due-usd="0">
+                                                <td><button class="btn btn-sm btn-icon btn-light crm-expand-toggle" data-target="deals-410" title="Deal history"><i class="mdi mdi-chevron-right"></i></button></td>
+                                                <td><div class="fw-semibold">Nadia Sultana</div><div class="fs-12 text-muted">G: Sultana Begum</div></td>
+                                                <td class="fs-13">1</td>
+                                                <td class="text-end"><div class="cur fs-13 text-success fw-bold">&#2547;3,00,000</div></td>
+                                                <td class="text-end"><div class="cur fs-13 text-danger fw-bold">&#2547;0</div></td>
+                                                <td class="fs-13">21 Aug 2026</td>
+                                                <td><span class="badge bg-success-subtle text-success">Settled</span></td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-primary crm-deal-pay" data-bs-toggle="modal" data-bs-target="#dealPayModal" data-person="Nadia Sultana" data-deal="ELH-D-2026-000092" data-due-bdt="0" data-due-usd="0" data-accepts-usd="true"><i class="mdi mdi-cash-plus me-1"></i>Pay</button>
+                                                        <a href="patient-profile.html?patient=ELH-P-2026-000410" class="btn btn-sm btn-icon btn-light" title="View profile"><i class="mdi mdi-eye-outline"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="d-none crm-expansion" id="deals-410">
+                                                <td colspan="8" class="bg-light-subtle">
+                                                    <div class="p-2">
+                                                        <div class="fs-12 text-uppercase text-muted mb-2">Deal history &mdash; Nadia Sultana</div>
+                                                        <table class="table table-sm mb-0">
+                                                            <thead><tr><th>Deal ID</th><th>Package</th><th>Started</th><th class="text-end">Agreed</th><th class="text-end">Paid</th><th class="text-end">Due</th><th>State</th></tr></thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="mono fs-12">ELH-D-2026-000092</td>
+                                                                    <td class="fs-13">Paid Package</td>
+                                                                    <td class="fs-13">21 Aug 2026</td>
+                                                                    <td class="text-end cur fs-13">&#2547;3,00,000</td>
+                                                                    <td class="text-end cur fs-13 text-success">&#2547;3,00,000</td>
+                                                                    <td class="text-end cur fs-13 text-danger fw-bold">&mdash;</td>
+                                                                    <td><span class="badge bg-success-subtle text-success">Settled</span></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-state="settled" data-person="Mim Akter" data-lead="ELH-L-2026-000408" data-expansion="deals-408" data-due-bdt="0" data-due-usd="0">
+                                                <td><button class="btn btn-sm btn-icon btn-light crm-expand-toggle" data-target="deals-408" title="Deal history"><i class="mdi mdi-chevron-right"></i></button></td>
+                                                <td><div class="fw-semibold">Mim Akter</div><div class="fs-12 text-muted">G: Jahanara Khatun</div></td>
+                                                <td class="fs-13">1</td>
+                                                <td class="text-end"><div class="cur fs-13 text-success fw-bold">&#2547;2,50,000</div></td>
+                                                <td class="text-end"><span class="text-muted">&mdash;</span></td>
+                                                <td class="fs-13">20 Jun 2026</td>
+                                                <td><span class="badge bg-success-subtle text-success">Settled</span></td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-label-primary crm-deal-new" data-bs-toggle="modal" data-bs-target="#newDealModal" data-person="Mim Akter"><i class="mdi mdi-plus me-1"></i>New Deal</button>
+                                                        <a href="patient-profile.html?patient=ELH-P-2026-000408" class="btn btn-sm btn-icon btn-light" title="View profile"><i class="mdi mdi-eye-outline"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="d-none crm-expansion" id="deals-408">
+                                                <td colspan="8" class="bg-light-subtle">
+                                                    <div class="p-2">
+                                                        <div class="fs-12 text-uppercase text-muted mb-2">Deal history &mdash; Mim Akter</div>
+                                                        <table class="table table-sm mb-0">
+                                                            <thead><tr><th>Deal ID</th><th>Package</th><th>Started</th><th class="text-end">Agreed</th><th class="text-end">Paid</th><th class="text-end">Due</th><th>State</th></tr></thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="mono fs-12">ELH-D-2026-000091</td>
+                                                                    <td class="fs-13">Partial-Funded Package</td>
+                                                                    <td class="fs-13">20 Jun 2026</td>
+                                                                    <td class="text-end cur fs-13">&#2547;2,50,000</td>
+                                                                    <td class="text-end cur fs-13 text-success">&#2547;2,50,000</td>
+                                                                    <td class="text-end cur fs-13 text-muted">&mdash;</td>
+                                                                    <td><span class="badge bg-success-subtle text-success">Settled</span></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-state="settled" data-person="Jamal Uddin" data-lead="ELH-L-2026-000405" data-expansion="deals-405" data-due-bdt="0" data-due-usd="0">
+                                                <td><button class="btn btn-sm btn-icon btn-light crm-expand-toggle" data-target="deals-405" title="Deal history"><i class="mdi mdi-chevron-right"></i></button></td>
+                                                <td><div class="fw-semibold">Jamal Uddin</div><div class="fs-12 text-muted">G: Jamal Uddin</div></td>
+                                                <td class="fs-13">1</td>
+                                                <td class="text-end"><div class="cur fs-13 text-success fw-bold">&#2547;4,00,000</div></td>
+                                                <td class="text-end"><span class="text-muted">&mdash;</span></td>
+                                                <td class="fs-13">30 Aug 2026</td>
+                                                <td><span class="badge bg-success-subtle text-success">Settled</span></td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-label-primary crm-deal-new" data-bs-toggle="modal" data-bs-target="#newDealModal" data-person="Jamal Uddin"><i class="mdi mdi-plus me-1"></i>New Deal</button>
+                                                        <a href="patient-profile.html?patient=ELH-P-2026-000405" class="btn btn-sm btn-icon btn-light" title="View profile"><i class="mdi mdi-eye-outline"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="d-none crm-expansion" id="deals-405">
+                                                <td colspan="8" class="bg-light-subtle">
+                                                    <div class="p-2">
+                                                        <div class="fs-12 text-uppercase text-muted mb-2">Deal history &mdash; Jamal Uddin</div>
+                                                        <table class="table table-sm mb-0">
+                                                            <thead><tr><th>Deal ID</th><th>Package</th><th>Started</th><th class="text-end">Agreed</th><th class="text-end">Paid</th><th class="text-end">Due</th><th>State</th></tr></thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="mono fs-12">ELH-D-2026-000090</td>
+                                                                    <td class="fs-13">Full-Funded Package</td>
+                                                                    <td class="fs-13">30 Aug 2026</td>
+                                                                    <td class="text-end cur fs-13">&#2547;4,00,000</td>
+                                                                    <td class="text-end cur fs-13 text-success">&#2547;4,00,000</td>
+                                                                    <td class="text-end cur fs-13 text-muted">&mdash;</td>
+                                                                    <td><span class="badge bg-success-subtle text-success">Settled</span></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-state="settled" data-person="Sharmin Akter" data-lead="ELH-L-2026-000406" data-expansion="deals-406" data-due-bdt="0" data-due-usd="0">
+                                                <td><button class="btn btn-sm btn-icon btn-light crm-expand-toggle" data-target="deals-406" title="Deal history"><i class="mdi mdi-chevron-right"></i></button></td>
+                                                <td><div class="fw-semibold">Sharmin Akter</div><div class="fs-12 text-muted">G: Abul Kalam</div></td>
+                                                <td class="fs-13">2</td>
+                                                <td class="text-end"><div class="cur fs-13 text-success fw-bold">&#2547;7,00,000</div></td>
+                                                <td class="text-end"><span class="text-muted">&mdash;</span></td>
+                                                <td class="fs-13">24 Aug 2026</td>
+                                                <td><span class="badge bg-success-subtle text-success">Settled</span></td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-label-primary crm-deal-new" data-bs-toggle="modal" data-bs-target="#newDealModal" data-person="Sharmin Akter"><i class="mdi mdi-plus me-1"></i>New Deal</button>
+                                                        <a href="patient-profile.html?patient=ELH-P-2026-000406" class="btn btn-sm btn-icon btn-light" title="View profile"><i class="mdi mdi-eye-outline"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="d-none crm-expansion" id="deals-406">
+                                                <td colspan="8" class="bg-light-subtle">
+                                                    <div class="p-2">
+                                                        <div class="fs-12 text-uppercase text-muted mb-2">Deal history &mdash; Sharmin Akter</div>
+                                                        <table class="table table-sm mb-0">
+                                                            <thead><tr><th>Deal ID</th><th>Package</th><th>Started</th><th class="text-end">Agreed</th><th class="text-end">Paid</th><th class="text-end">Due</th><th>State</th></tr></thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="mono fs-12">ELH-D-2026-000089</td>
+                                                                    <td class="fs-13">Paid Package</td>
+                                                                    <td class="fs-13">24 Aug 2026</td>
+                                                                    <td class="text-end cur fs-13">&#2547;3,00,000</td>
+                                                                    <td class="text-end cur fs-13 text-success">&#2547;3,00,000</td>
+                                                                    <td class="text-end cur fs-13 text-muted">&mdash;</td>
+                                                                    <td><span class="badge bg-success-subtle text-success">Settled</span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="mono fs-12">ELH-D-2025-000042</td>
+                                                                    <td class="fs-13">Full-Funded Package</td>
+                                                                    <td class="fs-13">11 Nov 2025<div class="fs-11 text-muted">closed</div></td>
+                                                                    <td class="text-end cur fs-13">&#2547;4,00,000</td>
+                                                                    <td class="text-end cur fs-13 text-success">&#2547;4,00,000</td>
+                                                                    <td class="text-end cur fs-13 text-muted">&mdash;</td>
+                                                                    <td><span class="badge bg-success-subtle text-success">Settled</span></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-state="settled" data-person="Rokeya Begum" data-lead="ELH-L-2026-000398" data-expansion="deals-398" data-due-bdt="0" data-due-usd="0">
+                                                <td><button class="btn btn-sm btn-icon btn-light crm-expand-toggle" data-target="deals-398" title="Deal history"><i class="mdi mdi-chevron-right"></i></button></td>
+                                                <td><div class="fw-semibold">Rokeya Begum</div><div class="fs-12 text-muted">G: Anwar Hossain</div></td>
+                                                <td class="fs-13">1</td>
+                                                <td class="text-end"><div class="cur fs-13 text-success fw-bold">&#2547;4,00,000</div></td>
+                                                <td class="text-end"><span class="text-muted">&mdash;</span></td>
+                                                <td class="fs-13">18 Aug 2026</td>
+                                                <td><span class="badge bg-success-subtle text-success">Settled</span></td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-label-primary crm-deal-new" data-bs-toggle="modal" data-bs-target="#newDealModal" data-person="Rokeya Begum"><i class="mdi mdi-plus me-1"></i>New Deal</button>
+                                                        <a href="patient-profile.html?patient=ELH-P-2026-000398" class="btn btn-sm btn-icon btn-light" title="View profile"><i class="mdi mdi-eye-outline"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="d-none crm-expansion" id="deals-398">
+                                                <td colspan="8" class="bg-light-subtle">
+                                                    <div class="p-2">
+                                                        <div class="fs-12 text-uppercase text-muted mb-2">Deal history &mdash; Rokeya Begum</div>
+                                                        <table class="table table-sm mb-0">
+                                                            <thead><tr><th>Deal ID</th><th>Package</th><th>Started</th><th class="text-end">Agreed</th><th class="text-end">Paid</th><th class="text-end">Due</th><th>State</th></tr></thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="mono fs-12">ELH-D-2026-000088</td>
+                                                                    <td class="fs-13">Full-Funded Package</td>
+                                                                    <td class="fs-13">18 Aug 2026</td>
+                                                                    <td class="text-end cur fs-13">&#2547;4,00,000</td>
+                                                                    <td class="text-end cur fs-13 text-success">&#2547;4,00,000</td>
+                                                                    <td class="text-end cur fs-13 text-muted">&mdash;</td>
+                                                                    <td><span class="badge bg-success-subtle text-success">Settled</span></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-state="settled" data-person="Sajid Hasan" data-lead="ELH-L-2026-000395" data-expansion="deals-395" data-due-bdt="0" data-due-usd="0">
+                                                <td><button class="btn btn-sm btn-icon btn-light crm-expand-toggle" data-target="deals-395" title="Deal history"><i class="mdi mdi-chevron-right"></i></button></td>
+                                                <td><div class="fw-semibold">Sajid Hasan</div><div class="fs-12 text-muted">G: Mizanur Rahman</div></td>
+                                                <td class="fs-13">1</td>
+                                                <td class="text-end"><div class="cur fs-13 text-success fw-bold">&#2547;2,50,000</div></td>
+                                                <td class="text-end"><span class="text-muted">&mdash;</span></td>
+                                                <td class="fs-13">12 Aug 2026</td>
+                                                <td><span class="badge bg-success-subtle text-success">Settled</span></td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-label-primary crm-deal-new" data-bs-toggle="modal" data-bs-target="#newDealModal" data-person="Sajid Hasan"><i class="mdi mdi-plus me-1"></i>New Deal</button>
+                                                        <a href="patient-profile.html?patient=ELH-P-2026-000395" class="btn btn-sm btn-icon btn-light" title="View profile"><i class="mdi mdi-eye-outline"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="d-none crm-expansion" id="deals-395">
+                                                <td colspan="8" class="bg-light-subtle">
+                                                    <div class="p-2">
+                                                        <div class="fs-12 text-uppercase text-muted mb-2">Deal history &mdash; Sajid Hasan</div>
+                                                        <table class="table table-sm mb-0">
+                                                            <thead><tr><th>Deal ID</th><th>Package</th><th>Started</th><th class="text-end">Agreed</th><th class="text-end">Paid</th><th class="text-end">Due</th><th>State</th></tr></thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="mono fs-12">ELH-D-2026-000087</td>
+                                                                    <td class="fs-13">Partial-Funded Package</td>
+                                                                    <td class="fs-13">12 Aug 2026</td>
+                                                                    <td class="text-end cur fs-13">&#2547;2,50,000</td>
+                                                                    <td class="text-end cur fs-13 text-success">&#2547;2,50,000</td>
+                                                                    <td class="text-end cur fs-13 text-muted">&mdash;</td>
+                                                                    <td><span class="badge bg-success-subtle text-success">Settled</span></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-state="settled" data-person="Halima Khatun" data-lead="ELH-L-2026-000391" data-expansion="deals-391" data-due-bdt="0" data-due-usd="0">
+                                                <td><button class="btn btn-sm btn-icon btn-light crm-expand-toggle" data-target="deals-391" title="Deal history"><i class="mdi mdi-chevron-right"></i></button></td>
+                                                <td><div class="fw-semibold">Halima Khatun</div><div class="fs-12 text-muted">G: Halima Khatun</div></td>
+                                                <td class="fs-13">1</td>
+                                                <td class="text-end"><div class="cur fs-13 text-success fw-bold">&#2547;4,00,000</div></td>
+                                                <td class="text-end"><span class="text-muted">&mdash;</span></td>
+                                                <td class="fs-13">05 Aug 2026</td>
+                                                <td><span class="badge bg-success-subtle text-success">Settled</span></td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-label-primary crm-deal-new" data-bs-toggle="modal" data-bs-target="#newDealModal" data-person="Halima Khatun"><i class="mdi mdi-plus me-1"></i>New Deal</button>
+                                                        <a href="patient-profile.html?patient=ELH-P-2026-000391" class="btn btn-sm btn-icon btn-light" title="View profile"><i class="mdi mdi-eye-outline"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="d-none crm-expansion" id="deals-391">
+                                                <td colspan="8" class="bg-light-subtle">
+                                                    <div class="p-2">
+                                                        <div class="fs-12 text-uppercase text-muted mb-2">Deal history &mdash; Halima Khatun</div>
+                                                        <table class="table table-sm mb-0">
+                                                            <thead><tr><th>Deal ID</th><th>Package</th><th>Started</th><th class="text-end">Agreed</th><th class="text-end">Paid</th><th class="text-end">Due</th><th>State</th></tr></thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="mono fs-12">ELH-D-2026-000086</td>
+                                                                    <td class="fs-13">Full-Funded Package</td>
+                                                                    <td class="fs-13">05 Aug 2026</td>
+                                                                    <td class="text-end cur fs-13">&#2547;4,00,000</td>
+                                                                    <td class="text-end cur fs-13 text-success">&#2547;4,00,000</td>
+                                                                    <td class="text-end cur fs-13 text-muted">&mdash;</td>
+                                                                    <td><span class="badge bg-success-subtle text-success">Settled</span></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-state="settled" data-person="Tanjila Akter" data-lead="ELH-L-2026-000386" data-expansion="deals-386" data-due-bdt="0" data-due-usd="0">
+                                                <td><button class="btn btn-sm btn-icon btn-light crm-expand-toggle" data-target="deals-386" title="Deal history"><i class="mdi mdi-chevron-right"></i></button></td>
+                                                <td><div class="fw-semibold">Tanjila Akter</div><div class="fs-12 text-muted">G: Rafiqul Islam</div></td>
+                                                <td class="fs-13">1</td>
+                                                <td class="text-end"><div class="cur fs-13 text-success fw-bold">&#2547;2,50,000</div></td>
+                                                <td class="text-end"><span class="text-muted">&mdash;</span></td>
+                                                <td class="fs-13">28 Jul 2026</td>
+                                                <td><span class="badge bg-success-subtle text-success">Settled</span></td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-label-primary crm-deal-new" data-bs-toggle="modal" data-bs-target="#newDealModal" data-person="Tanjila Akter"><i class="mdi mdi-plus me-1"></i>New Deal</button>
+                                                        <a href="patient-profile.html?patient=ELH-P-2026-000386" class="btn btn-sm btn-icon btn-light" title="View profile"><i class="mdi mdi-eye-outline"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="d-none crm-expansion" id="deals-386">
+                                                <td colspan="8" class="bg-light-subtle">
+                                                    <div class="p-2">
+                                                        <div class="fs-12 text-uppercase text-muted mb-2">Deal history &mdash; Tanjila Akter</div>
+                                                        <table class="table table-sm mb-0">
+                                                            <thead><tr><th>Deal ID</th><th>Package</th><th>Started</th><th class="text-end">Agreed</th><th class="text-end">Paid</th><th class="text-end">Due</th><th>State</th></tr></thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="mono fs-12">ELH-D-2026-000085</td>
+                                                                    <td class="fs-13">Partial-Funded Package</td>
+                                                                    <td class="fs-13">28 Jul 2026</td>
+                                                                    <td class="text-end cur fs-13">&#2547;2,50,000</td>
+                                                                    <td class="text-end cur fs-13 text-success">&#2547;2,50,000</td>
+                                                                    <td class="text-end cur fs-13 text-muted">&mdash;</td>
+                                                                    <td><span class="badge bg-success-subtle text-success">Settled</span></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-state="settled" data-person="Nurul Islam" data-lead="ELH-L-2026-000380" data-expansion="deals-380" data-due-bdt="0" data-due-usd="0">
+                                                <td><button class="btn btn-sm btn-icon btn-light crm-expand-toggle" data-target="deals-380" title="Deal history"><i class="mdi mdi-chevron-right"></i></button></td>
+                                                <td><div class="fw-semibold">Nurul Islam</div><div class="fs-12 text-muted">G: Nurul Islam</div></td>
+                                                <td class="fs-13">1</td>
+                                                <td class="text-end"><div class="cur fs-13 text-success fw-bold">&#2547;3,00,000</div></td>
+                                                <td class="text-end"><span class="text-muted">&mdash;</span></td>
+                                                <td class="fs-13">20 Jul 2026</td>
+                                                <td><span class="badge bg-success-subtle text-success">Settled</span></td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-label-primary crm-deal-new" data-bs-toggle="modal" data-bs-target="#newDealModal" data-person="Nurul Islam"><i class="mdi mdi-plus me-1"></i>New Deal</button>
+                                                        <a href="patient-profile.html?patient=ELH-P-2026-000380" class="btn btn-sm btn-icon btn-light" title="View profile"><i class="mdi mdi-eye-outline"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="d-none crm-expansion" id="deals-380">
+                                                <td colspan="8" class="bg-light-subtle">
+                                                    <div class="p-2">
+                                                        <div class="fs-12 text-uppercase text-muted mb-2">Deal history &mdash; Nurul Islam</div>
+                                                        <table class="table table-sm mb-0">
+                                                            <thead><tr><th>Deal ID</th><th>Package</th><th>Started</th><th class="text-end">Agreed</th><th class="text-end">Paid</th><th class="text-end">Due</th><th>State</th></tr></thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="mono fs-12">ELH-D-2026-000084</td>
+                                                                    <td class="fs-13">Paid Package</td>
+                                                                    <td class="fs-13">20 Jul 2026</td>
+                                                                    <td class="text-end cur fs-13">&#2547;3,00,000</td>
+                                                                    <td class="text-end cur fs-13 text-success">&#2547;3,00,000</td>
+                                                                    <td class="text-end cur fs-13 text-muted">&mdash;</td>
+                                                                    <td><span class="badge bg-success-subtle text-success">Settled</span></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ PAY AGAINST A DEAL ============ -->
+                <!-- Same money rules as the leads module: one currency per payment,
+                     nothing converted, capped at that currency's outstanding. -->
+                <div class="modal fade" id="dealPayModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div>
+                                    <h5 class="modal-title mb-0">Record Payment</h5>
+                                    <span class="fs-12 text-muted" id="dp-label"></span>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6"><label class="form-label">Payment date</label><input type="date" class="form-control" id="dp-date"></div>
+                                    <div class="col-md-6"><label class="form-label">Method <span class="text-danger">*</span></label><select class="form-select" id="dp-method" data-crm-list="paymentMethods"><option>Cash</option><option>Bank Transfer</option><option>Card</option><option>bKash</option><option>Nagad</option><option>Rocket</option><option>Other</option></select></div>
+                                    <select class="d-none" id="dp-currency"><option value="bdt" selected>Taka</option></select>
+                                    <div class="col-12">
+                                        <label class="form-label">Amount <span class="text-danger">*</span></label>
+                                        <div class="input-group"><span class="input-group-text" id="dp-prefix">&#2547;</span><input type="number" class="form-control" id="dp-amount" min="0" placeholder="0"></div>
+                                        <div class="form-text fs-11 text-warning d-none" id="dp-over"></div>
+                                    </div>
+                                    <div class="col-md-6"><label class="form-label">Reference / note</label><input type="text" class="form-control" id="dp-ref" placeholder="If applicable"></div>
+                                    <div class="col-md-6"><label class="form-label">Payment proof</label><input type="file" class="form-control" id="dp-proof"></div>
+                                </div>
+                                <div class="card bg-light-subtle border mt-3 mb-0"><div class="card-body py-3">
+                                    <div class="row text-center">
+                                        <div class="col"><div class="fs-11 text-uppercase text-muted">This Payment</div><div class="fw-bold cur text-success" id="dp-total">&#2547;0</div></div>
+                                        <div class="col"><div class="fs-11 text-uppercase text-muted">Due After This Payment</div><div class="fw-bold cur text-danger" id="dp-after">&#2547;0</div></div>
+                                    </div>
+                                </div></div>
+                                <div class="alert alert-info d-flex align-items-center gap-2 py-2 fs-12 mt-3 mb-0">
+                                    <i class="mdi mdi-information-outline"></i>
+                                    <span>The payment is recorded as <span class="fw-semibold">pending</span> until Accounts verifies it.</span>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-primary" id="dp-save"><i class="mdi mdi-content-save-outline me-1"></i>Record Payment</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ NEW DEAL ============ -->
+                <!-- A settled patient who comes back opens a fresh deal here, which
+                     puts them into Dues again until it is paid off. -->
+                <div class="modal fade" id="newDealModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div>
+                                    <h5 class="modal-title mb-0">Start a New Deal</h5>
+                                    <span class="fs-12 text-muted" id="nd-label"></span>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="lc-apply-block"><!--@apply-block--></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-primary" id="nd-save">Create Deal</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>

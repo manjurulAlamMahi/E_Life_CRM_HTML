@@ -1,0 +1,169 @@
+                <!-- ===== Buckets — same layout as Upcoming Follow-ups ===== -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card stat-tile border-start border-3 border-danger">
+                            <div class="card-body d-flex align-items-center gap-3">
+                                <span class="stat-icon bg-danger-subtle text-danger"><i class="mdi mdi-clock-alert-outline"></i></span>
+                                <div>
+                                    <div class="stat-value cur text-danger">2</div>
+                                    <div class="stat-label text-muted">Overdue</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card stat-tile border-start border-3 border-primary">
+                            <div class="card-body d-flex align-items-center gap-3">
+                                <span class="stat-icon bg-primary-subtle text-primary"><i class="mdi mdi-calendar-today"></i></span>
+                                <div>
+                                    <div class="stat-value cur">2</div>
+                                    <div class="stat-label text-muted">Today</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card stat-tile border-start border-3 border-warning">
+                            <div class="card-body d-flex align-items-center gap-3">
+                                <span class="stat-icon bg-warning-subtle text-warning"><i class="mdi mdi-calendar-arrow-right"></i></span>
+                                <div>
+                                    <div class="stat-value cur">3</div>
+                                    <div class="stat-label text-muted">Upcoming</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interested leads, bucketed by their next contact date exactly like
+                     Upcoming Follow-ups. Every row is worked from Log Conversation —
+                     which ends in a next action (apply, follow up, not interested …) —
+                     or Reschedule. A row that stops being Interested leaves the list. -->
+                <div class="card">
+                    <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-2">
+                        <ul class="nav nav-pills nav-sm" role="tablist">
+                            <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#in-today">Today <span class="badge bg-primary ms-1">2</span></a></li>
+                            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#in-overdue">Overdue <span class="badge bg-danger ms-1">2</span></a></li>
+                            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#in-upcoming">Upcoming <span class="badge bg-warning ms-1">3</span></a></li>
+                        </ul>
+                        <div class="d-flex flex-wrap gap-2 crm-filter">
+                            <select class="form-select form-select-sm w-auto" data-filter="col:Source" aria-label="Source"><option value="">All sources</option><option>Noman</option><option>Dr. Ilias Patowary</option><option>Facebook</option><option>Website</option><option>Hospital</option><option>Doctor Referral</option><option>Walk-in</option><option>Campaign</option><option>Other</option></select>
+                            <select class="form-select form-select-sm w-auto" data-filter="attr:executive" aria-label="Executive"><option value="">All executives</option><option>Tanvir Ahmed</option><option>Nusrat Jahan</option><option>Sabbir Hossain</option><option>Farhana Akter</option></select>
+                            <button type="button" class="btn btn-light btn-sm" data-filter-reset title="Reset filters"><i class="mdi mdi-refresh"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="in-today">
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle mb-0" data-list-status="interested">
+                                        <thead class="table-light">
+                                            <tr><th>Guardian / Patient</th><th>Phone</th><th>Source</th><th>Next Contact</th><th>Last Conversation</th><th>Status</th><th class="no-sort">Action</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr data-status="interested" data-lead-id="ELH-L-2026-000396" data-lead-name="Parvin Akter" data-lead-patient="Rumana Akter" data-executive="Farhana Akter">
+                                                <td><div class="fw-semibold">Parvin Akter</div><div class="fs-12 text-muted">Rumana Akter</div><div class="mono fs-11 text-muted text-nowrap">ELH-L-2026-000396</div></td>
+                                                <td class="fs-13">+880 1915-667788</td>
+                                                <td><span class="badge bg-info-subtle text-info">Facebook</span></td>
+                                                <td class="fs-13">11:00 AM</td>
+                                                <td class="crm-last-conv" title="Family meeting on Sunday to decide"><div class="fs-13 crm-clamp-2">Family meeting on Sunday to decide</div><div class="fs-11 text-muted mt-1"><i class="mdi mdi-history me-1"></i>01 Sep 2026 · Phone · Farhana Akter</div></td>
+                                                <td><span class="badge crm-status-badge bg-primary-subtle text-primary">Interested</span></td>
+                                                <td><div class="d-flex gap-1"><button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-lead-id="ELH-L-2026-000396" data-lead-name="Parvin Akter" data-lead-patient="Rumana Akter"><i class="mdi mdi-card-account-details-outline"></i></button><button type="button" class="btn btn-sm btn-primary text-nowrap" data-bs-toggle="modal" data-bs-target="#logConvModal"><i class="mdi mdi-comment-plus-outline me-1"></i>Log Conversation</button><button type="button" class="btn btn-sm btn-label-warning text-nowrap" data-bs-toggle="modal" data-bs-target="#rescheduleModal" data-rs-title="Reschedule Next Contact"><i class="mdi mdi-calendar-clock me-1"></i>Reschedule</button></div></td>
+                                            </tr>
+                                            <tr data-status="interested" data-lead-id="ELH-L-2026-000392" data-lead-name="Delwar Hossain" data-lead-patient="Delwar Hossain" data-executive="Sabbir Hossain">
+                                                <td><div class="fw-semibold">Delwar Hossain</div><div class="fs-12 text-muted">Delwar Hossain</div><div class="mono fs-11 text-muted text-nowrap">ELH-L-2026-000392</div></td>
+                                                <td class="fs-13">+880 1556-112299</td>
+                                                <td><span class="badge bg-secondary-subtle text-secondary">Campaign</span></td>
+                                                <td class="fs-13">04:30 PM</td>
+                                                <td class="crm-last-conv" title="Collecting the patient's passport"><div class="fs-13 crm-clamp-2">Collecting the patient's passport</div><div class="fs-11 text-muted mt-1"><i class="mdi mdi-history me-1"></i>31 Aug 2026 · WhatsApp · Sabbir Hossain</div></td>
+                                                <td><span class="badge crm-status-badge bg-primary-subtle text-primary">Interested</span></td>
+                                                <td><div class="d-flex gap-1"><button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-lead-id="ELH-L-2026-000392" data-lead-name="Delwar Hossain" data-lead-patient="Delwar Hossain"><i class="mdi mdi-card-account-details-outline"></i></button><button type="button" class="btn btn-sm btn-primary text-nowrap" data-bs-toggle="modal" data-bs-target="#logConvModal"><i class="mdi mdi-comment-plus-outline me-1"></i>Log Conversation</button><button type="button" class="btn btn-sm btn-label-warning text-nowrap" data-bs-toggle="modal" data-bs-target="#rescheduleModal" data-rs-title="Reschedule Next Contact"><i class="mdi mdi-calendar-clock me-1"></i>Reschedule</button></div></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="in-overdue">
+                                <div class="alert alert-danger d-flex align-items-center gap-2 py-2 fs-13">
+                                    <i class="mdi mdi-alert-outline"></i>
+                                    These interested leads were due a call and have not been contacted yet.
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle mb-0" data-list-status="interested">
+                                        <thead class="table-light">
+                                            <tr><th>Guardian / Patient</th><th>Phone</th><th>Source</th><th>Next Contact</th><th>Last Conversation</th><th>Status</th><th class="no-sort">Action</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr data-status="interested" data-lead-id="ELH-L-2026-000381" data-lead-name="Momtaz Begum" data-lead-patient="Sadia Akter" data-executive="Tanvir Ahmed">
+                                                <td><div class="fw-semibold">Momtaz Begum</div><div class="fs-12 text-muted">Sadia Akter</div><div class="mono fs-11 text-muted text-nowrap">ELH-L-2026-000381</div></td>
+                                                <td class="fs-13">+880 1712-445566</td>
+                                                <td><span class="badge bg-info-subtle text-info">Facebook</span></td>
+                                                <td class="fs-13">28 Aug 2026<div class="fs-11 text-danger">3 days late</div></td>
+                                                <td class="crm-last-conv" title="Wants to compare Apollo and CMC costs"><div class="fs-13 crm-clamp-2">Wants to compare Apollo and CMC costs</div><div class="fs-11 text-muted mt-1"><i class="mdi mdi-history me-1"></i>28 Aug 2026 · Phone · Tanvir Ahmed</div></td>
+                                                <td><span class="badge crm-status-badge bg-primary-subtle text-primary">Interested</span></td>
+                                                <td><div class="d-flex gap-1"><button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-lead-id="ELH-L-2026-000381" data-lead-name="Momtaz Begum" data-lead-patient="Sadia Akter"><i class="mdi mdi-card-account-details-outline"></i></button><button type="button" class="btn btn-sm btn-primary text-nowrap" data-bs-toggle="modal" data-bs-target="#logConvModal"><i class="mdi mdi-comment-plus-outline me-1"></i>Log Conversation</button><button type="button" class="btn btn-sm btn-label-warning text-nowrap" data-bs-toggle="modal" data-bs-target="#rescheduleModal" data-rs-title="Reschedule Next Contact"><i class="mdi mdi-calendar-clock me-1"></i>Reschedule</button></div></td>
+                                            </tr>
+                                            <tr data-status="interested" data-lead-id="ELH-L-2026-000400" data-lead-name="Harun Rashid" data-lead-patient="Tamim Rashid" data-executive="Nusrat Jahan">
+                                                <td><div class="fw-semibold">Harun Rashid</div><div class="fs-12 text-muted">Tamim Rashid</div><div class="mono fs-11 text-muted text-nowrap">ELH-L-2026-000400</div></td>
+                                                <td class="fs-13">+880 1819-223344</td>
+                                                <td><span class="badge bg-primary-subtle text-primary">Doctor Referral</span></td>
+                                                <td class="fs-13">27 Aug 2026<div class="fs-11 text-danger">4 days late</div></td>
+                                                <td class="crm-last-conv" title="Asked for the doctor's profile and success rate"><div class="fs-13 crm-clamp-2">Asked for the doctor's profile and success rate</div><div class="fs-11 text-muted mt-1"><i class="mdi mdi-history me-1"></i>30 Aug 2026 · WhatsApp · Nusrat Jahan</div></td>
+                                                <td><span class="badge crm-status-badge bg-primary-subtle text-primary">Interested</span></td>
+                                                <td><div class="d-flex gap-1"><button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-lead-id="ELH-L-2026-000400" data-lead-name="Harun Rashid" data-lead-patient="Tamim Rashid"><i class="mdi mdi-card-account-details-outline"></i></button><button type="button" class="btn btn-sm btn-primary text-nowrap" data-bs-toggle="modal" data-bs-target="#logConvModal"><i class="mdi mdi-comment-plus-outline me-1"></i>Log Conversation</button><button type="button" class="btn btn-sm btn-label-warning text-nowrap" data-bs-toggle="modal" data-bs-target="#rescheduleModal" data-rs-title="Reschedule Next Contact"><i class="mdi mdi-calendar-clock me-1"></i>Reschedule</button></div></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="in-upcoming">
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle mb-0" data-list-status="interested">
+                                        <thead class="table-light">
+                                            <tr><th>Guardian / Patient</th><th>Phone</th><th>Source</th><th>Next Contact</th><th>Last Conversation</th><th>Status</th><th class="no-sort">Action</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr data-status="interested" data-lead-id="ELH-L-2026-000414" data-lead-name="Nazrul Islam" data-lead-patient="Farida Yeasmin" data-executive="Sabbir Hossain">
+                                                <td><div class="fw-semibold">Nazrul Islam</div><div class="fs-12 text-muted">Farida Yeasmin</div><div class="mono fs-11 text-muted text-nowrap">ELH-L-2026-000414</div></td>
+                                                <td class="fs-13">+880 1577-990011</td>
+                                                <td><span class="badge bg-success-subtle text-success">Noman</span></td>
+                                                <td class="fs-13">03 Sep 2026</td>
+                                                <td class="crm-last-conv" title="Interested in the Partial-Funded package"><div class="fs-13 crm-clamp-2">Interested in the Partial-Funded package</div><div class="fs-11 text-muted mt-1"><i class="mdi mdi-history me-1"></i>30 Aug 2026 · In Person · Sabbir Hossain</div></td>
+                                                <td><span class="badge crm-status-badge bg-primary-subtle text-primary">Interested</span></td>
+                                                <td><div class="d-flex gap-1"><button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-lead-id="ELH-L-2026-000414" data-lead-name="Nazrul Islam" data-lead-patient="Farida Yeasmin"><i class="mdi mdi-card-account-details-outline"></i></button><button type="button" class="btn btn-sm btn-primary text-nowrap" data-bs-toggle="modal" data-bs-target="#logConvModal"><i class="mdi mdi-comment-plus-outline me-1"></i>Log Conversation</button><button type="button" class="btn btn-sm btn-label-warning text-nowrap" data-bs-toggle="modal" data-bs-target="#rescheduleModal" data-rs-title="Reschedule Next Contact"><i class="mdi mdi-calendar-clock me-1"></i>Reschedule</button></div></td>
+                                            </tr>
+                                            <tr data-status="interested" data-lead-id="ELH-L-2026-000388" data-lead-name="Shamsul Alam" data-lead-patient="Nusrat Alam" data-executive="Tanvir Ahmed">
+                                                <td><div class="fw-semibold">Shamsul Alam</div><div class="fs-12 text-muted">Nusrat Alam</div><div class="mono fs-11 text-muted text-nowrap">ELH-L-2026-000388</div></td>
+                                                <td class="fs-13">+880 1722-889944</td>
+                                                <td><span class="badge bg-success-subtle text-success">Noman</span></td>
+                                                <td class="fs-13">05 Sep 2026</td>
+                                                <td class="crm-last-conv" title="Waiting for salary to pay the advance"><div class="fs-13 crm-clamp-2">Waiting for salary to pay the advance</div><div class="fs-11 text-muted mt-1"><i class="mdi mdi-history me-1"></i>25 Aug 2026 · Phone · Tanvir Ahmed</div></td>
+                                                <td><span class="badge crm-status-badge bg-primary-subtle text-primary">Interested</span></td>
+                                                <td><div class="d-flex gap-1"><button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-lead-id="ELH-L-2026-000388" data-lead-name="Shamsul Alam" data-lead-patient="Nusrat Alam"><i class="mdi mdi-card-account-details-outline"></i></button><button type="button" class="btn btn-sm btn-primary text-nowrap" data-bs-toggle="modal" data-bs-target="#logConvModal"><i class="mdi mdi-comment-plus-outline me-1"></i>Log Conversation</button><button type="button" class="btn btn-sm btn-label-warning text-nowrap" data-bs-toggle="modal" data-bs-target="#rescheduleModal" data-rs-title="Reschedule Next Contact"><i class="mdi mdi-calendar-clock me-1"></i>Reschedule</button></div></td>
+                                            </tr>
+                                            <tr data-status="interested" data-lead-id="ELH-L-2026-000384" data-lead-name="Rubina Khatun" data-lead-patient="Arif Hasan" data-executive="Nusrat Jahan">
+                                                <td><div class="fw-semibold">Rubina Khatun</div><div class="fs-12 text-muted">Arif Hasan</div><div class="mono fs-11 text-muted text-nowrap">ELH-L-2026-000384</div></td>
+                                                <td class="fs-13">+880 1633-445500</td>
+                                                <td><span class="badge bg-secondary-subtle text-secondary">Website</span></td>
+                                                <td class="fs-13">08 Sep 2026</td>
+                                                <td class="crm-last-conv" title="Asked us to call after the holidays"><div class="fs-13 crm-clamp-2">Asked us to call after the holidays</div><div class="fs-11 text-muted mt-1"><i class="mdi mdi-history me-1"></i>22 Aug 2026 · Phone · Nusrat Jahan</div></td>
+                                                <td><span class="badge crm-status-badge bg-primary-subtle text-primary">Interested</span></td>
+                                                <td><div class="d-flex gap-1"><button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-lead-id="ELH-L-2026-000384" data-lead-name="Rubina Khatun" data-lead-patient="Arif Hasan"><i class="mdi mdi-card-account-details-outline"></i></button><button type="button" class="btn btn-sm btn-primary text-nowrap" data-bs-toggle="modal" data-bs-target="#logConvModal"><i class="mdi mdi-comment-plus-outline me-1"></i>Log Conversation</button><button type="button" class="btn btn-sm btn-label-warning text-nowrap" data-bs-toggle="modal" data-bs-target="#rescheduleModal" data-rs-title="Reschedule Next Contact"><i class="mdi mdi-calendar-clock me-1"></i>Reschedule</button></div></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--@lead-modals-->
+
+                <!--@status-modals-->
+
+                <!--@log-conversation-->
+
+                <!--@reschedule-->
+
+                <!--@quick-view-->

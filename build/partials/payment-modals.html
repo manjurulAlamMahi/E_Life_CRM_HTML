@@ -1,0 +1,99 @@
+                <!-- ===== Payment module windows — Payment Due and Payment
+                     Completed. Pay Now records a payment and immediately opens
+                     its invoice; Payment History lists every payment on the
+                     package, each with its own invoice, plus one for the whole
+                     package. All read the page's #pm-data block and are wired in
+                     crm-payments.js. Injected at @payment-modals. ===== -->
+
+                <!-- Pay Now -->
+                <div class="modal fade" id="pmPayModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div>
+                                    <h5 class="modal-title mb-0">Pay Now</h5>
+                                    <span class="fs-12 text-muted" id="pm-pay-label"></span>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="pp-stats mb-3" style="grid-template-columns:repeat(3,1fr)">
+                                    <div class="pp-stat"><div class="crm-info-label">Package</div><div class="fw-bold cur" id="pm-pay-agreed"></div></div>
+                                    <div class="pp-stat"><div class="crm-info-label">Paid</div><div class="fw-bold cur text-success" id="pm-pay-paid"></div></div>
+                                    <div class="pp-stat pp-stat-due is-owing"><div class="crm-info-label">Outstanding</div><div class="fw-bold cur text-danger" id="pm-pay-due"></div></div>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-12">
+                                        <div class="d-flex justify-content-between align-items-end">
+                                            <label class="form-label" for="pm-amount">Amount received <span class="text-danger">*</span></label>
+                                            <button type="button" class="btn btn-link btn-sm p-0 mb-2 fs-12" id="pm-full">Pay full outstanding</button>
+                                        </div>
+                                        <div class="input-group input-group-lg"><span class="input-group-text">&#2547;</span><input type="number" class="form-control" id="pm-amount" min="1" placeholder="0"></div>
+                                        <div class="invalid-feedback d-block d-none" id="pm-amount-error"></div>
+                                        <div class="form-text fs-12" id="pm-after"></div>
+                                    </div>
+                                    <div class="col-6"><label class="form-label">Method <span class="text-danger">*</span></label><select class="form-select" id="pm-method" data-crm-list="paymentMethods"><option>Cash</option><option>Bank Transfer</option><option>bKash</option><option>Nagad</option><option>Rocket</option><option>Card</option><option>Other</option></select></div>
+                                    <div class="col-6"><label class="form-label">Date</label><input type="date" class="form-control" id="pm-date"></div>
+                                    <div class="col-12"><label class="form-label">Reference / Transaction ID <span class="text-muted fw-normal fs-12">(optional)</span></label><input type="text" class="form-control" id="pm-ref" placeholder="e.g. TXN123456"></div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-success" id="pm-pay-save"><i class="mdi mdi-check-circle-outline me-1"></i>Save &amp; Generate Invoice</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment History -->
+                <div class="modal fade" id="pmHistoryModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div>
+                                    <h5 class="modal-title mb-0">Payment History</h5>
+                                    <span class="fs-12 text-muted" id="pm-hist-label"></span>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="pp-stats mb-3" style="grid-template-columns:repeat(3,1fr)">
+                                    <div class="pp-stat"><div class="crm-info-label">Package</div><div class="fw-bold cur" id="pm-hist-agreed"></div><div class="fs-11 text-muted" id="pm-hist-pkg"></div></div>
+                                    <div class="pp-stat"><div class="crm-info-label">Paid</div><div class="fw-bold cur text-success" id="pm-hist-paid"></div></div>
+                                    <div class="pp-stat pp-stat-due" id="pm-hist-due-tile"><div class="crm-info-label">Outstanding</div><div class="fw-bold cur" id="pm-hist-due"></div></div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table align-middle mb-0">
+                                        <thead class="table-light"><tr><th>Date</th><th>Type</th><th>Method</th><th>Receipt</th><th class="text-end">Amount</th><th class="text-end">Invoice</th></tr></thead>
+                                        <tbody class="fs-13" id="pm-hist-body"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success me-auto pm-open-pay" id="pm-hist-pay"><i class="mdi mdi-cash-plus me-1"></i>Pay Now</button>
+                                <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary pm-open-invoice" id="pm-hist-invoice"><i class="mdi mdi-file-document-multiple-outline me-1"></i>Full Package Invoice</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Invoice — one payment or the whole package; prints on its own. -->
+                <div class="modal fade crm-print-modal" id="pmInvoiceModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header no-print">
+                                <h5 class="modal-title mb-0"><i class="mdi mdi-file-document-outline me-1"></i><span id="pm-inv-title">Invoice</span></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="alert alert-success py-2 fs-13 no-print d-none" id="pm-inv-note"></div>
+                                <div class="p-2" id="pm-invoice"></div>
+                            </div>
+                            <div class="modal-footer no-print">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                <button class="btn btn-primary" id="pm-inv-print"><i class="mdi mdi-printer me-1"></i>Print / Save PDF</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>

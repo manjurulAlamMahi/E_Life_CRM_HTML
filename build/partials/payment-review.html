@@ -1,0 +1,60 @@
+                <!-- ===== Payment review popups — Reject (with reason) and Payment Details,
+                     shared by Payments and the Dashboard's pending queue. Wired in
+                     crm-accounts.js. Injected at @payment-review. ===== -->
+                <div class="modal fade" id="rejectModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div><h5 class="modal-title mb-0">Reject Payment</h5><span class="fs-12 text-muted" id="rj-label"></span></div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <label class="form-label">Reason <span class="text-danger">*</span></label>
+                                <select class="form-select mb-3" id="rj-reason" data-crm-list="paymentRejectReasons">
+                                    <option value="">Select a reason</option>
+                                    <option>No such transaction found</option>
+                                    <option>Amount does not match</option>
+                                    <option>Proof unreadable</option>
+                                    <option>Duplicate submission</option>
+                                    <option>Other</option>
+                                </select>
+                                <label class="form-label">Note</label>
+                                <textarea class="form-control" id="rj-note" rows="3"></textarea>
+                                <div class="form-text fs-11 mt-2">Rejecting changes no balance. The patient's due stays exactly as it was.</div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-danger" id="rj-save">Reject</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="paymentDetailsModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title mb-0">Payment Details</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-sm mb-0">
+                                    <tbody class="fs-13">
+                                        <tr><td class="text-muted" style="width:40%">Patient</td><td id="pd-person"></td></tr>
+                                        <tr><td class="text-muted">Deal</td><td class="mono" id="pd-deal"></td></tr>
+                                        <tr><td class="text-muted">Collected by</td><td id="pd-exec"></td></tr>
+                                        <tr><td class="text-muted">Method</td><td id="pd-method"></td></tr>
+                                        <tr><td class="text-muted">Reference</td><td class="mono" id="pd-ref"></td></tr>
+                                        <tr><td class="text-muted">Amount</td><td class="cur fw-bold" id="pd-amount"></td></tr>
+                                        <tr><td class="text-muted">Date</td><td id="pd-date"></td></tr>
+                                        <tr><td class="text-muted">Branch</td><td id="pd-branch"></td></tr>
+                                        <tr><td class="text-muted">Proof</td><td id="pd-proof"></td></tr>
+                                        <tr><td class="text-muted">Notes</td><td id="pd-notes"></td></tr>
+                                        <tr><td class="text-muted">State</td><td id="pd-state"></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer"><button class="btn btn-light" data-bs-dismiss="modal">Close</button></div>
+                        </div>
+                    </div>
+                </div>

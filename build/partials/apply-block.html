@@ -1,0 +1,154 @@
+                                    <!-- Package. Three fixed packages seeded here; each carries its
+                                         own default prices and a flag saying whether it accepts
+                                         dollars. Adding a package on packages.html asks for exactly
+                                         these attributes, so nothing below hardcodes the three names.
+                                         A plain <select> on purpose: three options need no select2,
+                                         which is also what made this control unusable inside a modal. -->
+                                    <div class="row g-3">
+                                        <div class="col-12">
+                                            <label class="form-label">Package <span class="text-danger">*</span></label>
+                                            <select class="form-select" id="lc-package">
+                                                <option value="">Select a package</option>
+                                                <option value="PKG-FULL" data-accepts-usd="false" data-price-bdt="400000" data-price-usd="">Full-Funded Package</option>
+                                                <option value="PKG-PARTIAL" data-accepts-usd="true" data-price-bdt="250000" data-price-usd="2500" selected>Partial-Funded Package</option>
+                                                <option value="PKG-PAID" data-accepts-usd="true" data-price-bdt="300000" data-price-usd="4000">Paid Package</option>
+                                            </select>
+                                            <div class="form-text fs-11" id="lc-package-note">Choose the package this patient is applying under.</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Carried over from what was captured during the first
+                                         conversation with this lead (Expected Value / Offered Value
+                                         on Add Lead) — shown here in taka, read-only and purely for
+                                         reference while the actual price is agreed below. Filled
+                                         from the lead's row in openStatus (crm-leads.js). -->
+                                    <div class="row g-3 mt-1">
+                                        <div class="col-6">
+                                            <label class="form-label fs-12 mb-1">Expected Value <span class="text-muted fw-normal">(from first conversation)</span></label>
+                                            <div class="input-group input-group-sm"><span class="input-group-text">&#2547;</span><input type="number" class="form-control" id="lc-expected-bdt" placeholder="—" readonly></div>
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="form-label fs-12 mb-1">Offered Value <span class="text-muted fw-normal">(from first conversation)</span></label>
+                                            <div class="input-group input-group-sm"><span class="input-group-text">&#2547;</span><input type="number" class="form-control" id="lc-offered-bdt" placeholder="—" readonly></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Wide (modal-xl) on purpose: dollars, taka and the payment
+                                         log side by side in one row instead of stacked, so applying
+                                         a package fits without much scrolling. -->
+                                    <div class="row g-3 mt-1">
+                                        <!-- Partial dollar. Present only for packages that carry one
+                                             (every package except Full-Funded); a taka-only package
+                                             hides this outright. Only the amount is set here. Payments
+                                             against it are tracked on their own on Dollar Payments
+                                             (crm-dollar.js) and never touch taka balances, invoices or
+                                             receipts. -->
+                                        <div class="col-md-4" id="lc-usd-block">
+                                            <div class="border rounded p-3 h-100">
+                                                <div class="fs-11 text-uppercase text-muted fw-semibold mb-3"><i class="mdi mdi-currency-usd me-1"></i>Partial Dollar</div>
+                                                <div class="mb-2">
+                                                    <label class="form-label fs-12 mb-1">Package Price</label>
+                                                    <div class="input-group input-group-sm"><span class="input-group-text">$</span><input type="number" class="form-control" id="lc-price-usd" min="0" placeholder="0" readonly></div>
+                                                    <div class="form-text fs-11">Set automatically from the selected package.</div>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <label class="form-label fs-12 mb-1">Partial Dollar Amount</label>
+                                                    <div class="input-group input-group-sm"><span class="input-group-text">$</span><input type="number" class="form-control" id="lc-negotiated-usd" min="0" placeholder="0"></div>
+                                                </div>
+                                                <div class="mb-0">
+                                                    <label class="form-label fs-12 mb-1">Suggested Price <span class="text-muted fw-normal">(from first conversation)</span></label>
+                                                    <div class="input-group input-group-sm"><span class="input-group-text">$</span><input type="number" class="form-control" id="lc-suggested-usd" min="0" placeholder="0"></div>
+                                                    <div class="form-text fs-11"><i class="mdi mdi-lock-outline"></i> Internal. Payments are logged on Dollar Payments.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Taka. Every package is settled at least in taka, and
+                                             tracked as a real balance: negotiated minus paid.
+                                             Package Price is read-only (the package's own list
+                                             price); Negotiated Package Price is what was actually
+                                             agreed and is the figure that counts as revenue. No
+                                             discount field — the client does not give discounts. -->
+                                        <div class="col-md-4">
+                                            <div class="border rounded p-3 h-100">
+                                                <div class="fs-11 text-uppercase text-muted fw-semibold mb-3"><i class="mdi mdi-currency-bdt me-1"></i>Bangladeshi Taka</div>
+                                                <div class="mb-2">
+                                                    <label class="form-label fs-12 mb-1">Package Price</label>
+                                                    <div class="input-group input-group-sm"><span class="input-group-text">&#2547;</span><input type="number" class="form-control" id="lc-price-bdt" min="0" placeholder="0" readonly></div>
+                                                    <div class="form-text fs-11">Set automatically from the selected package.</div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label fs-12 mb-1">Negotiated Package Price <span class="text-danger">*</span></label>
+                                                    <div class="input-group input-group-sm"><span class="input-group-text">&#2547;</span><input type="number" class="form-control" id="lc-negotiated-bdt" min="0" placeholder="0"></div>
+                                                    <div class="form-text fs-11">The price actually agreed with the patient — this is what counts as revenue.</div>
+                                                </div>
+                                                <div class="d-flex justify-content-between align-items-center border-top pt-2">
+                                                    <span class="fs-12 text-uppercase text-muted fw-semibold">Agreed Amount</span>
+                                                    <span class="fw-bold cur text-primary fs-16" id="lc-agreed-bdt">&#2547;0</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Payment Log — what was actually collected against this
+                                             application, on record alongside the price that was
+                                             agreed. Taka only: patients pay in taka regardless of
+                                             how the package is priced — the dollar figures above
+                                             are recorded for the package's cost, not collected as a
+                                             dollar payment. A lead can apply today and still pay
+                                             later, so logging a payment is optional here — the
+                                             toggle below leaves it for Applied Leads to record once
+                                             it actually happens. -->
+                                        <div class="col-md-4">
+                                            <div class="border rounded p-3 h-100">
+                                                <div class="fs-11 text-uppercase text-muted fw-semibold mb-3"><i class="mdi mdi-cash-check me-1"></i>Payment Log</div>
+                                                <div class="mb-3">
+                                                    <label class="form-label fs-12 mb-1 d-block">Has the patient paid?</label>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="lc-payment-done" id="lc-payment-not-done" value="not-done" checked>
+                                                        <label class="form-check-label fs-13" for="lc-payment-not-done">Not yet</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="lc-payment-done" id="lc-payment-is-done" value="done">
+                                                        <label class="form-check-label fs-13" for="lc-payment-is-done">Paid now</label>
+                                                    </div>
+                                                </div>
+                                                <p class="text-muted fs-12" id="lc-payment-later-note">No payment collected yet — this can be logged later from Applied Leads once the patient pays.</p>
+                                                <div class="d-none" id="lc-payment-fields-wrap">
+                                                    <div class="mb-2">
+                                                        <label class="form-label fs-12 mb-1">Amount Paid</label>
+                                                        <div class="input-group input-group-sm"><span class="input-group-text">&#2547;</span><input type="number" class="form-control" id="lc-pay-amount" min="0" placeholder="0"></div>
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label fs-12 mb-1">Payment Method</label>
+                                                        <select class="form-select form-select-sm" id="lc-pay-method" data-crm-list="paymentMethods">
+                                                            <option value="">Select method</option>
+                                                            <option>Cash</option>
+                                                            <option>Bank Transfer</option>
+                                                            <option>bKash</option>
+                                                            <option>Nagad</option>
+                                                            <option>Rocket</option>
+                                                            <option>Card</option>
+                                                            <option>Other</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label fs-12 mb-1">Transaction ID <span class="text-muted fw-normal">(optional)</span></label>
+                                                        <input type="text" class="form-control form-control-sm" id="lc-pay-txn" placeholder="e.g. TXN123456">
+                                                    </div>
+                                                    <div class="mb-0">
+                                                        <label class="form-label fs-12 mb-1">Date Paid</label>
+                                                        <input type="date" class="form-control form-control-sm" id="lc-pay-date">
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex justify-content-between align-items-center border-top pt-2 mt-3">
+                                                    <span class="fs-12 text-uppercase text-muted fw-semibold">Remaining Amount</span>
+                                                    <span class="fw-bold cur text-primary fs-16" id="lc-remaining-bdt">&#2547;0</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Shown only once a price has been typed and the package then
+                                         changed: seeding must never silently overwrite a figure that
+                                         was just negotiated on the phone. -->
+                                    <div class="form-text fs-11 mt-2 d-none" id="lc-reseed-wrap"><a href="#" id="lc-reseed" class="link-primary"></a></div>

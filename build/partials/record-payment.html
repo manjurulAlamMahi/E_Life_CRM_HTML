@@ -1,0 +1,50 @@
+                <!-- ===== Record Payment — shared by Applied Leads, Invoice and Patient
+                     Profile (crm-leads.js, "Record payment"). Taka only: the partial
+                     dollar is logged on Dollar Payments, never here. Injected at
+                     @record-payment. ===== -->
+                <div class="modal fade" id="addPaymentModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div>
+                                    <h5 class="modal-title mb-0">Record Payment</h5>
+                                    <span class="fs-12 text-muted" id="pay-lead-label"></span>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <div class="col-md-4"><label class="form-label">Payment date</label><input type="date" class="form-control" id="pay-date"></div>
+                                    <div class="col-md-4"><label class="form-label">Method <span class="text-danger">*</span></label><select class="form-select" id="pay-method" data-crm-list="paymentMethods"><option>Cash</option><option>Bank Transfer</option><option>Card</option><option>bKash</option><option>Nagad</option><option>Rocket</option><option>Other</option></select></div>
+                                    <div class="col-md-4"><label class="form-label">Reference no.</label><input type="text" class="form-control" id="pay-ref" placeholder="If applicable"></div>
+
+                                    <div class="col-12"><hr class="my-1"></div>
+
+                                    <!-- Taka only. The select stays (hidden) because the shared payment JS reads it. -->
+                                    <select class="d-none" id="pay-currency"><option value="bdt" selected>Taka</option></select>
+                                    <div class="col-md-8">
+                                        <label class="form-label">Amount received <span class="text-danger">*</span></label>
+                                        <div class="input-group"><span class="input-group-text" id="pay-prefix">&#2547;</span><input type="number" class="form-control" id="pay-amount" min="0" placeholder="0"></div>
+                                        <div class="form-text fs-11 text-warning d-none" id="pay-over"></div>
+                                    </div>
+
+                                    <div class="col-md-6"><label class="form-label">Payment proof</label><input type="file" class="form-control" id="pay-proof"></div>
+                                    <div class="col-md-6"><label class="form-label">Note</label><input type="text" class="form-control" id="pay-note"></div>
+                                </div>
+
+                                <div class="card bg-light-subtle border mt-3 mb-0"><div class="card-body py-3">
+                                    <div class="row text-center">
+                                        <div class="col"><div class="fs-11 text-uppercase text-muted">This Payment</div><div class="fw-bold cur text-success" id="pay-total">&#2547;0</div></div>
+                                        <div class="col"><div class="fs-11 text-uppercase text-muted">Due After This Payment</div><div class="fw-bold cur text-danger" id="pay-due-after">&#2547;0</div></div>
+                                    </div>
+                                </div></div>
+
+                                <div class="alert alert-success d-none mt-3 mb-0 py-2 fs-13" id="pay-settled"><i class="mdi mdi-check-decagram me-1"></i>Fully paid &mdash; this lead becomes Completed and can be Confirmed.</div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-primary" id="pay-save"><i class="mdi mdi-file-check-outline me-1"></i>Save &amp; Issue Receipt</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>

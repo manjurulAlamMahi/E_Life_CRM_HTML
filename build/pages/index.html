@@ -1,0 +1,338 @@
+                <!-- ===== Dashboard — one page for every role (index.html and
+                     user-dashboard.html are built from this file). It is a work
+                     list, not a report: what needs doing today, one click from
+                     each task, plus the actions staff use most. Per-role versions
+                     can later hide cards by role (crm-role.js). Figures mirror the
+                     sample rows on the list pages each card links to. ===== -->
+
+                <!-- ============ WELCOME ============ -->
+                <div class="dash-hero">
+                    <div class="dash-hero-main">
+                        <div class="dash-hero-hello"><span id="dash-greeting">Welcome back</span>, <span id="dash-name">Mahi</span> <span class="dash-wave">&#128075;</span></div>
+                        <div class="dash-hero-sub">Here's what needs you today.</div>
+                        <div class="dash-chips">
+                            <a href="followups.html" class="dash-chip"><i class="mdi mdi-phone-in-talk-outline"></i><b>6</b> calls to make</a>
+                            <a href="payments.html" class="dash-chip"><i class="mdi mdi-timer-sand"></i><b>3</b> payments to verify</a>
+                            <a href="treatment-countdown.html" class="dash-chip dash-chip-alert"><i class="mdi mdi-clock-alert-outline"></i><b>3</b> urgent countdowns</a>
+                        </div>
+                    </div>
+                    <div class="dash-hero-date">
+                        <div class="dash-hero-day" id="dash-day"></div>
+                        <div class="dash-hero-num" id="dash-daynum"></div>
+                        <div class="dash-hero-month" id="dash-month"></div>
+                    </div>
+                </div>
+
+                <!-- ============ QUICK ACTIONS ============ -->
+                <div class="dash-actions">
+                    <a href="leads.html?action=add-lead" class="dash-action dash-action-primary">
+                        <span class="dash-action-icon"><i class="mdi mdi-account-plus-outline"></i></span>
+                        <span><span class="dash-action-title">Add Lead</span><span class="dash-action-sub">New enquiry</span></span>
+                    </a>
+                    <a href="conversations.html" class="dash-action">
+                        <span class="dash-action-icon bg-info-subtle text-info"><i class="mdi mdi-comment-plus-outline"></i></span>
+                        <span><span class="dash-action-title">Log Conversation</span><span class="dash-action-sub">Call or visit</span></span>
+                    </a>
+                    <a href="dues.html" class="dash-action">
+                        <span class="dash-action-icon bg-success-subtle text-success"><i class="mdi mdi-cash-plus"></i></span>
+                        <span><span class="dash-action-title">Record Payment</span><span class="dash-action-sub">Take a payment</span></span>
+                    </a>
+                    <a href="payments.html" class="dash-action">
+                        <span class="dash-action-icon bg-warning-subtle text-warning"><i class="mdi mdi-check-decagram-outline"></i></span>
+                        <span><span class="dash-action-title">Verify Payments</span><span class="dash-action-sub">3 waiting</span></span>
+                    </a>
+                    <a href="visa-eligible.html" class="dash-action">
+                        <span class="dash-action-icon bg-primary-subtle text-primary"><i class="mdi mdi-passport"></i></span>
+                        <span><span class="dash-action-title">Apply Visa</span><span class="dash-action-sub">5 eligible</span></span>
+                    </a>
+                    <a href="expenses.html?action=add-expense" class="dash-action">
+                        <span class="dash-action-icon bg-danger-subtle text-danger"><i class="mdi mdi-cash-minus"></i></span>
+                        <span><span class="dash-action-title">Add Expense</span><span class="dash-action-sub">Rent, salary, ads</span></span>
+                    </a>
+                </div>
+
+                <!-- ============ TODAY AT A GLANCE ============ -->
+                <div class="row g-3 mb-4">
+                    <div class="col-6 col-md-4 col-xl-2">
+                        <a href="followups.html" class="card stat-tile dash-tile h-100 mb-0"><div class="card-body">
+                            <div class="dash-tile-top"><span class="stat-icon bg-primary-subtle text-primary"><i class="mdi mdi-phone-in-talk-outline"></i></span><i class="mdi mdi-arrow-top-right dash-tile-go"></i></div>
+                            <div class="stat-value">3</div><div class="stat-label text-muted">Follow-ups today</div>
+                        </div></a>
+                    </div>
+                    <div class="col-6 col-md-4 col-xl-2">
+                        <a href="followups.html#fu-overdue" class="card stat-tile dash-tile h-100 mb-0"><div class="card-body">
+                            <div class="dash-tile-top"><span class="stat-icon bg-danger-subtle text-danger"><i class="mdi mdi-phone-alert-outline"></i></span><i class="mdi mdi-arrow-top-right dash-tile-go"></i></div>
+                            <div class="stat-value text-danger">3</div><div class="stat-label text-muted">Overdue follow-ups</div>
+                        </div></a>
+                    </div>
+                    <div class="col-6 col-md-4 col-xl-2">
+                        <a href="payments.html" class="card stat-tile dash-tile h-100 mb-0"><div class="card-body">
+                            <div class="dash-tile-top"><span class="stat-icon bg-warning-subtle text-warning"><i class="mdi mdi-timer-sand"></i></span><i class="mdi mdi-arrow-top-right dash-tile-go"></i></div>
+                            <div class="stat-value">3</div><div class="stat-label text-muted">Payments to verify &middot; <span class="cur">&#2547;1,50,000</span></div>
+                        </div></a>
+                    </div>
+                    <div class="col-6 col-md-4 col-xl-2">
+                        <a href="dues.html" class="card stat-tile dash-tile h-100 mb-0"><div class="card-body">
+                            <div class="dash-tile-top"><span class="stat-icon bg-danger-subtle text-danger"><i class="mdi mdi-alert-circle-outline"></i></span><i class="mdi mdi-arrow-top-right dash-tile-go"></i></div>
+                            <div class="stat-value cur">&#2547;3,00,000</div><div class="stat-label text-muted">Due from 2 patients</div>
+                        </div></a>
+                    </div>
+                    <div class="col-6 col-md-4 col-xl-2">
+                        <a href="visa-eligible.html" class="card stat-tile dash-tile h-100 mb-0"><div class="card-body">
+                            <div class="dash-tile-top"><span class="stat-icon bg-success-subtle text-success"><i class="mdi mdi-passport"></i></span><i class="mdi mdi-arrow-top-right dash-tile-go"></i></div>
+                            <div class="stat-value">5</div><div class="stat-label text-muted">Eligible for visa</div>
+                        </div></a>
+                    </div>
+                    <div class="col-6 col-md-4 col-xl-2">
+                        <a href="treatment-countdown.html" class="card stat-tile dash-tile h-100 mb-0"><div class="card-body">
+                            <div class="dash-tile-top"><span class="stat-icon bg-danger-subtle text-danger"><i class="mdi mdi-clock-alert-outline"></i></span><i class="mdi mdi-arrow-top-right dash-tile-go"></i></div>
+                            <div class="stat-value text-danger">3</div><div class="stat-label text-muted">Countdown &mdash; final month</div>
+                        </div></a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- ============ FOLLOW-UPS ============ -->
+                    <div class="col-xl-7">
+                        <div class="card">
+                            <div class="card-header d-flex align-items-center justify-content-between">
+                                <div><h5 class="card-title mb-0">Today's Calls</h5><p class="fs-12 text-muted mb-0">Overdue first, then today's schedule.</p></div>
+                                <a href="followups.html" class="btn btn-sm btn-light">All follow-ups <i class="mdi mdi-arrow-right ms-1"></i></a>
+                            </div>
+                            <div class="card-body p-0">
+                                <ul class="list-unstyled mb-0 dash-list">
+                                    <li>
+                                        <span class="dash-when text-danger"><span class="fw-semibold">9 days</span><span>late</span></span>
+                                        <div class="dash-who"><a href="patient-profile.html?lead=ELH-L-2026-000359" class="fw-semibold text-body">Momena Begum</a><div class="fs-12 text-muted text-truncate">Asked for the Partial-Funded package price</div></div>
+                                        <span class="dash-call"><a href="tel:+8801700000000" class="btn btn-sm btn-icon btn-light" title="Call"><i class="mdi mdi-phone"></i></a><a href="#!" class="btn btn-sm btn-icon btn-light text-success" title="WhatsApp"><i class="mdi mdi-whatsapp"></i></a><a href="conversations.html?lead=ELH-L-2026-000359&amp;log=1" class="btn btn-sm btn-primary">Log</a></span>
+                                    </li>
+                                    <li>
+                                        <span class="dash-when text-danger"><span class="fw-semibold">6 days</span><span>late</span></span>
+                                        <div class="dash-who"><a href="patient-profile.html?lead=ELH-L-2026-000364" class="fw-semibold text-body">Shahin Alam</a><div class="fs-12 text-muted text-truncate">Phone was switched off; left a WhatsApp message</div></div>
+                                        <span class="dash-call"><a href="tel:+8801700000000" class="btn btn-sm btn-icon btn-light" title="Call"><i class="mdi mdi-phone"></i></a><a href="#!" class="btn btn-sm btn-icon btn-light text-success" title="WhatsApp"><i class="mdi mdi-whatsapp"></i></a><a href="conversations.html?lead=ELH-L-2026-000364&amp;log=1" class="btn btn-sm btn-primary">Log</a></span>
+                                    </li>
+                                    <li>
+                                        <span class="dash-when text-danger"><span class="fw-semibold">4 days</span><span>late</span></span>
+                                        <div class="dash-who"><a href="patient-profile.html?lead=ELH-L-2026-000371" class="fw-semibold text-body">Abdul Malek</a><div class="fs-12 text-muted text-truncate">Said he would call back after talking to his family</div></div>
+                                        <span class="dash-call"><a href="tel:+8801700000000" class="btn btn-sm btn-icon btn-light" title="Call"><i class="mdi mdi-phone"></i></a><a href="#!" class="btn btn-sm btn-icon btn-light text-success" title="WhatsApp"><i class="mdi mdi-whatsapp"></i></a><a href="conversations.html?lead=ELH-L-2026-000371&amp;log=1" class="btn btn-sm btn-primary">Log</a></span>
+                                    </li>
+                                    <li>
+                                        <span class="dash-when"><span class="fw-semibold">10:30</span><span>AM</span></span>
+                                        <div class="dash-who"><a href="patient-profile.html?lead=ELH-L-2026-000412" class="fw-semibold text-body">Rahim Uddin</a> <span class="fs-12 text-muted">for Ayesha Rahim</span><div class="fs-12 text-muted text-truncate">Asked for the package price and payment options</div></div>
+                                        <span class="dash-call"><a href="tel:+8801711234567" class="btn btn-sm btn-icon btn-light" title="Call +880 1711-234567"><i class="mdi mdi-phone"></i></a><a href="#!" class="btn btn-sm btn-icon btn-light text-success" title="WhatsApp"><i class="mdi mdi-whatsapp"></i></a><a href="conversations.html?lead=ELH-L-2026-000412&amp;log=1" class="btn btn-sm btn-primary">Log</a></span>
+                                    </li>
+                                    <li>
+                                        <span class="dash-when"><span class="fw-semibold">11:15</span><span>AM</span></span>
+                                        <div class="dash-who"><a href="patient-profile.html?lead=ELH-L-2026-000408" class="fw-semibold text-body">Sultana Begum</a> <span class="fs-12 text-muted">for Nadia Sultana</span><div class="fs-12 text-muted text-truncate">Wants a doctor consultation before deciding</div></div>
+                                        <span class="dash-call"><a href="tel:+8801911778899" class="btn btn-sm btn-icon btn-light" title="Call +880 1911-778899"><i class="mdi mdi-phone"></i></a><a href="#!" class="btn btn-sm btn-icon btn-light text-success" title="WhatsApp"><i class="mdi mdi-whatsapp"></i></a><a href="conversations.html?lead=ELH-L-2026-000408&amp;log=1" class="btn btn-sm btn-primary">Log</a></span>
+                                    </li>
+                                    <li class="is-done">
+                                        <span class="dash-when"><span class="fw-semibold">03:30</span><span>PM</span></span>
+                                        <div class="dash-who"><a href="patient-profile.html?lead=ELH-L-2026-000397" class="fw-semibold text-body">Jahanara Khatun</a> <span class="fs-12 text-muted">for Mim Akter</span><div class="fs-12 text-muted text-truncate">Confirmed the package, arranging the first payment</div></div>
+                                        <span class="badge bg-success-subtle text-success"><i class="mdi mdi-check me-1"></i>Done</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- ============ NEWEST LEADS ============ -->
+                        <div class="card">
+                            <div class="card-header d-flex align-items-center justify-content-between">
+                                <div><h5 class="card-title mb-0">Newest Leads</h5><p class="fs-12 text-muted mb-0">Make the first call while the enquiry is fresh.</p></div>
+                                <div class="d-flex gap-2">
+                                    <a href="leads.html?action=add-lead" class="btn btn-sm btn-primary"><i class="mdi mdi-plus me-1"></i>Add Lead</a>
+                                    <a href="leads.html" class="btn btn-sm btn-light">All leads</a>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle mb-0 dash-table">
+                                        <thead class="table-light"><tr><th>Patient</th><th>Source</th><th>Status</th><th>Next Follow-up</th><th class="no-sort">Action</th></tr></thead>
+                                        <tbody>
+                                            <tr data-lead-id="ELH-L-2026-000416"><td><div class="fw-semibold">Rehana Parvin</div><div class="fs-12 text-muted">G: Motaleb Hossain</div></td><td><span class="badge bg-secondary-subtle text-secondary">Campaign</span></td><td><span class="badge bg-info-subtle text-info">Follow Up</span></td><td class="fs-13">05 Sep 2026</td><td><div class="d-flex gap-1"><a href="conversations.html?lead=ELH-L-2026-000416&amp;log=1" class="btn btn-sm btn-icon btn-light" title="Log conversation"><i class="mdi mdi-comment-plus-outline"></i></a></div></td></tr>
+                                            <tr data-lead-id="ELH-L-2026-000415"><td><div class="fw-semibold">Jahid Hasan</div><div class="fs-12 text-muted">G: Jahid Hasan</div></td><td><span class="badge bg-secondary-subtle text-secondary">Website</span></td><td><span class="badge bg-info-subtle text-info">Follow Up</span></td><td class="fs-13 text-muted">Not set</td><td><div class="d-flex gap-1"><a href="conversations.html?lead=ELH-L-2026-000415&amp;log=1" class="btn btn-sm btn-icon btn-light" title="Log conversation"><i class="mdi mdi-comment-plus-outline"></i></a></div></td></tr>
+                                            <tr data-lead-id="ELH-L-2026-000414"><td><div class="fw-semibold">Farida Yeasmin</div><div class="fs-12 text-muted">G: Nazrul Islam</div></td><td><span class="badge bg-success-subtle text-success">Noman</span></td><td><span class="badge bg-primary-subtle text-primary">Interested</span></td><td class="fs-13">03 Sep 2026</td><td><div class="d-flex gap-1"><a href="conversations.html?lead=ELH-L-2026-000414&amp;log=1" class="btn btn-sm btn-icon btn-light" title="Log conversation"><i class="mdi mdi-comment-plus-outline"></i></a></div></td></tr>
+                                            <tr data-lead-id="ELH-L-2026-000413"><td><div class="fw-semibold">Sabina Yasmin</div><div class="fs-12 text-muted">G: Anisur Rahman</div></td><td><span class="badge bg-info-subtle text-info">Facebook</span></td><td><span class="badge bg-info-subtle text-info">Follow Up</span></td><td class="fs-13">04 Sep 2026</td><td><div class="d-flex gap-1"><a href="conversations.html?lead=ELH-L-2026-000413&amp;log=1" class="btn btn-sm btn-icon btn-light" title="Log conversation"><i class="mdi mdi-comment-plus-outline"></i></a></div></td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ============ DOLLAR NOT PAID ============ -->
+                        <!-- Everyone whose partial dollar is not fully paid. Amounts and
+                             payments come from CRMDollar (crm-dollar.js) — the same data
+                             as the Dollar Payments page — so a payment recorded there
+                             updates this card, and anyone paid in full drops off it. -->
+                        <div class="card" id="dash-dollar">
+                            <div class="card-header d-flex align-items-center justify-content-between">
+                                <div><h5 class="card-title mb-0">Dollar Not Yet Paid <span class="badge bg-danger-subtle text-danger ms-1" id="dash-dl-count">4</span></h5><p class="fs-12 text-muted mb-0">Partial dollar still owed &mdash; <span class="fw-semibold text-danger cur" id="dash-dl-total">$11,000</span> outstanding. Internal only.</p></div>
+                                <a href="dollar-payments.html" class="btn btn-sm btn-light">Dollar Payments <i class="mdi mdi-arrow-right ms-1"></i></a>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle mb-0 dash-table">
+                                        <thead class="table-light"><tr><th>Patient</th><th class="text-end">Dollar</th><th class="text-end">Paid</th><th class="text-end">Remaining</th><th>Status</th><th class="no-sort">Action</th></tr></thead>
+                                        <tbody>
+                                            <tr data-lead-id="ELH-L-2026-000412" data-usd="2500"><td><div class="fw-semibold text-nowrap">Ayesha Rahim</div><div class="fs-12 text-muted text-nowrap">Partial-Funded Package</div></td><td class="text-end cur fs-13 text-nowrap" data-dl-total></td><td class="text-end cur fs-13 text-success text-nowrap" data-dl-paid></td><td class="text-end cur fw-bold text-danger text-nowrap" data-dl-left></td><td class="text-nowrap" data-dl-status></td><td><div class="d-flex gap-1"><a href="dollar-payments.html" class="btn btn-sm btn-light text-nowrap" title="Record a dollar payment"><i class="mdi mdi-currency-usd me-1"></i>Record</a></div></td></tr>
+                                            <tr data-lead-id="ELH-L-2026-000410" data-usd="4000"><td><div class="fw-semibold text-nowrap">Nadia Sultana</div><div class="fs-12 text-muted text-nowrap">Paid Package</div></td><td class="text-end cur fs-13 text-nowrap" data-dl-total></td><td class="text-end cur fs-13 text-success text-nowrap" data-dl-paid></td><td class="text-end cur fw-bold text-danger text-nowrap" data-dl-left></td><td class="text-nowrap" data-dl-status></td><td><div class="d-flex gap-1"><a href="dollar-payments.html" class="btn btn-sm btn-light text-nowrap" title="Record a dollar payment"><i class="mdi mdi-currency-usd me-1"></i>Record</a></div></td></tr>
+                                            <tr data-lead-id="ELH-L-2026-000408" data-usd="2500"><td><div class="fw-semibold text-nowrap">Mim Akter</div><div class="fs-12 text-muted text-nowrap">Partial-Funded Package</div></td><td class="text-end cur fs-13 text-nowrap" data-dl-total></td><td class="text-end cur fs-13 text-success text-nowrap" data-dl-paid></td><td class="text-end cur fw-bold text-danger text-nowrap" data-dl-left></td><td class="text-nowrap" data-dl-status></td><td><div class="d-flex gap-1"><a href="dollar-payments.html" class="btn btn-sm btn-light text-nowrap" title="Record a dollar payment"><i class="mdi mdi-currency-usd me-1"></i>Record</a></div></td></tr>
+                                            <tr data-lead-id="ELH-L-2026-000406" data-usd="4000"><td><div class="fw-semibold text-nowrap">Sharmin Akter</div><div class="fs-12 text-muted text-nowrap">Paid Package</div></td><td class="text-end cur fs-13 text-nowrap" data-dl-total></td><td class="text-end cur fs-13 text-success text-nowrap" data-dl-paid></td><td class="text-end cur fw-bold text-danger text-nowrap" data-dl-left></td><td class="text-nowrap" data-dl-status></td><td><div class="d-flex gap-1"><a href="dollar-payments.html" class="btn btn-sm btn-light text-nowrap" title="Record a dollar payment"><i class="mdi mdi-currency-usd me-1"></i>Record</a></div></td></tr>
+                                            <tr data-lead-id="ELH-L-2026-000386" data-usd="2500"><td><div class="fw-semibold text-nowrap">Tanjila Akter</div><div class="fs-12 text-muted text-nowrap">Paid Package</div></td><td class="text-end cur fs-13 text-nowrap" data-dl-total></td><td class="text-end cur fs-13 text-success text-nowrap" data-dl-paid></td><td class="text-end cur fw-bold text-danger text-nowrap" data-dl-left></td><td class="text-nowrap" data-dl-status></td><td><div class="d-flex gap-1"><a href="dollar-payments.html" class="btn btn-sm btn-light text-nowrap" title="Record a dollar payment"><i class="mdi mdi-currency-usd me-1"></i>Record</a></div></td></tr>
+                                            <tr data-lead-id="ELH-L-2026-000380" data-usd="2500"><td><div class="fw-semibold text-nowrap">Nurul Islam</div><div class="fs-12 text-muted text-nowrap">Paid Package</div></td><td class="text-end cur fs-13 text-nowrap" data-dl-total></td><td class="text-end cur fs-13 text-success text-nowrap" data-dl-paid></td><td class="text-end cur fw-bold text-danger text-nowrap" data-dl-left></td><td class="text-nowrap" data-dl-status></td><td><div class="d-flex gap-1"><a href="dollar-payments.html" class="btn btn-sm btn-light text-nowrap" title="Record a dollar payment"><i class="mdi mdi-currency-usd me-1"></i>Record</a></div></td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="text-center text-muted fs-13 py-4 d-none" id="dash-dl-empty"><i class="mdi mdi-check-circle-outline text-success d-block fs-3 mb-1"></i>Every partial dollar is paid.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-5">
+                        <!-- ============ PAYMENTS TO VERIFY ============ -->
+                        <div class="card">
+                            <div class="card-header d-flex align-items-center justify-content-between">
+                                <div><h5 class="card-title mb-0">Payments to Verify</h5><p class="fs-12 text-muted mb-0">Not counted anywhere until Accounts verifies them.</p></div>
+                                <a href="payments.html" class="btn btn-sm btn-light">Open <i class="mdi mdi-arrow-right ms-1"></i></a>
+                            </div>
+                            <div class="card-body p-0">
+                                <ul class="list-unstyled mb-0 dash-list">
+                                    <li>
+                                        <span class="dash-method bg-danger-subtle text-danger">bK</span>
+                                        <div class="dash-who"><span class="fw-semibold">Ayesha Rahim</span><div class="fs-12 text-muted">bKash &middot; BK7XK92211 &middot; 03 Sep</div></div>
+                                        <span class="text-end"><span class="fw-bold cur d-block">&#2547;50,000</span><a href="payments.html" class="fs-12">Verify</a></span>
+                                    </li>
+                                    <li>
+                                        <span class="dash-method bg-warning-subtle text-warning">Ng</span>
+                                        <div class="dash-who"><span class="fw-semibold">Karim Mia</span><div class="fs-12 text-muted">Nagad &middot; NG5521P &middot; 02 Sep</div></div>
+                                        <span class="text-end"><span class="fw-bold cur d-block">&#2547;75,000</span><a href="payments.html" class="fs-12">Verify</a></span>
+                                    </li>
+                                    <li>
+                                        <span class="dash-method bg-success-subtle text-success">৳</span>
+                                        <div class="dash-who"><span class="fw-semibold">Ayesha Rahim</span><div class="fs-12 text-muted">Cash &middot; counter slip &middot; 01 Sep</div></div>
+                                        <span class="text-end"><span class="fw-bold cur d-block">&#2547;25,000</span><a href="payments.html" class="fs-12">Verify</a></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- ============ TREATMENT COUNTDOWN ============ -->
+                        <!-- Dates are worked out from data-days-ago exactly as
+                             crm-countdown.js does (applied + 90 days = deadline),
+                             so this card and the Countdown page always agree. -->
+                        <div class="card">
+                            <div class="card-header d-flex align-items-center justify-content-between">
+                                <div><h5 class="card-title mb-0">Countdown &mdash; Final Month</h5><p class="fs-12 text-muted mb-0">Must reach the destination within 90 days of applying.</p></div>
+                                <a href="treatment-countdown.html" class="btn btn-sm btn-light">Open <i class="mdi mdi-arrow-right ms-1"></i></a>
+                            </div>
+                            <div class="card-body p-0">
+                                <ul class="list-unstyled mb-0 dash-list">
+                                    <li class="dash-cd" data-days-ago="85">
+                                        <span class="dash-days"><span data-cd-left></span>days left</span>
+                                        <div class="dash-who">
+                                            <div class="d-flex align-items-center justify-content-between gap-2">
+                                                <a href="patient-profile.html?lead=ELH-L-2026-000398" class="fw-semibold text-body text-truncate">Rokeya Begum</a>
+                                                <span class="badge bg-success-subtle text-success">Visa Approved</span>
+                                            </div>
+                                            <div class="fs-12 text-muted text-truncate">G: Anwar Hossain &middot; <span class="mono">ELH-L-2026-000398</span></div>
+                                            <div class="fs-12 text-muted">Full-Funded Package</div>
+                                            <div class="progress mt-2" style="height:5px"><div class="progress-bar" data-cd-bar></div></div>
+                                            <div class="d-flex justify-content-between fs-11 text-muted mt-1"><span>Applied <span data-cd-applied></span></span><span>Deadline <span class="fw-semibold" data-cd-deadline></span></span></div>
+                                        </div>
+                                    </li>
+                                    <li class="dash-cd" data-days-ago="79">
+                                        <span class="dash-days"><span data-cd-left></span>days left</span>
+                                        <div class="dash-who">
+                                            <div class="d-flex align-items-center justify-content-between gap-2">
+                                                <a href="patient-profile.html?lead=ELH-L-2026-000386" class="fw-semibold text-body text-truncate">Tanjila Akter</a>
+                                                <span class="badge bg-warning-subtle text-warning">Visa Processing</span>
+                                            </div>
+                                            <div class="fs-12 text-muted text-truncate">G: Rafiqul Islam &middot; <span class="mono">ELH-L-2026-000386</span></div>
+                                            <div class="fs-12 text-muted">Paid Package</div>
+                                            <div class="progress mt-2" style="height:5px"><div class="progress-bar" data-cd-bar></div></div>
+                                            <div class="d-flex justify-content-between fs-11 text-muted mt-1"><span>Applied <span data-cd-applied></span></span><span>Deadline <span class="fw-semibold" data-cd-deadline></span></span></div>
+                                        </div>
+                                    </li>
+                                    <li class="dash-cd" data-days-ago="66">
+                                        <span class="dash-days"><span data-cd-left></span>days left</span>
+                                        <div class="dash-who">
+                                            <div class="d-flex align-items-center justify-content-between gap-2">
+                                                <a href="patient-profile.html?lead=ELH-L-2026-000406" class="fw-semibold text-body text-truncate">Sharmin Akter</a>
+                                                <span class="badge bg-warning-subtle text-warning">Visa Processing</span>
+                                            </div>
+                                            <div class="fs-12 text-muted text-truncate">G: Abul Kalam &middot; <span class="mono">ELH-L-2026-000406</span></div>
+                                            <div class="fs-12 text-muted">Partial-Funded Package</div>
+                                            <div class="progress mt-2" style="height:5px"><div class="progress-bar" data-cd-bar></div></div>
+                                            <div class="d-flex justify-content-between fs-11 text-muted mt-1"><span>Applied <span data-cd-applied></span></span><span>Deadline <span class="fw-semibold" data-cd-deadline></span></span></div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- ============ PIPELINE SNAPSHOT ============ -->
+                        <div class="card">
+                            <div class="card-header"><div><h5 class="card-title mb-0">Where Everyone Is</h5><p class="fs-12 text-muted mb-0">Click a stage to open that list.</p></div></div>
+                            <div class="card-body pt-2">
+                                <div class="dash-stages">
+                                    <a href="leads.html"><span><i class="mdi mdi-account-multiple-outline text-secondary"></i>Leads</span><span class="fw-semibold">6</span></a>
+                                    <a href="interested-leads.html"><span><i class="mdi mdi-star-outline text-primary"></i>Interested</span><span class="fw-semibold">7</span></a>
+                                    <a href="applied-leads.html"><span><i class="mdi mdi-file-document-edit-outline text-warning"></i>Applied</span><span class="fw-semibold">5</span></a>
+                                    <a href="confirmed-leads.html"><span><i class="mdi mdi-check-circle-outline text-success"></i>Confirmed</span><span class="fw-semibold">6</span></a>
+                                    <a href="visa-processing.html"><span><i class="mdi mdi-passport text-info"></i>Visa &amp; Travel</span><span class="fw-semibold">6</span></a>
+                                    <a href="treatment.html"><span><i class="mdi mdi-heart-pulse text-danger"></i>In Treatment</span><span class="fw-semibold">6</span></a>
+                                    <a href="not-interested-leads.html"><span><i class="mdi mdi-close-circle-outline text-muted"></i>Not Interested</span><span class="fw-semibold">6</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                /* Greeting by time of day, today's date, the signed-in name from
+                   the topbar, and the countdown dates. */
+                document.addEventListener('DOMContentLoaded', function () {
+                    var now = new Date(), h = now.getHours();
+                    var fmt = function (d, o) { return d.toLocaleDateString('en-GB', o); };
+                    document.getElementById('dash-greeting').textContent = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+                    document.getElementById('dash-day').textContent = fmt(now, { weekday: 'long' });
+                    document.getElementById('dash-daynum').textContent = now.getDate();
+                    document.getElementById('dash-month').textContent = fmt(now, { month: 'long', year: 'numeric' });
+                    var who = document.querySelector('.admin-name');
+                    if (who && who.textContent.trim()) document.getElementById('dash-name').textContent = who.textContent.trim().split(' ')[0];
+
+                    var DAY = 86400000, WINDOW = 90, today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                    [].forEach.call(document.querySelectorAll('.dash-cd'), function (li) {
+                        var ago = parseInt(li.getAttribute('data-days-ago'), 10) || 0;
+                        var applied = new Date(today.getTime() - ago * DAY), deadline = new Date(applied.getTime() + WINDOW * DAY);
+                        var left = WINDOW - ago, tone = left <= 14 ? 'danger' : 'warning';
+                        var short = { day: '2-digit', month: 'short' };
+                        li.querySelector('[data-cd-left]').textContent = left;
+                        li.querySelector('.dash-days').className = 'dash-days bg-' + tone + (tone === 'danger' ? ' text-white' : ' text-dark');
+                        li.querySelector('[data-cd-applied]').textContent = fmt(applied, short);
+                        li.querySelector('[data-cd-deadline]').textContent = fmt(deadline, short);
+                        var bar = li.querySelector('[data-cd-bar]');
+                        bar.className = 'progress-bar bg-' + tone;
+                        bar.style.width = Math.min(100, Math.round(ago / WINDOW * 100)) + '%';
+                    });
+
+                    /* Dollar Not Yet Paid: fill amounts from CRMDollar, drop anyone paid in full. */
+                    var D = window.CRMDollar, usd = function (n) { return '$' + Number(n).toLocaleString('en-US'); };
+                    if (D) {
+                        var open = 0, owed = 0;
+                        [].forEach.call(document.querySelectorAll('#dash-dollar tbody tr'), function (tr) {
+                            var total = parseFloat(tr.getAttribute('data-usd')) || 0, st = D.status(tr.getAttribute('data-lead-id'), total);
+                            if (st.key === 'paid') { tr.remove(); return; }
+                            open++; owed += st.remaining;
+                            tr.querySelector('[data-dl-total]').textContent = usd(total);
+                            tr.querySelector('[data-dl-paid]').textContent = st.paid ? usd(st.paid) : '—';
+                            tr.querySelector('[data-dl-left]').textContent = usd(st.remaining);
+                            tr.querySelector('[data-dl-status]').innerHTML = '<span class="badge ' + D.badgeClass(st.key) + '">' + st.label + '</span>';
+                        });
+                        document.getElementById('dash-dl-count').textContent = open;
+                        document.getElementById('dash-dl-total').textContent = usd(owed);
+                        document.getElementById('dash-dl-empty').classList.toggle('d-none', open > 0);
+                        document.querySelector('#dash-dollar .table-responsive').classList.toggle('d-none', open === 0);
+                    }
+                });
+                </script>

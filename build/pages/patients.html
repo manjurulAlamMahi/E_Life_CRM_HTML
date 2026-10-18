@@ -1,0 +1,254 @@
+                <div class="row">
+                    <div class="col-6 col-xl-3"><div class="card stat-tile"><div class="card-body py-3"><div class="stat-label text-muted">Total Patients</div><div class="stat-value cur">11</div></div></div></div>
+                    <div class="col-6 col-xl-3"><div class="card stat-tile"><div class="card-body py-3"><div class="stat-label text-muted">Active Treatment</div><div class="stat-value cur text-primary">4</div></div></div></div>
+                    <div class="col-6 col-xl-3"><div class="card stat-tile"><div class="card-body py-3"><div class="stat-label text-muted">Completed</div><div class="stat-value cur text-success">3</div></div></div></div>
+                    <div class="col-6 col-xl-3"><div class="card stat-tile"><div class="card-body py-3"><div class="stat-label text-muted">Awaiting Treatment</div><div class="stat-value cur text-secondary">4</div></div></div></div>
+                </div>
+
+                <!-- ===== Filters ===== -->
+                <div class="card" id="patient-filters">
+                    <div class="card-body">
+                        <div class="row g-2 align-items-end">
+                            <div class="col-md-3">
+                                <label class="form-label fs-12 mb-1">Search</label>
+                                <input type="text" class="form-control form-control-sm" id="pf-search" placeholder="Name, guardian, phone, ID">
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fs-12 mb-1">Situation</label>
+                                <select class="form-select form-select-sm" id="pf-situation">
+                                    <option value="">All situations</option><option>Applied</option><option>Confirmed</option><option>Closed</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fs-12 mb-1">Treatment</label>
+                                <select class="form-select form-select-sm" id="pf-status">
+                                    <option value="">All</option><option>Awaiting</option><option>Active</option><option>Completed</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fs-12 mb-1">Package</label>
+                                <select class="form-select form-select-sm" id="pf-package">
+                                    <option value="">All packages</option>
+                                    <option>Full-Funded Package</option><option>Partial-Funded Package</option><option>Paid Package</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fs-12 mb-1">Assigned Staff</label>
+                                <select class="form-select form-select-sm" id="pf-staff">
+                                    <option value="">All staff</option>
+                                    <option>Tanvir Ahmed</option><option>Nusrat Jahan</option><option>Sabbir Hossain</option><option>Farhana Akter</option>
+                                </select>
+                            </div>
+                            <div class="col-md-1 d-flex gap-2">
+                                <button class="btn btn-light btn-sm w-100" id="pf-reset" title="Reset filters"><i class="mdi mdi-refresh"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== Patient database ===== -->
+                <div class="card">
+                    <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-2">
+                        <div>
+                            <h5 class="card-title mb-0">Patient Database</h5>
+                            <p class="fs-12 text-muted mb-0">Money is not shown here &mdash; a patient's balances live on Deals. View opens the full history.</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle crm-table w-100">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Patient ID</th>
+                                        <th>Patient / Guardian</th>
+                                        <th>Phone</th>
+                                        <th>Condition</th>
+                                        <th>Lead Created</th>
+                                        <th>Package</th>
+                                        <th>Situation</th>
+                                        <th>Treatment</th>
+                                        <th class="no-sort">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-status="Awaiting" data-situation="Applied" data-package="Partial-Funded Package" data-staff="Tanvir Ahmed" data-patient-id="ELH-P-2026-000412" data-lead="ELH-L-2026-000412">
+                                        <td class="mono fs-12">ELH-P-2026-000412</td>
+                                        <td><div class="fw-semibold">Ayesha Rahim</div><div class="fs-12 text-muted">G: Rahim Uddin</div></td>
+                                        <td class="fs-13">+880 1711-234567</td>
+                                        <td class="fs-13 text-truncate" style="max-width:220px" title="Blocked artery, advised bypass. Diabetic, on insulin 6 years.">Blocked artery, advised bypass. Diabetic, on insulin 6 years.</td>
+                                        <td class="fs-13">02 Aug 2026</td>
+                                        <td class="fs-13">Partial-Funded Package</td>
+                                        <td><span class="badge bg-warning-subtle text-warning">Applied</span></td>
+                                        <td><span class="badge bg-secondary-subtle text-secondary">Awaiting</span></td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <a href="patient-profile.html?patient=ELH-P-2026-000412" class="btn btn-sm btn-primary" title="View full history"><i class="mdi mdi-eye-outline me-1"></i>View</a>
+                                                <button class="btn btn-sm btn-icon btn-light" title="Edit"><i class="mdi mdi-pencil-outline"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="Awaiting" data-situation="Applied" data-package="Full-Funded Package" data-staff="Sabbir Hossain" data-patient-id="ELH-P-2026-000411" data-lead="ELH-L-2026-000411">
+                                        <td class="mono fs-12">ELH-P-2026-000411</td>
+                                        <td><div class="fw-semibold">Karim Mia</div><div class="fs-12 text-muted">G: Karim Mia</div></td>
+                                        <td class="fs-13">+880 1812-445566</td>
+                                        <td class="fs-13 text-truncate" style="max-width:220px" title="Chronic knee pain, advised total knee replacement. Hypertensive.">Chronic knee pain, advised total knee replacement. Hypertensive.</td>
+                                        <td class="fs-13">20 Jul 2026</td>
+                                        <td class="fs-13">Full-Funded Package</td>
+                                        <td><span class="badge bg-warning-subtle text-warning">Applied</span></td>
+                                        <td><span class="badge bg-secondary-subtle text-secondary">Awaiting</span></td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <a href="patient-profile.html?patient=ELH-P-2026-000411" class="btn btn-sm btn-primary" title="View full history"><i class="mdi mdi-eye-outline me-1"></i>View</a>
+                                                <button class="btn btn-sm btn-icon btn-light" title="Edit"><i class="mdi mdi-pencil-outline"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="Active" data-situation="Applied" data-package="Paid Package" data-staff="Sabbir Hossain" data-patient-id="ELH-P-2026-000410" data-lead="ELH-L-2026-000410">
+                                        <td class="mono fs-12">ELH-P-2026-000410</td>
+                                        <td><div class="fw-semibold">Nadia Sultana</div><div class="fs-12 text-muted">G: Sultana Begum</div></td>
+                                        <td class="fs-13">+880 1911-778899</td>
+                                        <td class="fs-13 text-truncate" style="max-width:220px" title="Confirmed breast malignancy; chemotherapy in progress.">Confirmed breast malignancy; chemotherapy in progress.</td>
+                                        <td class="fs-13">10 Aug 2026</td>
+                                        <td class="fs-13">Paid Package</td>
+                                        <td><span class="badge bg-warning-subtle text-warning">Applied</span></td>
+                                        <td><span class="badge bg-primary-subtle text-primary">Active</span></td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <a href="patient-profile.html?patient=ELH-P-2026-000410" class="btn btn-sm btn-primary" title="View full history"><i class="mdi mdi-eye-outline me-1"></i>View</a>
+                                                <button class="btn btn-sm btn-icon btn-light" title="Edit"><i class="mdi mdi-pencil-outline"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="Awaiting" data-situation="Applied" data-package="Partial-Funded Package" data-staff="Tanvir Ahmed" data-patient-id="ELH-P-2026-000408" data-lead="ELH-L-2026-000408">
+                                        <td class="mono fs-12">ELH-P-2026-000408</td>
+                                        <td><div class="fw-semibold">Mim Akter</div><div class="fs-12 text-muted">G: Jahanara Khatun</div></td>
+                                        <td class="fs-13">+880 1677-112233</td>
+                                        <td class="fs-13 text-truncate" style="max-width:220px" title="Congenital heart defect; corrective cardiac surgery scheduled.">Congenital heart defect; corrective cardiac surgery scheduled.</td>
+                                        <td class="fs-13">15 Jun 2026</td>
+                                        <td class="fs-13">Partial-Funded Package</td>
+                                        <td><span class="badge bg-warning-subtle text-warning">Applied</span></td>
+                                        <td><span class="badge bg-secondary-subtle text-secondary">Awaiting</span></td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <a href="patient-profile.html?patient=ELH-P-2026-000408" class="btn btn-sm btn-primary" title="View full history"><i class="mdi mdi-eye-outline me-1"></i>View</a>
+                                                <button class="btn btn-sm btn-icon btn-light" title="Edit"><i class="mdi mdi-pencil-outline"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="Awaiting" data-situation="Applied" data-package="Full-Funded Package" data-staff="Nusrat Jahan" data-patient-id="ELH-P-2026-000405" data-lead="ELH-L-2026-000405">
+                                        <td class="mono fs-12">ELH-P-2026-000405</td>
+                                        <td><div class="fw-semibold">Jamal Uddin</div><div class="fs-12 text-muted">G: Jamal Uddin</div></td>
+                                        <td class="fs-13">+880 1745-330011</td>
+                                        <td class="fs-13 text-truncate" style="max-width:220px" title="Cataract in both eyes; phacoemulsification advised.">Cataract in both eyes; phacoemulsification advised.</td>
+                                        <td class="fs-13">12 Aug 2026</td>
+                                        <td class="fs-13">Full-Funded Package</td>
+                                        <td><span class="badge bg-warning-subtle text-warning">Applied</span></td>
+                                        <td><span class="badge bg-secondary-subtle text-secondary">Awaiting</span></td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <a href="patient-profile.html?patient=ELH-P-2026-000405" class="btn btn-sm btn-primary" title="View full history"><i class="mdi mdi-eye-outline me-1"></i>View</a>
+                                                <button class="btn btn-sm btn-icon btn-light" title="Edit"><i class="mdi mdi-pencil-outline"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="Active" data-situation="Confirmed" data-package="Paid Package" data-staff="Nusrat Jahan" data-patient-id="ELH-P-2026-000406" data-lead="ELH-L-2026-000406">
+                                        <td class="mono fs-12">ELH-P-2026-000406</td>
+                                        <td><div class="fw-semibold">Sharmin Akter</div><div class="fs-12 text-muted">G: Abul Kalam</div></td>
+                                        <td class="fs-13">+880 1521-889900</td>
+                                        <td class="fs-13 text-truncate" style="max-width:220px" title="End-stage renal disease; donor matched, transplant completed.">End-stage renal disease; donor matched, transplant completed.</td>
+                                        <td class="fs-13">25 Jul 2026</td>
+                                        <td class="fs-13">Paid Package</td>
+                                        <td><span class="badge bg-success-subtle text-success">Confirmed</span></td>
+                                        <td><span class="badge bg-primary-subtle text-primary">Active</span></td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <a href="patient-profile.html?patient=ELH-P-2026-000406" class="btn btn-sm btn-primary" title="View full history"><i class="mdi mdi-eye-outline me-1"></i>View</a>
+                                                <button class="btn btn-sm btn-icon btn-light" title="Edit"><i class="mdi mdi-pencil-outline"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="Completed" data-situation="Confirmed" data-package="Full-Funded Package" data-staff="Tanvir Ahmed" data-patient-id="ELH-P-2026-000398" data-lead="ELH-L-2026-000398">
+                                        <td class="mono fs-12">ELH-P-2026-000398</td>
+                                        <td><div class="fw-semibold">Rokeya Begum</div><div class="fs-12 text-muted">G: Anwar Hossain</div></td>
+                                        <td class="fs-13">+880 1633-447788</td>
+                                        <td class="fs-13 text-truncate" style="max-width:220px" title="Cataract in both eyes; phacoemulsification, both eyes done.">Cataract in both eyes; phacoemulsification, both eyes done.</td>
+                                        <td class="fs-13">02 Aug 2026</td>
+                                        <td class="fs-13">Full-Funded Package</td>
+                                        <td><span class="badge bg-success-subtle text-success">Confirmed</span></td>
+                                        <td><span class="badge bg-success-subtle text-success">Completed</span></td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <a href="patient-profile.html?patient=ELH-P-2026-000398" class="btn btn-sm btn-primary" title="View full history"><i class="mdi mdi-eye-outline me-1"></i>View</a>
+                                                <button class="btn btn-sm btn-icon btn-light" title="Edit"><i class="mdi mdi-pencil-outline"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="Active" data-situation="Confirmed" data-package="Partial-Funded Package" data-staff="Sabbir Hossain" data-patient-id="ELH-P-2026-000395" data-lead="ELH-L-2026-000395">
+                                        <td class="mono fs-12">ELH-P-2026-000395</td>
+                                        <td><div class="fw-semibold">Sajid Hasan</div><div class="fs-12 text-muted">G: Mizanur Rahman</div></td>
+                                        <td class="fs-13">+880 1877-220044</td>
+                                        <td class="fs-13 text-truncate" style="max-width:220px" title="Single-vessel blockage; stent placed, on dual antiplatelet therapy.">Single-vessel blockage; stent placed, on dual antiplatelet therapy.</td>
+                                        <td class="fs-13">28 Jul 2026</td>
+                                        <td class="fs-13">Partial-Funded Package</td>
+                                        <td><span class="badge bg-success-subtle text-success">Confirmed</span></td>
+                                        <td><span class="badge bg-primary-subtle text-primary">Active</span></td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <a href="patient-profile.html?patient=ELH-P-2026-000395" class="btn btn-sm btn-primary" title="View full history"><i class="mdi mdi-eye-outline me-1"></i>View</a>
+                                                <button class="btn btn-sm btn-icon btn-light" title="Edit"><i class="mdi mdi-pencil-outline"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="Completed" data-situation="Confirmed" data-package="Full-Funded Package" data-staff="Nusrat Jahan" data-patient-id="ELH-P-2026-000391" data-lead="ELH-L-2026-000391">
+                                        <td class="mono fs-12">ELH-P-2026-000391</td>
+                                        <td><div class="fw-semibold">Halima Khatun</div><div class="fs-12 text-muted">G: Halima Khatun</div></td>
+                                        <td class="fs-13">+880 1955-661122</td>
+                                        <td class="fs-13 text-truncate" style="max-width:220px" title="Inguinal hernia; laparoscopic repair, discharged day two.">Inguinal hernia; laparoscopic repair, discharged day two.</td>
+                                        <td class="fs-13">21 Jul 2026</td>
+                                        <td class="fs-13">Full-Funded Package</td>
+                                        <td><span class="badge bg-success-subtle text-success">Confirmed</span></td>
+                                        <td><span class="badge bg-success-subtle text-success">Completed</span></td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <a href="patient-profile.html?patient=ELH-P-2026-000391" class="btn btn-sm btn-primary" title="View full history"><i class="mdi mdi-eye-outline me-1"></i>View</a>
+                                                <button class="btn btn-sm btn-icon btn-light" title="Edit"><i class="mdi mdi-pencil-outline"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="Active" data-situation="Confirmed" data-package="Partial-Funded Package" data-staff="Tanvir Ahmed" data-patient-id="ELH-P-2026-000386" data-lead="ELH-L-2026-000386">
+                                        <td class="mono fs-12">ELH-P-2026-000386</td>
+                                        <td><div class="fw-semibold">Tanjila Akter</div><div class="fs-12 text-muted">G: Rafiqul Islam</div></td>
+                                        <td class="fs-13">+880 1712-903344</td>
+                                        <td class="fs-13 text-truncate" style="max-width:220px" title="Breast malignancy; chemotherapy cycles in progress.">Breast malignancy; chemotherapy cycles in progress.</td>
+                                        <td class="fs-13">14 Jul 2026</td>
+                                        <td class="fs-13">Partial-Funded Package</td>
+                                        <td><span class="badge bg-success-subtle text-success">Confirmed</span></td>
+                                        <td><span class="badge bg-primary-subtle text-primary">Active</span></td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <a href="patient-profile.html?patient=ELH-P-2026-000386" class="btn btn-sm btn-primary" title="View full history"><i class="mdi mdi-eye-outline me-1"></i>View</a>
+                                                <button class="btn btn-sm btn-icon btn-light" title="Edit"><i class="mdi mdi-pencil-outline"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="Completed" data-situation="Confirmed" data-package="Paid Package" data-staff="Sabbir Hossain" data-patient-id="ELH-P-2026-000380" data-lead="ELH-L-2026-000380">
+                                        <td class="mono fs-12">ELH-P-2026-000380</td>
+                                        <td><div class="fw-semibold">Nurul Islam</div><div class="fs-12 text-muted">G: Nurul Islam</div></td>
+                                        <td class="fs-13">+880 1818-556677</td>
+                                        <td class="fs-13 text-truncate" style="max-width:220px" title="Lumbar spine fusion; post-operative rehabilitation ongoing.">Lumbar spine fusion; post-operative rehabilitation ongoing.</td>
+                                        <td class="fs-13">05 Jul 2026</td>
+                                        <td class="fs-13">Paid Package</td>
+                                        <td><span class="badge bg-success-subtle text-success">Confirmed</span></td>
+                                        <td><span class="badge bg-success-subtle text-success">Completed</span></td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <a href="patient-profile.html?patient=ELH-P-2026-000380" class="btn btn-sm btn-primary" title="View full history"><i class="mdi mdi-eye-outline me-1"></i>View</a>
+                                                <button class="btn btn-sm btn-icon btn-light" title="Edit"><i class="mdi mdi-pencil-outline"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>

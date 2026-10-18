@@ -1,0 +1,150 @@
+                <!-- ===== Buckets — same layout as Upcoming Follow-ups ===== -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card stat-tile border-start border-3 border-danger">
+                            <div class="card-body d-flex align-items-center gap-3">
+                                <span class="stat-icon bg-danger-subtle text-danger"><i class="mdi mdi-account-cancel-outline"></i></span>
+                                <div>
+                                    <div class="stat-value cur text-danger" id="ni-count">6</div>
+                                    <div class="stat-label text-muted">Not Interested</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card stat-tile border-start border-3 border-primary">
+                            <div class="card-body d-flex align-items-center gap-3">
+                                <span class="stat-icon bg-primary-subtle text-primary"><i class="mdi mdi-calendar-today"></i></span>
+                                <div>
+                                    <div class="stat-value cur">2</div>
+                                    <div class="stat-label text-muted">Last 7 Days</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card stat-tile border-start border-3 border-warning">
+                            <div class="card-body d-flex align-items-center gap-3">
+                                <span class="stat-icon bg-warning-subtle text-warning"><i class="mdi mdi-calendar-refresh"></i></span>
+                                <div>
+                                    <div class="stat-value cur">2</div>
+                                    <div class="stat-label text-muted">Try Again Planned</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leads who decided not to apply, laid out like Upcoming Follow-ups.
+                     Their details are kept on purpose — people do come back — so each
+                     row can be re-contacted (Log Conversation, which can take them
+                     straight to Apply for Package) or given a Try Again date. -->
+                <div class="card">
+                    <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-2">
+                        <ul class="nav nav-pills nav-sm" role="tablist">
+                            <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#ni-recent">Last 7 Days <span class="badge bg-primary ms-1">2</span></a></li>
+                            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#ni-earlier">Earlier <span class="badge bg-secondary ms-1">4</span></a></li>
+                        </ul>
+                        <div class="d-flex flex-wrap gap-2 crm-filter">
+                            <select class="form-select form-select-sm w-auto" data-filter="col:Source" aria-label="Source"><option value="">All sources</option><option>Noman</option><option>Dr. Ilias Patowary</option><option>Facebook</option><option>Website</option><option>Hospital</option><option>Doctor Referral</option><option>Walk-in</option><option>Campaign</option><option>Other</option></select>
+                            <select class="form-select form-select-sm w-auto" data-filter="attr:executive" aria-label="Executive"><option value="">All executives</option><option>Tanvir Ahmed</option><option>Nusrat Jahan</option><option>Sabbir Hossain</option><option>Farhana Akter</option></select>
+                            <button type="button" class="btn btn-light btn-sm" data-filter-reset title="Reset filters"><i class="mdi mdi-refresh"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="ni-recent">
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle mb-0" data-list-status="not-interested">
+                                        <thead class="table-light">
+                                            <tr><th>Lead ID</th><th>Guardian / Patient</th><th>Phone</th><th>Source</th><th>Reason</th><th>Marked On</th><th>Try Again</th><th class="no-sort">Action</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr data-status="not-interested" data-lead-id="ELH-L-2026-000407" data-lead-name="Shahin Alam" data-lead-patient="Rafi Alam" data-executive="Nusrat Jahan">
+                                                <td class="mono fs-12">ELH-L-2026-000407</td>
+                                                <td><div class="fw-semibold">Shahin Alam</div><div class="fs-12 text-muted">Rafi Alam</div></td>
+                                                <td class="fs-13">+880 1755-667788</td>
+                                                <td><span class="badge bg-warning-subtle text-warning">Walk-in</span></td>
+                                                <td class="fs-13 text-muted">Guardian arranged treatment elsewhere; refund processed.</td>
+                                                <td class="fs-13">26 Aug 2026</td>
+                                                <td class="fs-13"><span class="text-muted">&mdash;</span></td>
+                                                <td><div class="d-flex gap-1"><button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-lead-id="ELH-L-2026-000407" data-lead-name="Shahin Alam" data-lead-patient="Rafi Alam"><i class="mdi mdi-card-account-details-outline"></i></button><button type="button" class="btn btn-sm btn-primary text-nowrap" data-bs-toggle="modal" data-bs-target="#logConvModal"><i class="mdi mdi-comment-plus-outline me-1"></i>Log Conversation</button><button type="button" class="btn btn-sm btn-label-warning text-nowrap" data-bs-toggle="modal" data-bs-target="#rescheduleModal" data-rs-title="Set a Try-Again Date"><i class="mdi mdi-calendar-clock me-1"></i>Try Again</button></div></td>
+                                            </tr>
+                                            <tr data-status="not-interested" data-lead-id="ELH-L-2026-000404" data-lead-name="Kamal Hossain" data-lead-patient="Kamal Hossain" data-executive="Sabbir Hossain">
+                                                <td class="mono fs-12">ELH-L-2026-000404</td>
+                                                <td><div class="fw-semibold">Kamal Hossain</div><div class="fs-12 text-muted">Kamal Hossain</div></td>
+                                                <td class="fs-13">+880 1611-778822</td>
+                                                <td><span class="badge bg-secondary-subtle text-secondary">Campaign</span></td>
+                                                <td class="fs-13 text-muted">Decided to continue treatment locally.</td>
+                                                <td class="fs-13">24 Aug 2026</td>
+                                                <td class="fs-13"><span class="text-muted">&mdash;</span></td>
+                                                <td><div class="d-flex gap-1"><button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-lead-id="ELH-L-2026-000404" data-lead-name="Kamal Hossain" data-lead-patient="Kamal Hossain"><i class="mdi mdi-card-account-details-outline"></i></button><button type="button" class="btn btn-sm btn-primary text-nowrap" data-bs-toggle="modal" data-bs-target="#logConvModal"><i class="mdi mdi-comment-plus-outline me-1"></i>Log Conversation</button><button type="button" class="btn btn-sm btn-label-warning text-nowrap" data-bs-toggle="modal" data-bs-target="#rescheduleModal" data-rs-title="Set a Try-Again Date"><i class="mdi mdi-calendar-clock me-1"></i>Try Again</button></div></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="ni-earlier">
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle mb-0" data-list-status="not-interested">
+                                        <thead class="table-light">
+                                            <tr><th>Lead ID</th><th>Guardian / Patient</th><th>Phone</th><th>Source</th><th>Reason</th><th>Marked On</th><th>Try Again</th><th class="no-sort">Action</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr data-status="not-interested" data-lead-id="ELH-L-2026-000402" data-lead-name="Rina Begum" data-lead-patient="Sumon Mia" data-executive="Farhana Akter">
+                                                <td class="mono fs-12">ELH-L-2026-000402</td>
+                                                <td><div class="fw-semibold">Rina Begum</div><div class="fs-12 text-muted">Sumon Mia</div></td>
+                                                <td class="fs-13">+880 1922-334411</td>
+                                                <td><span class="badge bg-info-subtle text-info">Facebook</span></td>
+                                                <td class="fs-13 text-muted">Price was beyond their budget.</td>
+                                                <td class="fs-13">20 Aug 2026</td>
+                                                <td class="fs-13"><span class="badge bg-info-subtle text-info">10 Sep 2026</span></td>
+                                                <td><div class="d-flex gap-1"><button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-lead-id="ELH-L-2026-000402" data-lead-name="Rina Begum" data-lead-patient="Sumon Mia"><i class="mdi mdi-card-account-details-outline"></i></button><button type="button" class="btn btn-sm btn-primary text-nowrap" data-bs-toggle="modal" data-bs-target="#logConvModal"><i class="mdi mdi-comment-plus-outline me-1"></i>Log Conversation</button><button type="button" class="btn btn-sm btn-label-warning text-nowrap" data-bs-toggle="modal" data-bs-target="#rescheduleModal" data-rs-title="Set a Try-Again Date"><i class="mdi mdi-calendar-clock me-1"></i>Try Again</button></div></td>
+                                            </tr>
+                                            <tr data-status="not-interested" data-lead-id="ELH-L-2026-000401" data-lead-name="Ismail Hossain" data-lead-patient="Ismail Hossain" data-executive="Tanvir Ahmed">
+                                                <td class="mono fs-12">ELH-L-2026-000401</td>
+                                                <td><div class="fw-semibold">Ismail Hossain</div><div class="fs-12 text-muted">Ismail Hossain</div></td>
+                                                <td class="fs-13">+880 1733-559900</td>
+                                                <td><span class="badge bg-secondary-subtle text-secondary">Website</span></td>
+                                                <td class="fs-13 text-muted">Chose a hospital closer to home.</td>
+                                                <td class="fs-13">18 Aug 2026</td>
+                                                <td class="fs-13"><span class="text-muted">&mdash;</span></td>
+                                                <td><div class="d-flex gap-1"><button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-lead-id="ELH-L-2026-000401" data-lead-name="Ismail Hossain" data-lead-patient="Ismail Hossain"><i class="mdi mdi-card-account-details-outline"></i></button><button type="button" class="btn btn-sm btn-primary text-nowrap" data-bs-toggle="modal" data-bs-target="#logConvModal"><i class="mdi mdi-comment-plus-outline me-1"></i>Log Conversation</button><button type="button" class="btn btn-sm btn-label-warning text-nowrap" data-bs-toggle="modal" data-bs-target="#rescheduleModal" data-rs-title="Set a Try-Again Date"><i class="mdi mdi-calendar-clock me-1"></i>Try Again</button></div></td>
+                                            </tr>
+                                            <tr data-status="not-interested" data-lead-id="ELH-L-2026-000379" data-lead-name="Liton Das" data-lead-patient="Bristy Das" data-executive="Farhana Akter">
+                                                <td class="mono fs-12">ELH-L-2026-000379</td>
+                                                <td><div class="fw-semibold">Liton Das</div><div class="fs-12 text-muted">Bristy Das</div></td>
+                                                <td class="fs-13">+880 1811-339900</td>
+                                                <td><span class="badge bg-secondary-subtle text-secondary">Campaign</span></td>
+                                                <td class="fs-13 text-muted">Chose another agency.</td>
+                                                <td class="fs-13">02 Aug 2026</td>
+                                                <td class="fs-13"><span class="text-muted">&mdash;</span></td>
+                                                <td><div class="d-flex gap-1"><button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-lead-id="ELH-L-2026-000379" data-lead-name="Liton Das" data-lead-patient="Bristy Das"><i class="mdi mdi-card-account-details-outline"></i></button><button type="button" class="btn btn-sm btn-primary text-nowrap" data-bs-toggle="modal" data-bs-target="#logConvModal"><i class="mdi mdi-comment-plus-outline me-1"></i>Log Conversation</button><button type="button" class="btn btn-sm btn-label-warning text-nowrap" data-bs-toggle="modal" data-bs-target="#rescheduleModal" data-rs-title="Set a Try-Again Date"><i class="mdi mdi-calendar-clock me-1"></i>Try Again</button></div></td>
+                                            </tr>
+                                            <tr data-status="not-interested" data-lead-id="ELH-L-2026-000376" data-lead-name="Jahangir Alam" data-lead-patient="Sabina Yasmin" data-executive="Sabbir Hossain">
+                                                <td class="mono fs-12">ELH-L-2026-000376</td>
+                                                <td><div class="fw-semibold">Jahangir Alam</div><div class="fs-12 text-muted">Sabina Yasmin</div></td>
+                                                <td class="fs-13">+880 1944-221100</td>
+                                                <td><span class="badge bg-info-subtle text-info">Facebook</span></td>
+                                                <td class="fs-13 text-muted">Patient condition improved with local treatment.</td>
+                                                <td class="fs-13">25 Jul 2026</td>
+                                                <td class="fs-13"><span class="badge bg-info-subtle text-info">15 Sep 2026</span></td>
+                                                <td><div class="d-flex gap-1"><button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-lead-id="ELH-L-2026-000376" data-lead-name="Jahangir Alam" data-lead-patient="Sabina Yasmin"><i class="mdi mdi-card-account-details-outline"></i></button><button type="button" class="btn btn-sm btn-primary text-nowrap" data-bs-toggle="modal" data-bs-target="#logConvModal"><i class="mdi mdi-comment-plus-outline me-1"></i>Log Conversation</button><button type="button" class="btn btn-sm btn-label-warning text-nowrap" data-bs-toggle="modal" data-bs-target="#rescheduleModal" data-rs-title="Set a Try-Again Date"><i class="mdi mdi-calendar-clock me-1"></i>Try Again</button></div></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--@lead-modals-->
+
+                <!--@status-modals-->
+
+                <!--@log-conversation-->
+
+                <!--@reschedule-->
+
+                <!--@quick-view-->

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Screen Locked | E Life Healthcare CRM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta content="E Life Healthcare — CRM System" name="description">
+    <meta content="E Life Healthcare" name="author">
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/logo-icon.png">
+
+    <!-- Simplebar Css -->
+    <link rel="stylesheet" href="assets/libs/simplebar/simplebar.min.css">
+
+    <!-- Bootstrap Css -->
+    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css">
+
+    <!--icons css-->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
+
+    <!-- App Css-->
+    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css">
+
+    <!-- CRM brand css -->
+    <link href="assets/css/crm-brand.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="position-relative min-vh-100">
+    <div class="row gx-0">
+
+        <div class="col-xl-5">
+            <div class="row mx-0 justify-content-center align-items-center p-10 min-vh-100 bg-body-secondary position-relative">
+                <div class="col-md-7 col-lg-6 col-xl-8 col-xxl-7 text-center auth-form-in">
+
+                    <a href="dashboard.html" class="text-nowrap d-inline-block w-100 mb-8">
+                        <img src="assets/logo.png" alt="E Life Healthcare" style="height:38px;width:auto;">
+                    </a>
+
+                    <img src="assets/images/users/avatar-9.png" class="rounded-circle mb-3" width="76" height="76" alt="">
+                    <h5 class="mb-1">Mahi Alam</h5>
+                    <p class="text-muted mb-6">Your session is locked. Enter your password to continue.</p>
+
+                    <form action="dashboard.html" class="text-start">
+                        <div class="mb-5">
+                            <label for="lockPassword" class="form-label">Password</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="lockPassword" placeholder="Password" value="password">
+                                <button class="input-group-text" type="button" id="toggleLockPwd" aria-label="Show password"><i class="mdi mdi-eye-outline"></i></button>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100"><i class="mdi mdi-lock-open-variant-outline me-1"></i>Unlock</button>
+                        <a href="login.html" class="btn btn-light w-100 mt-2">Sign in as a different user</a>
+                    </form>
+
+                    <div class="text-muted pt-10">
+                        <p class="mb-0 fs-12">&copy; <script>document.write(new Date().getFullYear())</script> E Life Healthcare. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-7 d-none d-md-block">
+            <div class="h-100 d-flex align-items-center overflow-hidden justify-content-center position-relative z-2 auth-panel">
+                <span class="auth-shape s1"></span>
+                <span class="auth-shape s2"></span>
+                <span class="auth-shape s3"></span>
+                <span class="auth-shape s4"></span>
+                <span class="auth-shape s5"></span>
+                <div class="text-center p-10 auth-content" style="max-width:480px;">
+                    <img src="assets/logo.png" alt="E Life Healthcare" class="mb-6" style="height:64px;width:auto;background:#fff;padding:8px 14px;border-radius:14px;">
+                    <h2 class="mt-6 mb-3 text-white">Session Locked</h2>
+                    <p class="mb-0" style="color:rgba(255,255,255,.78);">Locking the screen keeps patient and payment data safe when you step away, without ending your session or losing unsaved work.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Bootstrap bundle js -->
+<script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/libs/jquery/jquery.min.js"></script>
+<script src="assets/libs/metismenu/metisMenu.min.js"></script>
+<script src="assets/libs/simplebar/simplebar.min.js"></script>
+<script src="assets/libs/eva-icons/eva.min.js"></script>
+<script src="assets/js/scroll-top.init.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+document.getElementById('toggleLockPwd').addEventListener('click', function () {
+    var p = document.getElementById('lockPassword');
+    var show = p.type === 'password';
+    p.type = show ? 'text' : 'password';
+    this.querySelector('i').className = show ? 'mdi mdi-eye-off-outline' : 'mdi mdi-eye-outline';
+    this.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+});
+</script>
+
+</body>
+</html>

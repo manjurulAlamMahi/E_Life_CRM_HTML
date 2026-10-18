@@ -1,0 +1,563 @@
+                <!-- Shown only when the employee arrived for a different patient.
+                     This demo carries one fully worked profile; saying so is better
+                     than rendering someone else's history under the wrong name. -->
+                <div class="alert alert-warning crm-demo-note d-flex align-items-start gap-2 py-2 fs-13 d-none" id="pp-sample-note">
+                    <i class="mdi mdi-alert-outline fs-16 mt-1"></i>
+                    <span><strong>Demo notice:</strong> this static preview has one fully worked profile, always for patient <span class="mono">ELH-P-2026-000406</span> — the details below are <u>not</u> for <span class="mono" id="pp-requested-patient"></span>, the patient you opened. In the live system every patient opens their own real profile.</span>
+                    <div class="ms-auto d-flex align-items-center gap-2 flex-shrink-0 d-print-none">
+                        <button type="button" class="btn btn-link btn-sm p-0 fs-12 text-reset text-decoration-underline" data-demo-hide="all">Don't show again</button>
+                        <button type="button" class="btn-close" data-demo-hide="once" aria-label="Close"></button>
+                    </div>
+                </div>
+
+                <!-- The profile's live state. crm-deals.js reads these to draw the
+                     journey and payment progress and to decide which quick actions
+                     apply: journey-stage counts completed journey steps (see
+                     renderJourney in crm-leads.js) for the package named by
+                     current-pkg; its money comes from #pp-package-data. The data-lead-* attributes are what
+                     the shared modals (payment, visa, follow-up) label themselves
+                     with. -->
+                <div id="pp-root"
+                     data-lead-id="ELH-L-2026-000406"
+                     data-lead-name="Abul Kalam"
+                     data-lead-patient="Sharmin Akter"
+                     data-status="confirmed"
+                     data-journey-stage="4"
+                     data-current-pkg="ELH-D-2026-000089">
+
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                    <a href="patients.html" class="btn btn-sm btn-light"><i class="mdi mdi-arrow-left me-1"></i>Back to Patients</a>
+                </div>
+
+                <!-- ============ HEADER ============ -->
+                <!-- Three bands: who this is (with the Drive folder beside the
+                     name, since it's the most-used link), the current package's
+                     figures as one strip with Due emphasised and lifetime last and
+                     muted, then the quick actions. Figures are filled from
+                     #pp-package-data by crm-deals.js. -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-wrap align-items-center gap-3">
+                            <div class="crm-avatar crm-avatar-xl" id="pp-avatar">SA</div>
+                            <div class="flex-grow-1" style="min-width:0">
+                                <div class="d-flex flex-wrap align-items-center gap-2">
+                                    <h4 class="mb-0">Sharmin Akter</h4>
+                                    <span class="badge bg-success-subtle text-success">Confirmed</span>
+                                    <span class="badge bg-success-subtle text-success" id="pp-pay-badge">Fully Paid</span>
+                                </div>
+                                <div class="fs-13 text-muted mt-1">
+                                    <span class="mono text-body">ELH-L-2026-000406</span>
+                                    <span class="mx-1">&middot;</span>Guardian: Abul Kalam
+                                    <span class="mx-1">&middot;</span>39 yrs, Female
+                                    <span class="mx-1">&middot;</span>Dhaka
+                                </div>
+                                <div class="fs-13 text-muted">
+                                    <i class="mdi mdi-phone-outline"></i> <a href="tel:+8801521889900" class="text-muted">+880 1521-889900</a>
+                                    <span class="mx-1">&middot;</span>Source: Hospital
+                                    <span class="mx-1">&middot;</span>Executive: Nusrat Jahan
+                                </div>
+                            </div>
+                            <div class="btn-group">
+                                <a href="https://drive.google.com/drive/folders/ELH-L-2026-000406" target="_blank" rel="noopener" class="btn btn-primary" id="pp-drive-link"><i class="mdi mdi-google-drive me-1"></i>Drive Folder</a>
+                                <button type="button" class="btn btn-primary" id="pp-drive-copy" title="Copy Drive link"><i class="mdi mdi-content-copy"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="pp-stats mt-3">
+                            <div class="pp-stat">
+                                <div class="crm-info-label">Current package</div>
+                                <div class="fw-semibold fs-14" id="pp-cur-name"></div>
+                                <div class="mono fs-11 text-muted" id="pp-cur-id"></div>
+                            </div>
+                            <div class="pp-stat">
+                                <div class="crm-info-label">Package rate</div>
+                                <div class="fw-bold cur fs-16" id="pp-cur-rate"></div>
+                            </div>
+                            <div class="pp-stat">
+                                <div class="crm-info-label">Paid</div>
+                                <div class="fw-bold cur fs-16 text-success" id="pp-cur-paid"></div>
+                                <div class="progress mt-1" style="height:4px"><div class="progress-bar bg-success" id="pp-cur-bar"></div></div>
+                            </div>
+                            <div class="pp-stat pp-stat-due" id="pp-due-tile">
+                                <div class="crm-info-label">Due</div>
+                                <div class="fw-bold cur fs-20" id="pp-cur-due"></div>
+                            </div>
+                            <div class="pp-stat">
+                                <div class="crm-info-label">Lifetime paid</div>
+                                <div class="fw-semibold cur fs-14 text-muted" id="pp-lifetime"></div>
+                                <div class="fs-11 text-muted" id="pp-lifetime-sub"></div>
+                            </div>
+                        </div>
+
+                        <!-- Quick actions. Record Payment and the next-step button follow
+                             the profile's state (crm-deals.js): payment disables once the
+                             current package is fully paid, and the next-step button always
+                             offers whatever comes next on the journey. -->
+                        <div class="d-flex flex-wrap align-items-center gap-2 mt-3">
+                            <button type="button" class="btn btn-sm btn-success" id="pp-pay-btn" data-bs-toggle="modal" data-bs-target="#addPaymentModal"
+                                    data-lead-id="ELH-L-2026-000406" data-lead-name="Abul Kalam" data-due-bdt="0" data-due-usd="0" data-accepts-usd="true"><i class="mdi mdi-cash-multiple me-1"></i><span>Record Payment</span></button>
+                            <button type="button" class="btn btn-sm btn-primary" id="pp-next-step"><i class="mdi mdi-arrow-right-circle-outline me-1"></i><span>Next step</span></button>
+                            <button type="button" class="btn btn-sm btn-label-primary" data-bs-toggle="modal" data-bs-target="#nextFollowupModal"><i class="mdi mdi-calendar-clock me-1"></i>Next Follow-up</button>
+                            <a href="conversations.html?lead=ELH-L-2026-000406&log=1" class="btn btn-sm btn-label-primary"><i class="mdi mdi-comment-plus-outline me-1"></i>Log Conversation</a>
+                            <button type="button" class="btn btn-sm btn-label-primary" data-bs-toggle="modal" data-bs-target="#ppNewPackageModal"><i class="mdi mdi-plus-box-outline me-1"></i>Add New Package</button>
+                            <button type="button" class="btn btn-sm btn-light ms-auto" data-bs-toggle="modal" data-bs-target="#editLeadModal"><i class="mdi mdi-pencil-outline me-1"></i>Edit Patient</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ PARTIAL DOLLAR + COUNTDOWN ============ -->
+                <!-- Partial dollar: status only (amounts are tracked on Dollar
+                     Payments, crm-dollar.js). Countdown reads the same browser
+                     record as the Treatment Countdown page. Filled by crm-deals.js. -->
+                <div class="row g-3 mb-4">
+                    <div class="col-lg-6">
+                        <div class="card h-100 mb-0">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between gap-2 mb-2">
+                                    <div class="crm-info-title mb-0"><i class="mdi mdi-currency-usd"></i>Partial Dollar</div>
+                                    <span class="badge" id="pp-dl-badge"></span>
+                                </div>
+                                <div class="d-flex align-items-end justify-content-between flex-wrap gap-2">
+                                    <div class="fs-13 text-muted" id="pp-dl-note"></div>
+                                    <a href="dollar-payments.html" class="btn btn-sm btn-light" title="Open Dollar Payments"><i class="mdi mdi-open-in-new"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card h-100 mb-0">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between gap-2 mb-2">
+                                    <div class="crm-info-title mb-0"><i class="mdi mdi-timer-sand"></i>Treatment Countdown <span class="text-muted fw-normal text-lowercase ms-1">(90 days)</span></div>
+                                    <span class="badge" id="pp-tc-badge"></span>
+                                </div>
+                                <div class="d-flex align-items-end justify-content-between gap-3">
+                                    <div class="flex-grow-1">
+                                        <div class="d-flex justify-content-between align-items-baseline mb-1">
+                                            <span class="fw-bold fs-20" id="pp-tc-left"></span>
+                                            <span class="fs-12 text-muted" id="pp-tc-passed"></span>
+                                        </div>
+                                        <div class="progress" style="height:6px"><div class="progress-bar" id="pp-tc-bar"></div></div>
+                                        <div class="fs-12 text-muted mt-1" id="pp-tc-dates"></div>
+                                    </div>
+                                    <a href="treatment-countdown.html" class="btn btn-sm btn-light" title="Open Treatment Countdown"><i class="mdi mdi-open-in-new"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ JOURNEY ============ -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="fs-11 text-uppercase text-muted fw-semibold mb-3">Patient Journey</div>
+                        <div class="crm-journey" id="pp-journey">
+                            <div class="crm-journey-step" data-step="1">
+                                <div class="crm-journey-icon"><i class="mdi mdi-account-clock-outline js-journey-status-icon"></i></div>
+                                <div class="crm-journey-caption">Current Status</div>
+                                <div class="crm-journey-label js-journey-status-label">Lead</div>
+                            </div>
+                            <div class="crm-journey-step" data-step="2">
+                                <div class="crm-journey-icon"><i class="mdi mdi-clipboard-check-outline"></i></div>
+                                <div class="crm-journey-label">Applied for Package</div>
+                            </div>
+                            <div class="crm-journey-step" data-step="3">
+                                <div class="crm-journey-icon"><i class="mdi mdi-passport"></i></div>
+                                <div class="crm-journey-label">Visa Applied</div>
+                            </div>
+                            <div class="crm-journey-step" data-step="4">
+                                <div class="crm-journey-icon"><i class="mdi mdi-check-decagram js-journey-visa-icon"></i></div>
+                                <div class="crm-journey-label js-journey-visa-label">Visa Approved</div>
+                            </div>
+                            <div class="crm-journey-step" data-step="5">
+                                <div class="crm-journey-icon"><i class="mdi mdi-airplane"></i></div>
+                                <div class="crm-journey-label">Ticket Purchased</div>
+                            </div>
+                            <div class="crm-journey-step" data-step="6">
+                                <div class="crm-journey-icon"><i class="mdi mdi-hospital-building"></i></div>
+                                <div class="crm-journey-label">Treatment Ongoing</div>
+                            </div>
+                            <div class="crm-journey-step" data-step="7">
+                                <div class="crm-journey-icon"><i class="mdi mdi-flag-checkered"></i></div>
+                                <div class="crm-journey-label">Returned to Country</div>
+                            </div>
+                        </div>
+
+                        <div class="border-top pt-3" id="pp-payment">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <div class="fs-11 text-uppercase text-muted fw-semibold">Payment Progress &mdash; current package</div>
+                                <div class="fs-12 fw-semibold js-payment-pct"></div>
+                            </div>
+                            <div class="crm-journey mb-0">
+                                <div class="crm-journey-step" data-pct="25">
+                                    <div class="crm-journey-icon"><i class="mdi mdi-circle-slice-2"></i></div>
+                                    <div class="crm-journey-label">25% Paid</div>
+                                </div>
+                                <div class="crm-journey-step" data-pct="50">
+                                    <div class="crm-journey-icon"><i class="mdi mdi-circle-slice-4"></i></div>
+                                    <div class="crm-journey-label">50% Paid</div>
+                                </div>
+                                <div class="crm-journey-step" data-pct="75">
+                                    <div class="crm-journey-icon"><i class="mdi mdi-circle-slice-6"></i></div>
+                                    <div class="crm-journey-label">75% Paid</div>
+                                </div>
+                                <div class="crm-journey-step" data-pct="100">
+                                    <div class="crm-journey-icon"><i class="mdi mdi-circle-slice-8"></i></div>
+                                    <div class="crm-journey-label">100% Paid</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ DETAIL TABS ============ -->
+                <div class="card">
+                    <!-- The card header carries its own bottom border, and
+                         .card-header-tabs offsets the nav to sit on it. With pb-0 the
+                         two did not line up, so the border ran behind the active tab
+                         and read as an underline struck through the whole strip. The
+                         header's border is dropped and the nav provides its own. -->
+                    <div class="card-header border-bottom-0 pb-0">
+                        <ul class="nav nav-tabs fs-13" id="pp-tabs" role="tablist">
+                            <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#pp-overview" type="button">Overview</button></li>
+                            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#pp-packages" type="button">Package History <span class="badge bg-secondary-subtle text-secondary ms-1" id="pp-pkg-count"></span></button></li>
+                            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#pp-payments" type="button">Payments <span class="badge bg-secondary-subtle text-secondary ms-1" id="pp-pay-count"></span></button></li>
+                            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#pp-conversations" type="button">Conversations <span class="badge bg-secondary-subtle text-secondary ms-1">4</span></button></li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+
+                            <!-- ===== Overview — every field captured on Add / Edit Lead, grouped
+                                 into small cards (label over value, two per row) so the whole
+                                 record fits on one screen instead of a long two-column table. ===== -->
+                            <div class="tab-pane fade show active" id="pp-overview">
+                                <div class="row g-3">
+                                    <div class="col-md-6 col-xl-4">
+                                        <div class="crm-info-card">
+                                            <div class="crm-info-title"><i class="mdi mdi-account-heart-outline"></i>Patient</div>
+                                            <div class="crm-info-grid">
+                                                <div class="crm-info-item"><div class="crm-info-label">Name</div><div class="crm-info-value">Sharmin Akter</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Patient ID</div><div class="crm-info-value"><span class="mono">ELH-P-2026-000406</span></div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Date of birth</div><div class="crm-info-value">12 Mar 1987</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Age · Gender</div><div class="crm-info-value">39 yrs · Female</div></div>
+                                                <div class="crm-info-item span-2"><div class="crm-info-label">Issue / condition</div><div class="crm-info-value">End-stage renal disease; donor matched, kidney transplant planned.</div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xl-4">
+                                        <div class="crm-info-card">
+                                            <div class="crm-info-title"><i class="mdi mdi-account-supervisor-outline"></i>Guardian</div>
+                                            <div class="crm-info-grid">
+                                                <div class="crm-info-item"><div class="crm-info-label">Name</div><div class="crm-info-value">Abul Kalam</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Relation</div><div class="crm-info-value">Husband</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Phone</div><div class="crm-info-value"><a href="tel:+8801521889900">+880 1521-889900</a></div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Alternative phone</div><div class="crm-info-value"><a href="tel:+8801711552203">+880 1711-552203</a></div></div>
+                                                <div class="crm-info-item span-2"><div class="crm-info-label">Email</div><div class="crm-info-value"><a href="mailto:abul.kalam@example.com">abul.kalam@example.com</a></div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xl-4">
+                                        <div class="crm-info-card">
+                                            <div class="crm-info-title"><i class="mdi mdi-map-marker-outline"></i>Address</div>
+                                            <div class="crm-info-grid">
+                                                <div class="crm-info-item"><div class="crm-info-label">Division</div><div class="crm-info-value">Dhaka</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">District</div><div class="crm-info-value">Dhaka</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Upazila</div><div class="crm-info-value">Mirpur</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Post code</div><div class="crm-info-value">1216</div></div>
+                                                <div class="crm-info-item span-2"><div class="crm-info-label">Address</div><div class="crm-info-value">House 14, Road 7, Section 10</div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xl-4">
+                                        <div class="crm-info-card">
+                                            <div class="crm-info-title"><i class="mdi mdi-card-account-details-outline"></i>Lead</div>
+                                            <div class="crm-info-grid">
+                                                <div class="crm-info-item"><div class="crm-info-label">Lead ID</div><div class="crm-info-value"><span class="mono">ELH-L-2026-000406</span></div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Lead date</div><div class="crm-info-value">14 Aug 2026</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Assigned executive</div><div class="crm-info-value">Nusrat Jahan</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Priority</div><div class="crm-info-value"><span class="badge bg-danger-subtle text-danger">High</span></div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Source</div><div class="crm-info-value">Hospital</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Secondary source</div><div class="crm-info-value">Referral from BSMMU nephrology</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Expected value</div><div class="crm-info-value"><span class="cur">&#2547;3,50,000</span></div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Offered value</div><div class="crm-info-value"><span class="cur">&#2547;3,00,000</span></div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xl-4">
+                                        <div class="crm-info-card">
+                                            <div class="crm-info-title"><i class="mdi mdi-hospital-building"></i>Treatment &amp; Visa</div>
+                                            <div class="crm-info-grid" data-travel-lead="ELH-L-2026-000406">
+                                                <div class="crm-info-item"><div class="crm-info-label">Doctor</div><div class="crm-info-value">Dr. Anil Kumar</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Hospital</div><div class="crm-info-value">Apollo, Chennai</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Visa</div><div class="crm-info-value">India · Medical Visa</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Visa ref.</div><div class="crm-info-value"><span class="mono">MV-88214</span></div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Visa applied</div><div class="crm-info-value">25 Aug 2026</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Visa approved</div><div class="crm-info-value">09 Sep 2026</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Ticket start</div><div class="crm-info-value js-ticket-start">&mdash;</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Ticket end</div><div class="crm-info-value js-ticket-end">&mdash;</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Treatment days</div><div class="crm-info-value js-ticket-days">&mdash;</div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xl-4">
+                                        <div class="crm-info-card">
+                                            <div class="crm-info-title"><i class="mdi mdi-package-variant"></i>Current Package</div>
+                                            <div class="crm-info-grid">
+                                                <div class="crm-info-item"><div class="crm-info-label">Package</div><div class="crm-info-value">Paid Package</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Package ID</div><div class="crm-info-value"><span class="mono">ELH-D-2026-000089</span></div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Agreed</div><div class="crm-info-value"><span class="cur">&#2547;3,00,000</span></div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Started</div><div class="crm-info-value">24 Aug 2026</div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Paid</div><div class="crm-info-value"><span class="cur text-success">&#2547;3,00,000</span></div></div>
+                                                <div class="crm-info-item"><div class="crm-info-label">Due</div><div class="crm-info-value"><span class="cur text-muted">&#2547;0</span></div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="crm-info-card">
+                                            <div class="crm-info-title"><i class="mdi mdi-note-text-outline"></i>Notes</div>
+                                            <div class="fs-13">Returning patient &mdash; applied under the Full-Funded Package in Nov 2025 but the family postponed travel. Came back in Aug 2026 after a hospital referral and took the Paid Package. Prefers WhatsApp in the evening.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ===== Package history — a lead can apply more than once
+                                 (e.g. changed their mind, didn't travel, came back later).
+                                 The eye button (or a click anywhere on the row) opens that
+                                 package's whole journey: each step's date, who did it, and — for
+                                 a closed package — where it stopped and why. The detail itself is
+                                 the JSON block below, read by crm-deals.js. ===== -->
+                            <div class="tab-pane fade" id="pp-packages">
+                                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                                    <div class="fs-12 text-muted">Every package this lead has applied for, newest first. Open one to see its full journey.</div>
+                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#ppNewPackageModal"><i class="mdi mdi-plus me-1"></i>Add New Package</button>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table align-middle mb-0">
+                                        <thead class="table-light">
+                                            <tr><th>Package</th><th>Started</th><th class="text-end">Agreed</th><th class="text-end">Paid</th><th class="text-end">Due</th><th>Reached</th><th>Status</th><th class="no-sort text-end">Actions</th></tr>
+                                        </thead>
+                                        <tbody id="pp-pkg-body"></tbody>
+                                    </table>
+                                </div>
+
+                                <!-- Per-package journey data. `steps` is keyed by journey step
+                                     (1 = lead registered … 7 = returned; see renderJourney in
+                                     crm-leads.js). A closed package has `closed.atStep` — the step it
+                                     stopped before — with the date, who closed it and why.
+                                     `agreedUsd` is the partial dollar; its payments are tracked
+                                     only on Dollar Payments (crm-dollar.js). Amounts
+                                     are plain taka numbers; paid and due are summed
+                                     from `payments`. This block drives the header's current
+                                     package, Package History, Payments and every invoice. -->
+                                <script type="application/json" id="pp-package-data">
+                                {
+                                    "ELH-D-2026-000089": {
+                                        "name": "Paid Package", "status": "active",
+                                        "listPrice": 300000, "agreed": 300000, "agreedUsd": 4000,
+                                        "hospital": "Apollo, Chennai", "appliedBy": "Nusrat Jahan",
+                                        "steps": {
+                                            "1": { "date": "14 Aug 2026", "by": "Nusrat Jahan", "note": "Lead registered from a hospital referral." },
+                                            "2": { "date": "24 Aug 2026", "by": "Nusrat Jahan", "note": "Paid Package agreed at &#2547;3,00,000." },
+                                            "3": { "date": "25 Aug 2026", "by": "Nusrat Jahan", "note": "India &middot; Medical Visa &middot; ref. MV-88214." },
+                                            "4": { "date": "09 Sep 2026", "by": "Nusrat Jahan", "note": "Visa approved by the Indian High Commission." }
+                                        },
+                                        "payments": [
+                                            { "date": "24 Aug 2026", "type": "Advance", "method": "Bank Transfer", "receipt": "MR-000290", "by": "Nusrat Jahan", "amount": 200000 },
+                                            { "date": "28 Aug 2026", "type": "Final instalment", "method": "bKash", "receipt": "MR-000296", "by": "Nusrat Jahan", "amount": 100000 }
+                                        ]
+                                    },
+                                    "ELH-D-2025-000042": {
+                                        "name": "Full-Funded Package", "status": "closed",
+                                        "listPrice": 400000, "agreed": 400000, "agreedUsd": 0,
+                                        "hospital": "Apollo, Chennai", "appliedBy": "Nusrat Jahan",
+                                        "steps": {
+                                            "1": { "date": "02 Nov 2025", "by": "Nusrat Jahan", "note": "Lead registered as a walk-in." },
+                                            "2": { "date": "11 Nov 2025", "by": "Nusrat Jahan", "note": "Full-Funded Package agreed at &#2547;4,00,000." },
+                                            "3": { "date": "05 Dec 2025", "by": "Nusrat Jahan", "note": "India &middot; Medical Visa &middot; ref. MV-71190." }
+                                        },
+                                        "closed": {
+                                            "atStep": 4, "date": "15 Jan 2026", "by": "Nusrat Jahan",
+                                            "reason": "Family postponed travel &mdash; dialysis stabilised her condition and they decided to wait. Did not travel; the visa application was withdrawn."
+                                        },
+                                        "payments": [
+                                            { "date": "11 Nov 2025", "type": "Advance", "method": "Cash", "receipt": "MR-000188", "by": "Nusrat Jahan", "amount": 250000 },
+                                            { "date": "03 Dec 2025", "type": "Final instalment", "method": "Bank Transfer", "receipt": "MR-000197", "by": "Nusrat Jahan", "amount": 150000 }
+                                        ]
+                                    }
+                                }
+                                </script>
+                            </div>
+
+                            <!-- ===== Payments — every payment this lead has made, across
+                                 all packages. ===== -->
+                            <div class="tab-pane fade" id="pp-payments">
+                                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+                                    <div class="fs-13 text-muted" id="pp-pay-summary"></div>
+                                    <div class="fs-12 text-muted">Whole-package invoices are in <a href="#" id="pp-goto-packages">Package History</a>.</div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table align-middle mb-0">
+                                        <thead class="table-light">
+                                            <tr><th>Date</th><th>Package</th><th>Method</th><th>Receipt</th><th class="text-end">Amount</th><th class="no-sort text-end">Invoice</th></tr>
+                                        </thead>
+                                        <tbody id="pp-pay-body"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- ===== Conversations ===== -->
+                            <div class="tab-pane fade" id="pp-conversations">
+                                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                                    <div class="fs-12 text-muted">Every contact with this family, newest first.</div>
+                                    <a href="conversations.html?lead=ELH-L-2026-000406&log=1" class="btn btn-sm btn-primary"><i class="mdi mdi-comment-plus-outline me-1"></i>Log Conversation</a>
+                                </div>
+                                <div class="border-start border-3 border-primary-subtle ps-3 mb-3">
+                                    <div class="fs-12 text-muted">30 Aug 2026, 04:20 PM &middot; Phone &middot; Nusrat Jahan</div>
+                                    <div class="fs-13">Final taka instalment confirmed by the bank. Told the guardian the package is settled and travel dates are next.</div>
+                                    <div class="fs-12"><span class="badge bg-success-subtle text-success">Outcome: Applied</span></div>
+                                </div>
+                                <div class="border-start border-3 border-primary-subtle ps-3 mb-3">
+                                    <div class="fs-12 text-muted">24 Aug 2026, 11:05 AM &middot; In-person &middot; Nusrat Jahan</div>
+                                    <div class="fs-13">Guardian visited the office, signed the package agreement and paid the first instalment by bank.</div>
+                                    <div class="fs-12"><span class="badge bg-success-subtle text-success">Outcome: Applied</span></div>
+                                </div>
+                                <div class="border-start border-3 border-secondary-subtle ps-3 mb-3">
+                                    <div class="fs-12 text-muted">19 Aug 2026, 06:40 PM &middot; WhatsApp &middot; Nusrat Jahan</div>
+                                    <div class="fs-13">Sent the donor match report and the Apollo cost breakdown. Guardian said he would decide within the week.</div>
+                                    <div class="fs-12"><span class="badge bg-primary-subtle text-primary">Outcome: Interested</span></div>
+                                </div>
+                                <div class="border-start border-3 border-secondary-subtle ps-3">
+                                    <div class="fs-12 text-muted">14 Aug 2026, 10:15 AM &middot; Phone &middot; Nusrat Jahan</div>
+                                    <div class="fs-13">First contact after the hospital referral. Explained the transplant process and what we coordinate in Chennai.</div>
+                                    <div class="fs-12"><span class="badge bg-info-subtle text-info">Outcome: Follow-up</span></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                </div><!-- #pp-root -->
+
+                <!--@lead-modals-->
+
+                <!--@apply-visa-->
+
+                <!--@next-followup-->
+
+                <!-- ============ RECORD PAYMENT ============ -->
+                <!-- Same modal as Applied Leads; crm-leads.js drives it from the
+                     quick-action button's data-due-* attributes. -->
+                <!--@record-payment-->
+
+                <!-- ============ ADD NEW PACKAGE ============ -->
+                <!-- A returning lead (changed their mind, didn't travel, came back)
+                     starts a fresh package here. The previous one stays in Package
+                     History with its own payments, and the journey restarts from
+                     Applied for Package. -->
+                <div class="modal fade" id="ppNewPackageModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div>
+                                    <h5 class="modal-title mb-0">Add New Package</h5>
+                                    <span class="fs-12 text-muted">Sharmin Akter &middot; ELH-L-2026-000406</span>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="alert alert-info py-2 fs-13 mb-3"><i class="mdi mdi-information-outline me-1"></i>The current package (Paid Package &middot; ELH-D-2026-000089) will be closed and kept in Package History.</div>
+                                <div id="lc-apply-block"><!--@apply-block--></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-primary" id="pp-np-save"><i class="mdi mdi-plus-box-outline me-1"></i>Create Package</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ PACKAGE JOURNEY ============ -->
+                <!-- One package's whole journey, opened from Package History. The
+                     journey and payment strips are cloned from the page's own at
+                     open time (crm-deals.js), so the step list exists once. -->
+                <div class="modal fade" id="ppPackageModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div>
+                                    <h5 class="modal-title mb-0"><span id="pk-title"></span> <span class="badge ms-1 align-middle" id="pk-status"></span></h5>
+                                    <span class="fs-12 text-muted" id="pk-sub"></span>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row g-3 mb-3">
+                                    <div class="col-6 col-lg-3"><div class="crm-info-card"><div class="crm-info-label">Applied on</div><div class="crm-info-value" id="pk-applied"></div></div></div>
+                                    <div class="col-6 col-lg-3"><div class="crm-info-card"><div class="crm-info-label">Agreed</div><div class="crm-info-value cur" id="pk-agreed"></div></div></div>
+                                    <div class="col-6 col-lg-3"><div class="crm-info-card"><div class="crm-info-label">Paid &middot; Due</div><div class="crm-info-value cur" id="pk-paid"></div></div></div>
+                                    <div class="col-6 col-lg-3"><div class="crm-info-card"><div class="crm-info-label">Reached</div><div class="crm-info-value" id="pk-reached"></div></div></div>
+                                </div>
+
+                                <div class="alert alert-danger d-flex gap-2 py-2 fs-13 d-none" id="pk-closed">
+                                    <i class="mdi mdi-close-octagon-outline fs-18"></i>
+                                    <div>
+                                        <div class="fw-semibold" id="pk-closed-head"></div>
+                                        <div><span class="fw-semibold">Reason:</span> <span id="pk-closed-reason"></span></div>
+                                    </div>
+                                </div>
+
+                                <div class="fs-11 text-uppercase text-muted fw-semibold mb-2">Journey</div>
+                                <div class="crm-journey" id="pk-journey"></div>
+
+                                <div class="fs-11 text-uppercase text-muted fw-semibold mb-2">Step by step</div>
+                                <div class="table-responsive mb-4">
+                                    <table class="table table-sm align-middle mb-0">
+                                        <thead class="table-light"><tr><th style="width:4%">#</th><th>Step</th><th>Status</th><th>Date</th><th>Note</th></tr></thead>
+                                        <tbody class="fs-13" id="pk-steps"></tbody>
+                                    </table>
+                                </div>
+
+                                <div class="d-flex align-items-center justify-content-between mb-2" id="pk-payment">
+                                    <div class="fs-11 text-uppercase text-muted fw-semibold">Payments on this package</div>
+                                    <div class="fs-12 fw-semibold js-payment-pct"></div>
+                                </div>
+                                <div class="crm-journey" id="pk-payment-track"></div>
+                                <div class="table-responsive">
+                                    <table class="table table-sm align-middle mb-0">
+                                        <thead class="table-light"><tr><th>Date</th><th>Method</th><th>Receipt</th><th class="text-end">Amount</th><th class="text-end">Invoice</th></tr></thead>
+                                        <tbody class="fs-13" id="pk-payments"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-primary pp-inv-btn" id="pk-invoice-btn"><i class="mdi mdi-file-document-multiple-outline me-1"></i>Package Invoice</button>
+                                <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ INVOICE ============ -->
+                <!-- Generated on demand from #pp-package-data: one payment
+                     (data-receipt set) or a whole package. Printing is scoped to
+                     this modal in crm-brand.css, same as the lead print form. -->
+                <div class="modal fade crm-print-modal" id="ppInvoiceModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header no-print">
+                                <h5 class="modal-title mb-0"><i class="mdi mdi-file-document-outline me-1"></i><span id="inv-kind">Invoice</span></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="pp-invoice p-2" id="pp-invoice"></div>
+                            </div>
+                            <div class="modal-footer no-print">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                <button class="btn btn-primary" id="pp-inv-print"><i class="mdi mdi-printer me-1"></i>Print / Save PDF</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>

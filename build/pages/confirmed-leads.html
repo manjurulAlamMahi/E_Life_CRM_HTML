@@ -1,0 +1,245 @@
+                <!-- ============ TILES ============ -->
+                <div class="row">
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card stat-tile">
+                            <div class="card-body d-flex align-items-center gap-3">
+                                <span class="stat-icon bg-success-subtle text-success"><i class="mdi mdi-clipboard-check"></i></span>
+                                <div>
+                                    <div class="stat-value ">6</div>
+                                    
+                                    <div class="stat-label text-muted">Total Confirmed</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card stat-tile">
+                            <div class="card-body d-flex align-items-center gap-3">
+                                <span class="stat-icon bg-primary-subtle text-primary"><i class="mdi mdi-cash-multiple"></i></span>
+                                <div>
+                                    <div class="stat-value cur">&#2547;19,00,000</div>
+                                    <div class="stat-label text-muted">Total Collected</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card stat-tile">
+                            <div class="card-body d-flex align-items-center gap-3">
+                                <span class="stat-icon bg-info-subtle text-info"><i class="mdi mdi-calendar-check"></i></span>
+                                <div>
+                                    <div class="stat-value ">4</div>
+                                    
+                                    <div class="stat-label text-muted">Confirmed This Month</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card stat-tile">
+                            <div class="card-body d-flex align-items-center gap-3">
+                                <span class="stat-icon bg-warning-subtle text-warning"><i class="mdi mdi-account-heart"></i></span>
+                                <div>
+                                    <div class="stat-value ">3</div>
+                                    
+                                    <div class="stat-label text-muted">Packages In Use</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ CONFIRMED LEADS TABLE ============ -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Confirmed Leads</h5>
+                                <p class="fs-12 text-muted mb-0">A lead reaches this list only after both balances are clear, so nothing here carries a due. Partly-paid leads stay on Applied Leads.</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-2 align-items-end mb-3 crm-filter">
+                                    <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Source</label><select class="form-select form-select-sm" data-filter="col:Source"><option value="">All sources</option><option>Noman</option><option>Dr. Ilias Patowary</option><option>Facebook</option><option>Website</option><option>Hospital</option><option>Doctor Referral</option><option>Walk-in</option><option>Campaign</option><option>Other</option></select></div>
+                                    <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Package</label><select class="form-select form-select-sm" data-filter="col:Package"><option value="">All packages</option><option>Full-Funded Package</option><option>Partial-Funded Package</option><option>Paid Package</option></select></div>
+                                    <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Executive</label><select class="form-select form-select-sm" data-filter="col:Confirmed"><option value="">All executives</option><option>Tanvir Ahmed</option><option>Nusrat Jahan</option><option>Sabbir Hossain</option><option>Farhana Akter</option></select></div>
+                                    <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Confirmed from</label><input type="date" class="form-control form-control-sm" data-filter="from:Confirmed"></div>
+                                    <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Confirmed to</label><input type="date" class="form-control form-control-sm" data-filter="to:Confirmed"></div>
+                                    <div class="col-auto"><button type="button" class="btn btn-light btn-sm" data-filter-reset title="Reset filters"><i class="mdi mdi-refresh"></i></button></div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table crm-table align-middle">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Lead ID</th>
+                                                <th>Patient / Guardian</th>
+                                                <th>Phone</th>
+                                                <th>Source</th>
+                                                <th>Package</th>
+                                                <th class="text-end">Total Paid</th>
+                                                <th>Confirmed</th>
+                                                <th>Status</th>
+                                                <th class="no-sort">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr data-status="confirmed" data-lead-id="ELH-L-2026-000406" data-lead-name="Abul Kalam" data-due-bdt="0" data-due-usd="0">
+                                                <td class="mono fs-12">ELH-L-2026-000406</td>
+                                                <td><div class="fw-semibold">Sharmin Akter</div><div class="fs-12 text-muted">G: Abul Kalam</div></td>
+                                                <td class="fs-13">+880 1521-889900</td>
+                                                <td><span class="badge bg-info-subtle text-info">Facebook</span></td>
+                                                <td class="fs-13">Paid Package</td>
+                                                <td class="text-end"><div class="cur fs-13 text-success fw-bold">&#2547;3,00,000</div></td>
+                                                <td class="fs-13">24 Aug 2026<div class="fs-11 text-muted">Nusrat Jahan</div></td>
+                                                <td><span class="badge crm-status-badge bg-success-subtle text-success">Confirmed</span><div class="mt-1"><span class="badge bg-success-subtle text-success">Completed</span></div></td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-journey-stage="4" data-paid-pct="100" data-lead-id="ELH-L-2026-000406" data-lead-name="Abul Kalam" data-lead-patient="Sharmin Akter"><i class="mdi mdi-card-account-details-outline"></i></button>
+                                                        <a href="expense-patient.html?lead=ELH-L-2026-000406" class="btn btn-sm btn-icon btn-light" title="Patient expenses"><i class="mdi mdi-cash-minus"></i></a>
+                                                        <a href="receipts.html" class="btn btn-sm btn-icon btn-light" title="Receipts"><i class="mdi mdi-receipt"></i></a>
+                                                        <a href="invoice.html?lead=ELH-L-2026-000406" class="btn btn-sm btn-icon btn-light" title="Invoice"><i class="mdi mdi-file-document-outline"></i></a>
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-sm btn-icon btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="Change status"><i class="mdi mdi-swap-horizontal"></i></button>
+                                                            <ul class="dropdown-menu dropdown-menu-end crm-status-menu">
+                                                                <li><a class="dropdown-item fs-13" href="#" data-status="applied">Back to Applied</a></li>
+                                                                <li><a class="dropdown-item fs-13" href="#" data-status="not-interested">Not Interested</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-status="confirmed" data-lead-id="ELH-L-2026-000398" data-lead-name="Anwar Hossain" data-due-bdt="0" data-due-usd="0">
+                                                <td class="mono fs-12">ELH-L-2026-000398</td>
+                                                <td><div class="fw-semibold">Rokeya Begum</div><div class="fs-12 text-muted">G: Anwar Hossain</div></td>
+                                                <td class="fs-13">+880 1633-447788</td>
+                                                <td><span class="badge bg-success-subtle text-success">Noman</span></td>
+                                                <td class="fs-13">Full-Funded Package</td>
+                                                <td class="text-end"><div class="cur fs-13 text-success fw-bold">&#2547;4,00,000</div><div class="fs-11 text-muted">&mdash;</div></td>
+                                                <td class="fs-13">18 Aug 2026<div class="fs-11 text-muted">Tanvir Ahmed</div></td>
+                                                <td><span class="badge crm-status-badge bg-success-subtle text-success">Confirmed</span><div class="mt-1"><span class="badge bg-success-subtle text-success">Completed</span></div></td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-journey-stage="4" data-paid-pct="100" data-lead-id="ELH-L-2026-000398" data-lead-name="Anwar Hossain" data-lead-patient="Rokeya Begum"><i class="mdi mdi-card-account-details-outline"></i></button>
+                                                        <a href="expense-patient.html?lead=ELH-L-2026-000398" class="btn btn-sm btn-icon btn-light" title="Patient expenses"><i class="mdi mdi-cash-minus"></i></a>
+                                                        <a href="receipts.html" class="btn btn-sm btn-icon btn-light" title="Receipts"><i class="mdi mdi-receipt"></i></a>
+                                                        <a href="invoice.html?lead=ELH-L-2026-000398" class="btn btn-sm btn-icon btn-light" title="Invoice"><i class="mdi mdi-file-document-outline"></i></a>
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-sm btn-icon btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="Change status"><i class="mdi mdi-swap-horizontal"></i></button>
+                                                            <ul class="dropdown-menu dropdown-menu-end crm-status-menu">
+                                                                <li><a class="dropdown-item fs-13" href="#" data-status="applied">Back to Applied</a></li>
+                                                                <li><a class="dropdown-item fs-13" href="#" data-status="not-interested">Not Interested</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-status="confirmed" data-lead-id="ELH-L-2026-000395" data-lead-name="Mizanur Rahman" data-due-bdt="0" data-due-usd="0">
+                                                <td class="mono fs-12">ELH-L-2026-000395</td>
+                                                <td><div class="fw-semibold">Sajid Hasan</div><div class="fs-12 text-muted">G: Mizanur Rahman</div></td>
+                                                <td class="fs-13">+880 1877-220044</td>
+                                                <td><span class="badge bg-secondary-subtle text-secondary">Website</span></td>
+                                                <td class="fs-13">Partial-Funded Package</td>
+                                                <td class="text-end"><div class="cur fs-13 text-success fw-bold">&#2547;2,50,000</div></td>
+                                                <td class="fs-13">12 Aug 2026<div class="fs-11 text-muted">Sabbir Hossain</div></td>
+                                                <td><span class="badge crm-status-badge bg-success-subtle text-success">Confirmed</span><div class="mt-1"><span class="badge bg-success-subtle text-success">Completed</span></div></td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-journey-stage="4" data-paid-pct="100" data-lead-id="ELH-L-2026-000395" data-lead-name="Mizanur Rahman" data-lead-patient="Sajid Hasan"><i class="mdi mdi-card-account-details-outline"></i></button>
+                                                        <a href="expense-patient.html?lead=ELH-L-2026-000395" class="btn btn-sm btn-icon btn-light" title="Patient expenses"><i class="mdi mdi-cash-minus"></i></a>
+                                                        <a href="receipts.html" class="btn btn-sm btn-icon btn-light" title="Receipts"><i class="mdi mdi-receipt"></i></a>
+                                                        <a href="invoice.html?lead=ELH-L-2026-000395" class="btn btn-sm btn-icon btn-light" title="Invoice"><i class="mdi mdi-file-document-outline"></i></a>
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-sm btn-icon btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="Change status"><i class="mdi mdi-swap-horizontal"></i></button>
+                                                            <ul class="dropdown-menu dropdown-menu-end crm-status-menu">
+                                                                <li><a class="dropdown-item fs-13" href="#" data-status="applied">Back to Applied</a></li>
+                                                                <li><a class="dropdown-item fs-13" href="#" data-status="not-interested">Not Interested</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-status="confirmed" data-lead-id="ELH-L-2026-000391" data-lead-name="Halima Khatun" data-due-bdt="0" data-due-usd="0">
+                                                <td class="mono fs-12">ELH-L-2026-000391</td>
+                                                <td><div class="fw-semibold">Halima Khatun</div><div class="fs-12 text-muted">G: Halima Khatun</div></td>
+                                                <td class="fs-13">+880 1955-661122</td>
+                                                <td><span class="badge bg-primary-subtle text-primary">Doctor Referral</span></td>
+                                                <td class="fs-13">Full-Funded Package</td>
+                                                <td class="text-end"><div class="cur fs-13 text-success fw-bold">&#2547;4,00,000</div><div class="fs-11 text-muted">&mdash;</div></td>
+                                                <td class="fs-13">05 Aug 2026<div class="fs-11 text-muted">Nusrat Jahan</div></td>
+                                                <td><span class="badge crm-status-badge bg-success-subtle text-success">Confirmed</span><div class="mt-1"><span class="badge bg-success-subtle text-success">Completed</span></div></td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-journey-stage="4" data-paid-pct="100" data-lead-id="ELH-L-2026-000391" data-lead-name="Halima Khatun" data-lead-patient="Halima Khatun"><i class="mdi mdi-card-account-details-outline"></i></button>
+                                                        <a href="expense-patient.html?lead=ELH-L-2026-000391" class="btn btn-sm btn-icon btn-light" title="Patient expenses"><i class="mdi mdi-cash-minus"></i></a>
+                                                        <a href="receipts.html" class="btn btn-sm btn-icon btn-light" title="Receipts"><i class="mdi mdi-receipt"></i></a>
+                                                        <a href="invoice.html?lead=ELH-L-2026-000391" class="btn btn-sm btn-icon btn-light" title="Invoice"><i class="mdi mdi-file-document-outline"></i></a>
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-sm btn-icon btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="Change status"><i class="mdi mdi-swap-horizontal"></i></button>
+                                                            <ul class="dropdown-menu dropdown-menu-end crm-status-menu">
+                                                                <li><a class="dropdown-item fs-13" href="#" data-status="applied">Back to Applied</a></li>
+                                                                <li><a class="dropdown-item fs-13" href="#" data-status="not-interested">Not Interested</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-status="confirmed" data-lead-id="ELH-L-2026-000386" data-lead-name="Rafiqul Islam" data-due-bdt="0" data-due-usd="0">
+                                                <td class="mono fs-12">ELH-L-2026-000386</td>
+                                                <td><div class="fw-semibold">Tanjila Akter</div><div class="fs-12 text-muted">G: Rafiqul Islam</div></td>
+                                                <td class="fs-13">+880 1712-903344</td>
+                                                <td><span class="badge bg-info-subtle text-info">Facebook</span></td>
+                                                <td class="fs-13">Partial-Funded Package</td>
+                                                <td class="text-end"><div class="cur fs-13 text-success fw-bold">&#2547;2,50,000</div></td>
+                                                <td class="fs-13">28 Jul 2026<div class="fs-11 text-muted">Tanvir Ahmed</div></td>
+                                                <td><span class="badge crm-status-badge bg-success-subtle text-success">Confirmed</span><div class="mt-1"><span class="badge bg-success-subtle text-success">Completed</span></div></td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-journey-stage="4" data-paid-pct="100" data-lead-id="ELH-L-2026-000386" data-lead-name="Rafiqul Islam" data-lead-patient="Tanjila Akter"><i class="mdi mdi-card-account-details-outline"></i></button>
+                                                        <a href="expense-patient.html?lead=ELH-L-2026-000386" class="btn btn-sm btn-icon btn-light" title="Patient expenses"><i class="mdi mdi-cash-minus"></i></a>
+                                                        <a href="receipts.html" class="btn btn-sm btn-icon btn-light" title="Receipts"><i class="mdi mdi-receipt"></i></a>
+                                                        <a href="invoice.html?lead=ELH-L-2026-000386" class="btn btn-sm btn-icon btn-light" title="Invoice"><i class="mdi mdi-file-document-outline"></i></a>
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-sm btn-icon btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="Change status"><i class="mdi mdi-swap-horizontal"></i></button>
+                                                            <ul class="dropdown-menu dropdown-menu-end crm-status-menu">
+                                                                <li><a class="dropdown-item fs-13" href="#" data-status="applied">Back to Applied</a></li>
+                                                                <li><a class="dropdown-item fs-13" href="#" data-status="not-interested">Not Interested</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-status="confirmed" data-lead-id="ELH-L-2026-000380" data-lead-name="Nurul Islam" data-due-bdt="0" data-due-usd="0">
+                                                <td class="mono fs-12">ELH-L-2026-000380</td>
+                                                <td><div class="fw-semibold">Nurul Islam</div><div class="fs-12 text-muted">G: Nurul Islam</div></td>
+                                                <td class="fs-13">+880 1818-556677</td>
+                                                <td><span class="badge bg-success-subtle text-success">Dr. Ilias Patowary</span></td>
+                                                <td class="fs-13">Paid Package</td>
+                                                <td class="text-end"><div class="cur fs-13 text-success fw-bold">&#2547;3,00,000</div></td>
+                                                <td class="fs-13">20 Jul 2026<div class="fs-11 text-muted">Sabbir Hossain</div></td>
+                                                <td><span class="badge crm-status-badge bg-success-subtle text-success">Confirmed</span><div class="mt-1"><span class="badge bg-success-subtle text-success">Completed</span></div></td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-journey-stage="4" data-paid-pct="100" data-lead-id="ELH-L-2026-000380" data-lead-name="Nurul Islam" data-lead-patient="Nurul Islam"><i class="mdi mdi-card-account-details-outline"></i></button>
+                                                        <a href="expense-patient.html?lead=ELH-L-2026-000380" class="btn btn-sm btn-icon btn-light" title="Patient expenses"><i class="mdi mdi-cash-minus"></i></a>
+                                                        <a href="receipts.html" class="btn btn-sm btn-icon btn-light" title="Receipts"><i class="mdi mdi-receipt"></i></a>
+                                                        <a href="invoice.html?lead=ELH-L-2026-000380" class="btn btn-sm btn-icon btn-light" title="Invoice"><i class="mdi mdi-file-document-outline"></i></a>
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-sm btn-icon btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="Change status"><i class="mdi mdi-swap-horizontal"></i></button>
+                                                            <ul class="dropdown-menu dropdown-menu-end crm-status-menu">
+                                                                <li><a class="dropdown-item fs-13" href="#" data-status="applied">Back to Applied</a></li>
+                                                                <li><a class="dropdown-item fs-13" href="#" data-status="not-interested">Not Interested</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--@status-modals-->
+
+                <!--@quick-view-->

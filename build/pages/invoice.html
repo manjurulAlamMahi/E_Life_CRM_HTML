@@ -1,0 +1,50 @@
+                <!-- Shown only when the employee arrived from a different lead.
+                     This demo carries one fully worked invoice; saying so is
+                     better than rendering someone else's figures under the
+                     wrong name. Never printed. -->
+                <div class="alert alert-warning crm-demo-note d-flex align-items-start gap-2 py-2 fs-13 d-none d-print-none" id="inv-sample-note">
+                    <i class="mdi mdi-alert-outline fs-16 mt-1"></i>
+                    <span><strong>Demo notice:</strong> this static preview has one fully worked invoice, always for lead <span class="mono">ELH-L-2026-000412</span> (Rahim Uddin / Ayesha Rahim) — the name and figures below are <u>not</u> for <span class="mono" id="inv-requested-lead"></span>, the lead you opened. In the live system every lead opens its own real invoice.</span>
+                    <div class="ms-auto d-flex align-items-center gap-2 flex-shrink-0 d-print-none">
+                        <button type="button" class="btn btn-link btn-sm p-0 fs-12 text-reset text-decoration-underline" data-demo-hide="all">Don't show again</button>
+                        <button type="button" class="btn-close" data-demo-hide="once" aria-label="Close"></button>
+                    </div>
+                </div>
+
+                <!-- ============ ACTIONS (never printed) ============ -->
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3 d-print-none">
+                    <a href="applied-leads.html" class="btn btn-sm btn-light"><i class="mdi mdi-arrow-left me-1"></i>Back to Applied Leads</a>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-sm btn-primary" id="inv-print"><i class="mdi mdi-printer me-1"></i>Print Invoice</button>
+                        <button class="btn btn-sm btn-success crm-add-payment" data-bs-toggle="modal" data-bs-target="#addPaymentModal"
+                                data-lead-id="ELH-L-2026-000412" data-lead-name="Rahim Uddin"
+                                data-due-bdt="150000" data-due-usd="0" >
+                            <i class="mdi mdi-cash-plus me-1"></i>Record Payment
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ============ INVOICE SHEET ============ -->
+                <!-- Rendered by CRMInvoice (crm-demo.js) from the data below — the
+                     same customer-facing layout Patient Profile and Payments use,
+                     so an invoice looks identical wherever it is printed from. -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card invoice-sheet">
+                            <div class="card-body p-0" id="inv-sheet"></div>
+                        </div>
+                    </div>
+                </div>
+                <script type="application/json" id="inv-data">
+                {
+                    "leadId": "ELH-L-2026-000412",
+                    "billTo": { "guardian": "Rahim Uddin", "patient": "Ayesha Rahim", "age": "42 yrs", "phone": "+880 1711-234567", "address": "Chattogram, Bangladesh" },
+                    "pkg": { "id": "ELH-D-2026-000094", "name": "Partial-Funded Package", "agreed": 250000 },
+                    "payments": [
+                        { "date": "12 Aug 2026", "type": "Advance", "method": "Cash", "receipt": "MR-000231", "amount": 100000 }
+                    ]
+                }
+                </script>
+
+                <!-- ============ RECORD PAYMENT (shared with Applied Leads) ============ -->
+                <!--@record-payment-->

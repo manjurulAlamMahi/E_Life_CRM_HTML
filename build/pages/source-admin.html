@@ -1,0 +1,71 @@
+                <!-- ===== Administration › Source — create and maintain the list of lead
+                     sources. The Source Module (Source List) shows how each source
+                     performs and its profile; this page is where a source is added,
+                     edited or switched off. ===== -->
+                <div class="card">
+                    <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-2">
+                        <h5 class="card-title mb-0">Sources</h5>
+                        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#sourceFormModal" id="sa-add"><i class="mdi mdi-plus me-1"></i>Create Source</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-2 align-items-end mb-3 crm-filter">
+                            <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Type</label><select class="form-select form-select-sm" data-filter="col:Type"><option value="">All types</option><option>Channel</option><option>Person</option></select></div>
+                            <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Status</label><select class="form-select form-select-sm" data-filter="col:Status"><option value="">All statuses</option><option>Active</option><option>Inactive</option></select></div>
+                            <div class="col-auto"><button type="button" class="btn btn-light btn-sm" data-filter-reset title="Reset filters"><i class="mdi mdi-refresh"></i></button></div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0 crm-table" id="sa-table">
+                                <thead class="table-light">
+                                    <tr><th>Source</th><th>Type</th><th>Contact</th><th>Commission</th><th>Status</th><th class="no-sort">Action</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="fw-semibold">Facebook</td><td><span class="badge bg-info-subtle text-info">Channel</span></td><td class="fs-13 text-muted">&mdash;</td><td class="fs-13">&mdash;</td><td><span class="badge bg-success-subtle text-success">Active</span></td><td><button class="btn btn-sm btn-icon btn-light sa-edit" title="Edit"><i class="mdi mdi-pencil-outline"></i></button> <a href="sources.html" class="btn btn-sm btn-icon btn-light" title="View profile"><i class="mdi mdi-eye-outline"></i></a></td></tr>
+                                    <tr><td class="fw-semibold">Website</td><td><span class="badge bg-info-subtle text-info">Channel</span></td><td class="fs-13 text-muted">&mdash;</td><td class="fs-13">&mdash;</td><td><span class="badge bg-success-subtle text-success">Active</span></td><td><button class="btn btn-sm btn-icon btn-light sa-edit" title="Edit"><i class="mdi mdi-pencil-outline"></i></button> <a href="sources.html" class="btn btn-sm btn-icon btn-light" title="View profile"><i class="mdi mdi-eye-outline"></i></a></td></tr>
+                                    <tr><td class="fw-semibold">Walk-in</td><td><span class="badge bg-secondary-subtle text-secondary">Channel</span></td><td class="fs-13 text-muted">&mdash;</td><td class="fs-13">&mdash;</td><td><span class="badge bg-success-subtle text-success">Active</span></td><td><button class="btn btn-sm btn-icon btn-light sa-edit" title="Edit"><i class="mdi mdi-pencil-outline"></i></button> <a href="sources.html" class="btn btn-sm btn-icon btn-light" title="View profile"><i class="mdi mdi-eye-outline"></i></a></td></tr>
+                                    <tr><td class="fw-semibold">Dr. Ilias Patowary</td><td><span class="badge bg-primary-subtle text-primary">Person</span></td><td class="fs-13">+880 1711-000111</td><td class="fs-13">5.0%</td><td><span class="badge bg-success-subtle text-success">Active</span></td><td><button class="btn btn-sm btn-icon btn-light sa-edit" title="Edit"><i class="mdi mdi-pencil-outline"></i></button> <a href="sources.html" class="btn btn-sm btn-icon btn-light" title="View profile"><i class="mdi mdi-eye-outline"></i></a></td></tr>
+                                    <tr><td class="fw-semibold">Noman</td><td><span class="badge bg-primary-subtle text-primary">Person</span></td><td class="fs-13">+880 1811-000222</td><td class="fs-13">5.0%</td><td><span class="badge bg-success-subtle text-success">Active</span></td><td><button class="btn btn-sm btn-icon btn-light sa-edit" title="Edit"><i class="mdi mdi-pencil-outline"></i></button> <a href="sources.html" class="btn btn-sm btn-icon btn-light" title="View profile"><i class="mdi mdi-eye-outline"></i></a></td></tr>
+                                    <tr><td class="fw-semibold">Hospital</td><td><span class="badge bg-info-subtle text-info">Channel</span></td><td class="fs-13 text-muted">&mdash;</td><td class="fs-13">&mdash;</td><td><span class="badge bg-secondary-subtle text-secondary">Inactive</span></td><td><button class="btn btn-sm btn-icon btn-light sa-edit" title="Edit"><i class="mdi mdi-pencil-outline"></i></button> <a href="sources.html" class="btn btn-sm btn-icon btn-light" title="View profile"><i class="mdi mdi-eye-outline"></i></a></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="sourceFormModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header"><h5 class="modal-title" id="sa-title">Create Source</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <div class="col-md-8"><label class="form-label">Name <span class="text-danger">*</span></label><input type="text" class="form-control" id="sa-name"></div>
+                                    <div class="col-md-4"><label class="form-label">Type</label><select class="form-select" id="sa-type"><option>Person</option><option>Channel</option><option>Campaign</option></select></div>
+                                    <div class="col-md-6"><label class="form-label">Contact person</label><input type="text" class="form-control"></div>
+                                    <div class="col-md-6"><label class="form-label">Phone</label><input type="text" class="form-control"></div>
+                                    <div class="col-md-6"><label class="form-label">Commission rate (%)</label><input type="number" step="0.1" class="form-control" placeholder="0.0"></div>
+                                    <div class="col-md-6"><label class="form-label">Status</label><select class="form-select"><option>Active</option><option>Inactive</option></select></div>
+                                </div>
+                            </div>
+                            <div class="modal-footer"><button class="btn btn-light" data-bs-dismiss="modal">Cancel</button><button class="btn btn-primary" id="sa-save">Save</button></div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                (function () {
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var title = document.getElementById('sa-title'), name = document.getElementById('sa-name');
+                        document.getElementById('sa-add').addEventListener('click', function () { title.textContent = 'Create Source'; name.value = ''; name.classList.remove('is-invalid'); });
+                        document.getElementById('sa-table').addEventListener('click', function (e) {
+                            var b = e.target.closest('.sa-edit'); if (!b) return;
+                            var row = b.closest('tr');
+                            title.textContent = 'Edit Source'; name.value = row.cells[0].textContent.trim(); name.classList.remove('is-invalid');
+                            bootstrap.Modal.getOrCreateInstance(document.getElementById('sourceFormModal')).show();
+                        });
+                        document.getElementById('sa-save').addEventListener('click', function () {
+                            if (!name.value.trim()) { name.classList.add('is-invalid'); return; }
+                            bootstrap.Modal.getOrCreateInstance(document.getElementById('sourceFormModal')).hide();
+                            if (window.Swal) Swal.fire({ icon: 'success', title: 'Saved', text: name.value.trim() + ' has been saved.', confirmButtonColor: '#024766' });
+                        });
+                    });
+                })();
+                </script>

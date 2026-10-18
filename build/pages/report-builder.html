@@ -1,0 +1,112 @@
+                <!-- ===== Report Module › Report Builder — one page for all four reports,
+                     picked by ?type=lead|expense|visa-ticket|treatment (the cards on
+                     Reports link here). Three steps:
+                       1. Date range — required; every report is cut by a start and end date
+                       2. Filters    — everything starts ticked; untick to leave rows out
+                       3. Columns    — tick what goes into the table and the Excel file
+                     Generate opens report-result.html with the choices in the URL; the
+                     table and the Excel download live there. Coming back with "Change
+                     selection" restores every choice. Filled by crm-reports.js. ===== -->
+                <div class="rb" id="rb">
+                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+                        <a href="reports.html" class="btn btn-sm btn-light"><i class="mdi mdi-arrow-left me-1"></i>All reports</a>
+                        <div class="rb-types" id="rb-types" role="tablist" aria-label="Report type"></div>
+                    </div>
+
+                    <div class="card rb-hero mb-3" id="rb-hero">
+                        <div class="card-body d-flex align-items-center gap-3">
+                            <span class="rb-hero-icon"><i class="mdi" id="rb-hero-icon"></i></span>
+                            <div class="flex-grow-1 min-w-0">
+                                <h4 class="mb-1" id="rb-hero-title"></h4>
+                                <div class="text-muted fs-13" id="rb-hero-sub"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-xl-8">
+                            <!-- Step 1 — date range (required). The two date boxes only
+                                 open for Custom; This month / Last month fill them in. -->
+                            <div class="card rb-step rb-collapsible mb-3">
+                                <div class="card-header rb-collapse-head d-flex align-items-center justify-content-start gap-2">
+                                    <span class="rb-step-no">1</span>
+                                    <h5 class="card-title mb-0">Date range</h5>
+                                    <span class="badge bg-danger-subtle text-danger ms-1">Required</span>
+                                    <i class="mdi mdi-chevron-down rb-chev ms-auto"></i>
+                                </div>
+                                <div class="card-body rb-collapse-body">
+                                    <div class="row g-2 align-items-end">
+                                        <div class="col-sm-6 col-lg-3">
+                                            <label class="form-label fs-12 mb-1" for="rb-preset">Period</label>
+                                            <select class="form-select form-select-sm" id="rb-preset">
+                                                <option value="month" selected>This month</option>
+                                                <option value="lastmonth">Last month</option>
+                                                <option value="custom">Custom dates</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-6 col-lg-3">
+                                            <label class="form-label fs-12 mb-1" for="rb-from">Start date <span class="text-danger">*</span></label>
+                                            <input type="date" class="form-control form-control-sm" id="rb-from" required disabled>
+                                        </div>
+                                        <div class="col-6 col-lg-3">
+                                            <label class="form-label fs-12 mb-1" for="rb-to">End date <span class="text-danger">*</span></label>
+                                            <input type="date" class="form-control form-control-sm" id="rb-to" required disabled>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-3">
+                                            <label class="form-label fs-12 mb-1 d-flex align-items-center gap-1" for="rb-basis">Date based on
+                                                <button type="button" class="rb-info" id="rb-basis-info" aria-expanded="false" aria-controls="rb-basis-help" title="What does this mean?"><i class="mdi mdi-information-outline"></i></button>
+                                            </label>
+                                            <select class="form-select form-select-sm" id="rb-basis"></select>
+                                        </div>
+                                    </div>
+                                    <div class="rb-help mt-2 d-none" id="rb-basis-help"></div>
+                                    <div class="fs-12 mt-2" id="rb-range-msg"></div>
+                                </div>
+                            </div>
+
+                            <!-- Step 2 — filters. Everything starts ticked = everything is
+                                 included; untick to leave things out. -->
+                            <div class="card rb-step rb-collapsible mb-3">
+                                <div class="card-header rb-collapse-head d-flex align-items-center justify-content-start gap-2">
+                                    <span class="rb-step-no">2</span>
+                                    <h5 class="card-title mb-0">Filters</h5>
+                                    <span class="text-muted fs-12 ms-1 d-none d-sm-inline">Ticked = included in the report</span>
+                                    <button type="button" class="btn btn-sm btn-link ms-auto p-0" id="rb-filters-reset">Select all</button>
+                                    <i class="mdi mdi-chevron-down rb-chev"></i>
+                                </div>
+                                <div class="card-body rb-collapse-body" id="rb-filters"></div>
+                            </div>
+
+                            <!-- Step 3 — columns -->
+                            <div class="card rb-step rb-collapsible mb-3">
+                                <div class="card-header rb-collapse-head d-flex flex-wrap align-items-center justify-content-start gap-2">
+                                    <span class="rb-step-no">3</span>
+                                    <h5 class="card-title mb-0">Columns</h5>
+                                    <span class="badge bg-primary-subtle text-primary ms-1" id="rb-col-count"></span>
+                                    <div class="ms-auto d-flex align-items-center gap-1">
+                                        <button type="button" class="btn btn-sm btn-outline-primary" id="rb-cols-all"><i class="mdi mdi-checkbox-multiple-marked-outline me-1"></i>Select all</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" id="rb-cols-none">Clear</button>
+                                        <i class="mdi mdi-chevron-down rb-chev ms-1"></i>
+                                    </div>
+                                </div>
+                                <div class="card-body rb-collapse-body" id="rb-columns"></div>
+                            </div>
+                        </div>
+
+                        <!-- Summary + actions -->
+                        <div class="col-xl-4">
+                            <div class="card rb-summary">
+                                <div class="card-header"><h5 class="card-title mb-0">Report summary</h5></div>
+                                <div class="card-body">
+                                    <dl class="rb-summary-list mb-3" id="rb-summary"></dl>
+                                    <label class="form-label fs-12 mb-1" for="rb-layout">Layout</label>
+                                    <select class="form-select form-select-sm mb-3" id="rb-layout"></select>
+                                    <div class="d-grid">
+                                        <button type="button" class="btn btn-primary" id="rb-generate"><i class="mdi mdi-play-circle-outline me-1"></i>Generate Report</button>
+                                    </div>
+                                    <div class="rb-note mt-3" id="rb-note"><i class="mdi mdi-information-outline me-1"></i>The report opens on its own page, with a Download as Excel button.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>

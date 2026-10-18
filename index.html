@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Dashboard | E Life Healthcare CRM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta content="E Life Healthcare — CRM System" name="description">
+    <meta content="E Life Healthcare" name="author">
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/logo-sm.png">
+    <!-- select2 -->
+    <link href="assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Simplebar Css -->
+    <link rel="stylesheet" href="assets/libs/simplebar/simplebar.min.css">
+
+    <!-- Bootstrap Css -->
+    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css">
+
+    <!--icons css-->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
+
+    <!-- App Css-->
+    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css">
+
+    <!-- CRM brand css -->
+    <link href="assets/css/crm-brand.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="layout-wrapper">
+
+    <!-- Start topbar -->
+    <header id="page-topbar">
+        <div class="navbar-header">
+
+            <!-- Start Navbar-Brand -->
+            <div class="navbar-logo-box">
+                <a href="index.html" class="logo logo-dark">
+                    <span class="logo-sm"><img src="assets/logo-icon.png" class="brand-logo-icon" alt="E Life Healthcare"></span>
+                    <span class="logo-lg"><img src="assets/logo.png" class="brand-logo-full" data-company-logo alt="E Life Healthcare"></span>
+                </a>
+                <a href="index.html" class="logo logo-light">
+                    <span class="logo-sm"><img src="assets/logo-icon.png" class="brand-logo-icon" alt="E Life Healthcare"></span>
+                    <span class="logo-lg"><img src="assets/logo.png" class="brand-logo-full" data-company-logo alt="E Life Healthcare"></span>
+                </a>
+                <button type="button" class="btn btn-icon top-icon sidebar-btn" id="sidebar-btn" aria-label="Toggle navigation"><i class="mdi mdi-menu-open align-middle fs-17"></i></button>
+                <button type="button" class="btn btn-icon top-icon sidebar-horizontal-btn d-none" aria-label="Toggle navigation"><i class="mdi mdi-menu align-middle fs-17"></i></button>
+            </div>
+
+            <!-- Start menu -->
+            <div class="d-flex justify-content-between menu-sm px-4 ms-auto">
+                <div class="d-flex align-items-center gap-2">
+                    <!--Start App Search-->
+                    <form class="app-search crm-topbar-search d-none d-lg-block" onsubmit="return false;">
+                        <div class="position-relative">
+                            <input type="text" class="form-control" placeholder="Search patient, phone, Lead ID, receipt no...">
+                            <i data-eva="search-outline" class="align-middle"></i>
+                        </div>
+                    </form>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <button type="button" class="btn btn-icon top-icon d-none d-md-block" id="fullscreen-toggle" aria-label="Toggle fullscreen">
+                        <i class="mdi mdi-fullscreen align-middle" id="fullscreen-icon"></i>
+                    </button>
+                    <button type="button" class="btn btn-icon top-icon d-none d-md-block" id="light-dark-mode" aria-label="Toggle Light/Dark">
+                        <i class="mdi mdi-brightness-7 align-middle"></i>
+                        <i class="mdi mdi-white-balance-sunny align-middle"></i>
+                    </button>
+                    <!-- Start Notifications -->
+                    <div class="dropdown d-inline-block">
+                        <button type="button" class="btn btn-icon top-icon" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Notifications">
+                            <i class="mdi mdi-bell-ring-outline fs-17"></i>
+                            <span class="position-absolute topbar-badge translate-middle badge rounded-pill bg-danger">5</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-md dropdown-menu-end dropdown-menu-animated p-0" aria-labelledby="page-header-notifications-dropdown">
+                            <div class="p-4 border-bottom">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="m-0"><i class="mdi mdi-bell-ring-outline me-1 fs-15"></i> Notifications</h6>
+                                    </div>
+                                    <div class="col-auto">
+                                        <a href="followups.html" class="badge bg-danger-subtle text-danger">5 new</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-simplebar style="max-height: 230px;">
+                                <a href="followups.html" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="avatar avatar-xs avatar-label-danger me-3">
+                                            <span class="rounded fs-16"><i class="mdi mdi-clock-alert-outline"></i></span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">3 overdue follow-ups</h6>
+                                            <p class="mb-0 fs-12 text-muted">Rahim Uddin, Karim Mia, Sultana Begum</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="payments.html" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="avatar avatar-xs avatar-label-warning me-3">
+                                            <span class="rounded fs-16"><i class="mdi mdi-timer-sand"></i></span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">Online payment awaiting verification</h6>
+                                            <p class="mb-0 fs-12 text-muted">bKash &#2547;50,000 &middot; Ref TRX8842K1</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="dues.html" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="avatar avatar-xs avatar-label-info me-3">
+                                            <span class="rounded fs-16"><i class="mdi mdi-alert-circle-outline"></i></span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">4 dues crossed 60 days</h6>
+                                            <p class="mb-0 fs-12 text-muted">Total outstanding &#2547;7,20,000</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="leads.html" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="avatar avatar-xs avatar-label-success me-3">
+                                            <span class="rounded fs-16"><i class="mdi mdi-account-plus-outline"></i></span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">6 new leads assigned to you</h6>
+                                            <p class="mb-0 fs-12 text-muted">From Facebook and Dr. Ilias Patowary</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="p-2 border-top text-center">
+                                <a href="followups.html" class="btn btn-sm btn-link text-decoration-none">View all</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Start Profile -->
+                    <div class="dropdown d-inline-block ps-3 ms-2 border-start admin-user-info">
+                        <button type="button" aria-label="profile" class="btn btn-sm p-0" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="avatar avatar-xs p-1 d-inline-block">
+                                <img src="assets/images/users/avatar-9.png" alt="Header Avatar" class="img-fluid">
+                            </span>
+                            <span class="d-none d-xl-inline-block ms-1 fw-semibold fs-14 admin-name">Mahi Alam</span>
+                            <i class="mdi mdi-chevron-down align-middle fs-16 d-none d-xl-inline-block"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end dropdown-menu-animated overflow-hidden py-0">
+                            <div class="card mb-0">
+                                <div class="card-header">
+                                    <div class="rich-list-item w-100 p-0">
+                                        <div class="rich-list-prepend">
+                                            <span class="rounded avatar-sm p-1 bg-body d-flex">
+                                                <img src="assets/images/users/avatar-9.png" alt="Header Avatar" class="img-fluid">
+                                            </span>
+                                        </div>
+                                        <div class="rich-list-content">
+                                            <h3 class="rich-list-title fs-13 mb-1">Mahi Alam</h3>
+                                            <span class="rich-list-subtitle">Administrator</span>
+                                        </div>
+                                        <div class="rich-list-append"><span class="badge badge-label-primary fs-6">Admin</span></div>
+                                    </div>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div class="grid-nav grid-nav-flush grid-nav-action grid-nav-no-rounded">
+                                        <div class="grid-nav-row">
+                                            <a href="my-account.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-address-card"></i></div>
+                                                <span class="grid-nav-content">My Account</span>
+                                            </a>
+                                            <a href="deals.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-handshake"></i></div>
+                                                <span class="grid-nav-content">Deals</span>
+                                            </a>
+                                            <a href="followups.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-clock"></i></div>
+                                                <span class="grid-nav-content">Follow-ups</span>
+                                            </a>
+                                        </div>
+                                        <div class="grid-nav-row">
+                                            <a href="settings.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="fas fa-cog"></i></div>
+                                                <span class="grid-nav-content">Settings</span>
+                                            </a>
+                                            <a href="audit-log.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-clone"></i></div>
+                                                <span class="grid-nav-content">Audit Log</span>
+                                            </a>
+                                            <a href="reports.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="far fa-chart-bar"></i></div>
+                                                <span class="grid-nav-content">Reports</span>
+                                            </a>
+                                        </div>
+                                        <div class="grid-nav-row">
+                                            <a href="my-account.html#security" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="fas fa-key"></i></div>
+                                                <span class="grid-nav-content">Change Password</span>
+                                            </a>
+                                            <a href="screen-lock.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="fas fa-lock"></i></div>
+                                                <span class="grid-nav-content">Screen Lock</span>
+                                            </a>
+                                            <a href="users.html" class="grid-nav-item">
+                                                <div class="grid-nav-icon"><i class="fas fa-users-cog"></i></div>
+                                                <span class="grid-nav-content">Users</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer card-footer-bordered rounded-0 border-top text-end"><a href="login.html" class="btn btn-label-danger">Sign Out</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End menu -->
+        </div>
+    </header>
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="sidebar-left">
+
+        <div class="sidebar-slide h-100" data-simplebar>
+
+            <!--- Sidebar-menu -->
+            <div id="sidebar-menu">
+                <!-- Left Menu Start -->
+                <ul class="left-menu list-unstyled" id="side-menu">
+                    <li class="mm-active">
+                        <a href="index.html" class="active">
+                            <i data-eva="home-outline"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Lead Module</li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i data-eva="person-add-outline"></i>
+                            <span>Leads</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="leads.html">All</a></li>
+                            <li><a href="leads.html?action=add-lead">Add</a></li>
+                            <li><a href="followups.html">Upcoming Follow Ups <span class="badge bg-danger ms-auto fs-10">5</span></a></li>
+                            <li><a href="interested-leads.html">Interested</a></li>
+                            <li><a href="not-interested-leads.html">Not Interested</a></li>
+                            <li><a href="applied-leads.html">Applied</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="conversations.html">
+                            <i data-eva="message-circle-outline"></i>
+                            <span>Conversations</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Visa Module</li>
+                    <li>
+                        <a href="visa-eligible.html">
+                            <i data-eva="checkmark-circle-2-outline"></i>
+                            <span>Eligible</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=processing">
+                            <i data-eva="sync-outline"></i>
+                            <span>Processing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=approved">
+                            <i data-eva="done-all-outline"></i>
+                            <span>Approved</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=rejected">
+                            <i data-eva="close-circle-outline"></i>
+                            <span>Rejected</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html">
+                            <i data-eva="list-outline"></i>
+                            <span>All</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Ticket Module</li>
+                    <li>
+                        <a href="tickets.html">
+                            <i data-eva="file-remove-outline"></i>
+                            <span>Not Purchased</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=upcoming">
+                            <i data-eva="calendar-outline"></i>
+                            <span>Upcoming Flight</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=passed">
+                            <i data-eva="alert-triangle-outline"></i>
+                            <span>Flight Passed</span> <span class="badge bg-danger ms-auto fs-10">2</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=cancelled">
+                            <i data-eva="close-square-outline"></i>
+                            <span>Cancelled</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=all">
+                            <i data-eva="list-outline"></i>
+                            <span>All</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Treatment Module</li>
+                    <li>
+                        <a href="treatment-countdown.html">
+                            <i data-eva="clock-outline"></i>
+                            <span>Countdown</span> <span class="badge bg-danger ms-auto fs-10">4</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html">
+                            <i data-eva="activity-outline"></i>
+                            <span>Treatment Ongoing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html?stage=successful">
+                            <i data-eva="heart-outline"></i>
+                            <span>Successful</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html?stage=failed">
+                            <i data-eva="slash-outline"></i>
+                            <span>Treatment Failed</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Dollar Module</li>
+                    <li>
+                        <a href="dollar-payments.html">
+                            <i data-eva="pricetags-outline"></i>
+                            <span>Dollar Payments</span> <span class="badge bg-warning ms-auto fs-10">4</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Payment Module</li>
+                    <li>
+                        <a href="dues.html">
+                            <i data-eva="alert-circle-outline"></i>
+                            <span>Payment Due</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="completed-leads.html">
+                            <i data-eva="credit-card-outline"></i>
+                            <span>Payment Completed</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Expense Module</li>
+                    <li>
+                        <a href="expenses.html">
+                            <i data-eva="trending-down-outline"></i>
+                            <span>Expenses</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="expense-patient.html">
+                            <i data-eva="person-outline"></i>
+                            <span>Patient Expense</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="expense-report.html">
+                            <i data-eva="bar-chart-outline"></i>
+                            <span>Expense Report</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Source Module</li>
+                    <li>
+                        <a href="sources.html">
+                            <i data-eva="share-outline"></i>
+                            <span>Source List</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Report Module</li>
+                    <li>
+                        <a href="reports.html">
+                            <i data-eva="pie-chart-outline"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Administration</li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i data-eva="settings-2-outline"></i>
+                            <span>Settings</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="settings.html">General</a></li>
+                            <li><a href="packages.html">Packages</a></li>
+                            <li><a href="source-admin.html">Sources</a></li>
+                            <li><a href="users.html">Users</a></li>
+                            <li><a href="roles.html">Roles & Permissions</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="audit-log.html">
+                            <i data-eva="eye-outline"></i>
+                            <span>Audit Logs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="login.html">
+                            <i data-eva="log-out-outline"></i>
+                            <span>Log Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Sidebar -->
+        </div>
+    </div>
+    <!-- Left Sidebar End -->
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="sidebar-left horizontal-sidebar">
+
+        <div class="sidebar-slide h-100">
+
+            <!--- Sidebar-menu -->
+            <div id="sidebar-menu">
+                <!-- Left Menu Start -->
+                <ul class="left-menu list-unstyled" id="side-menu">
+                    <li class="mm-active">
+                        <a href="index.html" class="active">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Lead Module</li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i class="fas fa-user-plus"></i>
+                            <span>Leads</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="leads.html">All</a></li>
+                            <li><a href="leads.html?action=add-lead">Add</a></li>
+                            <li><a href="followups.html">Upcoming Follow Ups <span class="badge bg-danger ms-auto fs-10">5</span></a></li>
+                            <li><a href="interested-leads.html">Interested</a></li>
+                            <li><a href="not-interested-leads.html">Not Interested</a></li>
+                            <li><a href="applied-leads.html">Applied</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="conversations.html">
+                            <i class="fas fa-comments"></i>
+                            <span>Conversations</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Visa Module</li>
+                    <li>
+                        <a href="visa-eligible.html">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Eligible</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=processing">
+                            <i class="fas fa-sync-alt"></i>
+                            <span>Processing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=approved">
+                            <i class="fas fa-stamp"></i>
+                            <span>Approved</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html?stage=rejected">
+                            <i class="fas fa-times-circle"></i>
+                            <span>Rejected</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="visa-processing.html">
+                            <i class="fas fa-list"></i>
+                            <span>All</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Ticket Module</li>
+                    <li>
+                        <a href="tickets.html">
+                            <i class="fas fa-ticket-alt"></i>
+                            <span>Not Purchased</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=upcoming">
+                            <i class="fas fa-plane-departure"></i>
+                            <span>Upcoming Flight</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=passed">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Flight Passed</span> <span class="badge bg-danger ms-auto fs-10">2</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=cancelled">
+                            <i class="fas fa-ban"></i>
+                            <span>Cancelled</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tickets.html?stage=all">
+                            <i class="fas fa-list"></i>
+                            <span>All</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Treatment Module</li>
+                    <li>
+                        <a href="treatment-countdown.html">
+                            <i class="fas fa-hourglass-half"></i>
+                            <span>Countdown</span> <span class="badge bg-danger ms-auto fs-10">4</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html">
+                            <i class="fas fa-heartbeat"></i>
+                            <span>Treatment Ongoing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html?stage=successful">
+                            <i class="fas fa-smile"></i>
+                            <span>Successful</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treatment.html?stage=failed">
+                            <i class="fas fa-frown"></i>
+                            <span>Treatment Failed</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Dollar Module</li>
+                    <li>
+                        <a href="dollar-payments.html">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span>Dollar Payments</span> <span class="badge bg-warning ms-auto fs-10">4</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Payment Module</li>
+                    <li>
+                        <a href="dues.html">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>Payment Due</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="completed-leads.html">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Payment Completed</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Expense Module</li>
+                    <li>
+                        <a href="expenses.html">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Expenses</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="expense-patient.html">
+                            <i class="fas fa-user-injured"></i>
+                            <span>Patient Expense</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="expense-report.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Expense Report</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Source Module</li>
+                    <li>
+                        <a href="sources.html">
+                            <i class="fas fa-share-alt"></i>
+                            <span>Source List</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Report Module</li>
+                    <li>
+                        <a href="reports.html">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Administration</li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="settings.html">General</a></li>
+                            <li><a href="packages.html">Packages</a></li>
+                            <li><a href="source-admin.html">Sources</a></li>
+                            <li><a href="users.html">Users</a></li>
+                            <li><a href="roles.html">Roles & Permissions</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="audit-log.html">
+                            <i class="fas fa-history"></i>
+                            <span>Audit Logs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="login.html">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Log Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Sidebar -->
+        </div>
+    </div>
+    <!-- Left Sidebar End -->
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0">Dashboard</h4>
+                            <nav aria-label="breadcrumb" class="page-title-right">
+                                <ol class="breadcrumb border-0">
+                                    <li class="breadcrumb-item"><a href="index.html">CRM</a></li>
+                                    <li class="breadcrumb-item active">Dashboard</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                <!-- ===== Dashboard — one page for every role (index.html and
+                     user-dashboard.html are built from this file). It is a work
+                     list, not a report: what needs doing today, one click from
+                     each task, plus the actions staff use most. Per-role versions
+                     can later hide cards by role (crm-role.js). Figures mirror the
+                     sample rows on the list pages each card links to. ===== -->
+
+                <!-- ============ WELCOME ============ -->
+                <div class="dash-hero">
+                    <div class="dash-hero-main">
+                        <div class="dash-hero-hello"><span id="dash-greeting">Welcome back</span>, <span id="dash-name">Mahi</span> <span class="dash-wave">&#128075;</span></div>
+                        <div class="dash-hero-sub">Here's what needs you today.</div>
+                        <div class="dash-chips">
+                            <a href="followups.html" class="dash-chip"><i class="mdi mdi-phone-in-talk-outline"></i><b>6</b> calls to make</a>
+                            <a href="payments.html" class="dash-chip"><i class="mdi mdi-timer-sand"></i><b>3</b> payments to verify</a>
+                            <a href="treatment-countdown.html" class="dash-chip dash-chip-alert"><i class="mdi mdi-clock-alert-outline"></i><b>3</b> urgent countdowns</a>
+                        </div>
+                    </div>
+                    <div class="dash-hero-date">
+                        <div class="dash-hero-day" id="dash-day"></div>
+                        <div class="dash-hero-num" id="dash-daynum"></div>
+                        <div class="dash-hero-month" id="dash-month"></div>
+                    </div>
+                </div>
+
+                <!-- ============ QUICK ACTIONS ============ -->
+                <div class="dash-actions">
+                    <a href="leads.html?action=add-lead" class="dash-action dash-action-primary">
+                        <span class="dash-action-icon"><i class="mdi mdi-account-plus-outline"></i></span>
+                        <span><span class="dash-action-title">Add Lead</span><span class="dash-action-sub">New enquiry</span></span>
+                    </a>
+                    <a href="conversations.html" class="dash-action">
+                        <span class="dash-action-icon bg-info-subtle text-info"><i class="mdi mdi-comment-plus-outline"></i></span>
+                        <span><span class="dash-action-title">Log Conversation</span><span class="dash-action-sub">Call or visit</span></span>
+                    </a>
+                    <a href="dues.html" class="dash-action">
+                        <span class="dash-action-icon bg-success-subtle text-success"><i class="mdi mdi-cash-plus"></i></span>
+                        <span><span class="dash-action-title">Record Payment</span><span class="dash-action-sub">Take a payment</span></span>
+                    </a>
+                    <a href="payments.html" class="dash-action">
+                        <span class="dash-action-icon bg-warning-subtle text-warning"><i class="mdi mdi-check-decagram-outline"></i></span>
+                        <span><span class="dash-action-title">Verify Payments</span><span class="dash-action-sub">3 waiting</span></span>
+                    </a>
+                    <a href="visa-eligible.html" class="dash-action">
+                        <span class="dash-action-icon bg-primary-subtle text-primary"><i class="mdi mdi-passport"></i></span>
+                        <span><span class="dash-action-title">Apply Visa</span><span class="dash-action-sub">5 eligible</span></span>
+                    </a>
+                    <a href="expenses.html?action=add-expense" class="dash-action">
+                        <span class="dash-action-icon bg-danger-subtle text-danger"><i class="mdi mdi-cash-minus"></i></span>
+                        <span><span class="dash-action-title">Add Expense</span><span class="dash-action-sub">Rent, salary, ads</span></span>
+                    </a>
+                </div>
+
+                <!-- ============ TODAY AT A GLANCE ============ -->
+                <div class="row g-3 mb-4">
+                    <div class="col-6 col-md-4 col-xl-2">
+                        <a href="followups.html" class="card stat-tile dash-tile h-100 mb-0"><div class="card-body">
+                            <div class="dash-tile-top"><span class="stat-icon bg-primary-subtle text-primary"><i class="mdi mdi-phone-in-talk-outline"></i></span><i class="mdi mdi-arrow-top-right dash-tile-go"></i></div>
+                            <div class="stat-value">3</div><div class="stat-label text-muted">Follow-ups today</div>
+                        </div></a>
+                    </div>
+                    <div class="col-6 col-md-4 col-xl-2">
+                        <a href="followups.html#fu-overdue" class="card stat-tile dash-tile h-100 mb-0"><div class="card-body">
+                            <div class="dash-tile-top"><span class="stat-icon bg-danger-subtle text-danger"><i class="mdi mdi-phone-alert-outline"></i></span><i class="mdi mdi-arrow-top-right dash-tile-go"></i></div>
+                            <div class="stat-value text-danger">3</div><div class="stat-label text-muted">Overdue follow-ups</div>
+                        </div></a>
+                    </div>
+                    <div class="col-6 col-md-4 col-xl-2">
+                        <a href="payments.html" class="card stat-tile dash-tile h-100 mb-0"><div class="card-body">
+                            <div class="dash-tile-top"><span class="stat-icon bg-warning-subtle text-warning"><i class="mdi mdi-timer-sand"></i></span><i class="mdi mdi-arrow-top-right dash-tile-go"></i></div>
+                            <div class="stat-value">3</div><div class="stat-label text-muted">Payments to verify &middot; <span class="cur">&#2547;1,50,000</span></div>
+                        </div></a>
+                    </div>
+                    <div class="col-6 col-md-4 col-xl-2">
+                        <a href="dues.html" class="card stat-tile dash-tile h-100 mb-0"><div class="card-body">
+                            <div class="dash-tile-top"><span class="stat-icon bg-danger-subtle text-danger"><i class="mdi mdi-alert-circle-outline"></i></span><i class="mdi mdi-arrow-top-right dash-tile-go"></i></div>
+                            <div class="stat-value cur">&#2547;3,00,000</div><div class="stat-label text-muted">Due from 2 patients</div>
+                        </div></a>
+                    </div>
+                    <div class="col-6 col-md-4 col-xl-2">
+                        <a href="visa-eligible.html" class="card stat-tile dash-tile h-100 mb-0"><div class="card-body">
+                            <div class="dash-tile-top"><span class="stat-icon bg-success-subtle text-success"><i class="mdi mdi-passport"></i></span><i class="mdi mdi-arrow-top-right dash-tile-go"></i></div>
+                            <div class="stat-value">5</div><div class="stat-label text-muted">Eligible for visa</div>
+                        </div></a>
+                    </div>
+                    <div class="col-6 col-md-4 col-xl-2">
+                        <a href="treatment-countdown.html" class="card stat-tile dash-tile h-100 mb-0"><div class="card-body">
+                            <div class="dash-tile-top"><span class="stat-icon bg-danger-subtle text-danger"><i class="mdi mdi-clock-alert-outline"></i></span><i class="mdi mdi-arrow-top-right dash-tile-go"></i></div>
+                            <div class="stat-value text-danger">3</div><div class="stat-label text-muted">Countdown &mdash; final month</div>
+                        </div></a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- ============ FOLLOW-UPS ============ -->
+                    <div class="col-xl-7">
+                        <div class="card">
+                            <div class="card-header d-flex align-items-center justify-content-between">
+                                <div><h5 class="card-title mb-0">Today's Calls</h5><p class="fs-12 text-muted mb-0">Overdue first, then today's schedule.</p></div>
+                                <a href="followups.html" class="btn btn-sm btn-light">All follow-ups <i class="mdi mdi-arrow-right ms-1"></i></a>
+                            </div>
+                            <div class="card-body p-0">
+                                <ul class="list-unstyled mb-0 dash-list">
+                                    <li>
+                                        <span class="dash-when text-danger"><span class="fw-semibold">9 days</span><span>late</span></span>
+                                        <div class="dash-who"><a href="patient-profile.html?lead=ELH-L-2026-000359" class="fw-semibold text-body">Momena Begum</a><div class="fs-12 text-muted text-truncate">Asked for the Partial-Funded package price</div></div>
+                                        <span class="dash-call"><a href="tel:+8801700000000" class="btn btn-sm btn-icon btn-light" title="Call"><i class="mdi mdi-phone"></i></a><a href="#!" class="btn btn-sm btn-icon btn-light text-success" title="WhatsApp"><i class="mdi mdi-whatsapp"></i></a><a href="conversations.html?lead=ELH-L-2026-000359&amp;log=1" class="btn btn-sm btn-primary">Log</a></span>
+                                    </li>
+                                    <li>
+                                        <span class="dash-when text-danger"><span class="fw-semibold">6 days</span><span>late</span></span>
+                                        <div class="dash-who"><a href="patient-profile.html?lead=ELH-L-2026-000364" class="fw-semibold text-body">Shahin Alam</a><div class="fs-12 text-muted text-truncate">Phone was switched off; left a WhatsApp message</div></div>
+                                        <span class="dash-call"><a href="tel:+8801700000000" class="btn btn-sm btn-icon btn-light" title="Call"><i class="mdi mdi-phone"></i></a><a href="#!" class="btn btn-sm btn-icon btn-light text-success" title="WhatsApp"><i class="mdi mdi-whatsapp"></i></a><a href="conversations.html?lead=ELH-L-2026-000364&amp;log=1" class="btn btn-sm btn-primary">Log</a></span>
+                                    </li>
+                                    <li>
+                                        <span class="dash-when text-danger"><span class="fw-semibold">4 days</span><span>late</span></span>
+                                        <div class="dash-who"><a href="patient-profile.html?lead=ELH-L-2026-000371" class="fw-semibold text-body">Abdul Malek</a><div class="fs-12 text-muted text-truncate">Said he would call back after talking to his family</div></div>
+                                        <span class="dash-call"><a href="tel:+8801700000000" class="btn btn-sm btn-icon btn-light" title="Call"><i class="mdi mdi-phone"></i></a><a href="#!" class="btn btn-sm btn-icon btn-light text-success" title="WhatsApp"><i class="mdi mdi-whatsapp"></i></a><a href="conversations.html?lead=ELH-L-2026-000371&amp;log=1" class="btn btn-sm btn-primary">Log</a></span>
+                                    </li>
+                                    <li>
+                                        <span class="dash-when"><span class="fw-semibold">10:30</span><span>AM</span></span>
+                                        <div class="dash-who"><a href="patient-profile.html?lead=ELH-L-2026-000412" class="fw-semibold text-body">Rahim Uddin</a> <span class="fs-12 text-muted">for Ayesha Rahim</span><div class="fs-12 text-muted text-truncate">Asked for the package price and payment options</div></div>
+                                        <span class="dash-call"><a href="tel:+8801711234567" class="btn btn-sm btn-icon btn-light" title="Call +880 1711-234567"><i class="mdi mdi-phone"></i></a><a href="#!" class="btn btn-sm btn-icon btn-light text-success" title="WhatsApp"><i class="mdi mdi-whatsapp"></i></a><a href="conversations.html?lead=ELH-L-2026-000412&amp;log=1" class="btn btn-sm btn-primary">Log</a></span>
+                                    </li>
+                                    <li>
+                                        <span class="dash-when"><span class="fw-semibold">11:15</span><span>AM</span></span>
+                                        <div class="dash-who"><a href="patient-profile.html?lead=ELH-L-2026-000408" class="fw-semibold text-body">Sultana Begum</a> <span class="fs-12 text-muted">for Nadia Sultana</span><div class="fs-12 text-muted text-truncate">Wants a doctor consultation before deciding</div></div>
+                                        <span class="dash-call"><a href="tel:+8801911778899" class="btn btn-sm btn-icon btn-light" title="Call +880 1911-778899"><i class="mdi mdi-phone"></i></a><a href="#!" class="btn btn-sm btn-icon btn-light text-success" title="WhatsApp"><i class="mdi mdi-whatsapp"></i></a><a href="conversations.html?lead=ELH-L-2026-000408&amp;log=1" class="btn btn-sm btn-primary">Log</a></span>
+                                    </li>
+                                    <li class="is-done">
+                                        <span class="dash-when"><span class="fw-semibold">03:30</span><span>PM</span></span>
+                                        <div class="dash-who"><a href="patient-profile.html?lead=ELH-L-2026-000397" class="fw-semibold text-body">Jahanara Khatun</a> <span class="fs-12 text-muted">for Mim Akter</span><div class="fs-12 text-muted text-truncate">Confirmed the package, arranging the first payment</div></div>
+                                        <span class="badge bg-success-subtle text-success"><i class="mdi mdi-check me-1"></i>Done</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- ============ NEWEST LEADS ============ -->
+                        <div class="card">
+                            <div class="card-header d-flex align-items-center justify-content-between">
+                                <div><h5 class="card-title mb-0">Newest Leads</h5><p class="fs-12 text-muted mb-0">Make the first call while the enquiry is fresh.</p></div>
+                                <div class="d-flex gap-2">
+                                    <a href="leads.html?action=add-lead" class="btn btn-sm btn-primary"><i class="mdi mdi-plus me-1"></i>Add Lead</a>
+                                    <a href="leads.html" class="btn btn-sm btn-light">All leads</a>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle mb-0 dash-table">
+                                        <thead class="table-light"><tr><th>Patient</th><th>Source</th><th>Status</th><th>Next Follow-up</th><th class="no-sort">Action</th></tr></thead>
+                                        <tbody>
+                                            <tr data-lead-id="ELH-L-2026-000416"><td><div class="fw-semibold">Rehana Parvin</div><div class="fs-12 text-muted">G: Motaleb Hossain</div></td><td><span class="badge bg-secondary-subtle text-secondary">Campaign</span></td><td><span class="badge bg-info-subtle text-info">Follow Up</span></td><td class="fs-13">05 Sep 2026</td><td><div class="d-flex gap-1"><a href="conversations.html?lead=ELH-L-2026-000416&amp;log=1" class="btn btn-sm btn-icon btn-light" title="Log conversation"><i class="mdi mdi-comment-plus-outline"></i></a></div></td></tr>
+                                            <tr data-lead-id="ELH-L-2026-000415"><td><div class="fw-semibold">Jahid Hasan</div><div class="fs-12 text-muted">G: Jahid Hasan</div></td><td><span class="badge bg-secondary-subtle text-secondary">Website</span></td><td><span class="badge bg-info-subtle text-info">Follow Up</span></td><td class="fs-13 text-muted">Not set</td><td><div class="d-flex gap-1"><a href="conversations.html?lead=ELH-L-2026-000415&amp;log=1" class="btn btn-sm btn-icon btn-light" title="Log conversation"><i class="mdi mdi-comment-plus-outline"></i></a></div></td></tr>
+                                            <tr data-lead-id="ELH-L-2026-000414"><td><div class="fw-semibold">Farida Yeasmin</div><div class="fs-12 text-muted">G: Nazrul Islam</div></td><td><span class="badge bg-success-subtle text-success">Noman</span></td><td><span class="badge bg-primary-subtle text-primary">Interested</span></td><td class="fs-13">03 Sep 2026</td><td><div class="d-flex gap-1"><a href="conversations.html?lead=ELH-L-2026-000414&amp;log=1" class="btn btn-sm btn-icon btn-light" title="Log conversation"><i class="mdi mdi-comment-plus-outline"></i></a></div></td></tr>
+                                            <tr data-lead-id="ELH-L-2026-000413"><td><div class="fw-semibold">Sabina Yasmin</div><div class="fs-12 text-muted">G: Anisur Rahman</div></td><td><span class="badge bg-info-subtle text-info">Facebook</span></td><td><span class="badge bg-info-subtle text-info">Follow Up</span></td><td class="fs-13">04 Sep 2026</td><td><div class="d-flex gap-1"><a href="conversations.html?lead=ELH-L-2026-000413&amp;log=1" class="btn btn-sm btn-icon btn-light" title="Log conversation"><i class="mdi mdi-comment-plus-outline"></i></a></div></td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ============ DOLLAR NOT PAID ============ -->
+                        <!-- Everyone whose partial dollar is not fully paid. Amounts and
+                             payments come from CRMDollar (crm-dollar.js) — the same data
+                             as the Dollar Payments page — so a payment recorded there
+                             updates this card, and anyone paid in full drops off it. -->
+                        <div class="card" id="dash-dollar">
+                            <div class="card-header d-flex align-items-center justify-content-between">
+                                <div><h5 class="card-title mb-0">Dollar Not Yet Paid <span class="badge bg-danger-subtle text-danger ms-1" id="dash-dl-count">4</span></h5><p class="fs-12 text-muted mb-0">Partial dollar still owed &mdash; <span class="fw-semibold text-danger cur" id="dash-dl-total">$11,000</span> outstanding. Internal only.</p></div>
+                                <a href="dollar-payments.html" class="btn btn-sm btn-light">Dollar Payments <i class="mdi mdi-arrow-right ms-1"></i></a>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle mb-0 dash-table">
+                                        <thead class="table-light"><tr><th>Patient</th><th class="text-end">Dollar</th><th class="text-end">Paid</th><th class="text-end">Remaining</th><th>Status</th><th class="no-sort">Action</th></tr></thead>
+                                        <tbody>
+                                            <tr data-lead-id="ELH-L-2026-000412" data-usd="2500"><td><div class="fw-semibold text-nowrap">Ayesha Rahim</div><div class="fs-12 text-muted text-nowrap">Partial-Funded Package</div></td><td class="text-end cur fs-13 text-nowrap" data-dl-total></td><td class="text-end cur fs-13 text-success text-nowrap" data-dl-paid></td><td class="text-end cur fw-bold text-danger text-nowrap" data-dl-left></td><td class="text-nowrap" data-dl-status></td><td><div class="d-flex gap-1"><a href="dollar-payments.html" class="btn btn-sm btn-light text-nowrap" title="Record a dollar payment"><i class="mdi mdi-currency-usd me-1"></i>Record</a></div></td></tr>
+                                            <tr data-lead-id="ELH-L-2026-000410" data-usd="4000"><td><div class="fw-semibold text-nowrap">Nadia Sultana</div><div class="fs-12 text-muted text-nowrap">Paid Package</div></td><td class="text-end cur fs-13 text-nowrap" data-dl-total></td><td class="text-end cur fs-13 text-success text-nowrap" data-dl-paid></td><td class="text-end cur fw-bold text-danger text-nowrap" data-dl-left></td><td class="text-nowrap" data-dl-status></td><td><div class="d-flex gap-1"><a href="dollar-payments.html" class="btn btn-sm btn-light text-nowrap" title="Record a dollar payment"><i class="mdi mdi-currency-usd me-1"></i>Record</a></div></td></tr>
+                                            <tr data-lead-id="ELH-L-2026-000408" data-usd="2500"><td><div class="fw-semibold text-nowrap">Mim Akter</div><div class="fs-12 text-muted text-nowrap">Partial-Funded Package</div></td><td class="text-end cur fs-13 text-nowrap" data-dl-total></td><td class="text-end cur fs-13 text-success text-nowrap" data-dl-paid></td><td class="text-end cur fw-bold text-danger text-nowrap" data-dl-left></td><td class="text-nowrap" data-dl-status></td><td><div class="d-flex gap-1"><a href="dollar-payments.html" class="btn btn-sm btn-light text-nowrap" title="Record a dollar payment"><i class="mdi mdi-currency-usd me-1"></i>Record</a></div></td></tr>
+                                            <tr data-lead-id="ELH-L-2026-000406" data-usd="4000"><td><div class="fw-semibold text-nowrap">Sharmin Akter</div><div class="fs-12 text-muted text-nowrap">Paid Package</div></td><td class="text-end cur fs-13 text-nowrap" data-dl-total></td><td class="text-end cur fs-13 text-success text-nowrap" data-dl-paid></td><td class="text-end cur fw-bold text-danger text-nowrap" data-dl-left></td><td class="text-nowrap" data-dl-status></td><td><div class="d-flex gap-1"><a href="dollar-payments.html" class="btn btn-sm btn-light text-nowrap" title="Record a dollar payment"><i class="mdi mdi-currency-usd me-1"></i>Record</a></div></td></tr>
+                                            <tr data-lead-id="ELH-L-2026-000386" data-usd="2500"><td><div class="fw-semibold text-nowrap">Tanjila Akter</div><div class="fs-12 text-muted text-nowrap">Paid Package</div></td><td class="text-end cur fs-13 text-nowrap" data-dl-total></td><td class="text-end cur fs-13 text-success text-nowrap" data-dl-paid></td><td class="text-end cur fw-bold text-danger text-nowrap" data-dl-left></td><td class="text-nowrap" data-dl-status></td><td><div class="d-flex gap-1"><a href="dollar-payments.html" class="btn btn-sm btn-light text-nowrap" title="Record a dollar payment"><i class="mdi mdi-currency-usd me-1"></i>Record</a></div></td></tr>
+                                            <tr data-lead-id="ELH-L-2026-000380" data-usd="2500"><td><div class="fw-semibold text-nowrap">Nurul Islam</div><div class="fs-12 text-muted text-nowrap">Paid Package</div></td><td class="text-end cur fs-13 text-nowrap" data-dl-total></td><td class="text-end cur fs-13 text-success text-nowrap" data-dl-paid></td><td class="text-end cur fw-bold text-danger text-nowrap" data-dl-left></td><td class="text-nowrap" data-dl-status></td><td><div class="d-flex gap-1"><a href="dollar-payments.html" class="btn btn-sm btn-light text-nowrap" title="Record a dollar payment"><i class="mdi mdi-currency-usd me-1"></i>Record</a></div></td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="text-center text-muted fs-13 py-4 d-none" id="dash-dl-empty"><i class="mdi mdi-check-circle-outline text-success d-block fs-3 mb-1"></i>Every partial dollar is paid.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-5">
+                        <!-- ============ PAYMENTS TO VERIFY ============ -->
+                        <div class="card">
+                            <div class="card-header d-flex align-items-center justify-content-between">
+                                <div><h5 class="card-title mb-0">Payments to Verify</h5><p class="fs-12 text-muted mb-0">Not counted anywhere until Accounts verifies them.</p></div>
+                                <a href="payments.html" class="btn btn-sm btn-light">Open <i class="mdi mdi-arrow-right ms-1"></i></a>
+                            </div>
+                            <div class="card-body p-0">
+                                <ul class="list-unstyled mb-0 dash-list">
+                                    <li>
+                                        <span class="dash-method bg-danger-subtle text-danger">bK</span>
+                                        <div class="dash-who"><span class="fw-semibold">Ayesha Rahim</span><div class="fs-12 text-muted">bKash &middot; BK7XK92211 &middot; 03 Sep</div></div>
+                                        <span class="text-end"><span class="fw-bold cur d-block">&#2547;50,000</span><a href="payments.html" class="fs-12">Verify</a></span>
+                                    </li>
+                                    <li>
+                                        <span class="dash-method bg-warning-subtle text-warning">Ng</span>
+                                        <div class="dash-who"><span class="fw-semibold">Karim Mia</span><div class="fs-12 text-muted">Nagad &middot; NG5521P &middot; 02 Sep</div></div>
+                                        <span class="text-end"><span class="fw-bold cur d-block">&#2547;75,000</span><a href="payments.html" class="fs-12">Verify</a></span>
+                                    </li>
+                                    <li>
+                                        <span class="dash-method bg-success-subtle text-success">৳</span>
+                                        <div class="dash-who"><span class="fw-semibold">Ayesha Rahim</span><div class="fs-12 text-muted">Cash &middot; counter slip &middot; 01 Sep</div></div>
+                                        <span class="text-end"><span class="fw-bold cur d-block">&#2547;25,000</span><a href="payments.html" class="fs-12">Verify</a></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- ============ TREATMENT COUNTDOWN ============ -->
+                        <!-- Dates are worked out from data-days-ago exactly as
+                             crm-countdown.js does (applied + 90 days = deadline),
+                             so this card and the Countdown page always agree. -->
+                        <div class="card">
+                            <div class="card-header d-flex align-items-center justify-content-between">
+                                <div><h5 class="card-title mb-0">Countdown &mdash; Final Month</h5><p class="fs-12 text-muted mb-0">Must reach the destination within 90 days of applying.</p></div>
+                                <a href="treatment-countdown.html" class="btn btn-sm btn-light">Open <i class="mdi mdi-arrow-right ms-1"></i></a>
+                            </div>
+                            <div class="card-body p-0">
+                                <ul class="list-unstyled mb-0 dash-list">
+                                    <li class="dash-cd" data-days-ago="85">
+                                        <span class="dash-days"><span data-cd-left></span>days left</span>
+                                        <div class="dash-who">
+                                            <div class="d-flex align-items-center justify-content-between gap-2">
+                                                <a href="patient-profile.html?lead=ELH-L-2026-000398" class="fw-semibold text-body text-truncate">Rokeya Begum</a>
+                                                <span class="badge bg-success-subtle text-success">Visa Approved</span>
+                                            </div>
+                                            <div class="fs-12 text-muted text-truncate">G: Anwar Hossain &middot; <span class="mono">ELH-L-2026-000398</span></div>
+                                            <div class="fs-12 text-muted">Full-Funded Package</div>
+                                            <div class="progress mt-2" style="height:5px"><div class="progress-bar" data-cd-bar></div></div>
+                                            <div class="d-flex justify-content-between fs-11 text-muted mt-1"><span>Applied <span data-cd-applied></span></span><span>Deadline <span class="fw-semibold" data-cd-deadline></span></span></div>
+                                        </div>
+                                    </li>
+                                    <li class="dash-cd" data-days-ago="79">
+                                        <span class="dash-days"><span data-cd-left></span>days left</span>
+                                        <div class="dash-who">
+                                            <div class="d-flex align-items-center justify-content-between gap-2">
+                                                <a href="patient-profile.html?lead=ELH-L-2026-000386" class="fw-semibold text-body text-truncate">Tanjila Akter</a>
+                                                <span class="badge bg-warning-subtle text-warning">Visa Processing</span>
+                                            </div>
+                                            <div class="fs-12 text-muted text-truncate">G: Rafiqul Islam &middot; <span class="mono">ELH-L-2026-000386</span></div>
+                                            <div class="fs-12 text-muted">Paid Package</div>
+                                            <div class="progress mt-2" style="height:5px"><div class="progress-bar" data-cd-bar></div></div>
+                                            <div class="d-flex justify-content-between fs-11 text-muted mt-1"><span>Applied <span data-cd-applied></span></span><span>Deadline <span class="fw-semibold" data-cd-deadline></span></span></div>
+                                        </div>
+                                    </li>
+                                    <li class="dash-cd" data-days-ago="66">
+                                        <span class="dash-days"><span data-cd-left></span>days left</span>
+                                        <div class="dash-who">
+                                            <div class="d-flex align-items-center justify-content-between gap-2">
+                                                <a href="patient-profile.html?lead=ELH-L-2026-000406" class="fw-semibold text-body text-truncate">Sharmin Akter</a>
+                                                <span class="badge bg-warning-subtle text-warning">Visa Processing</span>
+                                            </div>
+                                            <div class="fs-12 text-muted text-truncate">G: Abul Kalam &middot; <span class="mono">ELH-L-2026-000406</span></div>
+                                            <div class="fs-12 text-muted">Partial-Funded Package</div>
+                                            <div class="progress mt-2" style="height:5px"><div class="progress-bar" data-cd-bar></div></div>
+                                            <div class="d-flex justify-content-between fs-11 text-muted mt-1"><span>Applied <span data-cd-applied></span></span><span>Deadline <span class="fw-semibold" data-cd-deadline></span></span></div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- ============ PIPELINE SNAPSHOT ============ -->
+                        <div class="card">
+                            <div class="card-header"><div><h5 class="card-title mb-0">Where Everyone Is</h5><p class="fs-12 text-muted mb-0">Click a stage to open that list.</p></div></div>
+                            <div class="card-body pt-2">
+                                <div class="dash-stages">
+                                    <a href="leads.html"><span><i class="mdi mdi-account-multiple-outline text-secondary"></i>Leads</span><span class="fw-semibold">6</span></a>
+                                    <a href="interested-leads.html"><span><i class="mdi mdi-star-outline text-primary"></i>Interested</span><span class="fw-semibold">7</span></a>
+                                    <a href="applied-leads.html"><span><i class="mdi mdi-file-document-edit-outline text-warning"></i>Applied</span><span class="fw-semibold">5</span></a>
+                                    <a href="confirmed-leads.html"><span><i class="mdi mdi-check-circle-outline text-success"></i>Confirmed</span><span class="fw-semibold">6</span></a>
+                                    <a href="visa-processing.html"><span><i class="mdi mdi-passport text-info"></i>Visa &amp; Travel</span><span class="fw-semibold">6</span></a>
+                                    <a href="treatment.html"><span><i class="mdi mdi-heart-pulse text-danger"></i>In Treatment</span><span class="fw-semibold">6</span></a>
+                                    <a href="not-interested-leads.html"><span><i class="mdi mdi-close-circle-outline text-muted"></i>Not Interested</span><span class="fw-semibold">6</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                /* Greeting by time of day, today's date, the signed-in name from
+                   the topbar, and the countdown dates. */
+                document.addEventListener('DOMContentLoaded', function () {
+                    var now = new Date(), h = now.getHours();
+                    var fmt = function (d, o) { return d.toLocaleDateString('en-GB', o); };
+                    document.getElementById('dash-greeting').textContent = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+                    document.getElementById('dash-day').textContent = fmt(now, { weekday: 'long' });
+                    document.getElementById('dash-daynum').textContent = now.getDate();
+                    document.getElementById('dash-month').textContent = fmt(now, { month: 'long', year: 'numeric' });
+                    var who = document.querySelector('.admin-name');
+                    if (who && who.textContent.trim()) document.getElementById('dash-name').textContent = who.textContent.trim().split(' ')[0];
+
+                    var DAY = 86400000, WINDOW = 90, today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                    [].forEach.call(document.querySelectorAll('.dash-cd'), function (li) {
+                        var ago = parseInt(li.getAttribute('data-days-ago'), 10) || 0;
+                        var applied = new Date(today.getTime() - ago * DAY), deadline = new Date(applied.getTime() + WINDOW * DAY);
+                        var left = WINDOW - ago, tone = left <= 14 ? 'danger' : 'warning';
+                        var short = { day: '2-digit', month: 'short' };
+                        li.querySelector('[data-cd-left]').textContent = left;
+                        li.querySelector('.dash-days').className = 'dash-days bg-' + tone + (tone === 'danger' ? ' text-white' : ' text-dark');
+                        li.querySelector('[data-cd-applied]').textContent = fmt(applied, short);
+                        li.querySelector('[data-cd-deadline]').textContent = fmt(deadline, short);
+                        var bar = li.querySelector('[data-cd-bar]');
+                        bar.className = 'progress-bar bg-' + tone;
+                        bar.style.width = Math.min(100, Math.round(ago / WINDOW * 100)) + '%';
+                    });
+
+                    /* Dollar Not Yet Paid: fill amounts from CRMDollar, drop anyone paid in full. */
+                    var D = window.CRMDollar, usd = function (n) { return '$' + Number(n).toLocaleString('en-US'); };
+                    if (D) {
+                        var open = 0, owed = 0;
+                        [].forEach.call(document.querySelectorAll('#dash-dollar tbody tr'), function (tr) {
+                            var total = parseFloat(tr.getAttribute('data-usd')) || 0, st = D.status(tr.getAttribute('data-lead-id'), total);
+                            if (st.key === 'paid') { tr.remove(); return; }
+                            open++; owed += st.remaining;
+                            tr.querySelector('[data-dl-total]').textContent = usd(total);
+                            tr.querySelector('[data-dl-paid]').textContent = st.paid ? usd(st.paid) : '—';
+                            tr.querySelector('[data-dl-left]').textContent = usd(st.remaining);
+                            tr.querySelector('[data-dl-status]').innerHTML = '<span class="badge ' + D.badgeClass(st.key) + '">' + st.label + '</span>';
+                        });
+                        document.getElementById('dash-dl-count').textContent = open;
+                        document.getElementById('dash-dl-total').textContent = usd(owed);
+                        document.getElementById('dash-dl-empty').classList.toggle('d-none', open > 0);
+                        document.querySelector('#dash-dollar .table-responsive').classList.toggle('d-none', open === 0);
+                    }
+                });
+                </script>
+
+            </div><!-- container-fluid -->
+        </div><!-- page-content -->
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        &copy; <script>document.write(new Date().getFullYear())</script> E Life Healthcare. All rights reserved.
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end d-none d-sm-block">
+                            CRM System &middot; v1.0
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- END Footer -->
+        <!-- Begin scroll top -->
+          <div class="progress-wrap" id="progress-scroll">
+            <svg class="progress-circle" width="100%" height="100%" viewBox="-1 -1 102 102">
+              <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+            </svg>
+          </div>
+        <!-- END scroll top -->
+    </div><!-- end main content-->
+
+</div><!-- END layout-wrapper -->
+
+<!-- Bootstrap bundle js -->
+<script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Layouts main js -->
+<script src="assets/libs/jquery/jquery.min.js"></script>
+
+<!-- Metimenu js -->
+<script src="assets/libs/metismenu/metisMenu.min.js"></script>
+
+<!-- simplebar js -->
+<script src="assets/libs/simplebar/simplebar.min.js"></script>
+
+<script src="assets/libs/eva-icons/eva.min.js"></script>
+
+<!-- Scroll Top init -->
+<script src="assets/js/scroll-top.init.js"></script>
+
+<!-- select2 -->
+<script src="assets/libs/select2/js/select2.min.js"></script>
+
+<!-- App js -->
+<script src="assets/js/app.js"></script>
+
+<!-- CRM demo js -->
+<script src="assets/js/crm-demo.js"></script>
+
+<!-- CRM dollar payments js -->
+<script src="assets/js/crm-dollar.js"></script>
+
+<!-- Sidebar deep links (page.html?x=y): highlight the entry matching the query -->
+<script>
+window.addEventListener('load', function () {
+  var page = location.pathname.split('/').pop(), q = location.search;
+  var links = [].slice.call(document.querySelectorAll('#sidebar-menu a[href]:not(.has-arrow)'));
+  var exact = links.filter(function (a) {
+    var h = a.getAttribute('href') || '', i = h.indexOf('?');
+    return i > -1 && h.slice(0, i) === page && h.slice(i) === q;
+  });
+  if (!exact.length) return;
+  links.forEach(function (a) { a.classList.remove('active'); a.parentNode.classList.remove('mm-active'); });
+  exact.forEach(function (a) { a.classList.add('active'); a.parentNode.classList.add('mm-active'); });
+});
+</script>
+</body>
+</html>

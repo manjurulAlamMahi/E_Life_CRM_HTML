@@ -1,0 +1,96 @@
+                <div class="alert alert-info d-flex align-items-center gap-2 py-2 fs-13 fade show" role="alert" data-auto-dismiss="5000">
+                    <i class="mdi mdi-history fs-5 lh-1"></i>
+                    <div>Every edit, deletion, payment and receipt is recorded with the user, timestamp, IP address and the before/after values. Financial records can never be silently changed.</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body py-3">
+                        <div class="row g-2 align-items-end crm-filter" data-filter-for="#audit-table">
+                            <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">From</label><input type="date" class="form-control form-control-sm" data-filter="from:When"></div>
+                            <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">To</label><input type="date" class="form-control form-control-sm" data-filter="to:When"></div>
+                            <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">User</label><select class="form-select form-select-sm" data-filter="col:User"><option value="">All users</option><option>Mahi Alam</option><option>Sabina Yasmin</option><option>Tanvir Ahmed</option><option>Rezaul Karim</option></select></div>
+                            <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Record type</label><select class="form-select form-select-sm" data-filter="col:Record"><option value="">All records</option><option>Lead</option><option>Patient</option><option>Deal</option><option>Package</option><option>Payment</option><option>Receipt</option><option>Refund</option><option>User</option><option>Setting</option></select></div>
+                            <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Action</label><select class="form-select form-select-sm" data-filter="col:Action"><option value="">All actions</option><option>Created</option><option>Updated</option><option>Deleted</option><option>Verified</option><option>Approved</option><option>Reversed</option></select></div>
+                            <div class="col-auto"><button type="button" class="btn btn-light btn-sm" data-filter-reset title="Reset filters"><i class="mdi mdi-refresh"></i></button></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                        <h5 class="card-title mb-0">Audit Trail</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle crm-table w-100" id="audit-table">
+                                <thead class="table-light"><tr><th>When</th><th>User</th><th>Action</th><th>Record</th><th>Change</th><th>IP</th></tr></thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="fs-13">31 Aug 2026<div class="fs-11 text-muted">09:04:22</div></td>
+                                        <td class="fs-13">Rezaul Karim<div class="fs-11 text-muted">Accounts</div></td>
+                                        <td><span class="badge bg-success-subtle text-success">Created</span></td>
+                                        <td class="fs-13">Receipt <span class="mono fs-12">ELH-R-2026-000318</span></td>
+                                        <td class="fs-12 text-muted">Issued for payment of &#2547;50,000 &middot; finalised</td>
+                                        <td class="mono fs-11">103.108.x.x</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fs-13">31 Aug 2026<div class="fs-11 text-muted">09:04:20</div></td>
+                                        <td class="fs-13">Rezaul Karim<div class="fs-11 text-muted">Accounts</div></td>
+                                        <td><span class="badge bg-info-subtle text-info">Verified</span></td>
+                                        <td class="fs-13">Payment <span class="mono fs-12">#1842</span></td>
+                                        <td class="fs-12 text-muted">status: <s>pending</s> &rarr; <b>verified</b></td>
+                                        <td class="mono fs-11">103.108.x.x</td>
+                                    </tr>
+                                    <tr class="table-warning">
+                                        <td class="fs-13">28 Aug 2026<div class="fs-11 text-muted">16:12:05</div></td>
+                                        <td class="fs-13">Mahi Alam<div class="fs-11 text-muted">Admin</div></td>
+                                        <td><span class="badge bg-danger-subtle text-danger">Reversed</span></td>
+                                        <td class="fs-13">Receipt <span class="mono fs-12">ELH-R-2026-000314</span></td>
+                                        <td class="fs-12 text-muted">Reversal <span class="mono">ELH-R-2026-000315</span> issued &middot; reason: treatment cancelled</td>
+                                        <td class="mono fs-11">103.108.x.x</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fs-13">28 Aug 2026<div class="fs-11 text-muted">11:30:47</div></td>
+                                        <td class="fs-13">Tanvir Ahmed<div class="fs-11 text-muted">Sales Executive</div></td>
+                                        <td><span class="badge bg-primary-subtle text-primary">Updated</span></td>
+                                        <td class="fs-13">Lead <span class="mono fs-12">ELH-L-2026-000408</span></td>
+                                        <td class="fs-12 text-muted">stage: <s>Negotiation</s> &rarr; <b>Confirmed</b></td>
+                                        <td class="mono fs-11">27.147.x.x</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fs-13">28 Aug 2026<div class="fs-11 text-muted">11:31:02</div></td>
+                                        <td class="fs-13">Tanvir Ahmed<div class="fs-11 text-muted">Sales Executive</div></td>
+                                        <td><span class="badge bg-success-subtle text-success">Created</span></td>
+                                        <td class="fs-13">Patient <span class="mono fs-12">ELH-P-2026-000094</span></td>
+                                        <td class="fs-12 text-muted">Converted from lead <span class="mono">ELH-L-2026-000408</span></td>
+                                        <td class="mono fs-11">27.147.x.x</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fs-13">27 Aug 2026<div class="fs-11 text-muted">14:05:18</div></td>
+                                        <td class="fs-13">Sabina Yasmin<div class="fs-11 text-muted">Manager</div></td>
+                                        <td><span class="badge bg-primary-subtle text-primary">Updated</span></td>
+                                        <td class="fs-13">Package <span class="mono fs-12">PKG-CAR-01</span></td>
+                                        <td class="fs-12 text-muted">price: <s>&#2547;3,80,000</s> &rarr; <b>&#2547;4,00,000</b> &middot; existing receipts unaffected</td>
+                                        <td class="mono fs-11">103.108.x.x</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fs-13">26 Aug 2026<div class="fs-11 text-muted">10:22:40</div></td>
+                                        <td class="fs-13">Mahi Alam<div class="fs-11 text-muted">Admin</div></td>
+                                        <td><span class="badge bg-warning-subtle text-warning">Approved</span></td>
+                                        <td class="fs-13">Refund <span class="mono fs-12">#204</span></td>
+                                        <td class="fs-12 text-muted">&#2547;25,000 refund approved for Rafi Alam</td>
+                                        <td class="mono fs-11">103.108.x.x</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fs-13">25 Aug 2026<div class="fs-11 text-muted">09:15:33</div></td>
+                                        <td class="fs-13">Mahi Alam<div class="fs-11 text-muted">Admin</div></td>
+                                        <td><span class="badge bg-secondary-subtle text-secondary">Updated</span></td>
+                                        <td class="fs-13">User <span class="fs-12">Farhana Akter</span></td>
+                                        <td class="fs-12 text-muted">status: <s>active</s> &rarr; <b>inactive</b></td>
+                                        <td class="mono fs-11">103.108.x.x</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>

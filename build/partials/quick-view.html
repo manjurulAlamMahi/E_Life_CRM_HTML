@@ -1,0 +1,99 @@
+                <!-- ===== Quick View — everything the slimmed leads table no longer
+                     shows. One modal serves every row: the detail markup is
+                     authored per row in a .qv-payload block and copied in on open,
+                     so rows never share editable state and the payload carries no
+                     ids of its own. Injected at @quick-view. ===== -->
+                <div class="modal fade" id="quickViewModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div>
+                                    <h5 class="modal-title mb-0" id="qv-title">Lead details</h5>
+                                    <span class="fs-12 text-muted" id="qv-subtitle"></span>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Patient journey roadmap — only shown for an actual
+                                     lead/patient row (crm-leads.js gates this on the
+                                     trigger button's data-lead-id looking like a real
+                                     lead id), never for a Sources resource row. Step 1
+                                     shows the lead's current status; the rest are the
+                                     case milestones. Payment is deliberately not a
+                                     journey step (a visa can be applied before any
+                                     money comes in) — it has its own tracker below.
+                                     Steps and current position are set in crm-leads.js. -->
+                                <div class="d-none" id="qv-journey-wrap">
+                                    <div class="fs-11 text-uppercase text-muted fw-semibold mb-2">Patient Journey</div>
+                                    <div class="crm-journey" id="qv-journey">
+                                        <div class="crm-journey-step" data-step="1">
+                                            <div class="crm-journey-icon"><i class="mdi mdi-account-clock-outline js-journey-status-icon"></i></div>
+                                            <div class="crm-journey-caption">Current Status</div>
+                                            <div class="crm-journey-label js-journey-status-label">Lead</div>
+                                        </div>
+                                        <div class="crm-journey-step" data-step="2">
+                                            <div class="crm-journey-icon"><i class="mdi mdi-clipboard-check-outline"></i></div>
+                                            <div class="crm-journey-label">Applied for Package</div>
+                                        </div>
+                                        <div class="crm-journey-step" data-step="3">
+                                            <div class="crm-journey-icon"><i class="mdi mdi-passport"></i></div>
+                                            <div class="crm-journey-label">Visa Applied</div>
+                                        </div>
+                                        <div class="crm-journey-step" data-step="4">
+                                            <div class="crm-journey-icon"><i class="mdi mdi-check-decagram js-journey-visa-icon"></i></div>
+                                            <div class="crm-journey-label js-journey-visa-label">Visa Approved</div>
+                                        </div>
+                                        <div class="crm-journey-step" data-step="5">
+                                            <div class="crm-journey-icon"><i class="mdi mdi-airplane"></i></div>
+                                            <div class="crm-journey-label">Ticket Purchased</div>
+                                        </div>
+                                        <div class="crm-journey-step" data-step="6">
+                                            <div class="crm-journey-icon"><i class="mdi mdi-hospital-building"></i></div>
+                                            <div class="crm-journey-label">Treatment Ongoing</div>
+                                        </div>
+                                        <div class="crm-journey-step" data-step="7">
+                                            <div class="crm-journey-icon"><i class="mdi mdi-flag-checkered"></i></div>
+                                            <div class="crm-journey-label">Returned to Country</div>
+                                        </div>
+                                    </div>
+                                    <!-- Treatment days from the ticket dates (crm-demo.js, CRMTravel). -->
+                                    <div class="fs-13 mb-3 d-none" id="qv-treatment"></div>
+                                    <!-- Payment progress — independent of the journey.
+                                         Shown only when the trigger carries
+                                         data-paid-pct (i.e. a package has been applied). -->
+                                    <div class="d-none" id="qv-payment-wrap">
+                                        <div class="d-flex align-items-center justify-content-between mb-2">
+                                            <div class="fs-11 text-uppercase text-muted fw-semibold">Payment Progress</div>
+                                            <div class="fs-12 fw-semibold js-payment-pct"></div>
+                                        </div>
+                                        <div class="crm-journey" id="qv-payment">
+                                            <div class="crm-journey-step" data-pct="25">
+                                                <div class="crm-journey-icon"><i class="mdi mdi-circle-slice-2"></i></div>
+                                                <div class="crm-journey-label">25% Paid</div>
+                                            </div>
+                                            <div class="crm-journey-step" data-pct="50">
+                                                <div class="crm-journey-icon"><i class="mdi mdi-circle-slice-4"></i></div>
+                                                <div class="crm-journey-label">50% Paid</div>
+                                            </div>
+                                            <div class="crm-journey-step" data-pct="75">
+                                                <div class="crm-journey-icon"><i class="mdi mdi-circle-slice-6"></i></div>
+                                                <div class="crm-journey-label">75% Paid</div>
+                                            </div>
+                                            <div class="crm-journey-step" data-pct="100">
+                                                <div class="crm-journey-icon"><i class="mdi mdi-circle-slice-8"></i></div>
+                                                <div class="crm-journey-label">100% Paid</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="mt-0">
+                                </div>
+                                <div id="qv-body"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#" class="btn btn-outline-primary d-none" id="qv-conversation-btn"><i class="mdi mdi-comment-text-outline me-1"></i>View Conversation</a>
+                                <a href="#" class="btn btn-primary d-none" id="qv-profile-btn"><i class="mdi mdi-account-details-outline me-1"></i>View Profile</a>
+                                <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>

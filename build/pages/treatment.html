@@ -1,0 +1,90 @@
+                <!-- ===== Treatment — patients who have reached the destination.
+                     Ongoing until the outcome is known; each patient is then marked
+                     Successful or Treatment Failed (a reason is required). Treatment
+                     days run from the departure ticket (start) to the return ticket
+                     (end); while there is no return yet they count up to today. The
+                     sidebar entries are deep links (?stage=...) into these tabs. ===== -->
+                <div class="row">
+                    <div class="col-6 col-xl-3"><div class="card stat-tile"><div class="card-body py-3">
+                        <div class="stat-label text-muted">Treatment Ongoing</div>
+                        <div class="stat-value cur text-info" data-count="ongoing">0</div>
+                    </div></div></div>
+                    <div class="col-6 col-xl-3"><div class="card stat-tile"><div class="card-body py-3">
+                        <div class="stat-label text-muted">Successful</div>
+                        <div class="stat-value cur text-success" data-count="successful">0</div>
+                    </div></div></div>
+                    <div class="col-6 col-xl-3"><div class="card stat-tile"><div class="card-body py-3">
+                        <div class="stat-label text-muted">Treatment Failed</div>
+                        <div class="stat-value cur text-danger" data-count="failed">0</div>
+                    </div></div></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                            <ul class="nav nav-pills nav-sm flex-wrap gap-1" id="tr-tabs">
+                                <li class="nav-item"><a href="#" class="nav-link active" data-stage="ongoing">Treatment Ongoing <span class="badge bg-secondary-subtle text-secondary ms-1" data-count="ongoing">0</span></a></li>
+                                <li class="nav-item"><a href="#" class="nav-link" data-stage="successful">Successful <span class="badge bg-secondary-subtle text-secondary ms-1" data-count="successful">0</span></a></li>
+                                <li class="nav-item"><a href="#" class="nav-link" data-stage="failed">Treatment Failed <span class="badge bg-secondary-subtle text-secondary ms-1" data-count="failed">0</span></a></li>
+                            </ul>
+                            <div class="position-relative">
+                                <input type="text" class="form-control form-control-sm" id="tr-search" placeholder="Search by name or Lead ID..." style="padding-left:34px;width:240px;max-width:100%;">
+                                <i class="mdi mdi-magnify position-absolute" style="left:12px;top:50%;transform:translateY(-50%);color:#8a92a4;font-size:15px;line-height:1;pointer-events:none;"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-2 align-items-end mb-3 crm-filter">
+                            <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Package</label><select class="form-select form-select-sm" data-filter="col:Package"><option value="">All packages</option><option>Full-Funded Package</option><option>Partial-Funded Package</option><option>Paid Package</option></select></div>
+                            <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Ticket start from</label><input type="date" class="form-control form-control-sm" data-filter="from:Ticket Start"></div>
+                            <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Ticket start to</label><input type="date" class="form-control form-control-sm" data-filter="to:Ticket Start"></div>
+                            <div class="col-auto"><button type="button" class="btn btn-light btn-sm" data-filter-reset title="Reset filters"><i class="mdi mdi-refresh"></i></button></div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0" id="tr-table">
+                                <thead class="table-light">
+                                    <tr><th>Lead ID</th><th>Patient / Guardian</th><th>Package</th><th>Ticket Start<div class="fs-11 text-muted fw-normal">departure</div></th><th>Ticket End<div class="fs-11 text-muted fw-normal">return flight</div></th><th>Treatment Days</th><th>Details</th><th>Status</th><th class="no-sort">Action</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-stage="ongoing" data-lead-id="ELH-L-2026-000395" data-patient="Sajid Hasan" data-guardian="Mizanur Rahman" data-package="Full-Funded Package" data-ticket-start="2026-08-10" data-ticket-end="">
+                                        <td class="mono fs-12">ELH-L-2026-000395</td>
+                                        <td><div class="fw-semibold">Sajid Hasan</div><div class="fs-12 text-muted">G: Mizanur Rahman</div></td>
+                                        <td class="fs-13">Full-Funded Package</td>
+                                        <td class="fs-13 tr-start"></td><td class="fs-13 tr-end"></td><td class="tr-days text-nowrap"></td><td class="fs-13 tr-details"></td><td class="tr-status"></td><td class="tr-action text-nowrap"></td>
+                                    </tr>
+                                    <tr data-stage="ongoing" data-lead-id="ELH-L-2026-000389" data-patient="Fatema Begum" data-guardian="Jalal Uddin" data-package="Partial-Funded Package" data-ticket-start="2026-09-15" data-ticket-end="2026-10-20">
+                                        <td class="mono fs-12">ELH-L-2026-000389</td>
+                                        <td><div class="fw-semibold">Fatema Begum</div><div class="fs-12 text-muted">G: Jalal Uddin</div></td>
+                                        <td class="fs-13">Partial-Funded Package</td>
+                                        <td class="fs-13 tr-start"></td><td class="fs-13 tr-end"></td><td class="tr-days text-nowrap"></td><td class="fs-13 tr-details"></td><td class="tr-status"></td><td class="tr-action text-nowrap"></td>
+                                    </tr>
+                                    <tr data-stage="ongoing" data-lead-id="ELH-L-2026-000383" data-patient="Rubel Mia" data-guardian="Rubel Mia" data-package="Paid Package" data-ticket-start="2026-09-20" data-ticket-end="">
+                                        <td class="mono fs-12">ELH-L-2026-000383</td>
+                                        <td><div class="fw-semibold">Rubel Mia</div><div class="fs-12 text-muted">G: Rubel Mia</div></td>
+                                        <td class="fs-13">Paid Package</td>
+                                        <td class="fs-13 tr-start"></td><td class="fs-13 tr-end"></td><td class="tr-days text-nowrap"></td><td class="fs-13 tr-details"></td><td class="tr-status"></td><td class="tr-action text-nowrap"></td>
+                                    </tr>
+                                    <tr data-stage="successful" data-lead-id="ELH-L-2026-000380" data-patient="Nurul Islam" data-guardian="Nurul Islam" data-package="Paid Package" data-ticket-start="2026-07-05" data-ticket-end="2026-08-18" data-ret-flight="US-Bangla BS-212" data-ret-pnr="PNR 4PX9TU" data-outcome-date="2026-08-15" data-note="Treatment completed, patient returned home.">
+                                        <td class="mono fs-12">ELH-L-2026-000380</td>
+                                        <td><div class="fw-semibold">Nurul Islam</div><div class="fs-12 text-muted">G: Nurul Islam</div></td>
+                                        <td class="fs-13">Paid Package</td>
+                                        <td class="fs-13 tr-start"></td><td class="fs-13 tr-end"></td><td class="tr-days text-nowrap"></td><td class="fs-13 tr-details"></td><td class="tr-status"></td><td class="tr-action text-nowrap"></td>
+                                    </tr>
+                                    <tr data-stage="successful" data-lead-id="ELH-L-2026-000377" data-patient="Rina Akter" data-guardian="Shafiq Ahmed" data-package="Full-Funded Package" data-ticket-start="2026-06-02" data-ticket-end="2026-08-07" data-ret-flight="Biman BG-2022" data-ret-pnr="PNR 7HN3QA" data-outcome-date="2026-08-05" data-note="Surgery successful, follow-up in 3 months.">
+                                        <td class="mono fs-12">ELH-L-2026-000377</td>
+                                        <td><div class="fw-semibold">Rina Akter</div><div class="fs-12 text-muted">G: Shafiq Ahmed</div></td>
+                                        <td class="fs-13">Full-Funded Package</td>
+                                        <td class="fs-13 tr-start"></td><td class="fs-13 tr-end"></td><td class="tr-days text-nowrap"></td><td class="fs-13 tr-details"></td><td class="tr-status"></td><td class="tr-action text-nowrap"></td>
+                                    </tr>
+                                    <tr data-stage="failed" data-lead-id="ELH-L-2026-000372" data-patient="Kabir Hossain" data-guardian="Amina Khatun" data-package="Partial-Funded Package" data-ticket-start="2026-06-10" data-ticket-end="2026-06-30" data-ret-flight="Biman BG-2024" data-outcome-date="2026-06-28" data-note="Hospital found the condition inoperable at the advanced stage.">
+                                        <td class="mono fs-12">ELH-L-2026-000372</td>
+                                        <td><div class="fw-semibold">Kabir Hossain</div><div class="fs-12 text-muted">G: Amina Khatun</div></td>
+                                        <td class="fs-13">Partial-Funded Package</td>
+                                        <td class="fs-13 tr-start"></td><td class="fs-13 tr-end"></td><td class="tr-days text-nowrap"></td><td class="fs-13 tr-details"></td><td class="tr-status"></td><td class="tr-action text-nowrap"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p class="text-muted fs-13 text-center py-4 d-none" id="tr-empty">Nothing to show here.</p>
+                        </div>
+                    </div>
+                </div>

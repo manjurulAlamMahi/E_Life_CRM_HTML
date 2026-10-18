@@ -1,0 +1,253 @@
+                <!-- ===== Printable Lead Registration form — reachable both from
+                     the post-save overview and from any row's Print action on
+                     the list, so it must populate from either source. Kept
+                     deliberately plain (black on white, no signatures, no
+                     Drive link — this is a paper form, not a receipt), and
+                     organised into the same Guardian / Patient / Address /
+                     Lead / Package sections as the Add Lead form itself.
+                     Print rules live in crm-brand.css, scoped to
+                     #leadPrintModal.show. ===== -->
+                <div class="modal fade" id="leadPrintModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header no-print">
+                                <h5 class="modal-title"><i class="mdi mdi-file-account-outline me-1"></i>Lead Registration Form</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="lead-form-sheet">
+                                    <!-- Letterhead from Settings → Company Profile (crm-demo.js fills it). -->
+                                    <div class="lf-logo"><img src="assets/logo.png" data-company-logo alt="E Life Healthcare"></div>
+                                    <div class="lf-title" data-company="name" data-company-case="upper">E LIFE HEALTHCARE</div>
+                                    <div class="lf-contact" data-company="contact">House 42, Road 6, Dhanmondi, Dhaka 1205, Bangladesh<br>+880 9600-123456 &middot; info@elifehealthcare.com</div>
+                                    <div class="lf-sub">Lead Registration Form</div>
+                                    <div class="lf-meta">
+                                        <span>Lead ID: <strong class="mono" id="lp-id"></strong></span>
+                                        <span>Registered: <span id="lp-date"></span></span>
+                                    </div>
+
+                                    <div class="lf-section">Guardian Information</div>
+                                    <div class="lf-row"><div class="lf-label">Name</div><div class="lf-value" id="lp-guardian"></div></div>
+                                    <div class="lf-row"><div class="lf-label">Phone</div><div class="lf-value" id="lp-phone"></div></div>
+                                    <div class="lf-row"><div class="lf-label">Alternative Phone</div><div class="lf-value" id="lp-altphone"></div></div>
+                                    <div class="lf-row"><div class="lf-label">Email</div><div class="lf-value" id="lp-email"></div></div>
+
+                                    <div class="lf-section">Patient Information</div>
+                                    <div class="lf-row"><div class="lf-label">Name</div><div class="lf-value" id="lp-patient"></div></div>
+                                    <div class="lf-row"><div class="lf-label">Date of Birth / Age</div><div class="lf-value" id="lp-dobage"></div></div>
+                                    <div class="lf-row"><div class="lf-label">Gender</div><div class="lf-value" id="lp-gender"></div></div>
+                                    <div class="lf-row"><div class="lf-label">Issue / Condition</div><div class="lf-value" id="lp-condition"></div></div>
+
+                                    <div class="lf-section">Address</div>
+                                    <div class="lf-row"><div class="lf-label">Division / District / Upazila</div><div class="lf-value" id="lp-geo"></div></div>
+                                    <div class="lf-row"><div class="lf-label">Address</div><div class="lf-value" id="lp-village"></div></div>
+                                    <div class="lf-row"><div class="lf-label">Post Code</div><div class="lf-value" id="lp-postcode"></div></div>
+
+                                    <div class="lf-section">Lead Details</div>
+                                    <div class="lf-row"><div class="lf-label">Source</div><div class="lf-value" id="lp-source"></div></div>
+                                    <div class="lf-row"><div class="lf-label">Secondary / Campaign</div><div class="lf-value" id="lp-secondary"></div></div>
+                                    <div class="lf-row"><div class="lf-label">Assigned Executive</div><div class="lf-value" id="lp-executive"></div></div>
+                                    <div class="lf-row"><div class="lf-label">Lead Date</div><div class="lf-value" id="lp-date-lead"></div></div>
+
+                                    <div class="lf-section">Package &amp; Value</div>
+                                    <div class="lf-row"><div class="lf-label">Expected Value</div><div class="lf-value" id="lp-expected"></div></div>
+                                    <div class="lf-row"><div class="lf-label">Offered Value</div><div class="lf-value" id="lp-offered"></div></div>
+                                    <div class="lf-row"><div class="lf-label">Package Offered</div><div class="lf-value" id="lp-package"></div></div>
+
+                                    <div class="lf-section">Notes</div>
+                                    <div class="fs-13" id="lp-notes"></div>
+                                </div>
+                            </div>
+                            <div class="modal-footer no-print">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                <button class="btn btn-outline-primary" id="lp-print"><i class="mdi mdi-printer me-1"></i>Print</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== Edit Lead — mirrors the Add Lead field set. This is a
+                     static preview with no backend, so only the fields already
+                     visible on the row (guardian, patient, phone, source) are
+                     prefilled; the rest are left for the executive to fill in,
+                     same as Add Lead. Saving is cosmetic (toast), matching every
+                     other action in this module. ===== -->
+                <div class="modal fade" id="editLeadModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Edit Lead <span class="fs-12 text-muted mono ms-1" id="el-lead-id"></span></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <!-- Patient photo — shown as the avatar on the patient
+                                         profile. Previewed locally on pick; static demo, so
+                                         nothing is uploaded. -->
+                                    <div class="col-12">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="crm-avatar crm-avatar-lg" id="el-photo-preview"><i class="mdi mdi-account"></i></div>
+                                            <div class="flex-grow-1">
+                                                <label class="form-label mb-1" for="el-photo">Patient Photo <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                                <input type="file" class="form-control form-control-sm" id="el-photo" accept="image/*">
+                                                <div class="form-text fs-11">JPG or PNG, a clear face photo.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Unlike Add Lead, these are plain editable fields with no
+                                         lock/checkbox — editing an existing lead is exactly what
+                                         this form is for, so both the date and the assigned
+                                         executive can be changed directly. -->
+                                    <div class="col-12">
+                                        <div class="border rounded-3 p-3 bg-light-subtle">
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Lead Date</label>
+                                                    <input type="date" class="form-control" id="el-date">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Assigned Sales Executive</label>
+                                                    <select class="form-select" id="el-executive">
+                                                        <option>Tanvir Ahmed</option><option>Nusrat Jahan</option><option>Sabbir Hossain</option><option>Farhana Akter</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12"><h6 class="text-uppercase fs-11 fw-bold text-muted border-bottom pb-1 mb-0">Guardian Information</h6></div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Guardian Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="el-guardian" placeholder="Guardian full name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Guardian Phone <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="el-phone" placeholder="+880 1XXX-XXXXXX">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Alternative Phone</label>
+                                        <input type="text" class="form-control" id="el-altphone" placeholder="Optional">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Guardian Email <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                        <input type="email" class="form-control" id="el-email" placeholder="name@example.com">
+                                    </div>
+
+                                    <div class="col-12"><h6 class="text-uppercase fs-11 fw-bold text-muted border-bottom pb-1 mb-0 mt-2">Patient Information</h6></div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Patient Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="el-patient" placeholder="Patient full name">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">Patient Date of Birth</label>
+                                        <input type="date" class="form-control" id="el-dob">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">Patient Age</label>
+                                        <input type="text" class="form-control" id="el-age" placeholder="From date of birth" readonly>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Patient Gender</label>
+                                        <select class="form-select" id="el-gender"><option>Select</option><option>Male</option><option>Female</option><option>Other</option></select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Patient Issue / Condition</label>
+                                        <textarea class="form-control" id="el-condition" rows="3"></textarea>
+                                    </div>
+
+                                    <div class="col-12"><h6 class="text-uppercase fs-11 fw-bold text-muted border-bottom pb-1 mb-0 mt-2">Address</h6></div>
+                                    <div class="col-12">
+                                        <div class="border rounded-3 p-3 bg-light-subtle">
+                                            <div class="row g-3">
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Division <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                                    <select class="form-select" id="el-division">
+                                                        <option value="">Select division</option>
+                                                        <option>Dhaka</option><option>Chattogram</option><option>Rajshahi</option>
+                                                        <option>Khulna</option><option>Barishal</option><option>Sylhet</option>
+                                                        <option>Rangpur</option><option>Mymensingh</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">District <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                                    <select class="form-select" id="el-district" disabled><option value="">Select division first</option></select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Upazila <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                                    <select class="form-select" id="el-upazila" disabled><option value="">Select district first</option></select>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <label class="form-label">Address <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                                    <input type="text" class="form-control" id="el-village" placeholder="House / road / village / area">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Post Code <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                                    <input type="text" class="form-control" id="el-postcode" placeholder="Optional">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12"><h6 class="text-uppercase fs-11 fw-bold text-muted border-bottom pb-1 mb-0 mt-2">Lead &amp; Source Details</h6></div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Lead Source <span class="text-danger">*</span></label>
+                                        <select class="form-select" id="el-source"><option>Select source</option><option>Noman</option><option>Dr. Ilias Patowary</option><option>Facebook</option><option>Website</option><option>Hospital</option><option>Doctor Referral</option><option>Walk-in</option><option>Campaign</option><option>Other</option></select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Secondary Source / Campaign</label>
+                                        <input type="text" class="form-control" id="el-secondary" placeholder="Optional">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Priority <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                        <select class="form-select" id="el-priority" data-crm-list="leadPriorities">
+                                            <option value="" selected>Select priority</option>
+                                            <option>Normal</option><option>High</option><option>Critical</option><option>Special</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-12"><h6 class="text-uppercase fs-11 fw-bold text-muted border-bottom pb-1 mb-0 mt-2">Package &amp; Value</h6></div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Expected Value</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">&#2547;</span>
+                                            <input type="number" class="form-control" id="el-expected" placeholder="0.00">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Offered Value</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">&#2547;</span>
+                                            <input type="number" class="form-control" id="el-offered" placeholder="0.00">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Package Offered</label>
+                                        <select class="form-select" id="el-package-offered">
+                                            <option value="">Not yet offered</option>
+                                            <option>Full-Funded Package</option>
+                                            <option>Partial-Funded Package</option>
+                                            <option>Paid Package</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-12"><h6 class="text-uppercase fs-11 fw-bold text-muted border-bottom pb-1 mb-0 mt-2">Documents &amp; Notes</h6></div>
+                                    <div class="col-12">
+                                        <label class="form-label">Documents <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="mdi mdi-google-drive"></i></span>
+                                            <input type="url" class="form-control" id="el-drive" placeholder="https://drive.google.com/...">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Notes</label>
+                                        <textarea class="form-control" id="el-notes" rows="2" placeholder="Any additional information"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-primary" id="el-save"><i class="mdi mdi-content-save-outline me-1"></i>Save Changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>

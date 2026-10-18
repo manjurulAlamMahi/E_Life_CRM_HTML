@@ -1,0 +1,161 @@
+                <div class="row">
+                    <div class="col-md-4"><div class="card stat-tile border-start border-3 border-success"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-success-subtle text-success"><i class="mdi mdi-account-check-outline"></i></span>
+                        <div><div class="stat-value cur text-success" data-pm-tile="count">3</div><div class="stat-label text-muted">Fully Paid Patients</div></div>
+                    </div></div></div>
+                    <div class="col-md-4"><div class="card stat-tile border-start border-3 border-primary"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-primary-subtle text-primary"><i class="mdi mdi-cash-multiple"></i></span>
+                        <div><div class="stat-value cur" data-pm-tile="paid">&#2547;9,50,000</div><div class="stat-label text-muted">Total Collected</div></div>
+                    </div></div></div>
+                    <div class="col-md-4"><div class="card stat-tile border-start border-3 border-info"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-info-subtle text-info"><i class="mdi mdi-receipt"></i></span>
+                        <div><div class="stat-value cur" data-pm-tile="payments">5</div><div class="stat-label text-muted">Payments Recorded</div></div>
+                    </div></div></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-2">
+                        <div>
+                            <h5 class="card-title mb-0">Payment Completed</h5>
+                            <p class="fs-12 text-muted mb-0">Patients with nothing left to pay. Open <span class="fw-semibold">History</span> to reprint any single payment's invoice, or print the whole package.</p>
+                        </div>
+                        <div class="position-relative">
+                            <input type="text" class="form-control form-control-sm" id="pm-search" placeholder="Search patient, guardian or phone..." style="padding-left:34px;width:260px;max-width:100%;">
+                            <i class="mdi mdi-magnify position-absolute" style="left:12px;top:50%;transform:translateY(-50%);color:#8a92a4;font-size:15px;line-height:1;pointer-events:none;"></i>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-2 align-items-end mb-3 crm-filter">
+                            <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Source</label><select class="form-select form-select-sm" data-filter="col:Source"><option value="">All sources</option><option>Noman</option><option>Dr. Ilias Patowary</option><option>Facebook</option><option>Website</option><option>Hospital</option><option>Doctor Referral</option><option>Walk-in</option><option>Campaign</option><option>Other</option></select></div>
+                            <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Package</label><select class="form-select form-select-sm" data-filter="col:Total Paid"><option value="">All packages</option><option>Full-Funded Package</option><option>Partial-Funded Package</option><option>Paid Package</option></select></div>
+                            <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Last payment from</label><input type="date" class="form-control form-control-sm" data-filter="from:Last Payment"></div>
+                            <div class="col-6 col-md-2"><label class="form-label fs-12 mb-1">Last payment to</label><input type="date" class="form-control form-control-sm" data-filter="to:Last Payment"></div>
+                            <div class="col-auto"><button type="button" class="btn btn-light btn-sm" data-filter-reset title="Reset filters"><i class="mdi mdi-refresh"></i></button></div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0" data-pm-list="done">
+                                <thead class="table-light"><tr><th>Patient / Guardian</th><th>Phone</th><th>Source</th><th>Last Payment</th><th class="text-end">Total Paid</th><th class="no-sort text-end">Actions</th></tr></thead>
+                                <tbody>
+                                        <tr data-pm-row data-due-row data-lead-id="ELH-L-2026-000410" data-lead-name="Sultana Begum" data-lead-patient="Nadia Sultana" data-due-bdt="0" data-due-usd="0">
+                                            <td><div class="fw-semibold">Nadia Sultana</div><div class="fs-12 text-muted">G: Sultana Begum</div></td>
+                                            <td class="fs-13">+880 1911-778899</td>
+                                            <td><span class="badge bg-info-subtle text-info">Facebook</span></td>
+                                            <td class="fs-13 pm-last"><span class="cur">&#2547;1,00,000</span><div class="fs-12 text-muted">30 Aug 2026 &middot; bKash</div></td>
+                                            <td class="text-end pm-paid"><div class="cur fw-bold text-success">&#2547;3,00,000</div><div class="fs-12 text-muted">Paid Package</div></td>
+                                            <td class="text-end"><div class="d-flex gap-1 justify-content-end flex-wrap">
+                                                <button type="button" class="btn btn-sm btn-light pm-open-history"><i class="mdi mdi-history me-1"></i>History</button>
+                                                <button type="button" class="btn btn-sm btn-primary pm-open-invoice" title="Invoice for the whole package"><i class="mdi mdi-file-document-multiple-outline me-1"></i>Package Invoice</button>
+                                            </div></td>
+                                        </tr>
+                                        <tr data-pm-row data-due-row data-lead-id="ELH-L-2026-000408" data-lead-name="Jahanara Khatun" data-lead-patient="Mim Akter" data-due-bdt="0" data-due-usd="0">
+                                            <td><div class="fw-semibold">Mim Akter</div><div class="fs-12 text-muted">G: Jahanara Khatun</div></td>
+                                            <td class="fs-13">+880 1677-112233</td>
+                                            <td><span class="badge bg-primary-subtle text-primary">Hospital</span></td>
+                                            <td class="fs-13 pm-last"><span class="cur">&#2547;2,50,000</span><div class="fs-12 text-muted">20 Jun 2026 &middot; Bank Transfer</div></td>
+                                            <td class="text-end pm-paid"><div class="cur fw-bold text-success">&#2547;2,50,000</div><div class="fs-12 text-muted">Partial-Funded Package</div></td>
+                                            <td class="text-end"><div class="d-flex gap-1 justify-content-end flex-wrap">
+                                                <button type="button" class="btn btn-sm btn-light pm-open-history"><i class="mdi mdi-history me-1"></i>History</button>
+                                                <button type="button" class="btn btn-sm btn-primary pm-open-invoice" title="Invoice for the whole package"><i class="mdi mdi-file-document-multiple-outline me-1"></i>Package Invoice</button>
+                                            </div></td>
+                                        </tr>
+                                        <tr data-pm-row data-due-row data-lead-id="ELH-L-2026-000405" data-lead-name="Jamal Uddin" data-lead-patient="Jamal Uddin" data-due-bdt="0" data-due-usd="0">
+                                            <td><div class="fw-semibold">Jamal Uddin</div><div class="fs-12 text-muted">G: Jamal Uddin</div></td>
+                                            <td class="fs-13">+880 1745-330011</td>
+                                            <td><span class="badge bg-success-subtle text-success">Dr. Ilias Patowary</span></td>
+                                            <td class="fs-13 pm-last"><span class="cur">&#2547;4,00,000</span><div class="fs-12 text-muted">30 Aug 2026 &middot; Cash</div></td>
+                                            <td class="text-end pm-paid"><div class="cur fw-bold text-success">&#2547;4,00,000</div><div class="fs-12 text-muted">Full-Funded Package</div></td>
+                                            <td class="text-end"><div class="d-flex gap-1 justify-content-end flex-wrap">
+                                                <button type="button" class="btn btn-sm btn-light pm-open-history"><i class="mdi mdi-history me-1"></i>History</button>
+                                                <button type="button" class="btn btn-sm btn-primary pm-open-invoice" title="Invoice for the whole package"><i class="mdi mdi-file-document-multiple-outline me-1"></i>Package Invoice</button>
+                                            </div></td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                            <p class="text-muted fs-13 text-center py-4 mb-0 d-none" id="pm-empty">No fully paid patients yet.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The patients on this page, with every payment — the source for
+                     Pay Now, Payment History and each invoice (crm-payments.js).
+                     The rows above are the same figures, authored in the page so
+                     build/verify-money.js can reconcile them against Deals. -->
+                <script type="application/json" id="pm-data">
+                {
+                    "ELH-L-2026-000410": {
+                        "patient": "Nadia Sultana",
+                        "guardian": "Sultana Begum",
+                        "phone": "+880 1911-778899",
+                        "address": "",
+                        "pkgId": "ELH-D-2026-000092",
+                        "pkgName": "Paid Package",
+                        "listPrice": 300000,
+                        "agreed": 300000,
+                        "agreedUsd": 4000,
+                        "appliedOn": "21 Aug 2026",
+                        "appliedBy": "Sabbir Hossain",
+                        "payments": [
+                            {
+                                "date": "21 Aug 2026",
+                                "type": "Advance",
+                                "method": "Bank Transfer",
+                                "receipt": "MR-000241",
+                                "amount": 200000
+                            },
+                            {
+                                "date": "30 Aug 2026",
+                                "type": "2nd instalment",
+                                "method": "bKash",
+                                "receipt": "MR-000268",
+                                "amount": 100000
+                            }
+                        ]
+                    },
+                    "ELH-L-2026-000408": {
+                        "patient": "Mim Akter",
+                        "guardian": "Jahanara Khatun",
+                        "phone": "+880 1677-112233",
+                        "address": "",
+                        "pkgId": "ELH-D-2026-000091",
+                        "pkgName": "Partial-Funded Package",
+                        "listPrice": 250000,
+                        "agreed": 250000,
+                        "agreedUsd": 2500,
+                        "appliedOn": "20 Jun 2026",
+                        "appliedBy": "Tanvir Ahmed",
+                        "payments": [
+                            {
+                                "date": "20 Jun 2026",
+                                "type": "Advance",
+                                "method": "Bank Transfer",
+                                "receipt": "MR-000150",
+                                "amount": 250000
+                            }
+                        ]
+                    },
+                    "ELH-L-2026-000405": {
+                        "patient": "Jamal Uddin",
+                        "guardian": "Jamal Uddin",
+                        "phone": "+880 1745-330011",
+                        "address": "",
+                        "pkgId": "ELH-D-2026-000090",
+                        "pkgName": "Full-Funded Package",
+                        "listPrice": 400000,
+                        "agreed": 400000,
+                        "agreedUsd": 0,
+                        "appliedOn": "30 Aug 2026",
+                        "appliedBy": "Nusrat Jahan",
+                        "payments": [
+                            {
+                                "date": "30 Aug 2026",
+                                "type": "Full settlement",
+                                "method": "Cash",
+                                "receipt": "MR-000271",
+                                "amount": 400000
+                            }
+                        ]
+                    }
+                }
+                </script>
+
+                <!--@payment-modals-->

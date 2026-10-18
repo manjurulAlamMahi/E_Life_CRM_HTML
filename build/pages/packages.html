@@ -1,0 +1,167 @@
+                <!-- ============ TILES ============ -->
+                <div class="row">
+                    <div class="col-xl-4 col-md-6"><div class="card stat-tile"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-primary-subtle text-primary"><i class="mdi mdi-package-variant-closed"></i></span>
+                        <div><div class="stat-value">3</div><div class="stat-label text-muted">Total Packages</div></div>
+                    </div></div></div>
+                    <div class="col-xl-4 col-md-6"><div class="card stat-tile"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-info-subtle text-info"><i class="mdi mdi-handshake-outline"></i></span>
+                        <div><div class="stat-value">13</div><div class="stat-label text-muted">Deals Using Packages</div></div>
+                    </div></div></div>
+                    <div class="col-xl-4 col-md-6"><div class="card stat-tile"><div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon bg-warning-subtle text-warning"><i class="mdi mdi-currency-usd"></i></span>
+                        <div><div class="stat-value">2 <span class="fs-14 text-muted">of 3</span></div><div class="stat-label text-muted">Have Partial Dollar</div></div>
+                    </div></div></div>
+                </div>
+
+                <!-- ============ PACKAGES ============ -->
+                <!-- The package is the single concept the money hangs off. Whether a
+                     package carries a partial dollar is an attribute set when it is created,
+                     and it is what the Apply block reads to decide whether to show the
+                     Partial Dollar box. -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-2">
+                                <div>
+                                    <h5 class="card-title mb-0">Packages</h5>
+                                    <p class="fs-12 text-muted mb-0">Every lead applies under one of these. Every package except Full-Funded also carries a partial dollar amount, tracked only on Dollar Payments.</p>
+                                </div>
+                                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addPackageModal"><i class="mdi mdi-plus me-1"></i>Add Package</button>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table crm-table align-middle">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Code</th>
+                                                <th>Package</th>
+                                                <th>Currencies</th>
+                                                <th class="text-end">Default Price</th>
+                                                <th class="text-end">Usage</th>
+                                                <th>Active</th>
+                                                <th class="no-sort">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr data-package-code="PKG-FULL" data-active="true">
+                                                <td class="mono fs-12">PKG-FULL</td>
+                                                <td>
+                                                    <div class="fw-semibold">Full-Funded Package</div>
+                                                </td>
+                                                <td><span class="badge bg-secondary-subtle text-secondary">Taka only</span></td>
+                                                <td class="text-end"><div class="cur fs-13">&#2547;4,00,000</div><div class="fs-11 text-muted">&mdash;</div></td>
+                                                <td class="text-end"><span class="fw-bold fs-14 crm-pkg-usage">5</span><div class="fs-11 text-muted">deals</div></td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0">
+                                                        <input class="form-check-input crm-package-toggle" type="checkbox" role="switch" checked>
+                                                        <label class="form-check-label fs-12 crm-package-state">On</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Edit" data-bs-toggle="modal" data-bs-target="#addPackageModal"
+                                                                data-pkg-name="Full-Funded Package" data-pkg-price-bdt="400000" data-pkg-price-usd="" data-pkg-accepts-usd="false"><i class="mdi mdi-pencil-outline"></i></button>
+                                                        <button class="btn btn-sm btn-icon btn-light crm-package-remove" title="Remove" data-pkg-name="Full-Funded Package" data-usage="5"><i class="mdi mdi-trash-can-outline"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-package-code="PKG-PARTIAL" data-active="true">
+                                                <td class="mono fs-12">PKG-PARTIAL</td>
+                                                <td>
+                                                    <div class="fw-semibold">Partial-Funded Package</div>
+                                                </td>
+                                                <td><span class="badge bg-warning-subtle text-warning">Taka + Partial Dollar</span></td>
+                                                <td class="text-end"><div class="cur fs-13">&#2547;2,50,000</div><div class="cur fs-12 text-muted">$2,500</div></td>
+                                                <td class="text-end"><span class="fw-bold fs-14 crm-pkg-usage">4</span><div class="fs-11 text-muted">deals</div></td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0">
+                                                        <input class="form-check-input crm-package-toggle" type="checkbox" role="switch" checked>
+                                                        <label class="form-check-label fs-12 crm-package-state">On</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Edit" data-bs-toggle="modal" data-bs-target="#addPackageModal"
+                                                                data-pkg-name="Partial-Funded Package" data-pkg-price-bdt="250000" data-pkg-price-usd="2500" data-pkg-accepts-usd="true"><i class="mdi mdi-pencil-outline"></i></button>
+                                                        <button class="btn btn-sm btn-icon btn-light crm-package-remove" title="Remove" data-pkg-name="Partial-Funded Package" data-usage="4"><i class="mdi mdi-trash-can-outline"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr data-package-code="PKG-PAID" data-active="true">
+                                                <td class="mono fs-12">PKG-PAID</td>
+                                                <td>
+                                                    <div class="fw-semibold">Paid Package</div>
+                                                </td>
+                                                <td><span class="badge bg-warning-subtle text-warning">Taka + Partial Dollar</span></td>
+                                                <td class="text-end"><div class="cur fs-13">&#2547;3,00,000</div><div class="cur fs-12 text-muted">$4,000</div></td>
+                                                <td class="text-end"><span class="fw-bold fs-14 crm-pkg-usage">4</span><div class="fs-11 text-muted">deals</div></td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0">
+                                                        <input class="form-check-input crm-package-toggle" type="checkbox" role="switch" checked>
+                                                        <label class="form-check-label fs-12 crm-package-state">On</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        <button class="btn btn-sm btn-icon btn-light" title="Edit" data-bs-toggle="modal" data-bs-target="#addPackageModal"
+                                                                data-pkg-name="Paid Package" data-pkg-price-bdt="300000" data-pkg-price-usd="4000" data-pkg-accepts-usd="true"><i class="mdi mdi-pencil-outline"></i></button>
+                                                        <button class="btn btn-sm btn-icon btn-light crm-package-remove" title="Remove" data-pkg-name="Paid Package" data-usage="4"><i class="mdi mdi-trash-can-outline"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="fs-12 text-muted mt-2"><i class="mdi mdi-information-outline me-1"></i>A package in use cannot be removed &mdash; its deals would be orphaned. Move them to another package first.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ ADD / EDIT PACKAGE ============ -->
+                <!-- One form serves both: opening it from an Edit button pre-fills it
+                     from that row's data attributes. -->
+                <div class="modal fade" id="addPackageModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title mb-0 pk-modal-title">Add Package</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <div class="col-12">
+                                        <label class="form-label">Package name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="pk-name" placeholder="e.g. Sponsored Patients">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Default price &mdash; Taka <span class="text-danger">*</span></label>
+                                        <div class="input-group"><span class="input-group-text">&#2547;</span><input type="number" class="form-control" id="pk-price-bdt" min="0" placeholder="0"></div>
+                                        <div class="form-text fs-11">A starting point only &mdash; the price is negotiated per patient.</div>
+                                    </div>
+
+                                    <!-- The answer here is what decides whether the Apply block
+                                         shows a dollar column for this package at all. -->
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="pk-accepts-usd">
+                                            <label class="form-check-label" for="pk-accepts-usd">This package has a partial dollar amount</label>
+                                        </div>
+                                        <div class="form-text fs-11">Leave unticked for a package settled in taka only.</div>
+                                    </div>
+
+                                    <div class="col-12 d-none" id="pk-usd-wrap">
+                                        <label class="form-label">Default price &mdash; Dollar</label>
+                                        <div class="input-group"><span class="input-group-text">$</span><input type="number" class="form-control" id="pk-price-usd" min="0" placeholder="0"></div>
+                                        <div class="form-text fs-11">Tracked as its own balance. Never converted to taka.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-primary" data-bs-dismiss="modal">Save Package</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>

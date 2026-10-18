@@ -1,0 +1,811 @@
+                <!-- ===== Summary strip — live counts off the rows below (see
+                     renderLeadCounts in crm-leads.js), so these can never drift
+                     from what the table actually shows. ===== -->
+                <div class="row">
+                    <div class="col-6 col-xl-3">
+                        <div class="card stat-tile"><div class="card-body py-3">
+                            <div class="stat-label text-muted">Total Lead</div>
+                            <div class="stat-value cur" id="lead-count-all">0</div>
+                        </div></div>
+                    </div>
+                    <div class="col-6 col-xl-3">
+                        <div class="card stat-tile"><div class="card-body py-3">
+                            <div class="stat-label text-muted">Follow Up</div>
+                            <div class="stat-value cur text-info" id="lead-count-followup">0</div>
+                        </div></div>
+                    </div>
+                    <div class="col-6 col-xl-3">
+                        <div class="card stat-tile"><div class="card-body py-3">
+                            <div class="stat-label text-muted">Interested</div>
+                            <div class="stat-value cur text-primary" id="lead-count-interested">0</div>
+                        </div></div>
+                    </div>
+                    <div class="col-6 col-xl-3">
+                        <div class="card stat-tile"><div class="card-body py-3">
+                            <div class="stat-label text-muted">Not Interested</div>
+                            <div class="stat-value cur text-danger" id="lead-count-not-interested">0</div>
+                        </div></div>
+                    </div>
+                </div>
+
+                <!-- ===== Filters — Status now filters the table directly (the
+                     tab strip that used to duplicate this is gone), and Start
+                     Date / End Date replace the old free-text range field with
+                     something a date picker actually drives. Wired in
+                     crm-leads.js: Filter re-reads every field and redraws the
+                     table through DataTables' search pipeline. ===== -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row g-2 align-items-end" id="lead-filter-bar">
+                            <div class="col-6 col-md-2">
+                                <label class="form-label fs-12 mb-1">Start Date</label>
+                                <input type="date" class="form-control form-control-sm" id="lf-start-date">
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <label class="form-label fs-12 mb-1">End Date</label>
+                                <input type="date" class="form-control form-control-sm" id="lf-end-date">
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <label class="form-label fs-12 mb-1">Status</label>
+                                <select class="form-select form-select-sm" id="lf-status">
+                                    <option value="all">All statuses</option>
+                                    <option value="followup">Follow Up</option>
+                                    <option value="interested">Interested</option>
+                                    <option value="not-interested">Not Interested</option>
+                                    <option value="unreachable">Unreachable</option>
+                                </select>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <label class="form-label fs-12 mb-1">Source</label>
+                                <select class="form-select form-select-sm" id="lf-source">
+                                    <option value="">All sources</option>
+                                    <option>Noman</option><option>Dr. Ilias Patowary</option><option>Facebook</option>
+                                    <option>Website</option><option>Hospital</option><option>Doctor Referral</option>
+                                    <option>Walk-in</option><option>Campaign</option><option>Other</option>
+                                </select>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <label class="form-label fs-12 mb-1">Sales Executive</label>
+                                <select class="form-select form-select-sm" id="lf-executive">
+                                    <option value="">All executives</option>
+                                    <option>Tanvir Ahmed</option><option>Nusrat Jahan</option>
+                                    <option>Sabbir Hossain</option><option>Farhana Akter</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-2 d-flex gap-2">
+                                <button class="btn btn-primary btn-sm w-100" id="lf-apply-btn"><i class="mdi mdi-filter-variant me-1"></i>Filter</button>
+                                <button type="button" class="btn btn-light btn-sm" id="lf-reset-btn" title="Reset filters"><i class="mdi mdi-refresh"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== Leads table ===== -->
+                <div class="card">
+                    <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-2">
+                        <h5 class="card-title mb-0">All Leads</h5>
+                        <div class="d-flex gap-2">
+                            <a href="visa-eligible.html" class="btn btn-sm btn-label-success"><i class="mdi mdi-passport me-1"></i>Eligible for Visa</a>
+                            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addLeadModal"><i class="mdi mdi-plus me-1"></i>Add Lead</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-- Bulk action bar — appears once one or more rows are
+                             checked. Delete removes the rows outright (this is a
+                             static demo, no backend); Change Status is limited to
+                             the same four statuses the tabs above cover, since
+                             Applied/Confirmed are a per-lead workflow (package,
+                             invoice, payment) that doesn't make sense in bulk. -->
+                        <div class="crm-bulk-bar d-none align-items-center flex-wrap gap-2" id="bulk-action-bar">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="mdi mdi-checkbox-marked-circle-outline fs-16"></i>
+                                <span class="fw-semibold fs-13"><span id="bulk-selected-count">0</span> lead(s) selected</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-2 flex-wrap ms-sm-auto">
+                                <div class="dropdown">
+                                    <button class="btn btn-sm btn-light fw-semibold dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="mdi mdi-swap-horizontal me-1"></i>Change Status
+                                    </button>
+                                    <ul class="dropdown-menu crm-bulk-status-menu">
+                                        <li><a class="dropdown-item fs-13" href="#" data-status="followup">Follow Up</a></li>
+                                        <li><a class="dropdown-item fs-13" href="#" data-status="interested">Interested</a></li>
+                                        <li><a class="dropdown-item fs-13" href="#" data-status="not-interested">Not Interested</a></li>
+                                        <li><a class="dropdown-item fs-13" href="#" data-status="unreachable">Unreachable</a></li>
+                                    </ul>
+                                </div>
+                                <button type="button" class="btn btn-sm btn-light fw-semibold text-danger" id="bulk-delete-btn"><i class="mdi mdi-trash-can-outline me-1"></i>Delete</button>
+                                <button type="button" class="btn btn-sm btn-link text-white text-decoration-none" id="bulk-clear-btn"><i class="mdi mdi-close"></i> Clear</button>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle crm-table w-100">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="no-sort" style="width:36px"><input type="checkbox" class="form-check-input" id="bulk-select-all" aria-label="Select all leads"></th>
+                                        <th>Patient / Guardian</th>
+                                        <th>Phone</th>
+                                        <th>Source</th>
+                                        <th>Status</th>
+                                        <th class="all">Last Conversation</th>
+                                        <th class="all">Next Follow-up</th>
+                                        <th class="no-sort all">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-status="followup" data-lead-id="ELH-L-2026-000416" data-source="Campaign" data-lead-name="Motaleb Hossain" data-due-bdt="0" data-due-usd="0" data-follow-up="2026-09-05" data-executive="Farhana Akter">
+                                        <td><input type="checkbox" class="form-check-input crm-row-select"></td>
+                                        <td><div class="fw-semibold">Rehana Parvin</div><div class="fs-12 text-muted">G: Motaleb Hossain</div><div class="mono fs-11 text-muted text-nowrap">ELH-L-2026-000416</div></td>
+                                        <td class="fs-13 text-nowrap">+880 1733-889900 <a href="#!" class="text-success ms-1" title="WhatsApp"><i class="mdi mdi-whatsapp"></i></a></td>
+                                        <td><span class="badge bg-secondary-subtle text-secondary">Campaign</span></td>
+                                        <td><span class="badge crm-status-badge bg-info-subtle text-info">Follow Up</span></td>
+                                        <td class="crm-last-conv" title="Asked about kidney transplant cost; will share reports on WhatsApp."><div class="fs-13 crm-clamp-2">Asked about kidney transplant cost; will share reports on WhatsApp.</div><div class="fs-11 text-muted mt-1"><i class="mdi mdi-history me-1"></i>01 Sep 2026 · Phone · Farhana Akter</div></td>
+                                        <td class="fs-13">05 Sep 2026</td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-lead-id="ELH-L-2026-000416" data-lead-name="Motaleb Hossain" data-lead-patient="Rehana Parvin"><i class="mdi mdi-card-account-details-outline"></i></button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Log conversation" data-bs-toggle="modal" data-bs-target="#logConvModal" data-lead-name="Motaleb Hossain" data-lead-patient="Rehana Parvin" data-lead-id="ELH-L-2026-000416"><i class="mdi mdi-comment-text-outline"></i></button>
+                                                <div class="dropdown">
+                                                <button class="btn btn-sm btn-icon btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="Change status"><i class="mdi mdi-swap-horizontal"></i></button>
+                                                <ul class="dropdown-menu dropdown-menu-end crm-status-menu">
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="followup">Follow Up</a></li>
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="interested">Interested</a></li>
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="not-interested">Not Interested</a></li>
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="unreachable">Unreachable</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="applied">Apply for Package <i class="mdi mdi-arrow-right ms-1"></i></a></li>
+                                                </ul>
+                                            </div>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Next follow-up" data-bs-toggle="modal" data-bs-target="#nextFollowupModal"><i class="mdi mdi-calendar-clock"></i></button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Edit" data-bs-toggle="modal" data-bs-target="#editLeadModal"><i class="mdi mdi-pencil-outline"></i></button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Print registration form" data-bs-toggle="modal" data-bs-target="#leadPrintModal"><i class="mdi mdi-printer"></i></button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light text-danger crm-row-delete" title="Delete lead"><i class="mdi mdi-trash-can-outline"></i></button>
+                                            </div>
+                                            <div class="qv-payload d-none">
+                                            <div class="row g-3 mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Guardian Contact</div>
+                                                    <div class="fs-13 fw-semibold">Motaleb Hossain</div>
+                                                    <div class="fs-13">+880 1733-889900</div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Patient Info</div>
+                                                    <div class="fs-13 fw-semibold">Rehana Parvin</div>
+                                                    <div class="fs-13 text-muted qv-f-agelocation">38 yrs &middot; Rangpur</div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-3 mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Suggested Package</div>
+                                                    <div class="fs-13 qv-f-package">Not yet offered</div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Expected Value</div>
+                                                    <div class="fs-13 qv-f-expected">&#2547;320,000</div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-3 mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Next Follow-up</div>
+                                                    <div class="fs-13">05 Sep 2026</div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Status</div>
+                                                    <span class="badge bg-info-subtle text-info">Follow Up</span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="fs-11 text-uppercase text-muted mb-1">Documents</div>
+                                                <div class="fs-13 text-muted"><i class="mdi mdi-google-drive me-1"></i>No shared folder yet</div>
+                                            </div>
+                                        </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="followup" data-lead-id="ELH-L-2026-000413" data-source="Facebook" data-lead-name="Anisur Rahman" data-due-bdt="0" data-due-usd="0" data-follow-up="2026-09-04" data-executive="Nusrat Jahan">
+                                        <td><input type="checkbox" class="form-check-input crm-row-select"></td>
+                                        <td><div class="fw-semibold">Sabina Yasmin</div><div class="fs-12 text-muted">G: Anisur Rahman</div><div class="mono fs-11 text-muted text-nowrap">ELH-L-2026-000413</div></td>
+                                        <td class="fs-13 text-nowrap">+880 1844-556677 <a href="#!" class="text-success ms-1" title="WhatsApp"><i class="mdi mdi-whatsapp"></i></a></td>
+                                        <td><span class="badge bg-info-subtle text-info">Facebook</span></td>
+                                        <td><span class="badge crm-status-badge bg-info-subtle text-info">Follow Up</span></td>
+                                        <td class="crm-last-conv" title="Wants to compare Partial-Funded and Paid packages."><div class="fs-13 crm-clamp-2">Wants to compare Partial-Funded and Paid packages.</div><div class="fs-11 text-muted mt-1"><i class="mdi mdi-history me-1"></i>31 Aug 2026 · WhatsApp · Nusrat Jahan</div></td>
+                                        <td class="fs-13">04 Sep 2026</td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-lead-id="ELH-L-2026-000413" data-lead-name="Anisur Rahman" data-lead-patient="Sabina Yasmin"><i class="mdi mdi-card-account-details-outline"></i></button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Log conversation" data-bs-toggle="modal" data-bs-target="#logConvModal" data-lead-name="Anisur Rahman" data-lead-patient="Sabina Yasmin" data-lead-id="ELH-L-2026-000413"><i class="mdi mdi-comment-text-outline"></i></button>
+                                                <div class="dropdown">
+                                                <button class="btn btn-sm btn-icon btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="Change status"><i class="mdi mdi-swap-horizontal"></i></button>
+                                                <ul class="dropdown-menu dropdown-menu-end crm-status-menu">
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="followup">Follow Up</a></li>
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="interested">Interested</a></li>
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="not-interested">Not Interested</a></li>
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="unreachable">Unreachable</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="applied">Apply for Package <i class="mdi mdi-arrow-right ms-1"></i></a></li>
+                                                </ul>
+                                            </div>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Next follow-up" data-bs-toggle="modal" data-bs-target="#nextFollowupModal"><i class="mdi mdi-calendar-clock"></i></button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Edit" data-bs-toggle="modal" data-bs-target="#editLeadModal"><i class="mdi mdi-pencil-outline"></i></button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Print registration form" data-bs-toggle="modal" data-bs-target="#leadPrintModal"><i class="mdi mdi-printer"></i></button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light text-danger crm-row-delete" title="Delete lead"><i class="mdi mdi-trash-can-outline"></i></button>
+                                            </div>
+                                            <div class="qv-payload d-none">
+                                            <div class="row g-3 mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Guardian Contact</div>
+                                                    <div class="fs-13 fw-semibold">Anisur Rahman</div>
+                                                    <div class="fs-13">+880 1844-556677</div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Patient Info</div>
+                                                    <div class="fs-13 fw-semibold">Sabina Yasmin</div>
+                                                    <div class="fs-13 text-muted qv-f-agelocation">29 yrs &middot; Mymensingh</div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-3 mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Suggested Package</div>
+                                                    <div class="fs-13 qv-f-package">Not yet offered</div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Expected Value</div>
+                                                    <div class="fs-13 qv-f-expected">&#2547;280,000</div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-3 mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Next Follow-up</div>
+                                                    <div class="fs-13">04 Sep 2026</div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Status</div>
+                                                    <span class="badge bg-info-subtle text-info">Follow Up</span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="fs-11 text-uppercase text-muted mb-1">Documents</div>
+                                                <div class="fs-13 text-muted"><i class="mdi mdi-google-drive me-1"></i>No shared folder yet</div>
+                                            </div>
+                                        </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="followup" data-lead-id="ELH-L-2026-000415" data-source="Website" data-lead-name="Jahid Hasan" data-due-bdt="0" data-due-usd="0" data-executive="Tanvir Ahmed">
+                                        <td><input type="checkbox" class="form-check-input crm-row-select"></td>
+                                        <td><div class="fw-semibold">Jahid Hasan</div><div class="fs-12 text-muted">G: Jahid Hasan</div><div class="mono fs-11 text-muted text-nowrap">ELH-L-2026-000415</div></td>
+                                        <td class="fs-13 text-nowrap">+880 1966-223344 <a href="#!" class="text-success ms-1" title="WhatsApp"><i class="mdi mdi-whatsapp"></i></a></td>
+                                        <td><span class="badge bg-secondary-subtle text-secondary">Website</span></td>
+                                        <td><span class="badge crm-status-badge bg-info-subtle text-info">Follow Up</span></td>
+                                        <td class="crm-last-conv" title="First call done — sending the package list."><div class="fs-13 crm-clamp-2">First call done — sending the package list.</div><div class="fs-11 text-muted mt-1"><i class="mdi mdi-history me-1"></i>02 Sep 2026 · Phone · Tanvir Ahmed</div></td>
+                                        <td class="fs-13"><span class="text-muted">&mdash;</span></td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-lead-id="ELH-L-2026-000415" data-lead-name="Jahid Hasan" data-lead-patient="Jahid Hasan"><i class="mdi mdi-card-account-details-outline"></i></button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Log conversation" data-bs-toggle="modal" data-bs-target="#logConvModal" data-lead-name="Jahid Hasan" data-lead-patient="Jahid Hasan" data-lead-id="ELH-L-2026-000415"><i class="mdi mdi-comment-text-outline"></i></button>
+                                                <div class="dropdown">
+                                                <button class="btn btn-sm btn-icon btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="Change status"><i class="mdi mdi-swap-horizontal"></i></button>
+                                                <ul class="dropdown-menu dropdown-menu-end crm-status-menu">
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="followup">Follow Up</a></li>
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="interested">Interested</a></li>
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="not-interested">Not Interested</a></li>
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="unreachable">Unreachable</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="applied">Apply for Package <i class="mdi mdi-arrow-right ms-1"></i></a></li>
+                                                </ul>
+                                            </div>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Next follow-up" data-bs-toggle="modal" data-bs-target="#nextFollowupModal"><i class="mdi mdi-calendar-clock"></i></button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Edit" data-bs-toggle="modal" data-bs-target="#editLeadModal"><i class="mdi mdi-pencil-outline"></i></button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Print registration form" data-bs-toggle="modal" data-bs-target="#leadPrintModal"><i class="mdi mdi-printer"></i></button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light text-danger crm-row-delete" title="Delete lead"><i class="mdi mdi-trash-can-outline"></i></button>
+                                            </div>
+                                            <div class="qv-payload d-none">
+                                            <div class="row g-3 mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Guardian Contact</div>
+                                                    <div class="fs-13 fw-semibold">Jahid Hasan</div>
+                                                    <div class="fs-13">+880 1966-223344</div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Patient Info</div>
+                                                    <div class="fs-13 fw-semibold">Jahid Hasan</div>
+                                                    <div class="fs-13 text-muted qv-f-agelocation">47 yrs &middot; Cumilla</div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-3 mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Suggested Package</div>
+                                                    <div class="fs-13 qv-f-package">Not yet offered</div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Expected Value</div>
+                                                    <div class="fs-13 qv-f-expected">&#2547;380,000</div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-3 mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Next Follow-up</div>
+                                                    <div class="fs-13 text-muted">&mdash;</div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Status</div>
+                                                    <span class="badge bg-info-subtle text-info">Follow Up</span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="fs-11 text-uppercase text-muted mb-1">Documents</div>
+                                                <div class="fs-13 text-muted"><i class="mdi mdi-google-drive me-1"></i>No shared folder yet</div>
+                                            </div>
+                                        </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="interested" data-lead-id="ELH-L-2026-000414" data-source="Noman" data-lead-name="Nazrul Islam" data-due-bdt="0" data-due-usd="0" data-follow-up="2026-09-03" data-executive="Sabbir Hossain">
+                                        <td><input type="checkbox" class="form-check-input crm-row-select"></td>
+                                        <td><div class="fw-semibold">Farida Yeasmin</div><div class="fs-12 text-muted">G: Nazrul Islam</div><div class="mono fs-11 text-muted text-nowrap">ELH-L-2026-000414</div></td>
+                                        <td class="fs-13 text-nowrap">+880 1577-990011 <a href="#!" class="text-success ms-1" title="WhatsApp"><i class="mdi mdi-whatsapp"></i></a></td>
+                                        <td><span class="badge bg-success-subtle text-success">Noman</span></td>
+                                        <td><span class="badge crm-status-badge bg-primary-subtle text-primary">Interested</span></td>
+                                        <td class="crm-last-conv" title="Interested; family meeting before confirming."><div class="fs-13 crm-clamp-2">Interested; family meeting before confirming.</div><div class="fs-11 text-muted mt-1"><i class="mdi mdi-history me-1"></i>30 Aug 2026 · In Person · Sabbir Hossain</div></td>
+                                        <td class="fs-13">03 Sep 2026</td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-lead-id="ELH-L-2026-000414" data-lead-name="Nazrul Islam" data-lead-patient="Farida Yeasmin"><i class="mdi mdi-card-account-details-outline"></i></button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Log conversation" data-bs-toggle="modal" data-bs-target="#logConvModal" data-lead-name="Nazrul Islam" data-lead-patient="Farida Yeasmin" data-lead-id="ELH-L-2026-000414"><i class="mdi mdi-comment-text-outline"></i></button>
+                                                <div class="dropdown">
+                                                <button class="btn btn-sm btn-icon btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="Change status"><i class="mdi mdi-swap-horizontal"></i></button>
+                                                <ul class="dropdown-menu dropdown-menu-end crm-status-menu">
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="followup">Follow Up</a></li>
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="interested">Interested</a></li>
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="not-interested">Not Interested</a></li>
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="unreachable">Unreachable</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="applied">Apply for Package <i class="mdi mdi-arrow-right ms-1"></i></a></li>
+                                                </ul>
+                                            </div>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Next follow-up" data-bs-toggle="modal" data-bs-target="#nextFollowupModal"><i class="mdi mdi-calendar-clock"></i></button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Edit" data-bs-toggle="modal" data-bs-target="#editLeadModal"><i class="mdi mdi-pencil-outline"></i></button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Print registration form" data-bs-toggle="modal" data-bs-target="#leadPrintModal"><i class="mdi mdi-printer"></i></button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light text-danger crm-row-delete" title="Delete lead"><i class="mdi mdi-trash-can-outline"></i></button>
+                                            </div>
+                                            <div class="qv-payload d-none">
+                                            <div class="row g-3 mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Guardian Contact</div>
+                                                    <div class="fs-13 fw-semibold">Nazrul Islam</div>
+                                                    <div class="fs-13">+880 1577-990011</div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Patient Info</div>
+                                                    <div class="fs-13 fw-semibold">Farida Yeasmin</div>
+                                                    <div class="fs-13 text-muted qv-f-agelocation">52 yrs &middot; Bogura</div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-3 mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Suggested Package</div>
+                                                    <div class="fs-13 qv-f-package">Not yet offered</div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Expected Value</div>
+                                                    <div class="fs-13 qv-f-expected">&#2547;180,000</div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-3 mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Next Follow-up</div>
+                                                    <div class="fs-13">03 Sep 2026</div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Status</div>
+                                                    <span class="badge bg-primary-subtle text-primary">Interested</span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="fs-11 text-uppercase text-muted mb-1">Documents</div>
+                                                <div class="fs-13 text-muted"><i class="mdi mdi-google-drive me-1"></i>No shared folder yet</div>
+                                            </div>
+                                        </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="followup" data-lead-id="ELH-L-2026-000409" data-source="Website" data-lead-name="Abdul Malek" data-due-bdt="0" data-due-usd="0" data-follow-up="2026-09-06" data-executive="Farhana Akter">
+                                        <td><input type="checkbox" class="form-check-input crm-row-select"></td>
+                                        <td><div class="fw-semibold">Abdul Malek</div><div class="fs-12 text-muted">G: Abdul Malek</div><div class="mono fs-11 text-muted text-nowrap">ELH-L-2026-000409</div></td>
+                                        <td class="fs-13 text-nowrap">+880 1521-334455 <a href="#!" class="text-success ms-1" title="WhatsApp"><i class="mdi mdi-whatsapp"></i></a></td>
+                                        <td><span class="badge bg-secondary-subtle text-secondary">Website</span></td>
+                                        <td><span class="badge crm-status-badge bg-info-subtle text-info">Follow Up</span></td>
+                                        <td class="crm-last-conv" title="First call — interested in kidney treatment options."><div class="fs-13 crm-clamp-2">First call — interested in kidney treatment options.</div><div class="fs-11 text-muted mt-1"><i class="mdi mdi-history me-1"></i>29 Aug 2026 · Phone · Farhana Akter</div></td>
+                                        <td class="fs-13">06 Sep 2026</td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-lead-id="ELH-L-2026-000409" data-lead-name="Abdul Malek" data-lead-patient="Abdul Malek"><i class="mdi mdi-card-account-details-outline"></i></button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Log conversation" data-bs-toggle="modal" data-bs-target="#logConvModal" data-lead-name="Abdul Malek" data-lead-patient="Abdul Malek" data-lead-id="ELH-L-2026-000409"><i class="mdi mdi-comment-text-outline"></i></button>
+                                                <div class="dropdown">
+                                                <button class="btn btn-sm btn-icon btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="Change status"><i class="mdi mdi-swap-horizontal"></i></button>
+                                                <ul class="dropdown-menu dropdown-menu-end crm-status-menu">
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="followup">Follow Up</a></li>
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="interested">Interested</a></li>
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="not-interested">Not Interested</a></li>
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="unreachable">Unreachable</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="applied">Apply for Package <i class="mdi mdi-arrow-right ms-1"></i></a></li>
+                                                </ul>
+                                            </div>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Next follow-up" data-bs-toggle="modal" data-bs-target="#nextFollowupModal"><i class="mdi mdi-calendar-clock"></i></button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Edit" data-bs-toggle="modal" data-bs-target="#editLeadModal"><i class="mdi mdi-pencil-outline"></i></button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Print registration form" data-bs-toggle="modal" data-bs-target="#leadPrintModal"><i class="mdi mdi-printer"></i></button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light text-danger crm-row-delete" title="Delete lead"><i class="mdi mdi-trash-can-outline"></i></button>
+                                            </div>
+                                            <div class="qv-payload d-none">
+                                            <div class="row g-3 mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Guardian Contact</div>
+                                                    <div class="fs-13 fw-semibold">Abdul Malek</div>
+                                                    <div class="fs-13">+880 1521-334455</div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Patient Info</div>
+                                                    <div class="fs-13 fw-semibold">Abdul Malek</div>
+                                                    <div class="fs-13 text-muted qv-f-agelocation">45 yrs &middot; Khulna</div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-3 mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Suggested Package</div>
+                                                    <div class="fs-13 qv-f-package">Not yet offered</div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Expected Value</div>
+                                                    <div class="fs-13 qv-f-expected">&#2547;340,000</div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-3 mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Next Follow-up</div>
+                                                    <div class="fs-13">06 Sep 2026</div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Status</div>
+                                                    <span class="badge bg-info-subtle text-info">Follow Up</span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="fs-11 text-uppercase text-muted mb-1">Documents</div>
+                                                <div class="fs-13 text-muted"><i class="mdi mdi-google-drive me-1"></i>No shared folder yet</div>
+                                            </div>
+                                        </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-status="not-interested" data-lead-id="ELH-L-2026-000407" data-source="Walk-in" data-lead-name="Shahin Alam" data-due-bdt="0" data-due-usd="0" data-executive="Nusrat Jahan">
+                                        <td><input type="checkbox" class="form-check-input crm-row-select"></td>
+                                        <td><div class="fw-semibold">Rafi Alam</div><div class="fs-12 text-muted">G: Shahin Alam</div><div class="mono fs-11 text-muted text-nowrap">ELH-L-2026-000407</div></td>
+                                        <td class="fs-13 text-nowrap">+880 1755-667788 <a href="#!" class="text-success ms-1" title="WhatsApp"><i class="mdi mdi-whatsapp"></i></a></td>
+                                        <td><span class="badge bg-warning-subtle text-warning">Walk-in</span></td>
+                                        <td><span class="badge crm-status-badge bg-danger-subtle text-danger">Not Interested</span></td>
+                                        <td class="crm-last-conv" title="Chose to continue treatment locally."><div class="fs-13 crm-clamp-2">Chose to continue treatment locally.</div><div class="fs-11 text-muted mt-1"><i class="mdi mdi-history me-1"></i>27 Aug 2026 · Phone · Nusrat Jahan</div></td>
+                                        <td class="fs-13"><span class="text-muted">&mdash;</span></td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-lead-id="ELH-L-2026-000407" data-lead-name="Shahin Alam" data-lead-patient="Rafi Alam"><i class="mdi mdi-card-account-details-outline"></i></button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Log conversation" data-bs-toggle="modal" data-bs-target="#logConvModal" data-lead-name="Shahin Alam" data-lead-patient="Rafi Alam" data-lead-id="ELH-L-2026-000407"><i class="mdi mdi-comment-text-outline"></i></button>
+                                                <div class="dropdown">
+                                                <button class="btn btn-sm btn-icon btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="Change status"><i class="mdi mdi-swap-horizontal"></i></button>
+                                                <ul class="dropdown-menu dropdown-menu-end crm-status-menu">
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="followup">Follow Up</a></li>
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="interested">Interested</a></li>
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="not-interested">Not Interested</a></li>
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="unreachable">Unreachable</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a class="dropdown-item fs-13" href="#" data-status="applied">Apply for Package <i class="mdi mdi-arrow-right ms-1"></i></a></li>
+                                                </ul>
+                                            </div>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Next follow-up" data-bs-toggle="modal" data-bs-target="#nextFollowupModal"><i class="mdi mdi-calendar-clock"></i></button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Edit" data-bs-toggle="modal" data-bs-target="#editLeadModal"><i class="mdi mdi-pencil-outline"></i></button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light" title="Print registration form" data-bs-toggle="modal" data-bs-target="#leadPrintModal"><i class="mdi mdi-printer"></i></button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-light text-danger crm-row-delete" title="Delete lead"><i class="mdi mdi-trash-can-outline"></i></button>
+                                            </div>
+                                            <div class="qv-payload d-none">
+                                            <div class="row g-3 mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Guardian Contact</div>
+                                                    <div class="fs-13 fw-semibold">Shahin Alam</div>
+                                                    <div class="fs-13">+880 1755-667788</div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Patient Info</div>
+                                                    <div class="fs-13 fw-semibold">Rafi Alam</div>
+                                                    <div class="fs-13 text-muted qv-f-agelocation">5 yrs &middot; Barishal</div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-3 mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Suggested Package</div>
+                                                    <div class="fs-13 qv-f-package">Not yet offered</div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Expected Value</div>
+                                                    <div class="fs-13 qv-f-expected">&#2547;220,000</div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-3 mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Next Follow-up</div>
+                                                    <div class="fs-13 text-muted">&mdash;</div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="fs-11 text-uppercase text-muted mb-1">Status</div>
+                                                    <span class="badge bg-danger-subtle text-danger">Not Interested</span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="fs-11 text-uppercase text-muted mb-1">Documents</div>
+                                                <div class="fs-13 text-muted"><i class="mdi mdi-google-drive me-1"></i>No shared folder yet</div>
+                                            </div>
+                                        </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== Add Lead modal — full §2 field set ===== -->
+                <div class="modal fade" id="addLeadModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Add New Lead</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="alert alert-info d-flex align-items-center gap-2 py-2 fs-13">
+                                    <i class="mdi mdi-information-outline"></i>
+                                    Lead ID is generated automatically on save &mdash; <span class="mono">ELH-L-2026-000417</span>
+                                </div>
+                                <div class="row g-3">
+                                    <!-- Who and when — defaults to "right now" (today / whoever
+                                         is logged in) and stays locked until the matching
+                                         checkbox says otherwise, so neither can drift by
+                                         accident. Boxed so it reads as one distinct "registration
+                                         meta" block instead of blending into the fields below —
+                                         those disabled/readonly controls are grey, but the panel
+                                         itself still needs its own edge against the plain white
+                                         modal body. CARRY INTO LARAVEL: a disabled field submits
+                                         nothing. Both must become readonly, or be re-enabled on
+                                         submit, or the value arrives empty. -->
+                                    <div class="col-12">
+                                        <div class="border rounded-3 p-3 bg-light-subtle">
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Lead Date</label>
+                                                    <input type="date" class="form-control" id="al-date" value="2026-08-31" disabled>
+                                                    <div class="form-check mt-1">
+                                                        <input class="form-check-input" type="checkbox" id="al-date-override">
+                                                        <label class="form-check-label fs-12" for="al-date-override">Change date</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Assigned Sales Executive</label>
+                                                    <select class="form-select" id="al-executive" data-current-user="Tanvir Ahmed" disabled>
+                                                        <option selected>Tanvir Ahmed</option><option>Nusrat Jahan</option><option>Sabbir Hossain</option><option>Farhana Akter</option>
+                                                    </select>
+                                                    <div class="form-check mt-1">
+                                                        <input class="form-check-input" type="checkbox" id="al-behalf">
+                                                        <label class="form-check-label fs-12" for="al-behalf">Assigning on behalf of someone else</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12"><h6 class="text-uppercase fs-11 fw-bold text-muted border-bottom pb-1 mb-0">Guardian Information</h6></div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Guardian Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="al-guardian" placeholder="Guardian full name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Guardian Phone <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="al-phone" placeholder="+880 1XXX-XXXXXX">
+                                        <div class="form-text fs-11"><i class="mdi mdi-shield-check-outline"></i> Checked for duplicates</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Alternative Phone</label>
+                                        <input type="text" class="form-control" id="al-altphone" placeholder="Optional">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Guardian Email <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                        <input type="email" class="form-control" id="al-email" placeholder="name@example.com">
+                                    </div>
+
+                                    <div class="col-12"><h6 class="text-uppercase fs-11 fw-bold text-muted border-bottom pb-1 mb-0 mt-2">Patient Information</h6></div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Patient Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="al-patient" placeholder="Patient full name">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">Patient Date of Birth</label>
+                                        <input type="date" class="form-control" id="al-dob">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">Patient Age</label>
+                                        <input type="text" class="form-control" id="al-age" placeholder="From date of birth" readonly>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Patient Gender</label>
+                                        <select class="form-select" id="al-gender"><option>Select</option><option>Male</option><option>Female</option><option>Other</option></select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Patient Issue / Condition</label>
+                                        <textarea class="form-control" id="al-condition" rows="3" placeholder="e.g. Blocked artery, advised bypass. Diabetic, on insulin 6 years."></textarea>
+                                        <div class="form-text fs-11"><i class="mdi mdi-information-outline"></i> The doctor and hospital are assigned later by the India team, based on this.</div>
+                                    </div>
+
+                                    <!-- Division -> District -> Upazila cascade, wired in
+                                         crm-leads.js (BD_GEO + wireGeoCascade); optional, like
+                                         the free-text Address/Post Code below it. There is
+                                         no clean enumerable list past Upazila worth hardcoding. -->
+                                    <div class="col-12"><h6 class="text-uppercase fs-11 fw-bold text-muted border-bottom pb-1 mb-0 mt-2">Address</h6></div>
+                                    <div class="col-12">
+                                        <div class="border rounded-3 p-3 bg-light-subtle">
+                                            <div class="row g-3">
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Division <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                                    <select class="form-select" id="al-division">
+                                                        <option value="">Select division</option>
+                                                        <option>Dhaka</option><option>Chattogram</option><option>Rajshahi</option>
+                                                        <option>Khulna</option><option>Barishal</option><option>Sylhet</option>
+                                                        <option>Rangpur</option><option>Mymensingh</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">District <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                                    <select class="form-select" id="al-district" disabled><option value="">Select division first</option></select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Upazila <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                                    <select class="form-select" id="al-upazila" disabled><option value="">Select district first</option></select>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <label class="form-label">Address <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                                    <input type="text" class="form-control" id="al-village" placeholder="House / road / village / area">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Post Code <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                                    <input type="text" class="form-control" id="al-postcode" placeholder="Optional">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12"><h6 class="text-uppercase fs-11 fw-bold text-muted border-bottom pb-1 mb-0 mt-2">Lead &amp; Source Details</h6></div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Lead Source <span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <select class="form-select" id="al-source"><option>Select source</option><option>Noman</option><option>Dr. Ilias Patowary</option><option>Facebook</option><option>Website</option><option>Hospital</option><option>Doctor Referral</option><option>Walk-in</option><option>Campaign</option><option>Other</option></select>
+                                            <button class="btn btn-outline-primary" type="button" id="al-source-add" title="Add a new source"><i class="mdi mdi-plus"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Secondary Source / Campaign</label>
+                                        <input type="text" class="form-control" id="al-secondary" placeholder="Optional">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Priority <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                        <select class="form-select" id="al-priority" data-crm-list="leadPriorities">
+                                            <option value="" selected>Select priority</option>
+                                            <option>Normal</option><option>High</option><option>Critical</option><option>Special</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-12"><h6 class="text-uppercase fs-11 fw-bold text-muted border-bottom pb-1 mb-0 mt-2">Package &amp; Value</h6></div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Expected Value</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">&#2547;</span>
+                                            <input type="number" class="form-control" id="al-expected" placeholder="0.00">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Offered Value</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">&#2547;</span>
+                                            <input type="number" class="form-control" id="al-offered" placeholder="0.00">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Package Offered</label>
+                                        <select class="form-select" id="al-package-offered">
+                                            <option value="">Not yet offered</option>
+                                            <option>Full-Funded Package</option>
+                                            <option>Partial-Funded Package</option>
+                                            <option>Paid Package</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-12"><h6 class="text-uppercase fs-11 fw-bold text-muted border-bottom pb-1 mb-0 mt-2">Documents &amp; Notes</h6></div>
+                                    <div class="col-12">
+                                        <label class="form-label">Documents <span class="text-muted fw-normal fs-12">(optional)</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="mdi mdi-google-drive"></i></span>
+                                            <input type="url" class="form-control" id="al-drive" placeholder="https://drive.google.com/...">
+                                        </div>
+                                        <div class="form-text fs-11"><i class="mdi mdi-information-outline"></i> Create a shared Drive folder now if documents are ready, or leave blank and add the link later from Edit.</div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Notes</label>
+                                        <textarea class="form-control" id="al-notes" rows="2" placeholder="Any additional information"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-primary" id="al-save"><i class="mdi mdi-check-circle-outline me-1"></i>Save Lead</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== Post-save overview — "successful, show an overview";
+                     from here the executive can Edit (reopens Add Lead with
+                     values intact), Print the registration form, jump straight
+                     into Conversation, or just close (Done). ===== -->
+                <div class="modal fade" id="leadOverviewModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div>
+                                    <h5 class="modal-title mb-0"><i class="mdi mdi-check-circle text-success me-1"></i>Lead Registered Successfully</h5>
+                                    <span class="fs-12 text-muted mono" id="lo-id"></span>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row g-3 mb-3">
+                                    <div class="col-md-6">
+                                        <div class="fs-11 text-uppercase text-muted mb-1">Guardian</div>
+                                        <div class="fs-13 fw-semibold" id="lo-guardian"></div>
+                                        <div class="fs-13 text-muted" id="lo-phone"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="fs-11 text-uppercase text-muted mb-1">Patient</div>
+                                        <div class="fs-13 fw-semibold" id="lo-patient"></div>
+                                        <div class="fs-13 text-muted" id="lo-agegender"></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="fs-11 text-uppercase text-muted mb-1">Address</div>
+                                    <div class="fs-13" id="lo-address"></div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="fs-11 text-uppercase text-muted mb-1">Patient Issue / Condition</div>
+                                    <div class="fs-13" id="lo-condition"></div>
+                                </div>
+                                <div class="row g-3 mb-3">
+                                    <div class="col-md-4"><div class="fs-11 text-uppercase text-muted mb-1">Lead Source</div><div class="fs-13" id="lo-source"></div></div>
+                                    <div class="col-md-4"><div class="fs-11 text-uppercase text-muted mb-1">Assigned To</div><div class="fs-13" id="lo-executive"></div></div>
+                                    <div class="col-md-4"><div class="fs-11 text-uppercase text-muted mb-1">Priority</div><div class="fs-13" id="lo-priority"></div></div>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-md-4"><div class="fs-11 text-uppercase text-muted mb-1">Expected Value</div><div class="fs-13" id="lo-expected"></div></div>
+                                    <div class="col-md-4"><div class="fs-11 text-uppercase text-muted mb-1">Offered Value</div><div class="fs-13" id="lo-offered"></div></div>
+                                    <div class="col-md-4"><div class="fs-11 text-uppercase text-muted mb-1">Package Offered</div><div class="fs-13" id="lo-package"></div></div>
+                                </div>
+                                <div class="row g-3 mt-0">
+                                </div>
+                            </div>
+                            <div class="modal-footer flex-wrap">
+                                <button class="btn btn-light" id="lo-edit"><i class="mdi mdi-pencil-outline me-1"></i>Edit</button>
+                                <button class="btn btn-outline-primary" id="lo-print"><i class="mdi mdi-printer me-1"></i>Print</button>
+                                <button class="btn btn-light" data-bs-dismiss="modal">Done</button>
+                                <button class="btn btn-primary" id="lo-continue">Go to Conversation <i class="mdi mdi-arrow-right-circle-outline ms-1"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--@lead-modals-->
+
+                <!--@next-followup-->
+
+                <!--@status-modals-->
+
+                <!--@quick-view-->
+
+                <!--@log-conversation-->
